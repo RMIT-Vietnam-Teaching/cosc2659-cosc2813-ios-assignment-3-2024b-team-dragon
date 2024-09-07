@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2376A2C8C925D0095D755 /* FirebaseService.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
 		B8E66F232C84C77D0033A939 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 		03E237652C8C8F6B0095D755 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B8E66F232C84C77D0033A939 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -56,6 +59,7 @@
 		03E237672C8C90710095D755 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				03E2376A2C8C925D0095D755 /* FirebaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -100,7 +104,6 @@
 				03E237652C8C8F6B0095D755 /* Views */,
 				03E237642C8C8F0B0095D755 /* Models */,
 				B8E66F212C84C77D0033A939 /* RoadifyApp.swift */,
-				B8E66F232C84C77D0033A939 /* ContentView.swift */,
 				B8E66F252C84C77E0033A939 /* Assets.xcassets */,
 				B8E66F272C84C77E0033A939 /* Preview Content */,
 			);
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
+				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
