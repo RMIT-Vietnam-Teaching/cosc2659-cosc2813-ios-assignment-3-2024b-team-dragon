@@ -32,6 +32,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03E237642C8C8F0B0095D755 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		03E237652C8C8F6B0095D755 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		03E237662C8C90560095D755 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		03E237672C8C90710095D755 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		03E237682C8C907A0095D755 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		03E237692C8C90C40095D755 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		B8E66F152C84C77D0033A939 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +93,12 @@
 		B8E66F202C84C77D0033A939 /* Roadify */ = {
 			isa = PBXGroup;
 			children = (
+				03E237692C8C90C40095D755 /* Resources */,
+				03E237682C8C907A0095D755 /* Utils */,
+				03E237672C8C90710095D755 /* Services */,
+				03E237662C8C90560095D755 /* ViewModels */,
+				03E237652C8C8F6B0095D755 /* Views */,
+				03E237642C8C8F0B0095D755 /* Models */,
 				B8E66F212C84C77D0033A939 /* RoadifyApp.swift */,
 				B8E66F232C84C77D0033A939 /* ContentView.swift */,
 				B8E66F252C84C77E0033A939 /* Assets.xcassets */,

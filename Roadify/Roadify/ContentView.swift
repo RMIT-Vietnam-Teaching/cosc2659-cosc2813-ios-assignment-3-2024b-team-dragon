@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Roadify
-//
-//  Created by Cường Võ Duy on 1/9/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
