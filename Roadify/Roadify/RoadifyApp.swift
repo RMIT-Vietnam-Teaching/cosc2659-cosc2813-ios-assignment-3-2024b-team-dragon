@@ -1,22 +1,9 @@
 import SwiftUI
-import Firebase
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-    return true
-  }
-}
 
 @main
 struct RoadifyApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
-    init(){
-        FirebaseApp.configure()
-    }
-    
+    @UIApplicationDelegateAdaptor(FirebaseService.self) var delegate  // Register FirebaseService as AppDelegate
+
     var body: some Scene {
         WindowGroup {
             ContentView()
