@@ -1,12 +1,16 @@
 import SwiftUI
+import Firebase
 
 @main
 struct RoadifyApp: App {
-    @UIApplicationDelegateAdaptor(FirebaseService.self) var delegate  // Register FirebaseService as AppDelegate
+    init() {
+        FirebaseApp.configure()  
+        print("Firebase Configured!")
+    }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+           CRUDView()
         }
     }
 }

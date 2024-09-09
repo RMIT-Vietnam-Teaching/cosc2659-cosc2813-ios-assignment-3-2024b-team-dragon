@@ -14,10 +14,10 @@ struct CRUDView: View {
                 .padding()
             
             Button(action: {
-                let newMarker = Marker(id: UUID().uuidString, title: title, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-                firebaseService.addMarker(marker: newMarker) { error in
+                // Use the addMarker method with title and default coordinates
+                firebaseService.addMarker(title: title, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0)) { error in
                     if error == nil {
-                        title = ""
+                        title = "" // Clear the title after adding
                     }
                 }
             }) {
@@ -52,14 +52,7 @@ struct CRUDView: View {
             }
         }
         .onAppear {
-            firebaseService.fetchMarkers { result in
-                switch result {
-                case .success(let fetchedMarkers):
-                    markers = fetchedMarkers
-                case .failure(let error):
-                    print("Error fetching markers: \(error.localizedDescription)")
-                }
-            }
+            fetchMarkers() // Call fetchMarkers here
         }
         .alert(item: $selectedMarker) { marker in
             Alert(title: Text("Edit Marker"), message: Text("Update the marker title"), primaryButton: .default(Text("Update")) {
@@ -73,6 +66,17 @@ struct CRUDView: View {
                     }
                 }
             }, secondaryButton: .cancel())
+        }
+    }
+    
+    private func fetchMarkers() {
+        firebaseService.fetchMarkers { result in
+            switch result {
+            case .success(let fetchedMarkers):
+                markers = fetchedMarkers
+            case .failure(let error):
+                print("Error fetching markers: \(error.localizedDescription)")
+            }
         }
     }
 }
