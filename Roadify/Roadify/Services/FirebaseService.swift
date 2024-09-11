@@ -47,4 +47,29 @@ class FirebaseService: NSObject, ObservableObject {
             completion(error)
         }
     }
+    
+    // MARK: - Save User Details to Firestore using User model
+    func saveUser(user: User, completion: @escaping (Error?) -> Void) {
+        db.collection("users").document(user.id).setData(user.toDictionary()) { error in
+            completion(error)
+        }
+    }
+
+    // MARK: - Fetch User Details from Firestore using User model
+    func fetchUser(userID: String, completion: @escaping (Result<User, Error>) -> Void) {
+        let ref = db.collection("users").document(userID)
+        ref.getDocument { document, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let document = document, document.exists, let data = document.data() {
+                if let user = User(id: userID, data: data) {
+                    completion(.success(user))
+                } else {
+                    completion(.failure(NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: "Invalid user data"])))
+                }
+            } else {
+                completion(.failure(NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"])))
+            }
+        }
+    }
 }

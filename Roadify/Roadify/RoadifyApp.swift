@@ -1,5 +1,6 @@
 import SwiftUI
 import Firebase
+import FirebaseCore
 
 @main
 struct RoadifyApp: App {
@@ -10,7 +11,7 @@ struct RoadifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CRUDView()
+            SignInView()
         }
     }
 }
