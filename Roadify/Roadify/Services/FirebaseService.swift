@@ -6,7 +6,7 @@ import CoreLocation
 class FirebaseService: NSObject, ObservableObject {
     private var db = Firestore.firestore()
     
-    // MARK: - Create
+    // MARK: - Create DEMO
     func addMarker(title: String, coordinate: CLLocationCoordinate2D, completion: @escaping (Error?) -> Void) {
         let ref = db.collection("markers").document() // Automatically generate a document ID
         let newMarker = Marker(id: ref.documentID, title: title, coordinate: coordinate) // Create a new marker with the generated ID
@@ -15,7 +15,7 @@ class FirebaseService: NSObject, ObservableObject {
         }
     }
     
-    // MARK: - Read
+    // MARK: - Read DEMO
     func fetchMarkers(completion: @escaping (Result<[Marker], Error>) -> Void) {
         db.collection("markers").addSnapshotListener { (querySnapshot, error) in
             if let error = error {
@@ -32,7 +32,7 @@ class FirebaseService: NSObject, ObservableObject {
         }
     }
     
-    // MARK: - Update
+    // MARK: - Update DEMO
     func updateMarker(marker: Marker, completion: @escaping (Error?) -> Void) {
         let ref = db.collection("markers").document(marker.id)
         ref.setData(marker.toDictionary()) { error in
@@ -40,7 +40,7 @@ class FirebaseService: NSObject, ObservableObject {
         }
     }
     
-    // MARK: - Delete
+    // MARK: - Delete DEMO
     func deleteMarker(markerId: String, completion: @escaping (Error?) -> Void) {
         let ref = db.collection("markers").document(markerId)
         ref.delete { error in

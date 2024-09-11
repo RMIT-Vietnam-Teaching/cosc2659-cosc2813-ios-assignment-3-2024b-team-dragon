@@ -13,6 +13,8 @@
 		0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4A2C919DEF008ED49A /* SignUpView.swift */; };
 		0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */; };
 		0362DA4F2C91A687008ED49A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4E2C91A687008ED49A /* User.swift */; };
+		0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA502C91AF2D008ED49A /* AccountView.swift */; };
+		0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA532C91B1C1008ED49A /* settingsRow.swift */; };
 		03AEF1D12C8F45BB001C503E /* CRUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEF1D02C8F45BB001C503E /* CRUDView.swift */; };
 		03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2376A2C8C925D0095D755 /* FirebaseService.swift */; };
 		03E2376D2C8EB02E0095D755 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */; };
@@ -35,6 +37,8 @@
 		0362DA4A2C919DEF008ED49A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0362DA4E2C91A687008ED49A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0362DA502C91AF2D008ED49A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		0362DA532C91B1C1008ED49A /* settingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsRow.swift; sourceTree = "<group>"; };
 		03AEF1D02C8F45BB001C503E /* CRUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDView.swift; sourceTree = "<group>"; };
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -62,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0362DA522C91B16E008ED49A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0362DA532C91B1C1008ED49A /* settingsRow.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		03E237642C8C8F0B0095D755 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +91,7 @@
 				03AEF1D02C8F45BB001C503E /* CRUDView.swift */,
 				0362DA442C9190F9008ED49A /* SignInView.swift */,
 				0362DA4A2C919DEF008ED49A /* SignUpView.swift */,
+				0362DA502C91AF2D008ED49A /* AccountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,6 +116,7 @@
 		03E237682C8C907A0095D755 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0362DA522C91B16E008ED49A /* UI */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -236,12 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */,
 				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
 				03AEF1D12C8F45BB001C503E /* CRUDView.swift in Sources */,
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
+				0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
