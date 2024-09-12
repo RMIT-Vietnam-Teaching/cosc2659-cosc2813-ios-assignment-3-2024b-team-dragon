@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 struct MapView: UIViewRepresentable {
-    @Binding var pins: [PinModel]  // Bind the pins array from ContentView
+    @Binding var pins: [Pin]  // Bind the pins array from ContentView
     @Binding var showPinModal: Bool
     @Binding var selectedCoordinate: CLLocationCoordinate2D?
 
@@ -38,9 +38,9 @@ struct MapView: UIViewRepresentable {
         // Add new pins as annotations
         for pin in pins {
             let annotation = MKPointAnnotation()
-            annotation.coordinate = pin.coordinate
+            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)  // Combine latitude and longitude
             annotation.title = pin.title
-            annotation.subtitle = pin.status.rawValue  // Display the status (pending)
+            annotation.subtitle = pin.status.rawValue  // Display the status (pending or verified)
             uiView.addAnnotation(annotation)
         }
 
