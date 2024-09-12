@@ -17,8 +17,8 @@ struct Pin: Identifiable {
     var title: String
     var description: String
     var status: PinStatus
-    var images: [UIImage] = []  // We will store image URLs instead of the images themselves in Firestore
-
+    var imageUrls: [String] = []  // Store URLs of uploaded images
+    
     enum PinStatus: String {
         case pending = "Pending"
         case verified = "Verified"
@@ -32,11 +32,11 @@ struct Pin: Identifiable {
             "latitude": latitude,
             "longitude": longitude,
             "status": status.rawValue,
-            "imageURLs": [] // Replace this with an array of image URLs (Firebase Storage can be used for this)
+            "imageUrls": imageUrls  // URLs for the uploaded images
         ]
     }
     
-    // Initialize PinModel from Firestore data
+    // Initialize Pin from Firestore data
     init?(id: String, data: [String: Any]) {
         guard let title = data["title"] as? String,
               let description = data["description"] as? String,
@@ -44,7 +44,7 @@ struct Pin: Identifiable {
               let longitude = data["longitude"] as? Double,
               let statusString = data["status"] as? String,
               let status = PinStatus(rawValue: statusString),
-              let imageURLs = data["imageURLs"] as? [String] else {
+              let imageUrls = data["imageUrls"] as? [String] else {
             return nil
         }
         
@@ -54,18 +54,17 @@ struct Pin: Identifiable {
         self.latitude = latitude
         self.longitude = longitude
         self.status = status
-        // Here you can fetch the actual images from Firebase Storage using the URLs
-        self.images = []  // This would be the array of images fetched from URLs
+        self.imageUrls = imageUrls
     }
     
     // Custom initializer for creating new pins
-    init(id: String = UUID().uuidString, latitude: Double, longitude: Double, title: String, description: String, status: PinStatus, images: [UIImage] = []) {
+    init(id: String = UUID().uuidString, latitude: Double, longitude: Double, title: String, description: String, status: PinStatus, imageUrls: [String] = []) {
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
         self.title = title
         self.description = description
         self.status = status
-        self.images = images
+        self.imageUrls = imageUrls
     }
 }

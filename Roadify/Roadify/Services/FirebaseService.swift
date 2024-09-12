@@ -1,11 +1,14 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 import CoreLocation
+import UIKit
 
 class FirebaseService: ObservableObject {
     private var db = Firestore.firestore()  // Access Firestore through Firebase
-
+    private let storage = Storage.storage()
+    
     // MARK: - Add Pin
     func addPin(pin: Pin, completion: @escaping (Error?) -> Void) {
         let ref = db.collection("pins").document(pin.id)  // Use the Pin's ID as the document ID
@@ -48,6 +51,43 @@ class FirebaseService: ObservableObject {
         let ref = db.collection("pins").document(pinId)
         ref.delete { error in
             completion(error)
+        }
+    }
+    
+    // MARK: - Upload Images to Firebase Storage
+    func uploadImages(images: [UIImage], completion: @escaping ([String]) -> Void) {
+        var uploadedImageURLs: [String] = []
+        let dispatchGroup = DispatchGroup()
+
+        for image in images {
+            dispatchGroup.enter()
+            
+            let storageRef = storage.reference().child("images/\(UUID().uuidString).jpg")
+            guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+                dispatchGroup.leave()
+                continue
+            }
+            
+            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading image: \(error.localizedDescription)")
+                    dispatchGroup.leave()
+                    return
+                }
+                
+                storageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        print("Error getting image URL: \(error.localizedDescription)")
+                    } else if let url = url {
+                        uploadedImageURLs.append(url.absoluteString)
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(uploadedImageURLs)
         }
     }
 }

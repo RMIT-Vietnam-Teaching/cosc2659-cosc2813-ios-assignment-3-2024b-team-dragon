@@ -107,7 +107,7 @@ struct PinFormView: View {
                 title: title,
                 description: description,
                 status: .pending,
-                images: []  // Images will be stored as URLs, not the actual UIImage
+                imageUrls: imageURLs  // Store the image URLs in the pin model
             )
             
             // Save the new pin to Firestore
