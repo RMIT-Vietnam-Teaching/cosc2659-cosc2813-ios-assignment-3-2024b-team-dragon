@@ -1,7 +1,9 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 import CoreLocation
+import UIKit
 
 class FirebaseService: NSObject, ObservableObject {
     private var db = Firestore.firestore()
@@ -69,6 +71,45 @@ class FirebaseService: NSObject, ObservableObject {
                 }
             } else {
                 completion(.failure(NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"])))
+            }
+        }
+    }
+    
+    // MARK: - Upload Photo to Firebase Storage and Firestore
+    func uploadPhoto(selectedImage: UIImage, title: String, description: String, completion: @escaping (Error?) -> Void) {
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.8) else {
+            print("Could not convert image to data")
+            return
+        }
+
+        let storageRef = Storage.storage().reference()
+        let path = "images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(path)
+
+        // Upload the image data
+        fileRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print("Error uploading image: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+
+            // Get the download URL
+            fileRef.downloadURL { url, error in
+                guard let url = url, error == nil else {
+                    print("Error getting download URL: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(error)
+                    return
+                }
+
+                let urlString = url.absoluteString
+                print("Download URL: \(urlString)")
+
+                // Save to Firestore
+                let newsItem = News(id: UUID().uuidString, title: title, image: urlString, description: description)
+                self.db.collection("news").document(newsItem.id).setData(newsItem.toDictionary()) { error in
+                    completion(error)
+                }
             }
         }
     }
