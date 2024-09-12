@@ -1,107 +1,224 @@
 import SwiftUI
 
+enum Field {
+    case username, firstName, lastName, email, password
+}
+
 struct SignUpView: View {
     @ObservedObject var viewModel = SignUpViewModel()
-
+    
+    @FocusState private var focusedField: Field?
+    @State private var activeField: Field? = nil
+    @State private var isPasswordVisible: Bool = false
+    @State private var isRepeatPasswordVisible: Bool = false
+    @State private var isLoading: Bool = false // State for loading indicator
+    @State private var showOTPSection: Bool = false // State for showing OTP section after delay
+    @State private var navigateToSignIn: Bool = false // State for navigation
+    
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Sign Up")
-                .font(.largeTitle)
-                .bold()
-
-            // Username Field
-            TextField("Username", text: $viewModel.username)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .foregroundColor(.black)
-
-            // First Name and Last Name
-            HStack {
-                TextField("First Name", text: $viewModel.firstName)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-
-                TextField("Last Name", text: $viewModel.lastName)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-            }
-            .foregroundColor(.black)
-
-            // Email Field
-            TextField("Email Address", text: $viewModel.email)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .keyboardType(.emailAddress)
-                .foregroundColor(.black)
-
-            // Password Field
-            SecureField("Create Password", text: $viewModel.password)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .foregroundColor(.black)
-
-            // Error message display
-            if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .font(.footnote)
-            }
-
-            // Continue Button (Sends email verification after sign-up)
-            Button(action: {
-                viewModel.signUpWithEmailPassword()
-            }) {
-                Text("Continue")
+        NavigationStack {
+            VStack(spacing: 20) {
+                Text("Sign Up")
+                    .font(.largeTitle)
                     .bold()
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    .foregroundColor(.black)
-            }
+                    .foregroundColor(Color.white)
 
-            Spacer()
+                // Username Field
+                customTextField("Username", text: $viewModel.username, field: .username, isValid: $viewModel.isUsernameValid, iconName: "person")
 
-            // OTP Verification Section (Check if email is verified)
-            if viewModel.isRegistered {
-                VStack {
-                    Text("OTP Verification")
-                        .font(.headline)
-                        .padding(.top)
+                // First Name and Last Name with spacing
+                HStack(spacing: 15) {
+                    customTextField("First Name", text: $viewModel.firstName, field: .firstName, isValid: $viewModel.isFirstNameValid, iconName: "person.fill")
+                    customTextField("Last Name", text: $viewModel.lastName, field: .lastName, isValid: $viewModel.isLastNameValid, iconName: "person.fill")
+                }
 
-                    Button(action: {
-                        viewModel.checkEmailVerification()
-                    }) {
-                        Text("Check Email Verification")
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .foregroundColor(.black)
+                // Email Field
+                customTextField("Email Address", text: $viewModel.email, field: .email, isValid: $viewModel.isEmailValid, iconName: "envelope")
+
+                // Password Field with eye icon toggle
+                passwordTextField("Create Password", text: $viewModel.password, field: .password, isValid: $viewModel.isPasswordValid, iconName: "lock", isPasswordVisible: $isPasswordVisible)
+
+                // Repeat Password Field with eye icon toggle
+                passwordTextField("Repeat Password", text: $viewModel.repeatPassword, field: .password, isValid: $viewModel.isRepeatPasswordValid, iconName: "lock.fill", isPasswordVisible: $isRepeatPasswordVisible)
+
+                // Error message display
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.footnote)
+                }
+                
+                // Continue Button
+                Button(action: {
+                    // Start loading and show OTP section after a delay
+                    isLoading = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // 5 seconds delay
+                        isLoading = false
+                        showOTPSection = true
                     }
+                    viewModel.signUpWithEmailPassword()
+                }) {
+                    Text("Continue")
+                        .bold()
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(8)
+                        .foregroundColor(Color(red: 96/255, green: 100/255, blue: 105/255))
+                }
 
-                    if viewModel.isOTPVerified {
-                        Text("Email Verified")
-                            .foregroundColor(.green)
-                            .font(.headline)
+                Spacer()
+                
+                // Show loading indicator while loading
+                if isLoading {
+                    VStack {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .green))
+                            .scaleEffect(1.5)
+                            .padding()
+                    }
+                    .background(Color.black.opacity(0).edgesIgnoringSafeArea(.all))
+                }
+
+                // OTP Verification Section
+                if showOTPSection {
+                    VStack {
+                        Button(action: {
+                            viewModel.checkEmailVerification()
+                        }) {
+                            Text("Check Email Verification")
+                                .bold()
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color(red: 128/255, green: 241/255, blue: 126/255))
+                                .foregroundColor(Color(red: 28/255, green: 33/255, blue: 41/255))
+                                .cornerRadius(8)
+                        }
+
+                        if viewModel.isOTPVerified {
+                            Text("Email Verified")
+                                .foregroundColor(Color(red: 128/255, green: 241/255, blue: 126/255))
+                                .font(.headline)
+                                .onAppear {
+                                    // Delay before navigating to SignInView
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        navigateToSignIn = true
+                                    }
+                                }
+                        }
+                    }
+                }
+
+                NavigationLink(destination: SignInView(), isActive: $navigateToSignIn) {
+                    EmptyView()
+                }
+            }
+            .padding()
+            .background(Color(red: 28/255, green: 33/255, blue: 41/255).edgesIgnoringSafeArea(.all))
+        }
+    }
+    
+    private func customTextField(_ placeholder: String, text: Binding<String>, field: Field, isValid: Binding<Bool?>, iconName: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(placeholder)
+                .font(.caption)
+                .foregroundColor(Color.white)
+            
+            ZStack(alignment: .leading) {
+                // Background color and border
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(isValid.wrappedValue == nil ? Color(red: 96/255, green: 100/255, blue: 105/255) : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
+                    .background(Color(red: 28/255, green: 33/255, blue: 41/255))
+                
+                // Icon inside the TextField
+                Image(systemName: iconName)
+                    .foregroundColor(self.activeField == field ? .white : Color.white)
+                    .padding(.leading, 10)
+                
+                HStack {
+                    // Actual TextField
+                    TextField(placeholder, text: text)
+                        .padding(.leading, 30) // Add padding to avoid overlapping with icon
+                        .padding()
+                        .background(Color.clear)
+                        .foregroundColor(self.activeField == field ? .white : Color(red: 96/255, green: 100/255, blue: 105/255))
+                        .focused($focusedField, equals: field)
+                        .onChange(of: focusedField) { newValue in
+                            if newValue == nil {
+                                self.activeField = field
+                            }
+                        }
+                        .onTapGesture {
+                            self.activeField = field
+                        }
+                    
+                    Spacer()
+                    
+                    // Validation icon
+                    if let isValidValue = isValid.wrappedValue {
+                        Image(systemName: isValidValue ? "checkmark.circle.fill" : "xmark.circle.fill")
+                            .foregroundColor(isValidValue ? .green : .red)
+                            .padding(.trailing, 10)
                     }
                 }
             }
+            .frame(height: 50)
         }
-        .padding()
-        .background(Color.black.edgesIgnoringSafeArea(.all))
-        .foregroundColor(.white)
     }
-}
 
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
+    private func passwordTextField(_ placeholder: String, text: Binding<String>, field: Field, isValid: Binding<Bool?>, iconName: String, isPasswordVisible: Binding<Bool>) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(placeholder)
+                .font(.caption)
+                .foregroundColor(Color.white)
+            
+            ZStack(alignment: .leading) {
+                // Background color and border
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(isValid.wrappedValue == nil ? Color(red: 96/255, green: 100/255, blue: 105/255) : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
+                    .background(Color(red: 28/255, green: 33/255, blue: 41/255))
+                
+                // Icon inside the TextField
+                Image(systemName: iconName)
+                    .foregroundColor(self.activeField == field ? .white : Color.white)
+                    .padding(.leading, 10)
+                
+                HStack {
+                    // Actual TextField
+                    Group {
+                        if isPasswordVisible.wrappedValue {
+                            TextField(placeholder, text: text)
+                        } else {
+                            SecureField(placeholder, text: text)
+                        }
+                    }
+                    .padding(.leading, 30) // Padding to avoid overlapping with icon
+                    .padding()
+                    .background(Color.clear)
+                    .foregroundColor(self.activeField == field ? .white : Color(red: 96/255, green: 100/255, blue: 105/255))
+                    .focused($focusedField, equals: field)
+                    .onChange(of: focusedField) { newValue in
+                        if newValue == nil {
+                            self.activeField = field
+                        }
+                    }
+                    .onTapGesture {
+                        self.activeField = field
+                    }
+                    
+                    Spacer()
+                    
+                    // Eye icon for password visibility toggle
+                    Button(action: {
+                        isPasswordVisible.wrappedValue.toggle()
+                    }) {
+                        Image(systemName: isPasswordVisible.wrappedValue ? "eye.fill" : "eye.slash.fill")
+                            .foregroundColor(self.activeField == field ? .white : Color.white)
+                            .padding(.trailing, 10)
+                    }
+                }
+            }
+            .frame(height: 50)
+        }
     }
 }
