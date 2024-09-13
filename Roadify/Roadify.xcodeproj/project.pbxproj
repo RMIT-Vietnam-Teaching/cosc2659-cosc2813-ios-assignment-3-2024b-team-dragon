@@ -7,11 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0334E80F2C93479600DA52F6 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334E80E2C93479600DA52F6 /* NewsView.swift */; };
+		0334E8112C93498600DA52F6 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334E8102C93498600DA52F6 /* News.swift */; };
+		0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334E8122C93518C00DA52F6 /* ImagePicker.swift */; };
+		0362DA452C9190F9008ED49A /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA442C9190F9008ED49A /* SignInView.swift */; };
+		0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA462C9192AB008ED49A /* SignInViewModel.swift */; };
+		0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA482C9193E4008ED49A /* LoginCredentials.swift */; };
+		0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4A2C919DEF008ED49A /* SignUpView.swift */; };
+		0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */; };
+		0362DA4F2C91A687008ED49A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4E2C91A687008ED49A /* User.swift */; };
+		0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA502C91AF2D008ED49A /* AccountView.swift */; };
+		0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA532C91B1C1008ED49A /* settingsRow.swift */; };
+		03AEF1D12C8F45BB001C503E /* CRUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEF1D02C8F45BB001C503E /* CRUDView.swift */; };
 		03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2376A2C8C925D0095D755 /* FirebaseService.swift */; };
 		03E2376D2C8EB02E0095D755 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */; };
 		03E237702C8EB1B60095D755 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2376F2C8EB1B60095D755 /* FirebaseAnalytics */; };
-		03E237722C8EB7290095D755 /* CRUDViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E237712C8EB7290095D755 /* CRUDViews.swift */; };
 		03E237762C8F08430095D755 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E237752C8F08430095D755 /* Marker.swift */; };
+		03E237782C8F2C3F0095D755 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03E237772C8F2C3F0095D755 /* FirebaseAuth */; };
+		03E2377A2C8F2C3F0095D755 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 03E237792C8F2C3F0095D755 /* FirebaseDatabase */; };
+		03E2377C2C8F2C3F0095D755 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377B2C8F2C3F0095D755 /* FirebaseFirestore */; };
+		03E2377E2C8F2C3F0095D755 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377D2C8F2C3F0095D755 /* FirebaseStorage */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -19,9 +34,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0334E80E2C93479600DA52F6 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		0334E8102C93498600DA52F6 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		0334E8122C93518C00DA52F6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0362DA442C9190F9008ED49A /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		0362DA462C9192AB008ED49A /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		0362DA482C9193E4008ED49A /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
+		0362DA4A2C919DEF008ED49A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		0362DA4E2C91A687008ED49A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0362DA502C91AF2D008ED49A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		0362DA532C91B1C1008ED49A /* settingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsRow.swift; sourceTree = "<group>"; };
+		03AEF1D02C8F45BB001C503E /* CRUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDView.swift; sourceTree = "<group>"; };
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		03E237712C8EB7290095D755 /* CRUDViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDViews.swift; sourceTree = "<group>"; };
 		03E237752C8F08430095D755 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
@@ -35,17 +61,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E2377A2C8F2C3F0095D755 /* FirebaseDatabase in Frameworks */,
+				03E2377C2C8F2C3F0095D755 /* FirebaseFirestore in Frameworks */,
 				03E237702C8EB1B60095D755 /* FirebaseAnalytics in Frameworks */,
+				03E2377E2C8F2C3F0095D755 /* FirebaseStorage in Frameworks */,
+				03E237782C8F2C3F0095D755 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0362DA522C91B16E008ED49A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0362DA532C91B1C1008ED49A /* settingsRow.swift */,
+				0334E8122C93518C00DA52F6 /* ImagePicker.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		03E237642C8C8F0B0095D755 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				03E237752C8F08430095D755 /* Marker.swift */,
+				0362DA482C9193E4008ED49A /* LoginCredentials.swift */,
+				0362DA4E2C91A687008ED49A /* User.swift */,
+				0334E8102C93498600DA52F6 /* News.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -54,7 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				B8E66F232C84C77D0033A939 /* ContentView.swift */,
-				03E237712C8EB7290095D755 /* CRUDViews.swift */,
+				03AEF1D02C8F45BB001C503E /* CRUDView.swift */,
+				0362DA442C9190F9008ED49A /* SignInView.swift */,
+				0362DA4A2C919DEF008ED49A /* SignUpView.swift */,
+				0362DA502C91AF2D008ED49A /* AccountView.swift */,
+				0334E80E2C93479600DA52F6 /* NewsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -62,6 +108,8 @@
 		03E237662C8C90560095D755 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
+				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -77,6 +125,7 @@
 		03E237682C8C907A0095D755 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0362DA522C91B16E008ED49A /* UI */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -107,12 +156,12 @@
 		B8E66F202C84C77D0033A939 /* Roadify */ = {
 			isa = PBXGroup;
 			children = (
+				03E237642C8C8F0B0095D755 /* Models */,
 				03E237692C8C90C40095D755 /* Resources */,
 				03E237682C8C907A0095D755 /* Utils */,
 				03E237672C8C90710095D755 /* Services */,
 				03E237662C8C90560095D755 /* ViewModels */,
 				03E237652C8C8F6B0095D755 /* Views */,
-				03E237642C8C8F0B0095D755 /* Models */,
 				B8E66F212C84C77D0033A939 /* RoadifyApp.swift */,
 				03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */,
 				B8E66F252C84C77E0033A939 /* Assets.xcassets */,
@@ -147,6 +196,10 @@
 			name = Roadify;
 			packageProductDependencies = (
 				03E2376F2C8EB1B60095D755 /* FirebaseAnalytics */,
+				03E237772C8F2C3F0095D755 /* FirebaseAuth */,
+				03E237792C8F2C3F0095D755 /* FirebaseDatabase */,
+				03E2377B2C8F2C3F0095D755 /* FirebaseFirestore */,
+				03E2377D2C8F2C3F0095D755 /* FirebaseStorage */,
 			);
 			productName = Roadify;
 			productReference = B8E66F1E2C84C77D0033A939 /* Roadify.app */;
@@ -206,11 +259,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */,
+				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
+				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
+				0334E8112C93498600DA52F6 /* News.swift in Sources */,
+				0334E80F2C93479600DA52F6 /* NewsView.swift in Sources */,
+				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
+				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
+				03AEF1D12C8F45BB001C503E /* CRUDView.swift in Sources */,
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
+				0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
-				03E237722C8EB7290095D755 /* CRUDViews.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
+				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
+				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
 				03E237762C8F08430095D755 /* Marker.swift in Sources */,
+				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +497,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
+		};
+		03E237772C8F2C3F0095D755 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		03E237792C8F2C3F0095D755 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		03E2377B2C8F2C3F0095D755 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		03E2377D2C8F2C3F0095D755 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
