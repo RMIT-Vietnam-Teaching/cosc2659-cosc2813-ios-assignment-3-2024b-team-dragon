@@ -34,7 +34,6 @@
 		E9B8AE172C93256A0037450A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE162C93256A0037450A /* Pin.swift */; };
 		E9B8AE192C9325990037450A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE182C9325990037450A /* MapView.swift */; };
 		E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE1A2C932A510037450A /* PinFormView.swift */; };
-		E9B8AE1D2C932CD50037450A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE1C2C932CD50037450A /* ImagePicker.swift */; };
 		E9B8AE1F2C9340F50037450A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E9B8AE1E2C9340F50037450A /* FirebaseAuth */; };
 		E9B8AE212C9340F50037450A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E9B8AE202C9340F50037450A /* FirebaseDatabase */; };
 		E9B8AE232C9340F50037450A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E9B8AE222C9340F50037450A /* FirebaseFirestore */; };
@@ -65,7 +64,6 @@
 		E9B8AE162C93256A0037450A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		E9B8AE182C9325990037450A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9B8AE1A2C932A510037450A /* PinFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinFormView.swift; sourceTree = "<group>"; };
-		E9B8AE1C2C932CD50037450A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +118,6 @@
 				0334E80E2C93479600DA52F6 /* NewsView.swift */,
 				E9B8AE182C9325990037450A /* MapView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
-				E9B8AE1C2C932CD50037450A /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				03AEF1D12C8F45BB001C503E /* CRUDView.swift in Sources */,
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
 				E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */,
-				E9B8AE1D2C932CD50037450A /* ImagePicker.swift in Sources */,
 				E9B8AE172C93256A0037450A /* Pin.swift in Sources */,
 				0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
@@ -526,22 +522,6 @@
 			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		E9B8AE1E2C9340F50037450A /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseAuth;
-		};
-		E9B8AE202C9340F50037450A /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseDatabase;
-		};
-		E9B8AE222C9340F50037450A /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseFirestore;
-		};
-		E9B8AE242C9340F50037450A /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FirebaseStorage;
-		};
 		03E237772C8F2C3F0095D755 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -560,6 +540,22 @@
 		03E2377D2C8F2C3F0095D755 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 03E2376E2C8EB1B60095D755 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		E9B8AE1E2C9340F50037450A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAuth;
+		};
+		E9B8AE202C9340F50037450A /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabase;
+		};
+		E9B8AE222C9340F50037450A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
+		};
+		E9B8AE242C9340F50037450A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
