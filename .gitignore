@@ -2,8 +2,8 @@
 .DS_Store
 
 # Ignore Xcode user-specific files
-*/xcuserdata/*.xcuserdatad/
-*.xcworkspace/xcuserdata/*.xcuserdatad/
+*.xcuserdata/
+*.xcuserdatad/
 
 # Ignore Xcode build files
 build/
