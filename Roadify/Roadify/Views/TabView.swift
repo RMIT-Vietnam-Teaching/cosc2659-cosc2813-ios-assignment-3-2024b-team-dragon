@@ -16,12 +16,7 @@ struct TabView: View {
 			switch selectedTab {
 				// Replacing with Views later on
 			case 0:
-				VStack {
-					Button("Map View") {
-						print("Switch to MapView")
-					}
-					.padding()
-				}
+				ContentView()
 			case 1:
 				VStack {
 					Button("News View") {

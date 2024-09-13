@@ -11,7 +11,7 @@ struct RoadifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NewsView()
+//            NewsView()
         }
     }
 }
