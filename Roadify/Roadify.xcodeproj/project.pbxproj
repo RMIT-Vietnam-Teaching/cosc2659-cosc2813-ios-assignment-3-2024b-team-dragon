@@ -16,6 +16,7 @@
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
 		B8E66F292C84C77E0033A939 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */; };
+		B8FDFB9F2C91FB300052F423 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FDFB9E2C91FB300052F423 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B8E66F232C84C77D0033A939 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8E66F252C84C77E0033A939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B8FDFB9E2C91FB300052F423 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				B8E66F232C84C77D0033A939 /* ContentView.swift */,
 				03E237712C8EB7290095D755 /* CRUDViews.swift */,
+				B8FDFB9E2C91FB300052F423 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
+				B8FDFB9F2C91FB300052F423 /* MapView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				03E237722C8EB7290095D755 /* CRUDViews.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
