@@ -5,112 +5,89 @@ import FirebaseStorage
 import CoreLocation
 import UIKit
 
-class FirebaseService: NSObject, ObservableObject {
-    private var db = Firestore.firestore()
+class FirebaseService: ObservableObject {
+    private var db = Firestore.firestore()  // Access Firestore through Firebase
+    private let storage = Storage.storage()
     
-    // MARK: - Create DEMO
-    func addMarker(title: String, coordinate: CLLocationCoordinate2D, completion: @escaping (Error?) -> Void) {
-        let ref = db.collection("markers").document() // Automatically generate a document ID
-        let newMarker = Marker(id: ref.documentID, title: title, coordinate: coordinate) // Create a new marker with the generated ID
-        ref.setData(newMarker.toDictionary()) { error in
+    // MARK: - Add Pin
+    func addPin(pin: Pin, completion: @escaping (Error?) -> Void) {
+        let ref = db.collection("pins").document(pin.id)  // Use the Pin's ID as the document ID
+        ref.setData(pin.toDictionary()) { error in
             completion(error)
         }
     }
-    
-    // MARK: - Read DEMO
-    func fetchMarkers(completion: @escaping (Result<[Marker], Error>) -> Void) {
-        db.collection("markers").addSnapshotListener { (querySnapshot, error) in
+
+    // MARK: - Fetch Pins
+    func fetchPins(completion: @escaping (Result<[Pin], Error>) -> Void) {
+        db.collection("pins").addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
                 return
             }
             
-            var markers: [Marker] = []
+            var pins: [Pin] = []
             for document in querySnapshot?.documents ?? [] {
-                let marker = Marker(id: document.documentID, data: document.data())
-                markers.append(marker)
+                let data = document.data()  // No need for optional binding, it's non-optional
+                if let pin = Pin(id: document.documentID, data: data) {  // Handle optional Pin initialization
+                    pins.append(pin)
+                } else {
+                    print("Error initializing Pin with documentID: \(document.documentID)")
+                }
             }
-            completion(.success(markers))
+            completion(.success(pins))
         }
     }
-    
-    // MARK: - Update DEMO
-    func updateMarker(marker: Marker, completion: @escaping (Error?) -> Void) {
-        let ref = db.collection("markers").document(marker.id)
-        ref.setData(marker.toDictionary()) { error in
+
+    // MARK: - Update Pin
+    func updatePin(pin: Pin, completion: @escaping (Error?) -> Void) {
+        let ref = db.collection("pins").document(pin.id)
+        ref.setData(pin.toDictionary()) { error in
             completion(error)
         }
     }
-    
-    // MARK: - Delete DEMO
-    func deleteMarker(markerId: String, completion: @escaping (Error?) -> Void) {
-        let ref = db.collection("markers").document(markerId)
+
+    // MARK: - Delete Pin
+    func deletePin(pinId: String, completion: @escaping (Error?) -> Void) {
+        let ref = db.collection("pins").document(pinId)
         ref.delete { error in
             completion(error)
         }
     }
     
-    // MARK: - Save User Details to Firestore using User model
-    func saveUser(user: User, completion: @escaping (Error?) -> Void) {
-        db.collection("users").document(user.id).setData(user.toDictionary()) { error in
-            completion(error)
-        }
-    }
+    // MARK: - Upload Images to Firebase Storage
+    func uploadImages(images: [UIImage], completion: @escaping ([String]) -> Void) {
+        var uploadedImageURLs: [String] = []
+        let dispatchGroup = DispatchGroup()
 
-    // MARK: - Fetch User Details from Firestore using User model
-    func fetchUser(userID: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let ref = db.collection("users").document(userID)
-        ref.getDocument { document, error in
-            if let error = error {
-                completion(.failure(error))
-            } else if let document = document, document.exists, let data = document.data() {
-                if let user = User(id: userID, data: data) {
-                    completion(.success(user))
-                } else {
-                    completion(.failure(NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: "Invalid user data"])))
-                }
-            } else {
-                completion(.failure(NSError(domain: "", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"])))
+        for image in images {
+            dispatchGroup.enter()
+            
+            let storageRef = storage.reference().child("images/\(UUID().uuidString).jpg")
+            guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+                dispatchGroup.leave()
+                continue
             }
-        }
-    }
-    
-    // MARK: - Upload Photo to Firebase Storage and Firestore
-    func uploadPhoto(selectedImage: UIImage, title: String, description: String, completion: @escaping (Error?) -> Void) {
-        guard let imageData = selectedImage.jpegData(compressionQuality: 0.8) else {
-            print("Could not convert image to data")
-            return
-        }
-
-        let storageRef = Storage.storage().reference()
-        let path = "images/\(UUID().uuidString).jpg"
-        let fileRef = storageRef.child(path)
-
-        // Upload the image data
-        fileRef.putData(imageData, metadata: nil) { metadata, error in
-            if let error = error {
-                print("Error uploading image: \(error.localizedDescription)")
-                completion(error)
-                return
-            }
-
-            // Get the download URL
-            fileRef.downloadURL { url, error in
-                guard let url = url, error == nil else {
-                    print("Error getting download URL: \(error?.localizedDescription ?? "Unknown error")")
-                    completion(error)
+            
+            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading image: \(error.localizedDescription)")
+                    dispatchGroup.leave()
                     return
                 }
-
-                let urlString = url.absoluteString
-                print("Download URL: \(urlString)")
-
-                // Save to Firestore
-                let newsItem = News(id: UUID().uuidString, title: title, image: urlString, description: description)
-                self.db.collection("news").document(newsItem.id).setData(newsItem.toDictionary()) { error in
-                    completion(error)
+                
+                storageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        print("Error getting image URL: \(error.localizedDescription)")
+                    } else if let url = url {
+                        uploadedImageURLs.append(url.absoluteString)
+                    }
+                    dispatchGroup.leave()
                 }
             }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(uploadedImageURLs)
         }
     }
 }
