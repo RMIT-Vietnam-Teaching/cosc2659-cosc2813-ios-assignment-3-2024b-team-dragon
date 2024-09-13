@@ -53,48 +53,72 @@ struct MapView: View {
 			HStack {
 				Button(action: { selectedTab = 0 }) {
 					VStack {
-						Image("map_on")
-							.resizable()
-							.frame(width: 25, height: 25)
-						Circle()
-							.frame(width: 6, height: 6)
-							.foregroundColor(Color("Secondary"))
+						if (selectedTab == 0) {
+							Image("map_on")
+								.resizable()
+								.frame(width: 25, height: 25)
+							Circle()
+								.frame(width: 6, height: 6)
+								.foregroundColor(Color("Secondary"))
+						} else {
+							Image("map_off")
+								.resizable()
+								.frame(width: 25, height: 25)
+						}
 					}
 				}
 				.frame(maxWidth: .infinity)
 				
 				Button(action: { selectedTab = 1 }) {
 					VStack {
-						Image("news_on")
-							.resizable()
-							.frame(width: 25, height: 25)
-						Circle()
-							.frame(width: 6, height: 6)
-							.foregroundColor(Color("Primary"))
+						if (selectedTab == 1) {
+							Image("news_on")
+								.resizable()
+								.frame(width: 25, height: 25)
+							Circle()
+								.frame(width: 6, height: 6)
+								.foregroundColor(Color("Secondary"))
+						} else {
+							Image("news_off")
+								.resizable()
+								.frame(width: 25, height: 25)
+						}
 					}
 				}
 				.frame(maxWidth: .infinity)
 				
 				Button(action: { selectedTab = 2 }) {
 					VStack {
-						Image("alert_on")
-							.resizable()
-							.frame(width: 25, height: 25)
-						Circle()
-							.frame(width: 6, height: 6)
-							.foregroundColor(Color("Primary"))
+						if (selectedTab == 2) {
+							Image("alert_on")
+								.resizable()
+								.frame(width: 25, height: 25)
+							Circle()
+								.frame(width: 6, height: 6)
+								.foregroundColor(Color("Secondary"))
+						} else {
+							Image("alert_off")
+								.resizable()
+								.frame(width: 25, height: 25)
+						}
 					}
 				}
 				.frame(maxWidth: .infinity)
 				
 				Button(action: { selectedTab = 3 }) {
 					VStack {
-						Image("user_on")
-							.resizable()
-							.frame(width: 25, height: 25)
-						Circle()
-							.frame(width: 6, height: 6)
-							.foregroundColor(Color("Primary"))
+						if (selectedTab == 3) {
+							Image("user_on")
+								.resizable()
+								.frame(width: 25, height: 25)
+							Circle()
+								.frame(width: 6, height: 6)
+								.foregroundColor(Color("Secondary"))
+						} else {
+							Image("user_off")
+								.resizable()
+								.frame(width: 25, height: 25)
+						}
 					}
 				}
 				.frame(maxWidth: .infinity)
@@ -103,6 +127,7 @@ struct MapView: View {
 			.background(Color.primary)
 			.frame(height: 80)
 		}
+		.edgesIgnoringSafeArea(.bottom)
 	}
 }
 
