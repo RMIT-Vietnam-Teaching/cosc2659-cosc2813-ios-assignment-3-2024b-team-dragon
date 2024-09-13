@@ -39,7 +39,7 @@ struct MapView: View {
 				)
 				.background(Color("Primary"))
 				.frame(width: .infinity)
-				.clipShape(RoundedCorner(radius: 50, corners: [.topLeft, .topRight]))
+				.clipShape(RoundedCorner(radius: 25, corners: [.topLeft, .topRight]))
 				.padding(.top)
 			}
 		}

@@ -40,49 +40,54 @@ struct PinFormView: View {
 				.padding(.trailing, 10)
 			}
 
-            Text("Press on the Map to pin accidents or traffic jams")
-				.foregroundStyle(Color.white)
-                .font(.headline)
+            Text("Press on the map\nto pin accidents or traffic jams")
+				.foregroundStyle(Color("Secondary"))
+                .font(.title2)
+				.multilineTextAlignment(.center)
+				.frame(maxWidth: .infinity, alignment: .center)
                 .padding()
 
 			TextField("Title", text: $title)
 				.padding()
-				.background(Color.white)
+				.background(Color("Primary"))
+				.foregroundStyle(Color("Secondary"))
 				.cornerRadius(10)
-				.shadow(color: .gray, radius: 5, x: 0, y: 2)
-				.padding()
+				.shadow(color: .gray, radius: 1, x: 0, y: 0)
+				.padding([.trailing,.leading])
 			
-			TextField("Description", text: $description)
-				.padding()
-				.background(Color.white)
-				.cornerRadius(10)
-				.shadow(color: .gray, radius: 5, x: 0, y: 2)
-				.padding()
-			
-			Button(action: {
-				showImagePicker = true  // Trigger the image picker
-			}) {
-				HStack {
-					Image(systemName: "photo")
-						.font(.system(size: 20))
-					Text("Add Image(s)")
-						.fontWeight(.medium)
+			HStack (spacing: 0) {
+				TextField("Description", text: $description)
+					.padding()
+					.background(Color("Primary"))
+					.foregroundStyle(Color("Secondary"))
+					.cornerRadius(10)
+					.shadow(color: .gray, radius: 1, x: 0, y: 0)
+
+				Button(action: {
+					showImagePicker = true  // Trigger the image picker
+				}) {
+					HStack {
+						Image(systemName: "photo")
+							.font(.system(size: 20))
+					}
+					.padding()
+					.background(Color("Primary"))
+					.cornerRadius(10)
+					.frame(width: 60)
+					.shadow(color: .gray, radius: 1, x: 0, y: 0)
 				}
-				.padding()
-				.frame(maxWidth: .infinity)
-				.background(Color.white)
-				.cornerRadius(10)
-				.shadow(color: .gray, radius: 5, x: 0, y: 2)
+				.sheet(isPresented: $showImagePicker) {
+					ImagePicker(selectedImage: $selectedImage)
+						.edgesIgnoringSafeArea(.bottom)
+				}
+				.padding(.leading)
+				.onChange(of: selectedImage) { newImage in
+					if let image = newImage {
+						images.append(image)
+					}
+				}
 			}
 			.padding()
-			.sheet(isPresented: $showImagePicker) {
-				ImagePicker(selectedImage: $selectedImage)
-			}
-			.onChange(of: selectedImage) { newImage in
-				if let image = newImage {
-					images.append(image)
-				}
-			}
 
             // Image Preview
             ScrollView(.horizontal, showsIndicators: false) {
@@ -95,6 +100,7 @@ struct PinFormView: View {
                     }
                 }
             }
+			.padding()
 //            .frame(height: 120)
             
             if isUploading {
@@ -107,10 +113,10 @@ struct PinFormView: View {
 			} label: {
 				Label(String("Add Pin"), systemImage: "plus.circle")
 			}
+			.foregroundStyle(Color("Secondary"))
 			.buttonStyle(.bordered)
 			.controlSize(.large)
 			.padding()
-//			.frame(maxWidth: .infinity)
         }
 		.background(Color("Primary"))
         .padding()
