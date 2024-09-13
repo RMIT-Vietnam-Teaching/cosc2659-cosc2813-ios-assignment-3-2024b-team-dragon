@@ -25,37 +25,64 @@ struct PinFormView: View {
     let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
     
     var body: some View {
-        VStack {
-            Text("Add a Pin")
+		VStack (spacing: 0) {
+			HStack {
+				Spacer()
+				
+				Button(action: {
+					showModal = false
+				}) {
+					Image(systemName: "xmark.circle.fill")
+						.foregroundColor(.gray)
+						.font(.system(size: 24))
+				}
+				.padding(.top, 10)
+				.padding(.trailing, 10)
+			}
+
+            Text("Press on the Map to pin accidents or traffic jams")
+				.foregroundStyle(Color.white)
                 .font(.headline)
                 .padding()
 
-            TextField("Enter Title", text: $title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextField("Add Description", text: $description)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            // Image Picker Button
-            Button(action: {
-                showImagePicker = true  // Trigger the image picker
-            }) {
-                HStack {
-                    Image(systemName: "photo")
-                    Text("Add Image(s)")
-                }
-            }
-            .padding()
-            .sheet(isPresented: $showImagePicker) {
-                ImagePicker(selectedImage: $selectedImage)  // Present the image picker
-            }
-            .onChange(of: selectedImage) { newImage in
-                if let image = newImage {
-                    images.append(image)  // Add the new image to the images array
-                }
-            }
+			TextField("Title", text: $title)
+				.padding()
+				.background(Color.white)
+				.cornerRadius(10)
+				.shadow(color: .gray, radius: 5, x: 0, y: 2)
+				.padding()
+			
+			TextField("Description", text: $description)
+				.padding()
+				.background(Color.white)
+				.cornerRadius(10)
+				.shadow(color: .gray, radius: 5, x: 0, y: 2)
+				.padding()
+			
+			Button(action: {
+				showImagePicker = true  // Trigger the image picker
+			}) {
+				HStack {
+					Image(systemName: "photo")
+						.font(.system(size: 20))
+					Text("Add Image(s)")
+						.fontWeight(.medium)
+				}
+				.padding()
+				.frame(maxWidth: .infinity)
+				.background(Color.white)
+				.cornerRadius(10)
+				.shadow(color: .gray, radius: 5, x: 0, y: 2)
+			}
+			.padding()
+			.sheet(isPresented: $showImagePicker) {
+				ImagePicker(selectedImage: $selectedImage)
+			}
+			.onChange(of: selectedImage) { newImage in
+				if let image = newImage {
+					images.append(image)
+				}
+			}
 
             // Image Preview
             ScrollView(.horizontal, showsIndicators: false) {
@@ -68,27 +95,24 @@ struct PinFormView: View {
                     }
                 }
             }
-            .frame(height: 120)
+//            .frame(height: 120)
             
             if isUploading {
                 ProgressView("Uploading...")  // Show loading indicator while uploading
                     .padding()
             }
             
-            Button(action: {
-                savePinToFirebase()  // Save the pin to Firebase on submit
-            }) {
-                Text("Pin Now")
-                    .bold()
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .padding()
-
-            Spacer()
+			Button {
+				savePinToFirebase()  // Save the pin to Firebase on submit
+			} label: {
+				Label(String("Add Pin"), systemImage: "plus.circle")
+			}
+			.buttonStyle(.bordered)
+			.controlSize(.large)
+			.padding()
+//			.frame(maxWidth: .infinity)
         }
+		.background(Color("Primary"))
         .padding()
     }
     
@@ -171,4 +195,27 @@ struct PinFormView: View {
             completion(uploadedImageURLs)
         }
     }
+}
+
+struct PinFormView_Previews: PreviewProvider {
+	@State static var title: String = "Sample Pin Title"
+	@State static var description: String = "Sample Pin Description"
+	@State static var images: [UIImage] = []  // Empty array for now
+	@State static var showModal: Bool = true
+	@State static var selectedCoordinate: CLLocationCoordinate2D? = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194) // Example coordinate
+	
+	static var previews: some View {
+		PinFormView(
+			title: $title,
+			description: $description,
+			images: $images,
+			showModal: $showModal,
+			selectedCoordinate: $selectedCoordinate,
+			onSubmit: {
+				// Add action to be performed on submit if needed
+				print("Pin submitted")
+			}
+		)
+		.previewLayout(.sizeThatFits)  // Adjusts preview size to fit the content
+	}
 }

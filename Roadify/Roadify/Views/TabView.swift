@@ -12,38 +12,20 @@ struct TabView: View {
 	@State private var selectedTab = 0
 	
 	var body: some View {
-		VStack {
+		VStack (spacing: 0) {
 			switch selectedTab {
-				// Replacing with Views later on
 			case 0:
-				ContentView()
+				MapView()
 			case 1:
-				VStack {
-					Button("News View") {
-						print("Switch to NewsView")
-					}
-					.padding()
-				}
+				MapView()
 			case 2:
-				VStack {
-					Button("Alert View") {
-						print("Switch to AlertView")
-					}
-					.padding()
-				}
+				MapView()
 			case 3:
-				VStack {
-					Button("Profile View") {
-						print("Switch to ProfileView")
-					}
-					.padding()
-				}
+				MapView()
 			default:
 				Text("Invalid tab")
 			}
-			
-			Spacer()
-
+		
 			HStack {
 				// MapsView
 				TabButtonView(viewIsSelected: "map_on", viewIsNotSelected: "map_off", isSelected: selectedTab == 0) {
@@ -66,8 +48,7 @@ struct TabView: View {
 				}
 			}
 			.padding()
-			.background(Color.primary)
-			.frame(height: 80)
+			.background(Color("Primary"))
 		}
 		.edgesIgnoringSafeArea(.bottom)
 	}
