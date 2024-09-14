@@ -51,7 +51,7 @@ struct EditProfileView: View {
                         .foregroundColor(.blue)
                 }
                 .sheet(isPresented: $showingImagePicker, content: {
-                    ImagePicker(image: $profileImage, selectedImage: $selectedImage)
+                    ImagePicker2(image: $profileImage, selectedImage: $selectedImage)
                 })
             }
             .padding()
@@ -120,7 +120,7 @@ struct EditProfileView: View {
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct ImagePicker2: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @Binding var selectedImage: Image?
     
@@ -140,9 +140,9 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
+        let parent: ImagePicker2
         
-        init(_ parent: ImagePicker) {
+        init(_ parent: ImagePicker2) {
             self.parent = parent
         }
         
