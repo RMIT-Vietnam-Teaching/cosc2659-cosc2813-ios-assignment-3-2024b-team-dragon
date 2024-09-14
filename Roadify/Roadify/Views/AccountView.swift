@@ -44,15 +44,15 @@ struct AccountView: View {
             
             // Settings and Preferences
             Section(header: Text("Settings and Preferences").font(.subheadline)) {
-                settingsRow(iconName: "bell", label: "Notifications")
-                settingsRow(iconName: "globe", label: "Language")
-                settingsRow(iconName: "lock.shield", label: "Security")
+                SettingsRow(iconName: "bell", label: "Notifications")
+                SettingsRow(iconName: "globe", label: "Language")
+                SettingsRow(iconName: "lock.shield", label: "Security")
             }
             
             // Support
             Section(header: Text("Support").font(.subheadline)) {
-                settingsRow(iconName: "questionmark.circle", label: "Help centre")
-                settingsRow(iconName: "flag", label: "Report a bug")
+                SettingsRow(iconName: "questionmark.circle", label: "Help centre")
+                SettingsRow(iconName: "flag", label: "Report a bug")
             }
             
             // Log out
