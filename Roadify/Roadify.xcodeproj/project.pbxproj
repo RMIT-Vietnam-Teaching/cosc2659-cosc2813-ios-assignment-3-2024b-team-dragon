@@ -33,6 +33,8 @@
 		0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */; };
 		0ABCBF0E2C959B77002F62EE /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */; };
 		B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830F06E2C942E4A008931E0 /* TabButtonView.swift */; };
+		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
+		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830F06E2C942E4A008931E0 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabButtonView.swift; path = Roadify/Views/TabButtonView.swift; sourceTree = SOURCE_ROOT; };
+		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				E9B8AE182C9325990037450A /* MapView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
 				B8FDFB9E2C91FB300052F423 /* TabView.swift */,
+				B88A54802C9533FE002AE8DF /* WelcomeView.swift */,
 				E99257512C957A1300A44500 /* NewsView.swift */,
 				E99257532C957A3C00A44500 /* DetailNewsView.swift */,
 				E99257572C958C3000A44500 /* AddNewsFormView.swift */,
@@ -159,6 +164,7 @@
 				B830F06E2C942E4A008931E0 /* TabButtonView.swift */,
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
 				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
+				B88A54822C9536D0002AE8DF /* PageViewModel.swift */,
 				0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */,
 			);
 			path = ViewModels;
@@ -336,6 +342,7 @@
 				0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */,
 				0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
+				B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */,
 				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
 				0ABCBF082C959B0B002F62EE /* ManageAccountView.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
@@ -343,6 +350,7 @@
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
 				0ABCBF0E2C959B77002F62EE /* TermsOfServiceView.swift in Sources */,
 				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
+				B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
