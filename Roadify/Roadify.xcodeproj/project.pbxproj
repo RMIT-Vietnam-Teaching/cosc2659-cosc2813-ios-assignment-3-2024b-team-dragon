@@ -25,7 +25,7 @@
 		03E2377E2C8F2C3F0095D755 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377D2C8F2C3F0095D755 /* FirebaseStorage */; };
 		B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830F06E2C942E4A008931E0 /* TabButtonView.swift */; };
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
-		B88A54832C9536D0002AE8DF /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* StepView.swift */; };
+		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -54,7 +54,7 @@
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830F06E2C942E4A008931E0 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabButtonView.swift; path = Roadify/Views/TabButtonView.swift; sourceTree = SOURCE_ROOT; };
 		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		B88A54822C9536D0002AE8DF /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
 		B8E66F232C84C77D0033A939 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				B830F06E2C942E4A008931E0 /* TabButtonView.swift */,
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
 				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
-				B88A54822C9536D0002AE8DF /* StepView.swift */,
+				B88A54822C9536D0002AE8DF /* PageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -298,7 +298,7 @@
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
 				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
-				B88A54832C9536D0002AE8DF /* StepView.swift in Sources */,
+				B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

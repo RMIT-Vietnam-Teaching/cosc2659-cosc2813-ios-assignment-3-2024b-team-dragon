@@ -29,7 +29,7 @@ struct WelcomeView: View {
 			
 			Spacer()
 			
-			StepView(
+			PageViewModel(
 				image: currentPageImage,
 				title: currentPageTitle,
 				description: currentPageDescription,

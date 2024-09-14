@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct StepView: View {
+struct PageViewModel: View {
 	var image: String
 	var title: String
 	var description: String
