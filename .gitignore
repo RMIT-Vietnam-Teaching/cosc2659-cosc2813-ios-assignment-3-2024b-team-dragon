@@ -8,3 +8,11 @@
 # Ignore Xcode build files
 build/
 DerivedData/
+
+# Ignore Xcode user-specific files
+*.xcuserdata/
+*.xcuserdatad/
+
+# Ignore Xcode build files
+build/
+DerivedData/

@@ -23,6 +23,15 @@
 		03E2377A2C8F2C3F0095D755 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 03E237792C8F2C3F0095D755 /* FirebaseDatabase */; };
 		03E2377C2C8F2C3F0095D755 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377B2C8F2C3F0095D755 /* FirebaseFirestore */; };
 		03E2377E2C8F2C3F0095D755 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377D2C8F2C3F0095D755 /* FirebaseStorage */; };
+		0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */; };
+		0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */; };
+		0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */; };
+		0ABCBF022C959718002F62EE /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF012C959718002F62EE /* PrivacyView.swift */; };
+		0ABCBF062C9597A4002F62EE /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF052C9597A4002F62EE /* NotificationsView.swift */; };
+		0ABCBF082C959B0B002F62EE /* ManageAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF072C959B0B002F62EE /* ManageAccountView.swift */; };
+		0ABCBF0A2C959B30002F62EE /* ActivityLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF092C959B30002F62EE /* ActivityLogsView.swift */; };
+		0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */; };
+		0ABCBF0E2C959B77002F62EE /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */; };
 		B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830F06E2C942E4A008931E0 /* TabButtonView.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
@@ -51,6 +60,15 @@
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B830F06E2C942E4A008931E0 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabButtonView.swift; path = Roadify/Views/TabButtonView.swift; sourceTree = SOURCE_ROOT; };
+		0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		0ABCBF012C959718002F62EE /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
+		0ABCBF052C9597A4002F62EE /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		0ABCBF072C959B0B002F62EE /* ManageAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountView.swift; sourceTree = "<group>"; };
+		0ABCBF092C959B30002F62EE /* ActivityLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogsView.swift; sourceTree = "<group>"; };
+		0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
 		B8E66F232C84C77D0033A939 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +126,14 @@
 				0362DA442C9190F9008ED49A /* SignInView.swift */,
 				0362DA4A2C919DEF008ED49A /* SignUpView.swift */,
 				0362DA502C91AF2D008ED49A /* AccountView.swift */,
+				0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */,
+				0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */,
+				0ABCBF012C959718002F62EE /* PrivacyView.swift */,
+				0ABCBF052C9597A4002F62EE /* NotificationsView.swift */,
+				0ABCBF072C959B0B002F62EE /* ManageAccountView.swift */,
+				0ABCBF092C959B30002F62EE /* ActivityLogsView.swift */,
+				0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */,
+				0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */,
 				E9B8AE182C9325990037450A /* MapView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
 				B8FDFB9E2C91FB300052F423 /* TabView.swift */,
@@ -121,6 +147,7 @@
 				B830F06E2C942E4A008931E0 /* TabButtonView.swift */,
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
 				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
+				0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -276,20 +303,29 @@
 			files = (
 				E9B8AE192C9325990037450A /* MapView.swift in Sources */,
 				0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */,
+				0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */,
+				0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */,
 				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
+				0ABCBF062C9597A4002F62EE /* NotificationsView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
+				0ABCBF0A2C959B30002F62EE /* ActivityLogsView.swift in Sources */,
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
+				0ABCBF022C959718002F62EE /* PrivacyView.swift in Sources */,
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
 				B8FDFB9F2C91FB300052F423 /* TabView.swift in Sources */,
 				B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */,
 				E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */,
 				E9B8AE172C93256A0037450A /* Pin.swift in Sources */,
 				0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */,
+				0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */,
+				0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
+				0ABCBF082C959B0B002F62EE /* ManageAccountView.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
+				0ABCBF0E2C959B77002F62EE /* TermsOfServiceView.swift in Sources */,
 				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
