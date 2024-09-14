@@ -42,6 +42,23 @@ struct MapView: View {
 				.clipShape(RoundedCorner(radius: 25, corners: [.topLeft, .topRight]))
 				.padding(.top)
 			}
+			
+			if !showPinModal {
+				Button(action: {
+					selectedCoordinate = nil
+					showPinModal = true
+				}) {
+					Image(systemName: "plus.circle.fill")
+						.resizable()
+						.frame(width: 50, height: 50)
+						.background(Color.white)
+						.clipShape(Circle())
+						.shadow(radius: 4)
+						.foregroundColor(.blue)
+				}
+				.padding()
+				.padding(.top, 20) 
+			}
 		}
 		.onAppear {
 			fetchPins()  // Fetch pins from Firebase on load

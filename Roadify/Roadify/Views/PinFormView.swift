@@ -20,6 +20,9 @@ struct PinFormView: View {
     @State private var showImagePicker: Bool = false
     @State private var selectedImage: UIImage? = nil  // Hold the selected image temporarily
     @State private var isUploading: Bool = false  // Show a loading state while uploading images
+	
+	@State private var latitude: String = ""
+	@State private var longitude: String = ""
     
     let onSubmit: () -> Void  // This closure will be called when the user submits the form
     let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
@@ -51,7 +54,7 @@ struct PinFormView: View {
 				.padding()
 				.background(Color.white)
 				.cornerRadius(10)
-				.shadow(color: .gray, radius: 5, x: 0, y: 2)
+				.shadow(color: .gray, radius: 1, x: 0, y: 2)
 				.padding([.trailing,.leading])
 			
 			HStack (spacing: 0) {
@@ -59,7 +62,7 @@ struct PinFormView: View {
 					.padding()
 					.background(Color.white)
 					.cornerRadius(10)
-					.shadow(color: .gray, radius: 5, x: 0, y: 2)
+					.shadow(color: .gray, radius: 1, x: 0, y: 1)
 
 				Button(action: {
 					showImagePicker = true  // Trigger the image picker
@@ -72,7 +75,7 @@ struct PinFormView: View {
 					.background(Color.white)
 					.cornerRadius(10)
 					.frame(width: 60)
-					.shadow(color: .gray, radius: 5, x: 0, y: 2)
+					.shadow(color: .gray, radius: 1, x: 0, y: 1)
 				}
 				.sheet(isPresented: $showImagePicker) {
 					ImagePicker(selectedImage: $selectedImage)
@@ -87,6 +90,56 @@ struct PinFormView: View {
 			}
 			.padding()
 
+			VStack(alignment: .leading, spacing: 10) {
+				Text("Pin Location")
+					.foregroundStyle(Color.white)
+					.font(.headline)
+					.padding(.bottom, 5)
+				
+				// Latitude
+				HStack {
+					Text("Latitude")
+						.font(.subheadline)
+						.foregroundStyle(.gray)
+						.frame(width: 80)
+					
+					TextField("Latitude", text: $latitude)
+						.padding()
+						.background(Color.white)
+						.cornerRadius(10)
+						.shadow(color: .gray, radius: 1, x: 0, y: 1)
+						.keyboardType(.decimalPad)
+						.onAppear {
+							if let coordinate = selectedCoordinate {
+								latitude = String(coordinate.latitude)
+							}
+						}
+				}
+				
+				// Longitude
+				HStack {
+					Text("Longitude")
+						.font(.subheadline)
+						.foregroundColor(.gray)
+						.frame(width: 80)
+					
+					TextField("Longitude", text: $longitude)
+						.padding()
+						.background(Color.white)
+						.cornerRadius(10)
+						.shadow(color: .gray, radius: 1, x: 0, y: 1)
+						.keyboardType(.decimalPad)
+						.onAppear {
+							if let coordinate = selectedCoordinate {
+								longitude = String(coordinate.longitude)
+							}
+						}
+				}
+			}
+			.padding()
+
+
+			
             // Image Preview
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -100,7 +153,7 @@ struct PinFormView: View {
             }
 			.padding()
 //            .frame(height: 120)
-            
+			
             if isUploading {
                 ProgressView("Uploading...")  // Show loading indicator while uploading
                     .padding()
