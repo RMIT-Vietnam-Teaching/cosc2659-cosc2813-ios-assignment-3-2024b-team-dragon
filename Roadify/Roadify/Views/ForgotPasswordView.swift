@@ -11,7 +11,7 @@ struct ForgotPasswordView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Forgot Password")
+            Text("Change Password")
                 .font(.title2)
                 .bold()
             
@@ -23,7 +23,7 @@ struct ForgotPasswordView: View {
                 TextField("Enter your email", text: $email)
                     .autocapitalization(.none)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.5)))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                     .foregroundColor(.white)
             }
             
@@ -53,7 +53,7 @@ struct ForgotPasswordView: View {
             Spacer()
         }
         .padding()
-        .background(Color(red: 28/255, green: 33/255, blue: 41/255).edgesIgnoringSafeArea(.all))
+        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Notification"), message: Text(alertMessage), dismissButton: .default(Text("OK"), action: {

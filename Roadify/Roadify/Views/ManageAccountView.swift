@@ -1,18 +1,39 @@
-//
-//  ManageAccountView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 14/9/24.
-//
-
 import SwiftUI
 
-struct ManageAccountView: View {
+struct ManageAccountDataView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        VStack(spacing: 20) {
+            Text("Manage Account Data")
+                .font(.title2)
+                .bold()
+            
+            Button(action: {
+                // Handle data download request
+            }) {
+                settingsRow(iconName: "arrow.down.circle", label: "Download Data")
+            }
+            
+            Button(action: {
+                // Handle account deletion
+            }) {
+                settingsRow(iconName: "trash", label: "Delete Account")
+            }
 
-#Preview {
-    ManageAccountView()
+            Spacer()
+        }
+        .padding()
+        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+        .foregroundColor(.white)
+    }
+
+    private func settingsRow(iconName: String, label: String) -> some View {
+        HStack {
+            Image(systemName: iconName)
+            Text(label)
+            Spacer()
+            Image(systemName: "chevron.right")
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+    }
 }

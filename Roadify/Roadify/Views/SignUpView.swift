@@ -64,7 +64,7 @@ struct SignUpView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(8)
-                        .foregroundColor(Color(red: 96/255, green: 100/255, blue: 105/255))
+                        .foregroundColor(Color("ThirdColor"))
                 }
 
                 Spacer()
@@ -90,14 +90,14 @@ struct SignUpView: View {
                                 .bold()
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(Color(red: 128/255, green: 241/255, blue: 126/255))
-                                .foregroundColor(Color(red: 28/255, green: 33/255, blue: 41/255))
+                                .background(Color("SecondaryColor"))
+                                .foregroundColor(Color("FourthColor"))
                                 .cornerRadius(8)
                         }
 
                         if viewModel.isOTPVerified {
                             Text("Email Verified")
-                                .foregroundColor(Color(red: 128/255, green: 241/255, blue: 126/255))
+                                .foregroundColor(Color("SecondaryColor"))
                                 .font(.headline)
                                 .onAppear {
                                     // Delay before navigating to SignInView
@@ -114,7 +114,7 @@ struct SignUpView: View {
                 }
             }
             .padding()
-            .background(Color(red: 28/255, green: 33/255, blue: 41/255).edgesIgnoringSafeArea(.all))
+            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         }
     }
     
@@ -127,8 +127,8 @@ struct SignUpView: View {
             ZStack(alignment: .leading) {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(isValid.wrappedValue == nil ? Color(red: 96/255, green: 100/255, blue: 105/255) : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
-                    .background(Color(red: 28/255, green: 33/255, blue: 41/255))
+                    .stroke(isValid.wrappedValue == nil ? Color("ThirdColor") : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
+                    .background(Color("PrimaryColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -141,7 +141,7 @@ struct SignUpView: View {
                         .padding(.leading, 30) // Add padding to avoid overlapping with icon
                         .padding()
                         .background(Color.clear)
-                        .foregroundColor(self.activeField == field ? .white : Color(red: 96/255, green: 100/255, blue: 105/255))
+                        .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                         .focused($focusedField, equals: field)
                         .onChange(of: focusedField) { newValue in
                             if newValue == nil {
@@ -175,8 +175,8 @@ struct SignUpView: View {
             ZStack(alignment: .leading) {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(isValid.wrappedValue == nil ? Color(red: 96/255, green: 100/255, blue: 105/255) : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
-                    .background(Color(red: 28/255, green: 33/255, blue: 41/255))
+                    .stroke(isValid.wrappedValue == nil ? Color("ThirdColor") : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
+                    .background(Color("PrimaryColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -195,7 +195,7 @@ struct SignUpView: View {
                     .padding(.leading, 30) // Padding to avoid overlapping with icon
                     .padding()
                     .background(Color.clear)
-                    .foregroundColor(self.activeField == field ? .white : Color(red: 96/255, green: 100/255, blue: 105/255))
+                    .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                     .focused($focusedField, equals: field)
                     .onChange(of: focusedField) { newValue in
                         if newValue == nil {
