@@ -17,11 +17,11 @@ struct TabView: View {
 			case 0:
 				MapView()
 			case 1:
-				MapView()
+				NewsView()
 			case 2:
 				MapView()
 			case 3:
-				MapView()
+				AccountView()
 			default:
 				Text("Invalid tab")
 			}
