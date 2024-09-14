@@ -41,7 +41,7 @@ struct PinFormView: View {
 			}
 
             Text("Press on the map\nto pin accidents or traffic jams")
-				.foregroundStyle(Color("Secondary"))
+				.foregroundStyle(Color.white)
                 .font(.title2)
 				.multilineTextAlignment(.center)
 				.frame(maxWidth: .infinity, alignment: .center)
@@ -49,19 +49,17 @@ struct PinFormView: View {
 
 			TextField("Title", text: $title)
 				.padding()
-				.background(Color("Primary"))
-				.foregroundStyle(Color("Secondary"))
+				.background(Color.white)
 				.cornerRadius(10)
-				.shadow(color: .gray, radius: 1, x: 0, y: 0)
+				.shadow(color: .gray, radius: 5, x: 0, y: 2)
 				.padding([.trailing,.leading])
 			
 			HStack (spacing: 0) {
 				TextField("Description", text: $description)
 					.padding()
-					.background(Color("Primary"))
-					.foregroundStyle(Color("Secondary"))
+					.background(Color.white)
 					.cornerRadius(10)
-					.shadow(color: .gray, radius: 1, x: 0, y: 0)
+					.shadow(color: .gray, radius: 5, x: 0, y: 2)
 
 				Button(action: {
 					showImagePicker = true  // Trigger the image picker
@@ -71,10 +69,10 @@ struct PinFormView: View {
 							.font(.system(size: 20))
 					}
 					.padding()
-					.background(Color("Primary"))
+					.background(Color.white)
 					.cornerRadius(10)
 					.frame(width: 60)
-					.shadow(color: .gray, radius: 1, x: 0, y: 0)
+					.shadow(color: .gray, radius: 5, x: 0, y: 2)
 				}
 				.sheet(isPresented: $showImagePicker) {
 					ImagePicker(selectedImage: $selectedImage)
@@ -113,10 +111,10 @@ struct PinFormView: View {
 			} label: {
 				Label(String("Add Pin"), systemImage: "plus.circle")
 			}
-			.foregroundStyle(Color("Secondary"))
 			.buttonStyle(.bordered)
 			.controlSize(.large)
 			.padding()
+//			.frame(maxWidth: .infinity)
         }
 		.background(Color("Primary"))
         .padding()
