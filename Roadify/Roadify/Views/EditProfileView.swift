@@ -55,7 +55,7 @@ struct EditProfileView: View {
                 })
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.1)))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
             
             // Username Input
             VStack(alignment: .leading, spacing: 8) {
@@ -63,7 +63,7 @@ struct EditProfileView: View {
                     .font(.headline)
                 TextField("Enter your username", text: $username)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.5)))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                     .foregroundColor(.white)
             }
             
@@ -73,7 +73,7 @@ struct EditProfileView: View {
                     .font(.headline)
                 TextField("Enter your address", text: $address)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.5)))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                     .foregroundColor(.white)
             }
             
@@ -83,7 +83,7 @@ struct EditProfileView: View {
                     .font(.headline)
                 TextField("Enter your mobile phone", text: $mobilePhone)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.5)))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                     .foregroundColor(.white)
             }
             
@@ -98,18 +98,18 @@ struct EditProfileView: View {
                 HStack {
                     Spacer()
                     Text("Save Changes")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("FourthColor"))
                         .bold()
                     Spacer()
                 }
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 128/255, green: 241/255, blue: 126/255)))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color("SecondaryColor")))
             }
             
             Spacer()
         }
         .padding()
-        .background(Color(red: 28/255, green: 33/255, blue: 41/255).edgesIgnoringSafeArea(.all))
+        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .onAppear {
             // Initialize fields with the current profile data

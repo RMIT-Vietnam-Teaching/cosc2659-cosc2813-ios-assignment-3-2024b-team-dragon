@@ -54,7 +54,7 @@ struct SignInView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(8)
-                        .foregroundColor(Color(red: 96/255, green: 100/255, blue: 105/255))
+                        .foregroundColor(Color.black)
                 }
                 
                 // Navigate if logged in successfully
@@ -73,7 +73,7 @@ struct SignInView: View {
                 }
             }
             .padding()
-            .background(Color(red: 28/255, green: 33/255, blue: 41/255).edgesIgnoringSafeArea(.all))
+            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         }
     }
     
@@ -87,8 +87,8 @@ struct SignInView: View {
             ZStack(alignment: .leading) {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(red: 96/255, green: 100/255, blue: 105/255), lineWidth: 2)
-                    .background(Color(red: 28/255, green: 33/255, blue: 41/255))
+                    .stroke(Color("ThirdColor"), lineWidth: 2)
+                    .background(Color("PrimaryColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -101,7 +101,7 @@ struct SignInView: View {
                         .padding(.leading, 30) // Add padding to avoid overlapping with icon
                         .padding()
                         .background(Color.clear)
-                        .foregroundColor(self.activeField == field ? .white : Color(red: 96/255, green: 100/255, blue: 105/255))
+                        .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                         .focused($focusedField, equals: field)
                         .onTapGesture {
                             self.activeField = field
@@ -124,8 +124,8 @@ struct SignInView: View {
             ZStack(alignment: .leading) {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(red: 96/255, green: 100/255, blue: 105/255), lineWidth: 2)
-                    .background(Color(red: 28/255, green: 33/255, blue: 41/255))
+                    .stroke(Color("ThirdColor"), lineWidth: 2)
+                    .background(Color("PrimaryColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -144,7 +144,7 @@ struct SignInView: View {
                     .padding(.leading, 30) // Padding to avoid overlapping with icon
                     .padding()
                     .background(Color.clear)
-                    .foregroundColor(self.activeField == field ? .white : Color(red: 96/255, green: 100/255, blue: 105/255))
+                    .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                     .focused($focusedField, equals: field)
                     .onTapGesture {
                         self.activeField = field
@@ -175,7 +175,7 @@ struct SignInView: View {
             NavigationLink(destination: ForgotPasswordView()) {
                 HStack(spacing: 5) {
                     Image(systemName: "key.fill")
-                        .foregroundColor(Color(red: 128/255, green: 241/255, blue: 126/255))
+                        .foregroundColor(Color("SecondaryColor"))
                     
                     Text("Forgot Password?")
                         .foregroundColor(.white)
@@ -184,6 +184,6 @@ struct SignInView: View {
                 }
             }
         }
-        .padding(.trailing, 10) // Adjust the trailing padding as needed
+        .padding(.trailing, 10)
     }
 }

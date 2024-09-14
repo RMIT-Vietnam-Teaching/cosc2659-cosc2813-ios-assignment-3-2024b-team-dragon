@@ -3,7 +3,11 @@ import SwiftUI
 struct AccountView: View {
     @ObservedObject var viewModel = AccountViewModel() // Use AccountViewModel
     @State private var showEditProfile = false
-
+    @State private var showPrivacyView = false
+    @State private var showNotificationsView = false
+    @State private var showLanguageView = false
+    @State private var selectedLanguage = "English"
+    @State private var selectedLanguageFlag = "us"
     
     var body: some View {
         VStack(spacing: 20) {
@@ -12,11 +16,9 @@ struct AccountView: View {
                 .bold()
             
             Button(action: {
-                // Navigate to EditProfileView
                 showEditProfile = true
             }) {
                 HStack {
-                    // If profileImageUrl is available, load the image from URL
                     if let profileImageUrl = URL(string: viewModel.profileImageUrl), !viewModel.profileImageUrl.isEmpty {
                         AsyncImage(url: profileImageUrl) { image in
                             image
@@ -35,7 +37,7 @@ struct AccountView: View {
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
                     }
-
+                    
                     VStack(alignment: .leading) {
                         Text(viewModel.username)
                             .font(.headline)
@@ -48,33 +50,40 @@ struct AccountView: View {
                     Image(systemName: "chevron.right")
                 }
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.1)))            }
-            .sheet(isPresented: $showEditProfile) {
-                // Present EditProfileView
-                EditProfileView(viewModel: viewModel)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
             }
-            
-            // Referrals and rewards
-            Button(action: {
-                // Action for Referrals and Rewards
-            }) {
-                HStack {
-                    Image(systemName: "gift")
-                        .foregroundColor(.green)
-                    Text("Referrals and rewards")
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                }
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 10)
-                                .fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.5)))
+            .sheet(isPresented: $showEditProfile) {
+                EditProfileView(viewModel: viewModel)
             }
             
             // Settings and Preferences
             Section(header: Text("Settings and Preferences").font(.subheadline)) {
-                settingsRow(iconName: "bell", label: "Notifications")
-                settingsRow(iconName: "globe", label: "Language")
-                settingsRow(iconName: "lock.shield", label: "Security")
+                Button(action: {
+                    showNotificationsView = true
+                }) {
+                    settingsRow(iconName: "bell", label: "Notifications")
+                }
+                .sheet(isPresented: $showNotificationsView) {
+                    NotificationsView() // Placeholder for actual view
+                }
+                
+                Button(action: {
+                    showPrivacyView = true
+                }) {
+                    settingsRow(iconName: "lock.shield", label: "Privacy")
+                }
+                .sheet(isPresented: $showPrivacyView) {
+                    PrivacyView() // PrivacyView containing Change Password
+                }
+                
+                Button(action: {
+                    showLanguageView = true
+                }) {
+                    languageRow(language: selectedLanguage, flag: selectedLanguageFlag)
+                }
+                .sheet(isPresented: $showLanguageView) {
+                    LanguageSelectionView(selectedLanguage: $selectedLanguage, selectedLanguageFlag: $selectedLanguageFlag)
+                }
             }
             
             // Support
@@ -85,7 +94,7 @@ struct AccountView: View {
             
             // Log out
             Button(action: {
-                viewModel.logOut() // Log out action using ViewModel
+                viewModel.logOut()
             }) {
                 HStack {
                     Image(systemName: "arrow.backward")
@@ -100,7 +109,7 @@ struct AccountView: View {
             Spacer()
         }
         .padding()
-        .background(Color(red: 28/255, green: 33/255, blue: 41/255).edgesIgnoringSafeArea(.all))
+        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
     }
     
@@ -112,8 +121,67 @@ struct AccountView: View {
             Image(systemName: "chevron.right")
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(red: 96/255, green: 100/255, blue: 105/255).opacity(0.5)))
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+    }
+    
+    private func languageRow(language: String, flag: String) -> some View {
+        HStack {
+            Image(flag) // Display the flag image
+                .resizable()
+                .frame(width: 24, height: 24)
+            Text(language)
+                .font(.headline)
+            Spacer()
+            Image(systemName: "chevron.right")
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+    }
+}
+
+struct LanguageSelectionView: View {
+    @Binding var selectedLanguage: String
+    @Binding var selectedLanguageFlag: String
+    
+    var body: some View {
+        VStack {
+            Text("Select Language")
+                .font(.title2)
+                .bold()
+                .padding(.top)
+            
+            Button(action: {
+                selectedLanguage = "English"
+                selectedLanguageFlag = "us"
+            }) {
+                languageRow(language: "English", flag: "us")
+            }
+            
+            Button(action: {
+                selectedLanguage = "Vietnamese"
+                selectedLanguageFlag = "vn"
+            }) {
+                languageRow(language: "Vietnamese", flag: "vn")
+            }
+            
+            Spacer()
+        }
+        .padding()
+        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+        .foregroundColor(.white)
+    }
+    
+    private func languageRow(language: String, flag: String) -> some View {
+        HStack {
+            Image(flag)
+                .resizable()
+                .frame(width: 24, height: 24)
+            Text(language)
+                .font(.headline)
+            Spacer()
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
 }
 
