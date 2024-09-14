@@ -8,38 +8,30 @@
 import SwiftUI
 
 struct DetailNewsView: View {
-    let newsArticle: NewsArticle
+    let newsArticle: News  // Use News model instead of NewsArticle
 
     var body: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all) // Background color
-
-            ScrollView {
-                VStack(alignment: .leading) {
-                    // News Image
-                    Image(newsArticle.imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
-                        .padding(.bottom, 16)
-
-                    // News Title
-                    Text(newsArticle.title)
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 8)
-
-                    // News Description
-                    Text(newsArticle.description)
-                        .font(.system(size: 16))
-                        .foregroundColor(.gray)
-                        .padding(.bottom, 16)
-
-                    // Add more detailed text or information here...
-                }
+        VStack {
+            Image(newsArticle.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            Text(newsArticle.title)
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(.white)
                 .padding()
-            }
+            Text(newsArticle.description)
+                .font(.system(size: 16))
+                .foregroundColor(.gray)
+                .padding()
+            Spacer()
         }
-        .navigationBarBackButtonHidden(false)
+        .background(Color.black.edgesIgnoringSafeArea(.all)) // Background
+        .navigationBarTitle("", displayMode: .inline)
+    }
+}
+
+struct DetailNewsView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailNewsView(newsArticle: News.sampleNews[0])  // Pass a sample news item
     }
 }

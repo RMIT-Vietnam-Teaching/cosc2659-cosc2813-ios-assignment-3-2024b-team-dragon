@@ -14,6 +14,7 @@ struct News: Identifiable {
     var description: String
     var imageName: String  // Image file name to be used in SwiftUI
     
+    // Sample static data
     static let sampleNews = [
         News(
             title: "Ho Chi Minh City opens $16mm extended street section to traffic",

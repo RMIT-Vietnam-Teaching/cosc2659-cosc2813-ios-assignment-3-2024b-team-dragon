@@ -8,25 +8,8 @@
 import SwiftUI
 
 struct NewsView: View {
-    let newsArticles: [NewsArticle] = [
-        NewsArticle(title: "Ho Chi Minh City opens $16mn extended street section to traffic",
-                    category: "Society",
-                    description: "Today, Ho Chi Minh City opens...",
-                    imageName: "news1"),
-        NewsArticle(title: "Gojek to withdraw from Vietnam in mid-September",
-                    category: "Business",
-                    description: "Gojek will stop its operations...",
-                    imageName: "news2"),
-        NewsArticle(title: "Free-roaming cows in Da Nang's industrial park cause traffic hazards",
-                    category: "Society",
-                    description: "Cows roaming freely on major roads...",
-                    imageName: "news3"),
-        NewsArticle(title: "Meet the night traffic rescue team in southern Vietnam",
-                    category: "Society",
-                    description: "The night traffic rescue team works hard...",
-                    imageName: "news4")
-    ]
-    
+    let newsArticles: [News] = News.sampleNews  // Use News model instead of NewsArticle
+
     var body: some View {
         NavigationView {
             ZStack {
