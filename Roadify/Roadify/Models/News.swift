@@ -8,37 +8,41 @@
 import Foundation
 
 struct News: Identifiable {
-    var id = UUID().uuidString
+    var id: String = UUID().uuidString
     var title: String
     var category: String
     var description: String
-    var imageName: String  // Image file name to be used in SwiftUI
+    var imageName: String  // This will hold the image URL after Firebase Storage upload
     
-    // Sample static data
-    static let sampleNews = [
-        News(
-            title: "Ho Chi Minh City opens $16mm extended street section to traffic",
-            category: "Society",
-            description: "The extended section of Nguyen Van Linh Boulevard...",
-            imageName: "news_image_1"
-        ),
-        News(
-            title: "Gojek to withdraw from Vietnam in mid-September",
-            category: "Business",
-            description: "Ride-hailing giant Gojek will exit the Vietnam market...",
-            imageName: "news_image_2"
-        ),
-        News(
-            title: "Free-roaming cows in Da Nang's industrial park cause traffic hazards",
-            category: "Society",
-            description: "Cows roaming freely on major roads in Hoa Khanh Industrial Park...",
-            imageName: "news_image_3"
-        ),
-        News(
-            title: "Meet the night traffic rescue team in southern Vietnam",
-            category: "Society",
-            description: "A group of volunteers working through the night...",
-            imageName: "news_image_4"
-        )
-    ]
+    // Firebase convenience initializer
+    init?(id: String, data: [String: Any]) {
+        guard let title = data["title"] as? String,
+              let category = data["category"] as? String,
+              let description = data["description"] as? String,
+              let imageName = data["imageName"] as? String else { return nil }
+        
+        self.id = id
+        self.title = title
+        self.category = category
+        self.description = description
+        self.imageName = imageName
+    }
+    
+    // Default initializer for creating News locally
+    init(title: String, category: String, description: String, imageName: String) {
+        self.title = title
+        self.category = category
+        self.description = description
+        self.imageName = imageName
+    }
+    
+    // Convert News object to dictionary for Firestore
+    func toDictionary() -> [String: Any] {
+        return [
+            "title": title,
+            "category": category,
+            "description": description,
+            "imageName": imageName
+        ]
+    }
 }

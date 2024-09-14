@@ -90,4 +90,55 @@ class FirebaseService: ObservableObject {
             completion(uploadedImageURLs)
         }
     }
+    
+    // Fetch News from Firebase
+    func fetchNews(completion: @escaping (Result<[News], Error>) -> Void) {
+        db.collection("news").getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                var newsArticles: [News] = []
+                for document in snapshot?.documents ?? [] {
+                    let data = document.data()
+                    if let news = News(id: document.documentID, data: data) {
+                        newsArticles.append(news)
+                    }
+                }
+                completion(.success(newsArticles))
+            }
+        }
+    }
+
+    // Add News with Image Upload to Firebase
+    func addNews(news: News, image: UIImage, completion: @escaping (Error?) -> Void) {
+        let storageRef = storage.reference().child("images/\(UUID().uuidString).jpg")
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            completion(NSError(domain: "ImageError", code: 1001, userInfo: [NSLocalizedDescriptionKey: "Image could not be processed"]))
+            return
+        }
+
+        // Upload the image to Firebase Storage
+        storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            // Once the image is uploaded, retrieve the download URL
+            storageRef.downloadURL { (url, error) in
+                if let url = url {
+                    var updatedNews = news
+                    updatedNews.imageName = url.absoluteString // Store image URL in the model
+
+                    // Save the news to Firestore
+                    let ref = self.db.collection("news").document(news.id)
+                    ref.setData(updatedNews.toDictionary()) { error in
+                        completion(error)
+                    }
+                } else {
+                    completion(error)
+                }
+            }
+        }
+    }
 }

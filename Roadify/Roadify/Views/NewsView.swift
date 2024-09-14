@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct NewsView: View {
-    let newsArticles: [News] = News.sampleNews  // Use News model instead of NewsArticle
+    @StateObject private var firebaseService = FirebaseService()
+    @State private var newsArticles: [News] = []
+    @State private var showAddNewsForm = false
 
     var body: some View {
         NavigationView {
             ZStack {
-                Color.black.edgesIgnoringSafeArea(.all) // Background of the whole view
+                Color.black.edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    // Custom title at the top of the view
                     Text("News")
-                        .font(.system(size: 28, weight: .bold))  // Bold and large font size for the title
+                        .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.white)
-                        .padding(.top, 16) // Adjust padding based on design
+                        .padding(.top, 16)
                     
-                    // News list view
                     List(newsArticles) { article in
                         NavigationLink(destination: DetailNewsView(newsArticle: article)) {
                             HStack(spacing: 16) {
-                                Image(article.imageName)
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .cornerRadius(8)
+                                AsyncImage(url: URL(string: article.imageName)) { image in
+                                    image.resizable().frame(width: 60, height: 60).cornerRadius(8)
+                                } placeholder: {
+                                    ProgressView()
+                                }
                                 
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(article.title)
@@ -43,14 +44,13 @@ struct NewsView: View {
                             }
                             .padding(.vertical, 8)
                         }
-                        .listRowBackground(Color.black) // Each row background color
+                        .listRowBackground(Color.black)
                     }
-                    .scrollContentBackground(.hidden) // Remove the default background of the list
-                    .background(Color.black) // Set list background color
+                    .scrollContentBackground(.hidden)
+                    .background(Color.black)
                     
                     Spacer()
                     
-                    // Footer view (similar to your screenshot)
                     VStack {
                         Text("Today, 10 accidents have been reported on")
                             .font(.system(size: 16))
@@ -61,9 +61,31 @@ struct NewsView: View {
                     }
                     .padding()
                 }
+                .onAppear {
+                    fetchNewsFromFirebase()  // Fetch the news from Firebase when the view appears
+                }
+                .sheet(isPresented: $showAddNewsForm, onDismiss: {
+                    fetchNewsFromFirebase()  // Reload the news when the form is dismissed
+                }) {
+                    AddNewsFormView()
+                }
+                .navigationBarItems(trailing: Button(action: {
+                    showAddNewsForm = true
+                }) {
+                    Image(systemName: "plus").foregroundColor(.white)
+                })
             }
-            .navigationBarTitle("") // Empty to hide the default title bar
-            .navigationBarHidden(true) // Hide the default navigation bar
+        }
+    }
+
+    private func fetchNewsFromFirebase() {
+        firebaseService.fetchNews { result in
+            switch result {
+            case .success(let fetchedNews):
+                self.newsArticles = fetchedNews
+            case .failure(let error):
+                print("Error fetching news: \(error.localizedDescription)")
+            }
         }
     }
 }

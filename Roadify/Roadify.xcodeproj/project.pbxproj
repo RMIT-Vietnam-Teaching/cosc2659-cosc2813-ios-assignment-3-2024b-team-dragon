@@ -32,6 +32,7 @@
 		E99257502C9579DF00A44500 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992574F2C9579DF00A44500 /* News.swift */; };
 		E99257522C957A1300A44500 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257512C957A1300A44500 /* NewsView.swift */; };
 		E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257532C957A3C00A44500 /* DetailNewsView.swift */; };
+		E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257572C958C3000A44500 /* AddNewsFormView.swift */; };
 		E9B8AE172C93256A0037450A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE162C93256A0037450A /* Pin.swift */; };
 		E9B8AE192C9325990037450A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE182C9325990037450A /* MapView.swift */; };
 		E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE1A2C932A510037450A /* PinFormView.swift */; };
@@ -63,6 +64,7 @@
 		E992574F2C9579DF00A44500 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E99257512C957A1300A44500 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E99257532C957A3C00A44500 /* DetailNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsView.swift; sourceTree = "<group>"; };
+		E99257572C958C3000A44500 /* AddNewsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewsFormView.swift; sourceTree = "<group>"; };
 		E9B8AE162C93256A0037450A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		E9B8AE182C9325990037450A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9B8AE1A2C932A510037450A /* PinFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinFormView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				B8FDFB9E2C91FB300052F423 /* TabView.swift */,
 				E99257512C957A1300A44500 /* NewsView.swift */,
 				E99257532C957A3C00A44500 /* DetailNewsView.swift */,
+				E99257572C958C3000A44500 /* AddNewsFormView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				E99257502C9579DF00A44500 /* News.swift in Sources */,
 				E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
+				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
