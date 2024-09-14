@@ -24,6 +24,9 @@
 		03E2377A2C8F2C3F0095D755 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 03E237792C8F2C3F0095D755 /* FirebaseDatabase */; };
 		03E2377C2C8F2C3F0095D755 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377B2C8F2C3F0095D755 /* FirebaseFirestore */; };
 		03E2377E2C8F2C3F0095D755 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377D2C8F2C3F0095D755 /* FirebaseStorage */; };
+		0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */; };
+		0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */; };
+		0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F232C84C77D0033A939 /* ContentView.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -43,6 +46,9 @@
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03E237752C8F08430095D755 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
 		B8E66F232C84C77D0033A939 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 				0362DA442C9190F9008ED49A /* SignInView.swift */,
 				0362DA4A2C919DEF008ED49A /* SignUpView.swift */,
 				0362DA502C91AF2D008ED49A /* AccountView.swift */,
+				0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */,
+				0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +109,7 @@
 			children = (
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
 				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
+				0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -251,6 +260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */,
+				0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */,
+				0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */,
 				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
@@ -258,6 +269,7 @@
 				03AEF1D12C8F45BB001C503E /* CRUDView.swift in Sources */,
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
 				0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */,
+				0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
