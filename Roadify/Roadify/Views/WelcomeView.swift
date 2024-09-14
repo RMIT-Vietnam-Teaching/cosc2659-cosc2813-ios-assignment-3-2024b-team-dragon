@@ -34,7 +34,8 @@ struct WelcomeView: View {
 				title: currentPageTitle,
 				description: currentPageDescription,
 				onNext: nextPage,
-				progress: pageProgress
+				progress: pageProgress, 
+				progressColor: ""
 			)
 			
 			HStack(spacing: 10) {

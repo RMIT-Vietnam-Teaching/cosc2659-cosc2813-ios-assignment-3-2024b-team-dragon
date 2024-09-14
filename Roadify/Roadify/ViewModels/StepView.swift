@@ -13,8 +13,8 @@ struct StepView: View {
 	var title: String
 	var description: String
 	var onNext: () -> Void  // Closure for button action
-	
 	var progress: CGFloat
+	var progressColor: String
 	
 	var body: some View {
 		VStack(spacing: 20) {
@@ -43,25 +43,28 @@ struct StepView: View {
 			Spacer()
 			
 			ZStack {
+				let progressColor = progress == 1 ? Color("Secondary") : Color.white
+				
 				Circle()
 					.stroke(Color.gray.opacity(0.3), lineWidth: 3)
 					.frame(width: 50, height: 50)
 				
 				Circle()
 					.trim(from: 0, to: progress)
-					.stroke(Color.white, lineWidth: 3)
+					.stroke(progressColor, lineWidth: 3)
 					.rotationEffect(.degrees(-90))
 					.frame(width: 50, height: 50)
 				
 				Button(action: onNext) {
 					Image(systemName: "arrow.right.circle.fill")
 						.font(.system(size: 30))
-						.foregroundColor(.white)
+						.foregroundColor(progressColor)
+					
 				}
+				.padding()
 			}
 			.padding()
+			.background(Color("Primary"))
 		}
-		.padding()
-		.background(Color("Primary"))
 	}
 }
