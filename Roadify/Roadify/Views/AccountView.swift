@@ -88,8 +88,8 @@ struct AccountView: View {
             
             // Support
             Section(header: Text("Support").font(.subheadline)) {
-                settingsRow(iconName: "questionmark.circle", label: "Help centre")
-                settingsRow(iconName: "flag", label: "Report a bug")
+                SettingsRow(iconName: "questionmark.circle", label: "Help centre")
+                SettingsRow(iconName: "flag", label: "Report a bug")
             }
             
             // Log out

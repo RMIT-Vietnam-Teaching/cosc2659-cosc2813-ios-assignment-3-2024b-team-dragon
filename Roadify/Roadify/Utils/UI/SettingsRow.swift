@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-func settingsRow(iconName: String, label: String) -> some View {
+func SettingsRow(iconName: String, label: String) -> some View {
     HStack {
         Image(systemName: iconName)
             .foregroundColor(.green)
