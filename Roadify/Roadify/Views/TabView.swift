@@ -18,12 +18,7 @@ struct TabView: View {
 			case 0:
 				ContentView()
 			case 1:
-				VStack {
-					Button("News View") {
-						print("Switch to NewsView")
-					}
-					.padding()
-				}
+				NewsView()
 			case 2:
 				VStack {
 					Button("Alert View") {

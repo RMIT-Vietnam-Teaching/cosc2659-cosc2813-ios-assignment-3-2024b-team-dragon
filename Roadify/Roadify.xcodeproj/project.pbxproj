@@ -29,6 +29,10 @@
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
 		B8E66F292C84C77E0033A939 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */; };
 		B8FDFB9F2C91FB300052F423 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FDFB9E2C91FB300052F423 /* TabView.swift */; };
+		E99257502C9579DF00A44500 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992574F2C9579DF00A44500 /* News.swift */; };
+		E99257522C957A1300A44500 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257512C957A1300A44500 /* NewsView.swift */; };
+		E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257532C957A3C00A44500 /* DetailNewsView.swift */; };
+		E99257562C957B3200A44500 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257552C957B3200A44500 /* NewsArticle.swift */; };
 		E9B8AE172C93256A0037450A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE162C93256A0037450A /* Pin.swift */; };
 		E9B8AE192C9325990037450A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE182C9325990037450A /* MapView.swift */; };
 		E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE1A2C932A510037450A /* PinFormView.swift */; };
@@ -57,6 +61,10 @@
 		B8E66F252C84C77E0033A939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8FDFB9E2C91FB300052F423 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		E992574F2C9579DF00A44500 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		E99257512C957A1300A44500 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		E99257532C957A3C00A44500 /* DetailNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsView.swift; sourceTree = "<group>"; };
+		E99257552C957B3200A44500 /* NewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
 		E9B8AE162C93256A0037450A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		E9B8AE182C9325990037450A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9B8AE1A2C932A510037450A /* PinFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinFormView.swift; sourceTree = "<group>"; };
@@ -97,6 +105,8 @@
 				E9B8AE162C93256A0037450A /* Pin.swift */,
 				0362DA482C9193E4008ED49A /* LoginCredentials.swift */,
 				0362DA4E2C91A687008ED49A /* User.swift */,
+				E992574F2C9579DF00A44500 /* News.swift */,
+				E99257552C957B3200A44500 /* NewsArticle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,6 +121,8 @@
 				E9B8AE182C9325990037450A /* MapView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
 				B8FDFB9E2C91FB300052F423 /* TabView.swift */,
+				E99257512C957A1300A44500 /* NewsView.swift */,
+				E99257532C957A3C00A44500 /* DetailNewsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,11 +293,15 @@
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
 				B8E66F242C84C77D0033A939 /* ContentView.swift in Sources */,
+				E99257562C957B3200A44500 /* NewsArticle.swift in Sources */,
 				B8FDFB9F2C91FB300052F423 /* TabView.swift in Sources */,
+				E99257522C957A1300A44500 /* NewsView.swift in Sources */,
 				B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */,
 				E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */,
 				E9B8AE172C93256A0037450A /* Pin.swift in Sources */,
 				0362DA542C91B1C1008ED49A /* settingsRow.swift in Sources */,
+				E99257502C9579DF00A44500 /* News.swift in Sources */,
+				E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
