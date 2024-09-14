@@ -70,6 +70,7 @@ struct PinFormView: View {
 					HStack {
 						Image(systemName: "photo")
 							.font(.system(size: 20))
+							.foregroundStyle(Color("Secondary"))
 					}
 					.padding()
 					.background(Color.white)
@@ -163,6 +164,7 @@ struct PinFormView: View {
 				savePinToFirebase()  // Save the pin to Firebase on submit
 			} label: {
 				Label(String("Add Pin"), systemImage: "plus.circle")
+					.foregroundStyle(Color("Secondary"))
 			}
 			.buttonStyle(.bordered)
 			.controlSize(.large)
