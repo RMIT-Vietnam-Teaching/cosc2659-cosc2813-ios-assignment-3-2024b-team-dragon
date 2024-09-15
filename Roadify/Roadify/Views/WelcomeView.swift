@@ -9,56 +9,63 @@ import SwiftUI
 
 struct WelcomeView: View {
 	@State private var currentPage = 0
+	@State private var showMapView = false // Control whether user has done with the tutorial
+	
+	let onDismiss: () -> Void
 	let totalPage = 3
 	
 	var body: some View {
-		VStack {
-			HStack {
+		if showMapView {
+			TabView()
+		} else {
+			VStack {
+				HStack {
+					Spacer()
+					if currentPage < totalPage - 1 {
+						Button(action: {
+							currentPage = totalPage - 1
+						}) {
+							Text("Skip")
+								.foregroundColor(Color("Secondary"))
+								.bold()
+								.padding([.top, .trailing], 35)
+						}
+					}
+				}
+				
 				Spacer()
-				if currentPage < totalPage - 1 {
-					Button(action: {
-						currentPage = totalPage - 1
-					}) {
-						Text("Skip")
-							.foregroundColor(Color("Secondary"))
-							.bold()
-							.padding([.top, .trailing], 35)
+				
+				PageViewModel(
+					image: currentPageImage,
+					title: currentPageTitle,
+					description: currentPageDescription,
+					onNext: nextPage,
+					progress: pageProgress,
+					progressColor: ""
+				)
+				
+				HStack(spacing: 10) {
+					ForEach(0..<totalPage, id: \.self) { index in
+						Button(action: {
+							// show current step
+							currentPage = index
+						}) {
+							Circle()
+								.frame(width: 10, height: 10)
+								.foregroundColor(currentPage == index ? Color("Secondary") : .gray)
+								.animation(.easeInOut)
+						}
+						.buttonStyle(PlainButtonStyle())
 					}
 				}
+				.padding(.bottom, 20)
+				
+				Spacer()
+				
 			}
-			
-			Spacer()
-			
-			PageViewModel(
-				image: currentPageImage,
-				title: currentPageTitle,
-				description: currentPageDescription,
-				onNext: nextPage,
-				progress: pageProgress, 
-				progressColor: ""
-			)
-			
-			HStack(spacing: 10) {
-				ForEach(0..<totalPage, id: \.self) { index in
-					Button(action: {
-						// show current step
-						currentPage = index
-					}) {
-						Circle()
-							.frame(width: 10, height: 10)
-							.foregroundColor(currentPage == index ? Color("Secondary") : .gray)
-							.animation(.easeInOut)
-					}
-					.buttonStyle(PlainButtonStyle())
-				}
-			}
-			.padding(.bottom, 20)
-			
-			Spacer()
-			
+			.background(Color("Primary"))
+			.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
 		}
-		.background(Color("Primary"))
-		.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
 	}
 	
 	private var currentPageImage: String {
@@ -96,13 +103,14 @@ struct WelcomeView: View {
 		if currentPage < totalPage - 1 {
 			currentPage += 1
 		} else {
-			print("User completed all welcome screens")
+			showMapView = true
 		}
 	}
 }
 
 struct WelcomeView_Previews: PreviewProvider {
 	static var previews: some View {
-		WelcomeView()
+		WelcomeView(onDismiss: {
+		})
 	}
 }
