@@ -47,7 +47,7 @@ struct WelcomeView: View {
 						Circle()
 							.frame(width: 10, height: 10)
 							.foregroundColor(currentPage == index ? Color("Secondary") : .gray)
-							.animation(.easeInOut)
+							.animation(.easeInOut, value: 5)
 					}
 					.buttonStyle(PlainButtonStyle())
 				}

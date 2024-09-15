@@ -13,6 +13,7 @@ import UIKit
 
 struct MapView: View {
 	// MARK: - Variables
+	@StateObject private var locationManager = LocationManager()
 	@State private var pinTitle: String = ""
 	@State private var pinDescription: String = ""
 	@State private var pinImages: [UIImage] = []  // Array for selected images
@@ -52,7 +53,13 @@ struct MapView: View {
 			if !showPinModel {
 				Button(action: {
 					withAnimation {
-						selectedCoordinate = nil
+						if let userLocation = locationManager.userLocation {
+							selectedCoordinate = userLocation
+						} else {
+
+							print("User location is not available.")
+							selectedCoordinate = nil
+						}
 						showPinModel = true
 						print("Button pressed, showing pin form")
 					}
@@ -70,6 +77,7 @@ struct MapView: View {
 		}
 		.onAppear {
 			fetchPins()  // Fetch pins from Firebase on load
+			locationManager.requestLocationPermission() // Ask user for location permission
 		}
 	}
 	

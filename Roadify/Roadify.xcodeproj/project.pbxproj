@@ -37,6 +37,7 @@
 		B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */; };
 		B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E172C95810500B649B3 /* MapViewRepresentable.swift */; };
 		B8675E1A2C95863700B649B3 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E192C95863700B649B3 /* ProgressViewModel.swift */; };
+		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
 		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
@@ -81,6 +82,7 @@
 		B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerViewModel.swift; sourceTree = "<group>"; };
 		B8675E172C95810500B649B3 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		B8675E192C95863700B649B3 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		B875DF562C96D992004CED7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				0362DA522C91B16E008ED49A /* UI */,
+				B875DF562C96D992004CED7E /* LocationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */,
 				E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */,
 				E9B8AE172C93256A0037450A /* Pin.swift in Sources */,
+				B875DF572C96D992004CED7E /* LocationManager.swift in Sources */,
 				B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */,
 				0362DA542C91B1C1008ED49A /* SettingsRow.swift in Sources */,
 				E99257502C9579DF00A44500 /* News.swift in Sources */,
@@ -535,6 +539,7 @@
 				DEVELOPMENT_TEAM = 8LD7T5FH2D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Rodify needs your location to show nearby accidents and traffic information.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -564,6 +569,7 @@
 				DEVELOPMENT_TEAM = 8LD7T5FH2D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Rodify needs your location to show nearby accidents and traffic information.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
