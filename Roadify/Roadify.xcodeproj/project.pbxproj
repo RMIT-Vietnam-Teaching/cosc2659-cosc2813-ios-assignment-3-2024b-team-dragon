@@ -37,9 +37,9 @@
 		B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */; };
 		B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E172C95810500B649B3 /* MapViewRepresentable.swift */; };
 		B8675E1A2C95863700B649B3 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E192C95863700B649B3 /* ProgressViewModel.swift */; };
+		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B875DF592C97C145004CED7E /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF582C97C145004CED7E /* RoutingView.swift */; };
 		B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF5A2C97CADF004CED7E /* DestinationView.swift */; };
-		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
 		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
@@ -49,6 +49,7 @@
 		E99257522C957A1300A44500 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257512C957A1300A44500 /* NewsView.swift */; };
 		E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257532C957A3C00A44500 /* DetailNewsView.swift */; };
 		E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257572C958C3000A44500 /* AddNewsFormView.swift */; };
+		E992575A2C98617600A44500 /* DetailPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257592C98617500A44500 /* DetailPinView.swift */; };
 		E9B8AE172C93256A0037450A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE162C93256A0037450A /* Pin.swift */; };
 		E9B8AE192C9325990037450A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE182C9325990037450A /* MapView.swift */; };
 		E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE1A2C932A510037450A /* PinFormView.swift */; };
@@ -84,9 +85,9 @@
 		B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerViewModel.swift; sourceTree = "<group>"; };
 		B8675E172C95810500B649B3 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		B8675E192C95863700B649B3 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		B875DF562C96D992004CED7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B875DF582C97C145004CED7E /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
 		B875DF5A2C97CADF004CED7E /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
-		B875DF562C96D992004CED7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +98,7 @@
 		E99257512C957A1300A44500 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E99257532C957A3C00A44500 /* DetailNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsView.swift; sourceTree = "<group>"; };
 		E99257572C958C3000A44500 /* AddNewsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewsFormView.swift; sourceTree = "<group>"; };
+		E99257592C98617500A44500 /* DetailPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPinView.swift; sourceTree = "<group>"; };
 		E9B8AE162C93256A0037450A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		E9B8AE182C9325990037450A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9B8AE1A2C932A510037450A /* PinFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinFormView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				B875DF582C97C145004CED7E /* RoutingView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
 				B875DF5A2C97CADF004CED7E /* DestinationView.swift */,
+				E99257592C98617500A44500 /* DetailPinView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				B875DF592C97C145004CED7E /* RoutingView.swift in Sources */,
 				0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
+				E992575A2C98617600A44500 /* DetailPinView.swift in Sources */,
 				B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */,
 				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
 				0ABCBF082C959B0B002F62EE /* ManageAccountView.swift in Sources */,
