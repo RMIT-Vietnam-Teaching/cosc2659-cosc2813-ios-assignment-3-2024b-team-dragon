@@ -20,59 +20,91 @@ struct MapView: View {
 	@State private var showPinModel: Bool = false
 	@State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
 	@State private var pins: [Pin] = []  // Store pins to be passed to the map view
+	@State private var destinationAddress: String = "" // Destination pin
+	@State private var showRoutingView: Bool = false
 	
 	let firebaseService = FirebaseService()  // Firebase service instance
 	
 	// MARK: - Body
 	var body: some View {
-		ZStack (alignment: .bottomTrailing) {
+		ZStack {
 			// MARK: - Show map
 			MapViewRepresentable(pins: $pins, showPinModal: $showPinModel, selectedCoordinate: $selectedCoordinate)
 				.edgesIgnoringSafeArea(.all)
+				.onTapGesture {
+					withAnimation {
+						showRoutingView = false // Close DestinationView when users tap outside
+					}
+				}
 			
 			// MARK: - Add pin using tapping
 			if showPinModel {
-				PinFormView(
-					title: $pinTitle,
-					description: $pinDescription,
-					images: $pinImages,
-					showModal: $showPinModel,
-					selectedCoordinate: $selectedCoordinate,
-					onSubmit: {
-						addPin()
-					}
-				)
-				.background(Color("Primary"))
-				.frame(width: .infinity)
-				.clipShape(RoundedCornerViewModel(radius: 25, corners: [.topLeft, .topRight]))
-				.transition(.move(edge: .bottom))
-				.animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
+				VStack {
+					Spacer()
+					PinFormView(
+						title: $pinTitle,
+						description: $pinDescription,
+						images: $pinImages,
+						showModal: $showPinModel,
+						selectedCoordinate: $selectedCoordinate,
+						onSubmit: {
+							addPin()
+						}
+					)
+					.background(Color("Primary"))
+					.frame(width: .infinity)
+					.clipShape(RoundedCornerViewModel(radius: 25, corners: [.topLeft, .topRight]))
+					.transition(.move(edge: .bottom))
+					.animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
+				}
 			}
 			
 			// MARK: - Add pin using button
-			if !showPinModel {
-				Button(action: {
-					withAnimation {
-						if let userLocation = locationManager.userLocation {
+			if !showPinModel && !showRoutingView {
+				VStack {
+					HStack {
+						Spacer()
+						Button(action: {
+							withAnimation {
+								if let userLocation = locationManager.userLocation {
 							selectedCoordinate = userLocation
 						} else {
 
 							print("User location is not available.")
 							selectedCoordinate = nil
-						}
+								}
 						showPinModel = true
-						print("Button pressed, showing pin form")
+								print("Button pressed, showing pin form")
+							}
+						}) {
+							Image(systemName: "location.circle.fill")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.background(Color.white)
+								.clipShape(Circle())
+								.shadow(radius: 4)
+								.foregroundColor(Color("PrimaryColor"))
+						}
 					}
-				}) {
-					Image(systemName: "plus.circle.fill")
-						.resizable()
-						.frame(width: 50, height: 50)
-						.background(Color.white)
-						.clipShape(Circle())
-						.shadow(radius: 4)
-						.foregroundColor(.blue)
+					.padding(30)
+					
+					Spacer()
 				}
-				.padding([.trailing, .bottom], 30)
+			}
+			
+			// MARK: - Destination View
+			if showRoutingView {
+				VStack {
+					RoutingView()
+					Spacer()
+				}
+			}
+			
+			if !showRoutingView && !showPinModel {
+				VStack {
+					Spacer()
+					DestinationView(destinationAddress: $destinationAddress, showRoutingView: $showRoutingView)
+				}
 			}
 		}
 		.onAppear {
@@ -112,6 +144,24 @@ struct MapView: View {
 			}
 		}
 	}
+	
+	func geocodeAddress(address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+		let geocoder = CLGeocoder()
+		geocoder.geocodeAddressString(address) { placemarks, error in
+			if let error = error {
+				print("Geocoding failed: \(error.localizedDescription)")
+				completion(nil)
+				return
+			}
+			
+			if let placemark = placemarks?.first, let location = placemark.location {
+				completion(location.coordinate)
+			} else {
+				completion(nil)
+			}
+		}
+	}
+	
 }
 
 struct MapView_Previews: PreviewProvider {

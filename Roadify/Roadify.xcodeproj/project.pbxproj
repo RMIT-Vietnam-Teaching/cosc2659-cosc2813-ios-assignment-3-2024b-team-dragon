@@ -37,6 +37,8 @@
 		B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */; };
 		B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E172C95810500B649B3 /* MapViewRepresentable.swift */; };
 		B8675E1A2C95863700B649B3 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E192C95863700B649B3 /* ProgressViewModel.swift */; };
+		B875DF592C97C145004CED7E /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF582C97C145004CED7E /* RoutingView.swift */; };
+		B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF5A2C97CADF004CED7E /* DestinationView.swift */; };
 		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
 		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
@@ -82,6 +84,8 @@
 		B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerViewModel.swift; sourceTree = "<group>"; };
 		B8675E172C95810500B649B3 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		B8675E192C95863700B649B3 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		B875DF582C97C145004CED7E /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
+		B875DF5A2C97CADF004CED7E /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
 		B875DF562C96D992004CED7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
@@ -194,7 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				E9B8AE182C9325990037450A /* MapView.swift */,
+				B875DF582C97C145004CED7E /* RoutingView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
+				B875DF5A2C97CADF004CED7E /* DestinationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
 				B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */,
 				0ABCBF062C9597A4002F62EE /* NotificationsView.swift in Sources */,
+				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
 				0ABCBF0A2C959B30002F62EE /* ActivityLogsView.swift in Sources */,
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
@@ -391,6 +398,7 @@
 				E99257502C9579DF00A44500 /* News.swift in Sources */,
 				E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */,
 				0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */,
+				B875DF592C97C145004CED7E /* RoutingView.swift in Sources */,
 				0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */,
