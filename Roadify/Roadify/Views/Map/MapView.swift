@@ -52,7 +52,6 @@ struct MapView: View {
 						}
 					)
 					.background(Color("Primary"))
-					.frame(width: .infinity)
 					.clipShape(RoundedCornerViewModel(radius: 25, corners: [.topLeft, .topRight]))
 					.transition(.move(edge: .bottom))
 					.animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
