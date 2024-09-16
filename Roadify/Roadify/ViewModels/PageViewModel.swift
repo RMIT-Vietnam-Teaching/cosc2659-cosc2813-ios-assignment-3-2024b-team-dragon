@@ -43,7 +43,7 @@ struct PageViewModel: View {
 			Spacer()
 			
 			ZStack {
-				let progressColor = progress == 1 ? Color("Secondary") : Color.white
+				let progressColor = progress == 1 ? Color("SubColor") : Color.white
 				
 				Circle()
 					.stroke(Color.gray.opacity(0.3), lineWidth: 3)
@@ -64,7 +64,7 @@ struct PageViewModel: View {
 				.padding()
 			}
 			.padding()
-			.background(Color("Primary"))
+			.background(Color("MainColor"))
 		}
 	}
 }

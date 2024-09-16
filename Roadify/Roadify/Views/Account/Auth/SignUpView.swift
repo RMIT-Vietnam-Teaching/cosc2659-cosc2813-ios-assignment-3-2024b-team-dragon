@@ -90,14 +90,14 @@ struct SignUpView: View {
                                 .bold()
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(Color("SecondaryColor"))
+                                .background(Color("SubColor"))
                                 .foregroundColor(Color("FourthColor"))
                                 .cornerRadius(8)
                         }
 
                         if viewModel.isOTPVerified {
                             Text("Email Verified")
-                                .foregroundColor(Color("SecondaryColor"))
+                                .foregroundColor(Color("SubColor"))
                                 .font(.headline)
                                 .onAppear {
                                     // Delay before navigating to SignInView
@@ -114,7 +114,7 @@ struct SignUpView: View {
                 }
             }
             .padding()
-            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         }
     }
     
@@ -128,7 +128,7 @@ struct SignUpView: View {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(isValid.wrappedValue == nil ? Color("ThirdColor") : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
-                    .background(Color("PrimaryColor"))
+                    .background(Color("MainColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -176,7 +176,7 @@ struct SignUpView: View {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(isValid.wrappedValue == nil ? Color("ThirdColor") : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
-                    .background(Color("PrimaryColor"))
+                    .background(Color("MainColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)

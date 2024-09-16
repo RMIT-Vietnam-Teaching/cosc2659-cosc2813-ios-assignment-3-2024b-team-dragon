@@ -70,7 +70,7 @@ struct PrivacyView: View {
             Spacer()
         }
         .padding()
-        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+        .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
     }
 

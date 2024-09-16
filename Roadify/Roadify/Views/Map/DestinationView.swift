@@ -33,7 +33,7 @@ struct DestinationView: View {
 					}
 			}
 		}
-		.background(Color("PrimaryColor"))
+		.background(Color("MainColor"))
 		.cornerRadius(15)
 		.padding()
 		.shadow(radius: 5)

@@ -108,7 +108,7 @@ struct AccountView: View {
 			Spacer()
 		}
 		.padding()
-		.background(Color("PrimaryColor"))
+		.background(Color("MainColor"))
 		.foregroundColor(.white)
 		.edgesIgnoringSafeArea(.all)
 	}
@@ -167,7 +167,7 @@ struct LanguageSelectionView: View {
 			Spacer()
 		}
 		.padding()
-		.background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+		.background(Color("MainColor").edgesIgnoringSafeArea(.all))
 		.foregroundColor(.white)
 	}
 	

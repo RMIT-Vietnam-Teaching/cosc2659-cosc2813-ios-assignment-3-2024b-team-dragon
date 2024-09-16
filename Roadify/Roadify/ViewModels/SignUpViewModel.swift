@@ -89,7 +89,7 @@ class SignUpViewModel: ObservableObject {
             }
             
             if let userID = Auth.auth().currentUser?.uid {
-                let user = User(
+				_ = User(
                     id: userID,
                     username: self?.username ?? "",
                     firstName: self?.firstName ?? "",

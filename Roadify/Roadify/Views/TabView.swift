@@ -52,7 +52,7 @@ struct TabView: View {
 						}
 					}
 					.padding()
-					.background(Color("Primary"))
+					.background(Color("MainColor"))
 				}
 				.padding(.bottom)
 		.edgesIgnoringSafeArea(.bottom)

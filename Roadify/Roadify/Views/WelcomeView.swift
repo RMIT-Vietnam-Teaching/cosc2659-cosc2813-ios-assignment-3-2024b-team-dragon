@@ -26,7 +26,7 @@ struct WelcomeView: View {
 							currentPage = totalPage - 1
 						}) {
 							Text("Skip")
-								.foregroundColor(Color("Secondary"))
+								.foregroundColor(Color("SubColor"))
 								.bold()
 								.padding([.top, .trailing], 35)
 						}
@@ -52,7 +52,7 @@ struct WelcomeView: View {
 						}) {
 							Circle()
 								.frame(width: 10, height: 10)
-								.foregroundColor(currentPage == index ? Color("Secondary") : .gray)
+								.foregroundColor(currentPage == index ? Color("SubColor") : .gray)
 								.animation(.easeInOut, value: 5)
 						}
 						.buttonStyle(PlainButtonStyle())
@@ -63,7 +63,7 @@ struct WelcomeView: View {
 				Spacer()
 				
 			}
-			.background(Color("Primary"))
+			.background(Color("MainColor"))
 			.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
 		}
 	}

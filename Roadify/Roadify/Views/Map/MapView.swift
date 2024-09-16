@@ -51,8 +51,7 @@ struct MapView: View {
 							addPin()
 						}
 					)
-					.background(Color("Primary"))
-					.clipShape(RoundedCornerViewModel(radius: 25, corners: [.topLeft, .topRight]))
+					.background(Color("MainColor"))
 					.transition(.move(edge: .bottom))
 					.animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
 				}
@@ -82,7 +81,7 @@ struct MapView: View {
 								.background(Color.white)
 								.clipShape(Circle())
 								.shadow(radius: 4)
-								.foregroundColor(Color("PrimaryColor"))
+								.foregroundColor(Color("MainColor"))
 						}
 					}
 					.padding(30)

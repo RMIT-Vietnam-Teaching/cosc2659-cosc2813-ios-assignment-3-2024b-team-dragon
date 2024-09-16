@@ -103,13 +103,13 @@ struct EditProfileView: View {
                     Spacer()
                 }
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color("SecondaryColor")))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color("SubColor")))
             }
             
             Spacer()
         }
         .padding()
-        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+        .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .onAppear {
             // Initialize fields with the current profile data

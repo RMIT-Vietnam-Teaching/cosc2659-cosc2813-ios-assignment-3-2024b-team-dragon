@@ -42,8 +42,8 @@ struct RoutingView: View {
 						}) {
 							Text("Go")
 								.padding()
-								.background(Color("SecondaryColor"))
-								.foregroundColor(Color("PrimaryColor"))
+								.background(Color("SubColor"))
+								.foregroundColor(Color("MainColor"))
 								.cornerRadius(8)
 								.shadow(radius: 4)
 						}
@@ -52,7 +52,7 @@ struct RoutingView: View {
 				.padding([.trailing, .top, .bottom])
 			}
 		}
-		.background(Color("PrimaryColor"))
+		.background(Color("MainColor"))
 		.cornerRadius(15)
 		.padding()
 		.shadow(radius: 5)
