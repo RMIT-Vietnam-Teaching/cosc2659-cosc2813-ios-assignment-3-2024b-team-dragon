@@ -95,7 +95,8 @@ class SignUpViewModel: ObservableObject {
                     firstName: self?.firstName ?? "",
                     lastName: self?.lastName ?? "",
                     email: self?.email ?? "",
-                    createdAt: Date()
+                    createdAt: Date(),
+                    isAdmin: false
                 )
 //                self?.firebaseService.saveUser(user: user) { error in
 //                    if let error = error {

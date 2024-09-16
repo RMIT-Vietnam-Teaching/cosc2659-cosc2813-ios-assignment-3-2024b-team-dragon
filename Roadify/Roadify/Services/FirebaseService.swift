@@ -2,6 +2,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
 import CoreLocation
 import UIKit
 
@@ -98,11 +99,11 @@ class FirebaseService: ObservableObject {
 	}
 	
 	// MARK: - Save Pin
-	func savePin(title: String, description: String, coordinate: CLLocationCoordinate2D?, images: [UIImage], completion: @escaping (Error?) -> Void) {
-		guard let coordinate = coordinate else {
-			completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Coordinate is required."]))
-			return
-		}
+    func savePin(title: String, description: String, coordinate: CLLocationCoordinate2D?, images: [UIImage], user: User, completion: @escaping (Error?) -> Void) {
+        guard let coordinate = coordinate else {
+            completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Coordinate is required."]))
+            return
+        }
 		
 		// Upload images & get URLs
 		uploadImages(images: images) { imageURLs in
@@ -113,7 +114,9 @@ class FirebaseService: ObservableObject {
 				title: title,
 				description: description,
 				status: .pending,
-				imageUrls: imageURLs
+				imageUrls: imageURLs,
+                timestamp: Date(),
+                reportedBy: user.id
 			)
 			
 			// Save new pin
@@ -173,4 +176,20 @@ class FirebaseService: ObservableObject {
 			}
 		}
 	}
+    
+    // Function to get the currently logged-in user
+    func getCurrentUser() -> User? {
+        if let firebaseUser = Auth.auth().currentUser {
+            return User(
+                id: firebaseUser.uid,
+                username: firebaseUser.displayName ?? "",
+                firstName: "",  // Add actual user info if needed
+                lastName: "",   // Add actual user info if needed
+                email: firebaseUser.email ?? "",
+                createdAt: Date(),  // Replace with actual createdAt date if available
+                isAdmin: false // Default to false, change based on your logic
+            )
+        }
+        return nil
+    }
 }

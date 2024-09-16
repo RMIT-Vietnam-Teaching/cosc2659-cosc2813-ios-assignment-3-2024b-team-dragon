@@ -8,15 +8,17 @@ struct User: Identifiable {
     var lastName: String
     var email: String
     var createdAt: Date
+    var isAdmin: Bool  // New: Admin status
     
     // Initializer
-    init(id: String, username: String, firstName: String, lastName: String, email: String, createdAt: Date) {
+    init(id: String, username: String, firstName: String, lastName: String, email: String, createdAt: Date, isAdmin: Bool) {
         self.id = id
         self.username = username
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.createdAt = createdAt
+        self.isAdmin = isAdmin  // Initialize admin status
     }
     
     // Convenience initializer to create a User object from Firestore data
@@ -25,7 +27,8 @@ struct User: Identifiable {
               let firstName = data["firstName"] as? String,
               let lastName = data["lastName"] as? String,
               let email = data["email"] as? String,
-              let timestamp = data["createdAt"] as? Timestamp else {
+              let timestamp = data["createdAt"] as? Timestamp,
+              let isAdmin = data["isAdmin"] as? Bool else {  // Ensure admin status is retrieved
             return nil
         }
         
@@ -35,6 +38,7 @@ struct User: Identifiable {
         self.lastName = lastName
         self.email = email
         self.createdAt = timestamp.dateValue()
+        self.isAdmin = isAdmin  // Assign admin status
     }
     
     // Method to convert the User model to a dictionary for Firestore
@@ -44,7 +48,8 @@ struct User: Identifiable {
             "firstName": firstName,
             "lastName": lastName,
             "email": email,
-            "createdAt": Timestamp(date: createdAt)
+            "createdAt": Timestamp(date: createdAt),
+            "isAdmin": isAdmin  // Include admin status in the dictionary
         ]
     }
 }

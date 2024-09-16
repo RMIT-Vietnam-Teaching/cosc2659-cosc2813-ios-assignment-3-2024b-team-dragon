@@ -112,23 +112,36 @@ struct MapView: View {
 	}
 	
 	// MARK: - Function to add the pin after form submission
-	func addPin() {
-		guard let coordinate = selectedCoordinate else { return }
-		
-		firebaseService.savePin(title: pinTitle, description: pinDescription, coordinate: coordinate, images: pinImages) { error in
-			if let error = error {
-				print("Error adding pin: \(error.localizedDescription)")
-				return
-			}
-			
-			print("Pin added successfully")
-			fetchPins()  // Refresh pins after adding a new one
-			pinTitle = ""
-			pinDescription = ""
-			pinImages = []
-			selectedCoordinate = nil
-		}
-	}
+    func addPin() {
+        guard let coordinate = selectedCoordinate else { return }
+
+        // Fetch the current user from Firebase Authentication
+        guard let currentUser = firebaseService.getCurrentUser() else {
+            print("Error: User not logged in")
+            return
+        }
+
+        // Save the pin to Firebase, passing the user instance
+        firebaseService.savePin(
+            title: pinTitle,
+            description: pinDescription,
+            coordinate: coordinate,
+            images: pinImages,
+            user: currentUser  // Pass the current logged-in user
+        ) { error in
+            if let error = error {
+                print("Error adding pin: \(error.localizedDescription)")
+                return
+            }
+
+            print("Pin added successfully")
+            fetchPins()  // Refresh pins after adding a new one
+            pinTitle = ""
+            pinDescription = ""
+            pinImages = []
+            selectedCoordinate = nil
+        }
+    }
 	
 	// MARK: - Fetch pins from Firebase and display them on the map
 	func fetchPins() {

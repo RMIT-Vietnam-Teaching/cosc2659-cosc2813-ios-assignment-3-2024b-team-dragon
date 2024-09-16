@@ -186,23 +186,35 @@ struct PinFormView: View {
     }
     
 	// Save the pin to Firebase
-	func savePin() {
-		guard let coordinate = selectedCoordinate else { return }
-		
-		isUploading = true  // Show the loading indicator while uploading
-		
-		// Save the pin to Firebase
-		firebaseService.savePin(title: title, description: description, coordinate: coordinate, images: images) { error in
-			isUploading = false  // Hide the loading indicator
-			if let error = error {
-				print("Error saving pin to Firestore: \(error.localizedDescription)")
-			} else {
-				print("Pin successfully saved to Firestore!")
-				onSubmit()  // Trigger the onSubmit action after saving
-				showModal = false  // Close the modal after submission
-			}
-		}
-	}
+    func savePin() {
+        guard let coordinate = selectedCoordinate else { return }
+        
+        isUploading = true  // Show the loading indicator while uploading
+
+        // Fetch the current user from Firebase Authentication
+        guard let currentUser = firebaseService.getCurrentUser() else {
+            print("Error: User not logged in")
+            return
+        }
+
+        // Save the pin to Firebase, passing the user and current timestamp
+        firebaseService.savePin(
+            title: title,
+            description: description,
+            coordinate: coordinate,
+            images: images,
+            user: currentUser  // Pass the current user
+        ) { error in
+            isUploading = false  // Hide the loading indicator
+            if let error = error {
+                print("Error saving pin to Firestore: \(error.localizedDescription)")
+            } else {
+                print("Pin successfully saved to Firestore!")
+                onSubmit()  // Trigger the onSubmit action after saving
+                showModal = false  // Close the modal after submission
+            }
+        }
+    }
 }
 
 struct PinFormView_Previews: PreviewProvider {

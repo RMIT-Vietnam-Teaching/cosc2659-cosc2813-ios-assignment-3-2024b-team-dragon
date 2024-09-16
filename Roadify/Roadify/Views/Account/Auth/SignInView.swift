@@ -58,7 +58,7 @@ struct SignInView: View {
                 }
                 
                 // Navigate if logged in successfully
-                NavigationLink(destination: AccountView(), isActive: $viewModel.isLoggedIn) {
+                NavigationLink(destination: TabView(), isActive: $viewModel.isLoggedIn) {
                     EmptyView()
                 }
                 
