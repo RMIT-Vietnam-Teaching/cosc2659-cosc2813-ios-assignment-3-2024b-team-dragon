@@ -78,7 +78,7 @@ struct PinFormView: View {
 					HStack {
 						Image(systemName: "photo")
 							.font(.system(size: 20))
-							.foregroundStyle(Color("Secondary"))
+							.foregroundStyle(Color("SubColor"))
 					}
 					.padding()
 					.background(Color.white)
@@ -166,7 +166,7 @@ struct PinFormView: View {
             if isUploading {
                 ProgressView("Uploading...")
                     .padding()
-					.progressViewStyle(ProgressViewModel(color: Color("Secondary"), textColor: Color.white, text: "Uploading..."))
+					.progressViewStyle(ProgressViewModel(color: Color("SubColor"), textColor: Color.white, text: "Uploading..."))
             }
             
 			// MARK: - Add pin button
@@ -174,14 +174,14 @@ struct PinFormView: View {
 				savePin()
 			} label: {
 				Label(String("Add Pin"), systemImage: "plus.circle")
-					.foregroundStyle(Color("Secondary"))
+					.foregroundStyle(Color("SubColor"))
 			}
 			.buttonStyle(.bordered)
 			.controlSize(.large)
 			.padding()
 //			.frame(maxWidth: .infinity)
         }
-		.background(Color("Primary"))
+		.background(Color("MainColor"))
         .padding()
     }
     

@@ -73,7 +73,7 @@ struct SignInView: View {
                 }
             }
             .padding()
-            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         }
     }
     
@@ -88,7 +88,7 @@ struct SignInView: View {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color("ThirdColor"), lineWidth: 2)
-                    .background(Color("PrimaryColor"))
+                    .background(Color("MainColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -125,7 +125,7 @@ struct SignInView: View {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color("ThirdColor"), lineWidth: 2)
-                    .background(Color("PrimaryColor"))
+                    .background(Color("MainColor"))
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -175,7 +175,7 @@ struct SignInView: View {
             NavigationLink(destination: ForgotPasswordView()) {
                 HStack(spacing: 5) {
                     Image(systemName: "key.fill")
-                        .foregroundColor(Color("SecondaryColor"))
+                        .foregroundColor(Color("SubColor"))
                     
                     Text("Forgot Password?")
                         .foregroundColor(.white)

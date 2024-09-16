@@ -23,7 +23,7 @@ struct TabButtonView: View {
 						.frame(width: 25, height: 25)
 					Circle()
 						.frame(width: 4, height: 4)
-						.foregroundColor(Color("Secondary"))
+						.foregroundColor(Color("SubColor"))
 				} else {
 					Image(viewIsNotSelected)
 						.resizable()

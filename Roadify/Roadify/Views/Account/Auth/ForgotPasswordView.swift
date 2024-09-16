@@ -53,7 +53,7 @@ struct ForgotPasswordView: View {
             Spacer()
         }
         .padding()
-        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+        .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Notification"), message: Text(alertMessage), dismissButton: .default(Text("OK"), action: {
