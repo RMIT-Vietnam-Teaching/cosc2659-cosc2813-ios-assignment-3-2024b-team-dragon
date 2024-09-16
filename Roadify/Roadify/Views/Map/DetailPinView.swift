@@ -9,73 +9,128 @@ import SwiftUI
 
 struct DetailPinView: View {
     @Binding var selectedPin: Pin?
-    let pin: Pin  // The pin to display details for
-    
+    let pin: Pin
+
     var body: some View {
-        VStack(spacing: 20) {
-            Text(pin.title)
-                .font(.title)
-                .bold()
-                .multilineTextAlignment(.center)
-            
-            // Time of the pin report
-            Text("Reported at: \(formattedDate(pin.timestamp))")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-            
-            // Pin description
-            Text(pin.description)
-                .font(.body)
-                .padding()
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(10)
-            
-            // Reporter ID
-            Text("Reported by: \(pin.reportedBy)")
-                .font(.footnote)
-                .foregroundColor(.secondary)
-            
-            // Image from the pin
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(pin.imageUrls, id: \.self) { imageUrl in
-                        AsyncImage(url: URL(string: imageUrl)) { image in
-                            image.resizable()
-                                .scaledToFit()
-                                .frame(width: 200, height: 200)
-                                .cornerRadius(10)
-                        } placeholder: {
-                            ProgressView()
-                        }
+        VStack(spacing: 0) {
+            // Close Button
+            HStack {
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        selectedPin = nil // Close the modal when pressed
                     }
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 24))
                 }
-                .padding()
+                .padding(.top, 10)
+                .padding(.trailing, 10)
             }
-            
-            // View in Alert Button
-            Button(action: {
-                // Action for viewing in Alert
-                print("View in Alert pressed")
-            }) {
-                Label("View in Alert", systemImage: "bell.fill")
+
+            // Pin Title and Date
+            HStack {
+                Text(pin.title)
                     .font(.headline)
-                    .padding()
-                    .background(Color.blue)
+                    .lineLimit(2)
+                    .foregroundColor(Color("SubColor"))
+                    .multilineTextAlignment(.leading)
+                Spacer()
+                Text(formattedDate(pin.timestamp))
+                    .font(.caption)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
             }
-            
+            .padding([.leading, .trailing], 16)
+            .padding(.top, 10)
+
+            // Pin Image Section (if available)
+            if let imageUrl = pin.imageUrls.first {
+                AsyncImage(url: URL(string: imageUrl)) { image in
+                    image.resizable()
+                        .scaledToFill()
+                        .frame(height: 200)
+                        .cornerRadius(12)
+                } placeholder: {
+                    ProgressView()
+                }
+                .padding([.leading, .trailing, .top], 16)
+            }
+
             Spacer()
+
+            // Buttons Section (Like/Dislike and View in Alert)
+            HStack {
+                // Like Button
+                Button(action: {
+                    print("Liked")
+                }) {
+                    Image(systemName: "hand.thumbsup.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(.green)
+                }
+                .padding(.leading, 30)
+
+                Spacer()
+
+                // View in Alert Button
+                Button(action: {
+                    print("View in Alert pressed")
+                }) {
+                    Text("View in Alert")
+                        .font(.headline)
+                        .padding()
+                        .frame(width: 200, height: 45)
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                        .cornerRadius(30)
+                }
+
+                Spacer()
+
+                // Dislike Button
+                Button(action: {
+                    print("Disliked")
+                }) {
+                    Image(systemName: "hand.thumbsdown.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(.red)
+                }
+                .padding(.trailing, 30)
+            }
+            .padding(.top, 20)
+            .padding(.bottom, 20)
         }
-        .padding()
-        .navigationBarTitle("Pin Details", displayMode: .inline)
+        .background(Color("MainColor")) // Use the same color as PinFormView
+        .cornerRadius(20)
+        .shadow(radius: 10)
+        .transition(.move(edge: .bottom))
+        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5))
     }
-    
+
     // Helper to format date
     private func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         return formatter.string(from: date)
+    }
+}
+
+struct DetailPinView_Previews: PreviewProvider {
+    @State static var mockPin = Pin(
+        id: UUID().uuidString,
+        latitude: 37.7749,
+        longitude: -122.4194,
+        title: "Two Cars Crash At The Cross Road",
+        description: "",
+        status: .pending,
+        imageUrls: ["https://images.unsplash.com/photo-1571127239461-6364773b2a56"],
+        timestamp: Date(),
+        reportedBy: "User123"
+    )
+
+    static var previews: some View {
+        DetailPinView(selectedPin: .constant(mockPin), pin: mockPin)
     }
 }
