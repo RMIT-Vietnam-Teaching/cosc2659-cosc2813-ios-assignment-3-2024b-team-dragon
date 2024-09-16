@@ -20,6 +20,7 @@ struct MapView: View {
 	@State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
 	@State private var pins: [Pin] = []  // Store pins to be passed to the map view
 	@State private var destinationAddress: String = "" // Destination pin
+	@State private var showRoutingView: Bool = false
 	
 	let firebaseService = FirebaseService()  // Firebase service instance
 	
@@ -29,28 +30,36 @@ struct MapView: View {
 			// MARK: - Show map
 			MapViewRepresentable(pins: $pins, showPinModal: $showPinModel, selectedCoordinate: $selectedCoordinate)
 				.edgesIgnoringSafeArea(.all)
+				.onTapGesture {
+					withAnimation {
+						showRoutingView = false // Close DestinationView when users tap outside
+					}
+				}
 			
 			// MARK: - Add pin using tapping
 			if showPinModel {
-				PinFormView(
-					title: $pinTitle,
-					description: $pinDescription,
-					images: $pinImages,
-					showModal: $showPinModel,
-					selectedCoordinate: $selectedCoordinate,
-					onSubmit: {
-						addPin()
-					}
-				)
-				.background(Color("Primary"))
-				.frame(width: .infinity)
-				.clipShape(RoundedCornerViewModel(radius: 25, corners: [.topLeft, .topRight]))
-				.transition(.move(edge: .bottom))
-				.animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
+				VStack {
+					Spacer()
+					PinFormView(
+						title: $pinTitle,
+						description: $pinDescription,
+						images: $pinImages,
+						showModal: $showPinModel,
+						selectedCoordinate: $selectedCoordinate,
+						onSubmit: {
+							addPin()
+						}
+					)
+					.background(Color("Primary"))
+					.frame(width: .infinity)
+					.clipShape(RoundedCornerViewModel(radius: 25, corners: [.topLeft, .topRight]))
+					.transition(.move(edge: .bottom))
+					.animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
+				}
 			}
 			
 			// MARK: - Add pin using button
-			if !showPinModel {
+			if !showPinModel && !showRoutingView {
 				VStack {
 					HStack {
 						Spacer()
@@ -71,57 +80,25 @@ struct MapView: View {
 						}
 					}
 					.padding(30)
-
+					
 					Spacer()
 				}
 			}
 			
-			VStack {
-				Spacer()
+			// MARK: - Destination View
+			if showRoutingView {
 				VStack {
-					Spacer().frame(height: 20)
-					HStack {
-						Text("Where are you going to?")
-							.foregroundStyle(Color.white)
-						Spacer()
-					}
-					.padding(.leading)
-					
-					HStack {
-						TextField("Enter destination", text: $destinationAddress)
-							.padding()
-							.background(Color.white)
-							.cornerRadius(8)
-							.shadow(radius: 4)
-							.padding(.leading)
-						
-						Button(action: {
-							geocodeAddress(address: destinationAddress) { coordinate in
-								if let coordinate = coordinate {
-									print("Destination coordinates: \(coordinate.latitude), \(coordinate.longitude)")
-									self.selectedCoordinate = coordinate
-								} else {
-									print("Could not find location for the entered address")
-								}
-							}
-						}) {
-							Text("Go")
-								.padding()
-								.background(Color("SecondaryColor"))
-								.foregroundColor(Color("PrimaryColor"))
-								.cornerRadius(8)
-								.shadow(radius: 4)
-						}
-						.padding(.trailing)
-					}
-					Spacer().frame(height: 20)
+					RoutingView()
+					Spacer()
 				}
-				.background(Color("PrimaryColor"))
-				.cornerRadius(12)
-				.padding()
-				.shadow(radius: 5)
 			}
-			.padding(.bottom, 10)
+			
+			if !showRoutingView && !showPinModel {
+				VStack {
+					Spacer()
+					DestinationView(destinationAddress: $destinationAddress, showRoutingView: $showRoutingView)
+				}
+			}
 		}
 		.onAppear {
 			fetchPins()  // Fetch pins from Firebase on load
@@ -176,7 +153,7 @@ struct MapView: View {
 			}
 		}
 	}
-
+	
 }
 
 struct MapView_Previews: PreviewProvider {
