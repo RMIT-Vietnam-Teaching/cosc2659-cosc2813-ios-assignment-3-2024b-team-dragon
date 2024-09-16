@@ -1,18 +1,18 @@
 import SwiftUI
 
 struct AccountView: View {
-    @ObservedObject var viewModel = AccountViewModel() // Use AccountViewModel
-    @State private var showEditProfile = false
-    @State private var showPrivacyView = false
-    @State private var showNotificationsView = false
-    @State private var showLanguageView = false
-    @State private var selectedLanguage = "English"
-    @State private var selectedLanguageFlag = "us"
-    
-    var body: some View {
+	@ObservedObject var viewModel = AccountViewModel() // Use AccountViewModel
+	@State private var showEditProfile = false
+	@State private var showPrivacyView = false
+	@State private var showNotificationsView = false
+	@State private var showLanguageView = false
+	@State private var selectedLanguage = "English"
+	@State private var selectedLanguageFlag = "us"
+	
+	var body: some View {
 		ZStack {
 			Color("PrimaryColor").edgesIgnoringSafeArea(.all)
-
+			
 			VStack(spacing: 20) {
 				Text("My Profile")
 					.font(.title2)
@@ -50,11 +50,10 @@ struct AccountView: View {
 						Spacer()
 						Image(systemName: "chevron.right")
 							.padding()
-
+						
 					}
 					.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
 				}
-				.padding()
 				.sheet(isPresented: $showEditProfile) {
 					EditProfileView(viewModel: viewModel)
 				}
@@ -107,89 +106,89 @@ struct AccountView: View {
 						Spacer()
 					}
 				}
-				//            Spacer()
+				Spacer()
 			}
 			.padding()
-//			.background(Color("PrimaryColor"))
+			//			.background(Color("PrimaryColor"))
 			.foregroundColor(.white)
-//			.edgesIgnoringSafeArea(.all)
+			//			.edgesIgnoringSafeArea(.all)
 		}
-    }
-    
-    private func settingsRow(iconName: String, label: String) -> some View {
-        HStack {
-            Image(systemName: iconName)
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
-    }
-    
-    private func languageRow(language: String, flag: String) -> some View {
-        HStack {
-            Image(flag) // Display the flag image
-                .resizable()
-                .frame(width: 24, height: 24)
-            Text(language)
-                .font(.headline)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
-    }
+	}
+	
+	private func settingsRow(iconName: String, label: String) -> some View {
+		HStack {
+			Image(systemName: iconName)
+			Text(label)
+			Spacer()
+			Image(systemName: "chevron.right")
+		}
+		.padding()
+		.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+	}
+	
+	private func languageRow(language: String, flag: String) -> some View {
+		HStack {
+			Image(flag) // Display the flag image
+				.resizable()
+				.frame(width: 24, height: 24)
+			Text(language)
+				.font(.headline)
+			Spacer()
+			Image(systemName: "chevron.right")
+		}
+		.padding()
+		.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+	}
 }
 
 struct LanguageSelectionView: View {
-    @Binding var selectedLanguage: String
-    @Binding var selectedLanguageFlag: String
-    
-    var body: some View {
-        VStack {
-            Text("Select Language")
-                .font(.title2)
-                .bold()
-                .padding(.top)
-            
-            Button(action: {
-                selectedLanguage = "English"
-                selectedLanguageFlag = "us"
-            }) {
-                languageRow(language: "English", flag: "us")
-            }
-            
-            Button(action: {
-                selectedLanguage = "Vietnamese"
-                selectedLanguageFlag = "vn"
-            }) {
-                languageRow(language: "Vietnamese", flag: "vn")
-            }
-            
-            Spacer()
-        }
-        .padding()
-        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
-        .foregroundColor(.white)
-    }
-    
-    private func languageRow(language: String, flag: String) -> some View {
-        HStack {
-            Image(flag)
-                .resizable()
-                .frame(width: 24, height: 24)
-            Text(language)
-                .font(.headline)
-            Spacer()
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
-    }
+	@Binding var selectedLanguage: String
+	@Binding var selectedLanguageFlag: String
+	
+	var body: some View {
+		VStack {
+			Text("Select Language")
+				.font(.title2)
+				.bold()
+				.padding(.top)
+			
+			Button(action: {
+				selectedLanguage = "English"
+				selectedLanguageFlag = "us"
+			}) {
+				languageRow(language: "English", flag: "us")
+			}
+			
+			Button(action: {
+				selectedLanguage = "Vietnamese"
+				selectedLanguageFlag = "vn"
+			}) {
+				languageRow(language: "Vietnamese", flag: "vn")
+			}
+			
+			Spacer()
+		}
+		.padding()
+		.background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+		.foregroundColor(.white)
+	}
+	
+	private func languageRow(language: String, flag: String) -> some View {
+		HStack {
+			Image(flag)
+				.resizable()
+				.frame(width: 24, height: 24)
+			Text(language)
+				.font(.headline)
+			Spacer()
+		}
+		.padding()
+		.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+	}
 }
 
 struct AccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountView()
-    }
+	static var previews: some View {
+		AccountView()
+	}
 }
