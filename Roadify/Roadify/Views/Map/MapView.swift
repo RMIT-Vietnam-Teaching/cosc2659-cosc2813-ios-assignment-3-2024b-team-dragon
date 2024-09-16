@@ -19,12 +19,13 @@ struct MapView: View {
 	@State private var showPinModel: Bool = false
 	@State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
 	@State private var pins: [Pin] = []  // Store pins to be passed to the map view
+	@State private var destinationAddress: String = "" // Destination pin
 	
 	let firebaseService = FirebaseService()  // Firebase service instance
 	
 	// MARK: - Body
 	var body: some View {
-		ZStack (alignment: .bottomTrailing) {
+		ZStack {
 			// MARK: - Show map
 			MapViewRepresentable(pins: $pins, showPinModal: $showPinModel, selectedCoordinate: $selectedCoordinate)
 				.edgesIgnoringSafeArea(.all)
@@ -50,23 +51,77 @@ struct MapView: View {
 			
 			// MARK: - Add pin using button
 			if !showPinModel {
-				Button(action: {
-					withAnimation {
-						selectedCoordinate = nil
-						showPinModel = true
-						print("Button pressed, showing pin form")
+				VStack {
+					HStack {
+						Spacer()
+						Button(action: {
+							withAnimation {
+								selectedCoordinate = nil
+								showPinModel = true
+								print("Button pressed, showing pin form")
+							}
+						}) {
+							Image(systemName: "location.circle.fill")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.background(Color.white)
+								.clipShape(Circle())
+								.shadow(radius: 4)
+								.foregroundColor(Color("PrimaryColor"))
+						}
 					}
-				}) {
-					Image(systemName: "plus.circle.fill")
-						.resizable()
-						.frame(width: 50, height: 50)
-						.background(Color.white)
-						.clipShape(Circle())
-						.shadow(radius: 4)
-						.foregroundColor(.blue)
+					.padding(30)
+
+					Spacer()
 				}
-				.padding([.trailing, .bottom], 30)
 			}
+			
+			VStack {
+				Spacer()
+				VStack {
+					Spacer().frame(height: 20)
+					HStack {
+						Text("Where are you going to?")
+							.foregroundStyle(Color.white)
+						Spacer()
+					}
+					.padding(.leading)
+					
+					HStack {
+						TextField("Enter destination", text: $destinationAddress)
+							.padding()
+							.background(Color.white)
+							.cornerRadius(8)
+							.shadow(radius: 4)
+							.padding(.leading)
+						
+						Button(action: {
+							geocodeAddress(address: destinationAddress) { coordinate in
+								if let coordinate = coordinate {
+									print("Destination coordinates: \(coordinate.latitude), \(coordinate.longitude)")
+									self.selectedCoordinate = coordinate
+								} else {
+									print("Could not find location for the entered address")
+								}
+							}
+						}) {
+							Text("Go")
+								.padding()
+								.background(Color("SecondaryColor"))
+								.foregroundColor(Color("PrimaryColor"))
+								.cornerRadius(8)
+								.shadow(radius: 4)
+						}
+						.padding(.trailing)
+					}
+					Spacer().frame(height: 20)
+				}
+				.background(Color("PrimaryColor"))
+				.cornerRadius(12)
+				.padding()
+				.shadow(radius: 5)
+			}
+			.padding(.bottom, 10)
 		}
 		.onAppear {
 			fetchPins()  // Fetch pins from Firebase on load
@@ -104,6 +159,24 @@ struct MapView: View {
 			}
 		}
 	}
+	
+	func geocodeAddress(address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+		let geocoder = CLGeocoder()
+		geocoder.geocodeAddressString(address) { placemarks, error in
+			if let error = error {
+				print("Geocoding failed: \(error.localizedDescription)")
+				completion(nil)
+				return
+			}
+			
+			if let placemark = placemarks?.first, let location = placemark.location {
+				completion(location.coordinate)
+			} else {
+				completion(nil)
+			}
+		}
+	}
+
 }
 
 struct MapView_Previews: PreviewProvider {
