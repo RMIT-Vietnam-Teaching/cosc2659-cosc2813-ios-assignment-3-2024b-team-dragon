@@ -5,12 +5,12 @@
 //  Created by Cường Võ Duy on 14/9/24.
 //
 
-import Foundation
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct MapViewRepresentable: UIViewRepresentable {
-	@Binding var pins: [Pin]  // Bind the pins array from ContentView
+	@Binding var pins: [Pin]
 	@Binding var showPinModal: Bool
 	@Binding var selectedCoordinate: CLLocationCoordinate2D?
 	
@@ -68,6 +68,12 @@ struct MapViewRepresentable: UIViewRepresentable {
 				
 				print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
 			}
+		}
+		
+		func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+			let centerCoordinate = mapView.centerCoordinate
+			parent.selectedCoordinate = centerCoordinate
+			print("MapView: Region changed. Center coordinates - Latitude: \(centerCoordinate.latitude), Longitude: \(centerCoordinate.longitude)")
 		}
 		
 		func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
