@@ -50,6 +50,7 @@ struct TabView: View {
 			.padding()
 			.background(Color("Primary"))
 		}
+		.padding(.bottom)
 		.edgesIgnoringSafeArea(.bottom)
 	}
 }
