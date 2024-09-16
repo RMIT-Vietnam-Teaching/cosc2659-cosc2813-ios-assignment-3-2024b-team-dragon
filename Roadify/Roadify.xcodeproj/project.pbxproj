@@ -37,11 +37,12 @@
 		B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */; };
 		B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E172C95810500B649B3 /* MapViewRepresentable.swift */; };
 		B8675E1A2C95863700B649B3 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E192C95863700B649B3 /* ProgressViewModel.swift */; };
+		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B875DF592C97C145004CED7E /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF582C97C145004CED7E /* RoutingView.swift */; };
 		B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF5A2C97CADF004CED7E /* DestinationView.swift */; };
-		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
 		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
+		B88A61432C9843C900E7D09B /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A61422C9843C900E7D09B /* GeocodingService.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
 		B8E66F292C84C77E0033A939 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */; };
@@ -84,11 +85,12 @@
 		B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerViewModel.swift; sourceTree = "<group>"; };
 		B8675E172C95810500B649B3 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		B8675E192C95863700B649B3 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		B875DF562C96D992004CED7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B875DF582C97C145004CED7E /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
 		B875DF5A2C97CADF004CED7E /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
-		B875DF562C96D992004CED7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
+		B88A61422C9843C900E7D09B /* GeocodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
 		B8E66F252C84C77E0033A939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				03E2376A2C8C925D0095D755 /* FirebaseService.swift */,
+				B88A61422C9843C900E7D09B /* GeocodingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */,
 				0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */,
 				0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */,
+				B88A61432C9843C900E7D09B /* GeocodingService.swift in Sources */,
 				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
 				B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */,

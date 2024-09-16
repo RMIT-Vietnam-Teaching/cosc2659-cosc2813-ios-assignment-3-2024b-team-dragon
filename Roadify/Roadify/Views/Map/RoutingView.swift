@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RoutingView: View {
-	@State private var startingPoint: String = ""
-	@State private var endPoint: String = ""
+	@Binding var startingPoint: String
+	@Binding var endPoint: String
 	
 	var body: some View {
 		VStack {
@@ -27,6 +27,7 @@ struct RoutingView: View {
 						.background(Color.white)
 						.cornerRadius(8)
 						.shadow(radius: 4)
+						.disabled(true)
 					
 					HStack {
 						// End Point
@@ -61,6 +62,7 @@ struct RoutingView: View {
 
 struct RoutingView_Previews: PreviewProvider {
 	static var previews: some View {
-		RoutingView()
+		RoutingView(startingPoint: .constant("37.7749, -122.4194"),
+					endPoint: .constant("34.0522, -118.2437"))
 	}
 }

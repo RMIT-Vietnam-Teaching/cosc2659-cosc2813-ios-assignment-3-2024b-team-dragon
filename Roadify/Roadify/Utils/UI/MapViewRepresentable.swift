@@ -13,6 +13,9 @@ struct MapViewRepresentable: UIViewRepresentable {
 	@Binding var pins: [Pin]
 	@Binding var showPinModal: Bool
 	@Binding var selectedCoordinate: CLLocationCoordinate2D?
+	@Binding var showRoutingView: Bool
+	
+	var onMapClick: ((CLLocationCoordinate2D) -> Void)?  // Closure to handle map clicks
 	
 	let mapView = MKMapView()
 	let locationManager = CLLocationManager()
@@ -27,6 +30,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 		
 		let longPressGesture = UILongPressGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleLongPress(gesture:)))
 		mapView.addGestureRecognizer(longPressGesture)
+	
 		
 		return mapView
 	}
@@ -65,6 +69,8 @@ struct MapViewRepresentable: UIViewRepresentable {
 				
 				parent.selectedCoordinate = coordinate
 				parent.showPinModal = true
+//				parent.showRoutingView = false
+				parent.onMapClick?(coordinate)  // Call the closure
 				
 				print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
 			}

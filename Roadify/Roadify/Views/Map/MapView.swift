@@ -17,28 +17,40 @@ struct MapView: View {
 	@State private var pinTitle: String = ""
 	@State private var pinDescription: String = ""
 	@State private var pinImages: [UIImage] = []  // Array for selected images
-	@State private var showPinModel: Bool = false
+	
 	@State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
+	@State private var startPoint: String = ""
+	@State private var endPoint: String = ""
+	
 	@State private var pins: [Pin] = []  // Store pins to be passed to the map view
 	@State private var destinationAddress: String = "" // Destination pin
+	
+	@State private var showPinModel: Bool = false
 	@State private var showRoutingView: Bool = false
 	
 	let firebaseService = FirebaseService()  // Firebase service instance
+	let geocodingService = GeocodingService()
+
 	
 	// MARK: - Body
 	var body: some View {
 		ZStack {
 			// MARK: - Show map
-			MapViewRepresentable(pins: $pins, showPinModal: $showPinModel, selectedCoordinate: $selectedCoordinate)
-				.edgesIgnoringSafeArea(.all)
-				.onTapGesture {
-					withAnimation {
-						showRoutingView = false // Close DestinationView when users tap outside
+			MapViewRepresentable(
+				pins: $pins,
+				showPinModal: $showPinModel,
+				selectedCoordinate: $selectedCoordinate, showRoutingView: $showRoutingView,
+				onMapClick: { coordinate in
+					geocodingService.getAddress(from: coordinate) { address in
+						endPoint = address ?? "\(coordinate.latitude), \(coordinate.longitude)"
+						showRoutingView = true
 					}
 				}
+			)
+			.edgesIgnoringSafeArea(.all)
 			
 			// MARK: - Add pin using tapping
-			if showPinModel {
+			if showPinModel && !showRoutingView {
 				VStack {
 					Spacer()
 					PinFormView(
@@ -65,13 +77,13 @@ struct MapView: View {
 						Button(action: {
 							withAnimation {
 								if let userLocation = locationManager.userLocation {
-							selectedCoordinate = userLocation
-						} else {
-
-							print("User location is not available.")
-							selectedCoordinate = nil
+									selectedCoordinate = userLocation
+								} else {
+	
+									print("User location is not available.")
+									selectedCoordinate = nil
 								}
-						showPinModel = true
+								showPinModel = true
 								print("Button pressed, showing pin form")
 							}
 						}) {
@@ -92,9 +104,37 @@ struct MapView: View {
 			
 			// MARK: - Destination View
 			if showRoutingView {
-				VStack {
-					RoutingView()
+				VStack (spacing: 0) {
+					HStack {
+						Button(action: {
+							withAnimation {
+								showRoutingView = false // Close the RoutingView
+								dismissKeyboard() // Dismiss the keyboard
+							}
+						}) {
+							Image(systemName: "chevron.left.circle.fill")
+								.resizable()
+								.frame(width: 40, height: 40)
+								.background(Color.white)
+								.clipShape(Circle())
+								.shadow(radius: 4)
+								.foregroundColor(Color("MainColor"))
+						}
+						.padding(.leading)
+						Spacer()
+					}
+					RoutingView(startingPoint: $startPoint, endPoint: $endPoint)
+						.onDisappear {
+							showPinModel = false
+						}
 					Spacer()
+				}
+				.onAppear() {
+					if startPoint.isEmpty, let userLocation = locationManager.userLocation {
+						geocodingService.getAddress(from: userLocation) { address in
+							startPoint = address ?? "Current Location"
+						}
+					}
 				}
 			}
 			
@@ -158,6 +198,10 @@ struct MapView: View {
 				completion(nil)
 			}
 		}
+	}
+	
+	func dismissKeyboard() {
+		UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 	}
 	
 }
