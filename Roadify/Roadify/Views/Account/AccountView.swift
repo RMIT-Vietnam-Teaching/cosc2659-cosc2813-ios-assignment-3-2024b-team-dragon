@@ -49,9 +49,9 @@ struct AccountView: View {
 						}
 						Spacer()
 						Image(systemName: "chevron.right")
-							.padding()
 						
 					}
+					.padding()
 					.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
 				}
 				.sheet(isPresented: $showEditProfile) {
