@@ -15,65 +15,111 @@ struct NewsView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                // Main content: Background and list of news articles
                 Color.black.edgesIgnoringSafeArea(.all)
-                
+
                 VStack {
+                    // Custom title for the view
                     Text("News")
                         .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("SubColor"))
                         .padding(.top, 16)
-                    
+
                     List(newsArticles) { article in
                         NavigationLink(destination: DetailNewsView(newsArticle: article)) {
                             HStack(spacing: 16) {
+                                // Larger image with rounded corners
                                 AsyncImage(url: URL(string: article.imageName)) { image in
-                                    image.resizable().frame(width: 60, height: 60).cornerRadius(8)
+                                    image.resizable()
+                                        .scaledToFill()
+                                        .frame(width: 80, height: 80)
+                                        .cornerRadius(12)
+                                        .padding(.leading, 10)
+                                        .clipped()
                                 } placeholder: {
                                     ProgressView()
                                 }
-                                
+
                                 VStack(alignment: .leading, spacing: 4) {
+                                    // Stylized Title
                                     Text(article.title)
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundColor(.white)
+                                        .font(.system(size: 18, weight: .semibold))
+                                        .foregroundColor(Color("SubColor"))
+                                        .lineLimit(2)
+                                        .truncationMode(.tail)
+
                                     Text(article.category)
                                         .font(.system(size: 14))
-                                        .foregroundColor(.green)
+                                        .foregroundColor(.white)
+                                        .padding(.top, 4)
                                 }
                                 Spacer()
                             }
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color("ThirdColor"), lineWidth: 1)
+                                    .background(Color.black.opacity(0.3))
+                                    .cornerRadius(15)
+                            )
                         }
                         .listRowBackground(Color.black)
+                        .listRowSeparator(.hidden)
                     }
                     .scrollContentBackground(.hidden)
                     .background(Color.black)
-                    
+
                     Spacer()
-                    
-                    VStack {
-                        Text("Today, 10 accidents have been reported on")
-                            .font(.system(size: 16))
-                            .foregroundColor(.gray)
-                        Text("ROAD!FY")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(.green)
-                    }
-                    .padding()
                 }
                 .onAppear {
-                    fetchNewsFromFirebase()  // Fetch the news from Firebase when the view appears
+                    fetchNewsFromFirebase()  // Fetch news on view appearance
                 }
-                .sheet(isPresented: $showAddNewsForm, onDismiss: {
-                    fetchNewsFromFirebase()  // Reload the news when the form is dismissed
-                }) {
-                    AddNewsFormView()
+
+                // AddNewsFormView appears as an overlay when showAddNewsForm is true
+                if showAddNewsForm {
+                    // Use a full-screen overlay to prevent interaction with the news articles
+                    Color.black.opacity(0.5) // Semi-transparent background to dim the list
+                        .edgesIgnoringSafeArea(.all)
+                        .transition(.opacity) // Transition effect for fade in
+
+                    VStack {
+                        Spacer()
+                        AddNewsFormView(showModal: $showAddNewsForm) {
+                            fetchNewsFromFirebase()  // Refresh the news list after adding new news
+                        }
+                        .background(Color("MainColor"))
+                        .cornerRadius(20)
+                        .padding()
+                        .transition(.move(edge: .bottom))
+                    }
+                    .edgesIgnoringSafeArea(.bottom)
+                    .zIndex(1) // Ensure the form is always on top
                 }
-                .navigationBarItems(trailing: Button(action: {
-                    showAddNewsForm = true
-                }) {
-                    Image(systemName: "plus").foregroundColor(.white)
-                })
+
+                // Plus button to trigger the form
+                if !showAddNewsForm {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                withAnimation {
+                                    showAddNewsForm = true
+                                }
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(Color("SubColor"))
+                                    .background(Color("ThirdColor"))
+                                    .clipShape(Circle())
+                                    .shadow(radius: 5)
+                            }
+                            .padding(30)
+                        }
+                    }
+                    .zIndex(0) // Ensure this is behind the form when shown
+                }
             }
         }
     }

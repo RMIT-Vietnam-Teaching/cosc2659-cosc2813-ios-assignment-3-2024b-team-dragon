@@ -12,6 +12,11 @@ struct DetailNewsView: View {
 
     var body: some View {
         VStack {
+            Text(newsArticle.title)
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(Color("SubColor"))
+                .padding()
+            
             // Load image from the URL stored in Firebase using AsyncImage
             AsyncImage(url: URL(string: newsArticle.imageName)) { image in
                 image
@@ -23,14 +28,9 @@ struct DetailNewsView: View {
                     .frame(width: 200, height: 200)
             }
             
-            Text(newsArticle.title)
-                .font(.system(size: 22, weight: .bold))
-                .foregroundColor(.white)
-                .padding()
-            
             Text(newsArticle.description)
                 .font(.system(size: 16))
-                .foregroundColor(.gray)
+                .foregroundColor(.white)
                 .padding()
             
             Spacer()

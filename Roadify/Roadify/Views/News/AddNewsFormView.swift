@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct AddNewsFormView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Binding var showModal: Bool  // Binding from parent to control visibility
+    var onSubmit: () -> Void  // Closure to trigger after successfully adding news
+
     @State private var title: String = ""
     @State private var category: String = ""
     @State private var description: String = ""
@@ -19,40 +21,83 @@ struct AddNewsFormView: View {
     @StateObject private var firebaseService = FirebaseService()
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            // Close button
+            HStack {
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        showModal = false  // Dismiss the view using the binding
+                    }
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 24))
+                }
+                .padding(.top, 10)
+                .padding(.trailing, 10)
+            }
+
+            // Title of the form
             Text("Add News")
-                .font(.largeTitle)
+                .foregroundStyle(Color.white)
+                .font(.title2)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding()
 
-            TextField("Title", text: $title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextField("Category", text: $category)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            TextField("Description", text: $description)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            // Button to show image picker
-            Button("Select Image") {
-                showImagePicker = true
-            }
-            .padding()
-
-            // Show selected image preview if available
-            if let selectedImage = selectedImage {
-                Image(uiImage: selectedImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 200)
+            // TextFields for title, category, and description
+            VStack(spacing: 12) {
+                TextField("Title", text: $title)
                     .padding()
-            }
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
 
-            // Button to add news
-            Button("Add News") {
+                TextField("Category", text: $category)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+
+                TextField("Description", text: $description)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+            }
+            .padding(.bottom, 12)
+
+            // Image Picker Button and selected image preview
+            HStack(spacing: 16) {
+                Button(action: {
+                    showImagePicker = true
+                }) {
+                    Image(systemName: "photo")
+                        .font(.system(size: 24))
+                        .foregroundColor(Color("SubColor"))
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(selectedImage: $selectedImage)
+                }
+
+                // Preview the selected image if available
+                if let selectedImage = selectedImage {
+                    Image(uiImage: selectedImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(10)
+                        .padding(.leading, 10)
+                }
+            }
+            .padding(.horizontal)
+
+            // Add News button
+            Button(action: {
                 guard let image = selectedImage else {
                     print("No image selected!")
                     return
@@ -60,38 +105,41 @@ struct AddNewsFormView: View {
                 
                 isUploading = true  // Show progress during upload
                 
-                // Create the News object without the image URL first
                 let newNews = News(
                     title: title,
                     category: category,
                     description: description,
-                    imageName: ""  // The image URL will be set after uploading
+                    imageName: ""  // Image URL will be set after uploading
                 )
                 
-                // Upload image and save news to Firebase
                 firebaseService.addNews(news: newNews, image: image) { error in
-                    isUploading = false  // Stop progress indicator
+                    isUploading = false
                     if let error = error {
                         print("Error adding news: \(error.localizedDescription)")
                     } else {
                         print("News successfully added!")
-                        presentationMode.wrappedValue.dismiss()  // Close the form after submission
+                        showModal = false  // Dismiss the form
+                        onSubmit()  // Trigger the onSubmit closure to refresh the news list
                     }
                 }
+            }) {
+                Label("Add News", systemImage: "plus.circle")
+                    .foregroundColor(Color("SubColor"))
             }
-            .padding()
-            .background(Color.green)
-            .foregroundColor(.white)
-            .cornerRadius(8)
+            .buttonStyle(.bordered)
+            .controlSize(.large)
+            .padding(.top, 10)
 
-            // Show a loading indicator while uploading
+            // Loading indicator if uploading
             if isUploading {
-                ProgressView("Uploading...").padding()
+                ProgressView("Uploading...")
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color("SubColor")))
+                    .padding()
             }
+
+            Spacer()
         }
+        .background(Color("MainColor"))
         .padding()
-        .sheet(isPresented: $showImagePicker) {
-            ImagePicker(selectedImage: $selectedImage)  // Present the image picker when the button is tapped
-        }
     }
 }
