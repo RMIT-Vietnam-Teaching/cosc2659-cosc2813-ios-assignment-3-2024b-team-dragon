@@ -10,109 +10,107 @@ struct AccountView: View {
 	@State private var selectedLanguageFlag = "us"
 	
 	var body: some View {
-		ZStack {
-			Color("PrimaryColor").edgesIgnoringSafeArea(.all)
+		VStack() {
+			Spacer()
+			Text("My Profile")
+				.font(.title2)
+				.bold()
 			
-			VStack(spacing: 20) {
-				Text("My Profile")
-					.font(.title2)
-					.bold()
-				
-				Button(action: {
-					showEditProfile = true
-				}) {
-					HStack {
-						if let profileImageUrl = URL(string: viewModel.profileImageUrl), !viewModel.profileImageUrl.isEmpty {
-							AsyncImage(url: profileImageUrl) { image in
-								image
-									.resizable()
-									.frame(width: 60, height: 60)
-									.clipShape(Circle())
-							} placeholder: {
-								Image(systemName: "person.crop.circle")
-									.resizable()
-									.frame(width: 60, height: 60)
-									.clipShape(Circle())
-							}
-						} else {
+			Button(action: {
+				showEditProfile = true
+			}) {
+				HStack {
+					if let profileImageUrl = URL(string: viewModel.profileImageUrl), !viewModel.profileImageUrl.isEmpty {
+						AsyncImage(url: profileImageUrl) { image in
+							image
+								.resizable()
+								.frame(width: 60, height: 60)
+								.clipShape(Circle())
+						} placeholder: {
 							Image(systemName: "person.crop.circle")
 								.resizable()
 								.frame(width: 60, height: 60)
 								.clipShape(Circle())
 						}
-						
-						VStack(alignment: .leading) {
-							Text(viewModel.username)
-								.font(.headline)
-							Text(viewModel.email)
-								.font(.subheadline)
-						}
-						Spacer()
-						Image(systemName: "chevron.right")
-						
-					}
-					.padding()
-					.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
-				}
-				.sheet(isPresented: $showEditProfile) {
-					EditProfileView(viewModel: viewModel)
-				}
-				
-				// Settings and Preferences
-				Section(header: Text("Settings and Preferences").font(.subheadline)) {
-					Button(action: {
-						showNotificationsView = true
-					}) {
-						settingsRow(iconName: "bell", label: "Notifications")
-					}
-					.sheet(isPresented: $showNotificationsView) {
-						NotificationsView() // Placeholder for actual view
+					} else {
+						Image(systemName: "person.crop.circle")
+							.resizable()
+							.frame(width: 60, height: 60)
+							.clipShape(Circle())
 					}
 					
-					Button(action: {
-						showPrivacyView = true
-					}) {
-						settingsRow(iconName: "lock.shield", label: "Privacy")
+					VStack(alignment: .leading) {
+						Text(viewModel.username)
+							.font(.headline)
+						Text(viewModel.email)
+							.font(.subheadline)
 					}
-					.sheet(isPresented: $showPrivacyView) {
-						PrivacyView() // PrivacyView containing Change Password
-					}
+					Spacer()
+					Image(systemName: "chevron.right")
 					
-					Button(action: {
-						showLanguageView = true
-					}) {
-						languageRow(language: selectedLanguage, flag: selectedLanguageFlag)
-					}
-					.sheet(isPresented: $showLanguageView) {
-						LanguageSelectionView(selectedLanguage: $selectedLanguage, selectedLanguageFlag: $selectedLanguageFlag)
-					}
 				}
-				
-				// Support
-				Section(header: Text("Support").font(.subheadline)) {
-					SettingsRow(iconName: "questionmark.circle", label: "Help centre")
-					SettingsRow(iconName: "flag", label: "Report a bug")
-				}
-				
-				// Log out
-				Button(action: {
-					viewModel.logOut()
-				}) {
-					HStack {
-						Image(systemName: "arrow.backward")
-							.foregroundColor(.red)
-						Text("Log out")
-							.foregroundColor(.red)
-						Spacer()
-					}
-				}
-				Spacer()
+				.padding()
+				.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
 			}
-			.padding()
-			//			.background(Color("PrimaryColor"))
-			.foregroundColor(.white)
-			//			.edgesIgnoringSafeArea(.all)
+			.sheet(isPresented: $showEditProfile) {
+				EditProfileView(viewModel: viewModel)
+			}
+			
+			// Settings and Preferences
+			Section(header: Text("Settings and Preferences").font(.subheadline)) {
+				Button(action: {
+					showNotificationsView = true
+				}) {
+					settingsRow(iconName: "bell", label: "Notifications")
+				}
+				.sheet(isPresented: $showNotificationsView) {
+					NotificationsView() // Placeholder for actual view
+				}
+				
+				Button(action: {
+					showPrivacyView = true
+				}) {
+					settingsRow(iconName: "lock.shield", label: "Privacy")
+				}
+				.sheet(isPresented: $showPrivacyView) {
+					PrivacyView() // PrivacyView containing Change Password
+				}
+				
+				Button(action: {
+					showLanguageView = true
+				}) {
+					languageRow(language: selectedLanguage, flag: selectedLanguageFlag)
+				}
+				.sheet(isPresented: $showLanguageView) {
+					LanguageSelectionView(selectedLanguage: $selectedLanguage, selectedLanguageFlag: $selectedLanguageFlag)
+				}
+			}
+			
+			// Support
+			Section(header: Text("Support").font(.subheadline)) {
+				SettingsRow(iconName: "questionmark.circle", label: "Help centre")
+				SettingsRow(iconName: "flag", label: "Report a bug")
+			}
+			
+			Spacer()
+			// Log out
+			Button(action: {
+				viewModel.logOut()
+			}) {
+				HStack {
+					Image(systemName: "arrow.backward")
+						.foregroundColor(.red)
+					Text("Log out")
+						.foregroundColor(.red)
+					Spacer()
+				}
+			}
+			Spacer()
 		}
+		.padding()
+		.background(Color("PrimaryColor"))
+		.foregroundColor(.white)
+		.edgesIgnoringSafeArea(.all)
 	}
 	
 	private func settingsRow(iconName: String, label: String) -> some View {
