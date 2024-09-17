@@ -2,6 +2,7 @@ import SwiftUI
 import FirebaseAuth
 
 class SignInViewModel: ObservableObject {
+    @StateObject private var authManager = AuthManager()
     @Published var loginCredentials = LoginCredentials(email: "", password: "")
     @Published var errorMessage: String? = nil
     @Published var isLoggedIn = false

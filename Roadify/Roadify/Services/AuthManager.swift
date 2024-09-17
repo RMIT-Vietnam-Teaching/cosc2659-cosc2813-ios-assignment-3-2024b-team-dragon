@@ -1,18 +1,25 @@
-//
-//  AuthManager.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 18/9/24.
-//
-
+import Foundation
+import FirebaseAuth
 import SwiftUI
 
-struct AuthManager: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class AuthManager: ObservableObject {
+    @Published var isLoggedIn: Bool = false
+    
+    init() {
+        checkUserAuthentication()
     }
-}
-
-#Preview {
-    AuthManager()
+    
+    private func checkUserAuthentication() {
+        if Auth.auth().currentUser != nil {
+            // User is signed in
+            self.isLoggedIn = true
+        } else {
+            // No user is signed in
+            self.isLoggedIn = false
+        }
+    }
+    
+    func refreshAuthStatus() {
+        checkUserAuthentication()
+    }
 }

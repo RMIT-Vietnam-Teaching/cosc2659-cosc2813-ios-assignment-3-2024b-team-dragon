@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SplashScreenView: View {
-    @State private var isAnimating = false
-    @State private var navigateToWelcomeView = false
+    @StateObject private var authManager = AuthManager()
+    @State private var navigateToNextView = false
     
     var body: some View {
         ZStack {
@@ -18,14 +18,17 @@ struct SplashScreenView: View {
             // Simulate a delay for the splash screen
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 withAnimation {
-                    navigateToWelcomeView = true
+                    navigateToNextView = true
                 }
             }
         }
-        .fullScreenCover(isPresented: $navigateToWelcomeView, content: {
-            // Replace `NextView` with the view you want to navigate to
-            WelcomeView()
-        })
+        .fullScreenCover(isPresented: $navigateToNextView) {
+            if authManager.isLoggedIn {
+                TabView()
+            } else {
+                WelcomeView()
+            }
+        }
     }
 }
 

@@ -97,3 +97,9 @@ struct AccountNotLoginView: View {
         }
     }
 }
+
+struct AccountNotLoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountNotLoginView()
+    }
+}
