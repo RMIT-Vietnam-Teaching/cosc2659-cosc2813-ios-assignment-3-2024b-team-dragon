@@ -1,4 +1,3 @@
-//
 //  AddNewsFormView.swift
 //  Roadify
 //
@@ -14,7 +13,7 @@ struct AddNewsFormView: View {
     @State private var title: String = ""
     @State private var category: String = ""
     @State private var description: String = ""
-    @State private var selectedImage: UIImage?
+    @State private var selectedImages: [UIImage] = []  // This holds the selected images
     @State private var showImagePicker = false  // Trigger for image picker sheet
     @State private var isUploading: Bool = false  // To show loading indicator during upload
     
@@ -71,7 +70,7 @@ struct AddNewsFormView: View {
             // Image Picker Button and selected image preview
             HStack(spacing: 16) {
                 Button(action: {
-                    showImagePicker = true
+                    showImagePicker = true  // Show the custom image picker
                 }) {
                     Image(systemName: "photo")
                         .font(.system(size: 24))
@@ -81,11 +80,11 @@ struct AddNewsFormView: View {
                         .cornerRadius(10)
                 }
                 .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(selectedImage: $selectedImage)
+                    ImagePickerView(selectedImages: $selectedImages)
                 }
 
-                // Preview the selected image if available
-                if let selectedImage = selectedImage {
+                // Preview the selected images if available
+                if let selectedImage = selectedImages.first {  // Only show the first image
                     Image(uiImage: selectedImage)
                         .resizable()
                         .scaledToFit()
@@ -98,7 +97,7 @@ struct AddNewsFormView: View {
 
             // Add News button
             Button(action: {
-                guard let image = selectedImage else {
+                guard let image = selectedImages.first else {  // Use only the first image
                     print("No image selected!")
                     return
                 }
@@ -112,7 +111,7 @@ struct AddNewsFormView: View {
                     imageName: ""  // Image URL will be set after uploading
                 )
                 
-                firebaseService.addNews(news: newNews, image: image) { error in
+                firebaseService.addNews(news: newNews, image: image) { error in  // Pass single image
                     isUploading = false
                     if let error = error {
                         print("Error adding news: \(error.localizedDescription)")
