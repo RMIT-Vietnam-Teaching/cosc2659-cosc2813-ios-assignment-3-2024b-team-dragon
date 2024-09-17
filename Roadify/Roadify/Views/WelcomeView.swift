@@ -53,7 +53,7 @@ struct WelcomeView: View {
                 
                 // Navigation Link to TabView
                 NavigationLink(
-                    destination: TabView(), // Replace with your TabView
+                    destination: TabView().navigationBarBackButtonHidden(true), // Replace with your TabView
                     isActive: $navigateToTabView,
                     label: {
                         EmptyView()
