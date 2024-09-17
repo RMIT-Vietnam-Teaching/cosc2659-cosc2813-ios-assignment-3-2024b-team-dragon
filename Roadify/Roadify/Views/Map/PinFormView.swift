@@ -11,7 +11,7 @@ import CoreLocation
 import FirebaseStorage
 
 struct PinFormView: View {
-	// MARK: - Variables
+    // MARK: - Variables
     @Binding var title: String
     @Binding var description: String
     @Binding var images: [UIImage]
@@ -19,136 +19,134 @@ struct PinFormView: View {
     @Binding var selectedCoordinate: CLLocationCoordinate2D?  // Pass the selected coordinate for the pin
 
     @State private var showImagePicker: Bool = false
-    @State private var selectedImage: UIImage? = nil  // Hold the selected image temporarily
+    @State private var selectedImages: [UIImage] = []  // Array for selected images
     @State private var isUploading: Bool = false  // Show a loading state while uploading images
-	
-	@State private var latitude: String = ""
-	@State private var longitude: String = ""
-    
+
+    @State private var latitude: String = ""
+    @State private var longitude: String = ""
+
     let onSubmit: () -> Void  // This closure will be called when the user submits the form
     let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
-    
-	// MARK: - Body
+
+    // MARK: - Body
     var body: some View {
-		VStack (spacing: 0) {
-			HStack {
-				Spacer()
-				
-				// MARK: - Form close button
-				Button(action: {
-					withAnimation {
-						showModal = false
-					}
-				}) {
-					Image(systemName: "xmark.circle.fill")
-						.foregroundColor(.gray)
-						.font(.system(size: 24))
-				}
-				.padding(.top, 10)
-				.padding(.trailing, 10)
-			}
+        VStack (spacing: 0) {
+            HStack {
+                Spacer()
+
+                // MARK: - Form close button
+                Button(action: {
+                    withAnimation {
+                        showModal = false
+                    }
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 24))
+                }
+                .padding(.top, 10)
+                .padding(.trailing, 10)
+            }
 
             Text("Press on the map\nto pin accidents or traffic jams")
-				.foregroundStyle(Color.white)
+                .foregroundStyle(Color.white)
                 .font(.title2)
-				.multilineTextAlignment(.center)
-				.frame(maxWidth: .infinity, alignment: .center)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding()
 
-			// MARK: - Add title
-			TextField("Title", text: $title)
-				.padding()
-				.background(Color.white)
-				.cornerRadius(10)
-				.shadow(color: .gray, radius: 1, x: 0, y: 2)
-				.padding([.trailing,.leading])
-			
-			HStack (spacing: 0) {
-				// MARK: - Add description
-				TextField("Description", text: $description)
-					.padding()
-					.background(Color.white)
-					.cornerRadius(10)
-					.shadow(color: .gray, radius: 1, x: 0, y: 1)
+            // MARK: - Add title
+            TextField("Title", text: $title)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(color: .gray, radius: 1, x: 0, y: 2)
+                .padding([.trailing,.leading])
 
-				// MARK: - Add Image
-				Button(action: {
-					showImagePicker = true  // Trigger the image picker
-				}) {
-					HStack {
-						Image(systemName: "photo")
-							.font(.system(size: 20))
-							.foregroundStyle(Color("SubColor"))
-					}
-					.padding()
-					.background(Color.white)
-					.cornerRadius(10)
-					.frame(width: 60)
-					.shadow(color: .gray, radius: 1, x: 0, y: 1)
-				}
-				.sheet(isPresented: $showImagePicker) {
-					ImagePicker(selectedImage: $selectedImage)
-						.edgesIgnoringSafeArea(.bottom)
-				}
-				.padding(.leading)
-				.onChange(of: selectedImage) { newImage in
-					if let image = newImage {
-						images.append(image)
-					}
-				}
-			}
-			.padding()
+            HStack (spacing: 0) {
+                // MARK: - Add description
+                TextField("Description", text: $description)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(color: .gray, radius: 1, x: 0, y: 1)
 
-			// MARK: - Pin Longitude and Latitude
-			VStack(alignment: .leading, spacing: 10) {
-				Text("Pin Location")
-					.foregroundStyle(Color.white)
-					.font(.headline)
-					.padding(.bottom, 5)
-				
-				// Latitude
-				HStack {
-					Text("Latitude")
-						.font(.subheadline)
-						.foregroundStyle(.gray)
-						.frame(width: 80)
-					
-					TextField("Latitude", text: $latitude)
-						.padding()
-						.background(Color.white)
-						.cornerRadius(10)
-						.shadow(color: .gray, radius: 1, x: 0, y: 1)
-						.keyboardType(.decimalPad)
-						.onAppear {
-							if let coordinate = selectedCoordinate {
-								latitude = String(coordinate.latitude)
-							}
-						}
-				}
-				
-				// Longitude
-				HStack {
-					Text("Longitude")
-						.font(.subheadline)
-						.foregroundColor(.gray)
-						.frame(width: 80)
-					
-					TextField("Longitude", text: $longitude)
-						.padding()
-						.background(Color.white)
-						.cornerRadius(10)
-						.shadow(color: .gray, radius: 1, x: 0, y: 1)
-						.keyboardType(.decimalPad)
-						.onAppear {
-							if let coordinate = selectedCoordinate {
-								longitude = String(coordinate.longitude)
-							}
-						}
-				}
-			}
-			.padding()
+                // MARK: - Add Image
+                Button(action: {
+                    showImagePicker = true  // Trigger the image picker
+                }) {
+                    HStack {
+                        Image(systemName: "photo")
+                            .font(.system(size: 20))
+                            .foregroundStyle(Color("SubColor"))
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .frame(width: 60)
+                    .shadow(color: .gray, radius: 1, x: 0, y: 1)
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePickerView(selectedImages: $selectedImages)  // Pass selectedImages
+                        .edgesIgnoringSafeArea(.bottom)
+                }
+                .padding(.leading)
+                .onChange(of: selectedImages) { newImages in
+                    images.append(contentsOf: newImages)  // Append the selected images
+                }
+            }
+            .padding()
 
-			// MARK: - Image Preview
+            // MARK: - Pin Longitude and Latitude
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Pin Location")
+                    .foregroundStyle(Color.white)
+                    .font(.headline)
+                    .padding(.bottom, 5)
+
+                // Latitude
+                HStack {
+                    Text("Latitude")
+                        .font(.subheadline)
+                        .foregroundStyle(.gray)
+                        .frame(width: 80)
+
+                    TextField("Latitude", text: $latitude)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(color: .gray, radius: 1, x: 0, y: 1)
+                        .keyboardType(.decimalPad)
+                        .onAppear {
+                            if let coordinate = selectedCoordinate {
+                                latitude = String(coordinate.latitude)
+                            }
+                        }
+                }
+
+                // Longitude
+                HStack {
+                    Text("Longitude")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .frame(width: 80)
+
+                    TextField("Longitude", text: $longitude)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(color: .gray, radius: 1, x: 0, y: 1)
+                        .keyboardType(.decimalPad)
+                        .onAppear {
+                            if let coordinate = selectedCoordinate {
+                                longitude = String(coordinate.longitude)
+                            }
+                        }
+                }
+            }
+            .padding()
+
+            // MARK: - Image Preview
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(images, id: \.self) { image in
@@ -159,36 +157,34 @@ struct PinFormView: View {
                     }
                 }
             }
-			.padding()
-//            .frame(height: 120)
-			
-			// Loading indicator
+            .padding()
+
+            // Loading indicator
             if isUploading {
                 ProgressView("Uploading...")
                     .padding()
-					.progressViewStyle(ProgressViewModel(color: Color("SubColor"), textColor: Color.white, text: "Uploading..."))
+                    .progressViewStyle(ProgressViewModel(color: Color("SubColor"), textColor: Color.white, text: "Uploading..."))
             }
-            
-			// MARK: - Add pin button
-			Button {
-				savePin()
-			} label: {
-				Label(String("Add Pin"), systemImage: "plus.circle")
-					.foregroundStyle(Color("SubColor"))
-			}
-			.buttonStyle(.bordered)
-			.controlSize(.large)
-			.padding()
-//			.frame(maxWidth: .infinity)
+
+            // MARK: - Add pin button
+            Button {
+                savePin()
+            } label: {
+                Label(String("Add Pin"), systemImage: "plus.circle")
+                    .foregroundStyle(Color("SubColor"))
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.large)
+            .padding()
         }
-		.background(Color("MainColor"))
+        .background(Color("MainColor"))
         .padding()
     }
-    
-	// Save the pin to Firebase
+
+    // Save the pin to Firebase
     func savePin() {
         guard let coordinate = selectedCoordinate else { return }
-        
+
         isUploading = true  // Show the loading indicator while uploading
 
         // Fetch the current user from Firebase Authentication

@@ -57,6 +57,8 @@
 		E9B8AE212C9340F50037450A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E9B8AE202C9340F50037450A /* FirebaseDatabase */; };
 		E9B8AE232C9340F50037450A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E9B8AE222C9340F50037450A /* FirebaseFirestore */; };
 		E9B8AE252C9340F50037450A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E9B8AE242C9340F50037450A /* FirebaseStorage */; };
+		E9F1C2EE2C99636F009ACA55 /* ImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */; };
+		E9F1C2F22C996DD7009ACA55 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F1C2F12C996DCF009ACA55 /* ImagePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +104,8 @@
 		E9B8AE162C93256A0037450A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		E9B8AE182C9325990037450A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9B8AE1A2C932A510037450A /* PinFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinFormView.swift; sourceTree = "<group>"; };
+		E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
+		E9F1C2F12C996DCF009ACA55 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 		03E237652C8C8F6B0095D755 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E9F1C2F12C996DCF009ACA55 /* ImagePickerView.swift */,
 				B875DF522C95ED47004CED7E /* Alert */,
 				B875DF512C95ED40004CED7E /* News */,
 				B875DF502C95ED3C004CED7E /* Account */,
@@ -161,6 +166,7 @@
 		03E237662C8C90560095D755 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */,
 				B830F06E2C942E4A008931E0 /* TabButtonView.swift */,
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
 				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
@@ -381,6 +387,7 @@
 				E9B8AE192C9325990037450A /* MapView.swift in Sources */,
 				0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */,
 				0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */,
+				E9F1C2F22C996DD7009ACA55 /* ImagePickerView.swift in Sources */,
 				0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */,
 				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
@@ -412,6 +419,7 @@
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
 				0ABCBF0E2C959B77002F62EE /* TermsOfServiceView.swift in Sources */,
+				E9F1C2EE2C99636F009ACA55 /* ImagePickerViewModel.swift in Sources */,
 				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
 				B832439B2C958C8200064A77 /* TabView.swift in Sources */,
 				B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */,
@@ -551,7 +559,8 @@
 				DEVELOPMENT_TEAM = 8LD7T5FH2D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Rodify needs your location to show nearby accidents and traffic information.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Roadify needs your location to show nearby accidents and traffic information.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Roadify requires access to your photo library to allow you to select images.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -581,7 +590,8 @@
 				DEVELOPMENT_TEAM = 8LD7T5FH2D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Rodify needs your location to show nearby accidents and traffic information.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Roadify needs your location to show nearby accidents and traffic information.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Roadify requires access to your photo library to allow you to select images.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
