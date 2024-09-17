@@ -4,8 +4,10 @@ import CoreLocation
 
 class AlertViewModel: ObservableObject {
     @Published var pins: [Pin] = []
+    @Published var filteredPins: [Pin] = [] // Filtered pins based on search
     @Published var userLocation: CLLocationCoordinate2D? = nil
     @Published var errorMessage: String? = nil
+    @Published var searchText: String = "" // The search query from the view
     
     private var firebaseService: FirebaseService
     private var cancellables = Set<AnyCancellable>()
@@ -16,6 +18,7 @@ class AlertViewModel: ObservableObject {
         self.locationManager = locationManager
         fetchPins()
         bindLocationUpdates()
+        bindSearchText()
     }
     
     // Bind to LocationManager's updates to observe the user's location
@@ -28,6 +31,25 @@ class AlertViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    // Bind searchText to filter pins dynamically
+    private func bindSearchText() {
+        $searchText
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Delay the filtering slightly
+            .sink { [weak self] searchText in
+                self?.filterPins(searchText: searchText)
+            }
+            .store(in: &cancellables)
+    }
+    
+    // Filter pins based on the search text
+    private func filterPins(searchText: String) {
+        if searchText.isEmpty {
+            filteredPins = pins  // If search text is empty, show all pins
+        } else {
+            filteredPins = pins.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
     // Fetch pins from Firebase through FirebaseService
     func fetchPins() {
         firebaseService.fetchPins { [weak self] result in
@@ -35,6 +57,7 @@ class AlertViewModel: ObservableObject {
             case .success(let fetchedPins):
                 DispatchQueue.main.async {
                     self?.pins = fetchedPins
+                    self?.filteredPins = fetchedPins  // Initialize with all pins
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

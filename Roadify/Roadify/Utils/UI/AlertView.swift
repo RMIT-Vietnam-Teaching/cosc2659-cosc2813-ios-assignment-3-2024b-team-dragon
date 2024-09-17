@@ -5,53 +5,46 @@ struct AlertView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                if let location = viewModel.userLocation {
-                    Text("Your current location: \(location.latitude), \(location.longitude)")
-                        .font(.footnote)
-                        .padding()
-                } else {
-                    Text("Retrieving location...")
-                        .font(.footnote)
-                        .padding()
-                }
-
-                List(viewModel.pins) { pin in
+            VStack(spacing: 20) {
+                // Title Section
+                Text("Alerts")
+                    .font(.largeTitle)
+                    .foregroundColor(Color.white)
+                    .padding(.top, 20)
+                
+                // Search Bar
+                SearchBar(label: "Search Alerts", text: $viewModel.searchText)
+                
+                // List of Alerts (Filtered)
+                List(viewModel.filteredPins) { pin in
                     NavigationLink(destination: AlertDetailsView(pin: pin)) {
                         HStack {
-                            Image(systemName: "map")
+                            // Map Image (Placeholder)
+                            Image("map_on")
                                 .resizable()
-                                .frame(width: 50, height: 50)
+                                .frame(width: 60, height: 60)
                                 .cornerRadius(8)
 
-                            VStack(alignment: .leading) {
+                            VStack(alignment: .leading, spacing: 5) {
                                 Text(pin.title)
+                                    .foregroundColor(Color("SecondaryColor"))
                                     .font(.headline)
-                                Text(pin.description)
+                                Text("\(viewModel.calculateDistance(pin: pin), specifier: "%.1f") km")
+                                    .foregroundColor(.gray)
                                     .font(.subheadline)
-                                
-                                // Display the distance
-                                if viewModel.userLocation != nil {
-                                    Text("\(String(format: "%.1f", viewModel.calculateDistance(pin: pin))) km")
-                                        .font(.footnote)
-                                        .foregroundColor(.green)
-                                } else {
-                                    Text("Calculating distance...")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-                                }
                             }
                         }
                     }
+                    .listRowBackground(Color("MainColor"))
                 }
+                .listStyle(PlainListStyle())
             }
-            .navigationTitle("Alerts")
-            .onAppear {
-                viewModel.fetchPins()
-            }
-            .alert(isPresented: .constant(viewModel.errorMessage != nil)) {
-                Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
-            }
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))  // Set background color to match design
+            .navigationBarHidden(true)
+        }
+        .accentColor(Color("SecondaryColor"))
+        .onAppear {
+            viewModel.fetchPins()
         }
     }
 }

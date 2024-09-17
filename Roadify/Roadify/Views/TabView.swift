@@ -27,7 +27,7 @@ struct TabView: View {
 					case 1:
 						NewsView()
 					case 2:
-						MapView()
+						AlertView()
 					case 3:
 						AccountView()
 					default:
