@@ -14,6 +14,7 @@ struct SignUpView: View {
     @State private var isLoading: Bool = false // State for loading indicator
     @State private var showOTPSection: Bool = false // State for showing OTP section after delay
     @State private var navigateToSignIn: Bool = false // State for navigation
+    @State private var showContinueButton: Bool = true // State for showing/hiding Continue button
     
     var body: some View {
         NavigationStack {
@@ -49,24 +50,27 @@ struct SignUpView: View {
                 }
                 
                 // Continue Button
-                Button(action: {
-                    // Start loading and show OTP section after a delay
-                    isLoading = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // 5 seconds delay
-                        isLoading = false
-                        showOTPSection = true
+                if showContinueButton {
+                    Button(action: {
+                        // Start loading and show OTP section after a delay
+                        isLoading = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // 5 seconds delay
+                            isLoading = false
+                            showOTPSection = true
+                            showContinueButton = false // Hide Continue button
+                        }
+                        viewModel.signUpWithEmailPassword()
+                    }) {
+                        Text("Continue")
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(8)
+                            .foregroundColor(Color("ThirdColor"))
                     }
-                    viewModel.signUpWithEmailPassword()
-                }) {
-                    Text("Continue")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(8)
-                        .foregroundColor(Color("ThirdColor"))
                 }
-
+                
                 Spacer()
                 
                 // Show loading indicator while loading
@@ -176,7 +180,7 @@ struct SignUpView: View {
                 // Background color and border
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(isValid.wrappedValue == nil ? Color("ThirdColor") : (isValid.wrappedValue! ? .green : .red), lineWidth: 2)
-                    .background(Color("PrimaryColor"))
+                    .background(Color("PrimaryColor")) // Explicitly set the background color
                 
                 // Icon inside the TextField
                 Image(systemName: iconName)
@@ -184,17 +188,19 @@ struct SignUpView: View {
                     .padding(.leading, 10)
                 
                 HStack {
-                    // Actual TextField
+                    // Actual TextField or SecureField
                     Group {
                         if isPasswordVisible.wrappedValue {
                             TextField(placeholder, text: text)
+                                .background(Color.clear) // Prevent the yellow focus background
                         } else {
                             SecureField(placeholder, text: text)
+                                .background(Color.clear) // Prevent the yellow focus background
                         }
                     }
                     .padding(.leading, 30) // Padding to avoid overlapping with icon
                     .padding()
-                    .background(Color.clear)
+                    .background(Color.clear) // Set the background color to prevent yellow highlight
                     .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                     .focused($focusedField, equals: field)
                     .onChange(of: focusedField) { newValue in
