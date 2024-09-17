@@ -97,13 +97,14 @@ class SignUpViewModel: ObservableObject {
                     email: self?.email ?? "",
                     createdAt: Date()
                 )
-//                self?.firebaseService.saveUser(user: user) { error in
-//                    if let error = error {
-//                        self?.errorMessage = "Failed to save user details: \(error.localizedDescription)"
-//                    } else {
-//                        self?.isRegistered = true
-//                    }
-//                }
+				
+               self?.firebaseService.saveUser(user: user) { error in
+                   if let error = error {
+                       self?.errorMessage = "Failed to save user details: \(error.localizedDescription)"
+                   } else {
+                       self?.isRegistered = true
+                   }
+               }
             }
             
             self?.sendEmailVerification()
