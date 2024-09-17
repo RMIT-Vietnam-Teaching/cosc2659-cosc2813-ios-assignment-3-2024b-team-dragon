@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum Field {
     case username, firstName, lastName, email, password
@@ -15,6 +16,8 @@ struct SignUpView: View {
     @State private var showOTPSection: Bool = false // State for showing OTP section after delay
     @State private var navigateToSignIn: Bool = false // State for navigation
     @State private var showContinueButton: Bool = true // State for showing/hiding Continue button
+    
+
     
     var body: some View {
         NavigationStack {
@@ -39,10 +42,10 @@ struct SignUpView: View {
 
 
                 // Password Field with eye icon toggle
-                passwordTextField("Create Password", text: $viewModel.password, field: .password, isValid: $viewModel.isPasswordValid, iconName: "lock", isPasswordVisible: $isPasswordVisible)
+                passwordTextField("Create Password", text: $viewModel.password, field: .password, isValid: $viewModel.isPasswordValid, iconName: "lock", isPasswordVisible: $isPasswordVisible, textContentType: .oneTimeCode)
 
                 // Repeat Password Field with eye icon toggle
-                passwordTextField("Repeat Password", text: $viewModel.repeatPassword, field: .password, isValid: $viewModel.isRepeatPasswordValid, iconName: "lock.fill", isPasswordVisible: $isRepeatPasswordVisible)
+                passwordTextField("Repeat Password", text: $viewModel.repeatPassword, field: .password, isValid: $viewModel.isRepeatPasswordValid, iconName: "lock.fill", isPasswordVisible: $isRepeatPasswordVisible, textContentType: .oneTimeCode)
 
                 // Error message display
                 if let errorMessage = viewModel.errorMessage {
@@ -172,7 +175,7 @@ struct SignUpView: View {
         }
     }
 
-    private func passwordTextField(_ placeholder: String, text: Binding<String>, field: Field, isValid: Binding<Bool?>, iconName: String, isPasswordVisible: Binding<Bool>) -> some View {
+    private func passwordTextField(_ placeholder: String, text: Binding<String>, field: Field, isValid: Binding<Bool?>, iconName: String, isPasswordVisible: Binding<Bool>, textContentType: UITextContentType? = nil) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(placeholder)
                 .font(.caption)
@@ -194,15 +197,17 @@ struct SignUpView: View {
                     Group {
                         if isPasswordVisible.wrappedValue {
                             TextField(placeholder, text: text)
-                                .background(Color.clear) // Prevent the yellow focus background
+                                .textContentType(textContentType) // Set text content type
+
                         } else {
                             SecureField(placeholder, text: text)
-                                .background(Color.clear) // Prevent the yellow focus background
+                                .textContentType(textContentType) // Set text content type
+
                         }
                     }
                     .padding(.leading, 30) // Padding to avoid overlapping with icon
                     .padding()
-                    .background(Color.clear) // Set the background color to prevent yellow highlight
+                    .background(Color.clear)
                     .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                     .focused($focusedField, equals: field)
                     .onChange(of: focusedField) { newValue in
