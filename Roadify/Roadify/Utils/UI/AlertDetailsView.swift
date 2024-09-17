@@ -16,7 +16,7 @@ struct AlertDetailsView: View {
                     .font(.headline)
                     .foregroundColor(Color.white)
                 
-                // Add pin data here
+                // Add data timestamp here
                 Text("9:41 05/09")
                     .font(.subheadline)
                     .foregroundColor(Color.white)
@@ -87,7 +87,8 @@ struct AlertDetailsView: View {
         }
         .padding()
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))  // Set background color
-        .navigationTitle("Alert Details")
+        .navigationBarTitleDisplayMode(.inline)  // Set inline navigation
+
     }
 }
 
