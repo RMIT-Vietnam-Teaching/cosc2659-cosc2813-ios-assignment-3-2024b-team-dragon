@@ -3,7 +3,6 @@ import CoreLocation
 import UIKit
 
 class PinService: FirebaseService {
-
     // Add Pin
     func addPin(pin: Pin, completion: @escaping (Error?) -> Void) {
         let ref = db.collection("pins").document(pin.id)
