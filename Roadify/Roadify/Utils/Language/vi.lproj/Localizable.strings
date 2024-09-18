@@ -31,7 +31,7 @@
 "faq1" = "Làm thế nào để đặt lại mật khẩu?";
 "faq1_answer" = "Để đặt lại mật khẩu, hãy truy cập vào trang cài đặt và nhấp vào 'Đặt lại mật khẩu'. Làm theo hướng dẫn để tạo mật khẩu mới.";
 "faq2" = "Làm thế nào để liên hệ với hỗ trợ?";
-"faq2_answer" = "Bạn có thể liên hệ với hỗ trợ bằng cách truy cập vào phần 'Liên hệ với chúng tôi' trong ứng dụng hoặc gửi email đến RodifySupport@gmail.com";
+"faq2_answer" = "Bạn có thể liên hệ với hỗ trợ bằng cách truy cập vào phần 'Liên hệ với chúng tôi' trong ứng dụng hoặc gửi email đến RoadifySupport@gmail.com";
 
 //ReportABugView
 "report_bug_title" = "Báo cáo Lỗi";
