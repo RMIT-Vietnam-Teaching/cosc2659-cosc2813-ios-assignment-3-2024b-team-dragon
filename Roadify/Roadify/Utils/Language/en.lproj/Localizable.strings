@@ -1,0 +1,71 @@
+"title" = "Memory Card Game";
+"start_game" = "Start Game";
+"leaderboard" = "Leaderboard";
+"how_to_play" = "How To Play";
+"settings" = "Settings";
+"welcome" = "Welcome to the game!";
+"restart_title" = "Restart Required";
+"restart_prompt" = "Please close and reopen the app for the language change to take effect.";
+
+"vietnamese_food_title" = "Vietnamese Food";
+"level" = "Level";
+"time_remaining" = "Time Remaining";
+"player" = "Player";
+"score" = "Score";
+"restart_game" = "Restart Game";
+"game_over" = "Game Over";
+"ok" = "OK";
+"restart_level" = "Restart Level";
+"restart_confirmation" = "Are you sure you want to restart the level?";
+"restart" = "Restart";
+
+"time_up_game_over" = "Time's up! Game over.";
+"achievement_unlocked" = "Achievement unlocked: ";
+"finish_game_achievement" = "Achievement unlocked: Finish the game";
+"game_over" = "Game Over";
+"score" = "Score: ";
+"restart" = "Restart";
+"back_to_menu" = "Back to Menu";
+"congratulations" = "Congratulations!";
+"final_score" = "Final Score: ";
+"enter_username" = "Enter your username";
+"username_placeholder" = "Username";
+"start_game" = "Start Game";
+
+"leaderboard_title" = "Leaderboard";
+"high_scores_title" = "High Scores";
+"score_format" = "Score: ";
+"achievements_title" = "Achievements";
+"achievement_format" = "%@ (%@%%)";
+"player_statistics_title" = "Player Statistics";
+"score_trends_title" = "Score Trends";
+"win_percentage_title" = "Win Percentage";
+"username_label" = "Username";
+"score_label" = "Score";
+"date_label" = "Date";
+"percentage_label" = "Percentage";
+"reset_stats_button" = "Reset All Stats";
+
+"achievement_pass_level_1" = "Pass level 1";
+"achievement_pass_level_2" = "Pass level 2";
+"achievement_pass_level_3" = "Pass level 3";
+"achievement_pass_level_4" = "Pass level 4";
+"achievement_finish_the_game" = "Finish the game";
+
+"how_to_play_title" = "How to Play";
+"tutorial_step_1_title" = "Welcome to the game!";
+"tutorial_step_1_description" = "The cards are shown. This is how the cards look when they are face down.";
+"tutorial_step_2_title" = "Flipping Cards";
+"tutorial_step_2_description" = "Tap on the cards to flip them.";
+"tutorial_step_3_title" = "Matching Cards";
+"tutorial_step_3_description" = "Try to match the pairs of cards. Each pair of similar cards will earn you points";
+"tutorial_step_4_title" = "Timed Challenge";
+"tutorial_step_4_description" = "You have a time limit to complete this step. Match the pairs before time runs out!";
+"tutorial_step_5_title" = "Congratulations!";
+"tutorial_step_5_description" = "You've completed the tutorial. Enjoy the game!";
+"score_label" = "Score: ";
+"time_remaining_label" = "Time Remaining: ";
+"previous_button" = "Previous";
+"next_button" = "Next";
+"finish_button" = "Finish";
+    
