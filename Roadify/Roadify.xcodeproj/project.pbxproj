@@ -240,6 +240,22 @@
 			path = vi.lproj;
 			sourceTree = "<group>";
 		};
+		0A918D872C9AFD0100A4B746 /* Profile Page */ = {
+			isa = PBXGroup;
+			children = (
+				0362DA502C91AF2D008ED49A /* AccountView.swift */,
+				0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */,
+				0ABCBF012C959718002F62EE /* PrivacyView.swift */,
+				0ABCBF052C9597A4002F62EE /* NotificationsView.swift */,
+				0ABCBF072C959B0B002F62EE /* ManageAccountView.swift */,
+				0ABCBF092C959B30002F62EE /* ActivityLogsView.swift */,
+				0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */,
+				0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */,
+				0A6FE7092C9994AB0055B534 /* AccountNotLoginView.swift */,
+			);
+			path = "Profile Page";
+			sourceTree = "<group>";
+		};
 		B875DF4F2C95ED29004CED7E /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,16 +268,8 @@
 		B875DF502C95ED3C004CED7E /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				0A918D872C9AFD0100A4B746 /* Profile Page */,
 				B875DF532C95ED78004CED7E /* Auth */,
-				0362DA502C91AF2D008ED49A /* AccountView.swift */,
-				0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */,
-				0ABCBF012C959718002F62EE /* PrivacyView.swift */,
-				0ABCBF052C9597A4002F62EE /* NotificationsView.swift */,
-				0ABCBF072C959B0B002F62EE /* ManageAccountView.swift */,
-				0ABCBF092C959B30002F62EE /* ActivityLogsView.swift */,
-				0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */,
-				0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */,
-				0A6FE7092C9994AB0055B534 /* AccountNotLoginView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
