@@ -24,3 +24,16 @@
 "error_getting_image_url" = "Error getting image URL";
 "error_signing_out" = "Error signing out";
 "user_logged_out" = "User Logged Out";
+
+//HelpView
+"help_center_title" = "Help Center";
+"help_center_description" = "Welcome to the Help Center. Here you can find answers to common questions and issues.";
+"faq1" = "How do I reset my password?";
+"faq1_answer" = "To reset your password, go to the settings page and click on 'Reset Password'. Follow the instructions to create a new password.";
+"faq2" = "How do I contact support?";
+"faq2_answer" = "You can contact support by going to the 'Contact Us' section in the app or by emailing RodifySupport@gmail.com.";
+
+//ReportABugView
+"report_bug_title" = "Report a Bug";
+"report_bug_description" = "If you encounter any issues or have suggestions, please let us know by filling out the form below.";
+"submit" = "Submit";

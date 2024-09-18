@@ -33,6 +33,8 @@
 		0A6FE7142C99A7920055B534 /* GIF2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A6FE7132C99A7920055B534 /* GIF2.gif */; };
 		0A6FE7162C99ABCF0055B534 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FE7152C99ABCF0055B534 /* SplashScreenView.swift */; };
 		0A6FE7182C99ABEC0055B534 /* GIF1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A6FE7172C99ABEB0055B534 /* GIF1.gif */; };
+		0A918D892C9AFED500A4B746 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918D882C9AFED500A4B746 /* HelpView.swift */; };
+		0A918D8B2C9AFEEA00A4B746 /* ReportABugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918D8A2C9AFEEA00A4B746 /* ReportABugView.swift */; };
 		0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */; };
 		0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */; };
 		0ABCBF002C945A37002F62EE /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */; };
@@ -87,6 +89,8 @@
 		0A6FE7132C99A7920055B534 /* GIF2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GIF2.gif; sourceTree = "<group>"; };
 		0A6FE7152C99ABCF0055B534 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		0A6FE7172C99ABEB0055B534 /* GIF1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GIF1.gif; sourceTree = "<group>"; };
+		0A918D882C9AFED500A4B746 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		0A918D8A2C9AFEEA00A4B746 /* ReportABugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportABugView.swift; sourceTree = "<group>"; };
 		0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		0ABCBEFF2C945A37002F62EE /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 				0ABCBF0B2C959B55002F62EE /* PrivacyPolicyView.swift */,
 				0ABCBF0D2C959B77002F62EE /* TermsOfServiceView.swift */,
 				0A6FE7092C9994AB0055B534 /* AccountNotLoginView.swift */,
+				0A918D882C9AFED500A4B746 /* HelpView.swift */,
+				0A918D8A2C9AFEEA00A4B746 /* ReportABugView.swift */,
 			);
 			path = "Profile Page";
 			sourceTree = "<group>";
@@ -443,6 +449,7 @@
 				B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */,
 				0ABCBF062C9597A4002F62EE /* NotificationsView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
+				0A918D8B2C9AFEEA00A4B746 /* ReportABugView.swift in Sources */,
 				0ABCBF0A2C959B30002F62EE /* ActivityLogsView.swift in Sources */,
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
 				0ABCBF022C959718002F62EE /* PrivacyView.swift in Sources */,
@@ -459,6 +466,7 @@
 				0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */,
 				0ABCBF0C2C959B55002F62EE /* PrivacyPolicyView.swift in Sources */,
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
+				0A918D892C9AFED500A4B746 /* HelpView.swift in Sources */,
 				B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */,
 				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
 				0ABCBF082C959B0B002F62EE /* ManageAccountView.swift in Sources */,

@@ -7,6 +7,8 @@ struct AccountView: View {
     @State private var showPrivacyView = false
     @State private var showNotificationsView = false
     @State private var showLanguageView = false
+    @State private var showHelpView = false
+    @State private var showReportBugView = false
     @State private var selectedLanguage = "English"
     @State private var selectedLanguageFlag = "us"
     
@@ -89,8 +91,23 @@ struct AccountView: View {
             
             // Support
             Section(header: Text(LocalizedStringKey("support")).font(.subheadline)) {
-                settingsRow(iconName: "questionmark.circle", label: LocalizedStringKey("help_center"))
-                settingsRow(iconName: "flag", label: LocalizedStringKey("report_bug"))
+                Button(action: {
+                    showHelpView = true
+                }) {
+                    settingsRow(iconName: "questionmark.circle", label: LocalizedStringKey("help_center"))
+                }
+                .sheet(isPresented: $showHelpView) {
+                    HelpView()
+                }
+                
+                Button(action: {
+                    showReportBugView = true
+                }) {
+                    settingsRow(iconName: "flag", label: LocalizedStringKey("report_bug"))
+                }
+                .sheet(isPresented: $showReportBugView) {
+                    ReportABugView()
+                }
             }
             
             // Log out

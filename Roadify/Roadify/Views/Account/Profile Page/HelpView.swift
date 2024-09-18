@@ -1,18 +1,45 @@
-//
-//  HelpView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 18/9/24.
-//
-
 import SwiftUI
 
 struct HelpView: View {
+    @AppStorage("appLanguage") private var appLanguage: String = "en"
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(LocalizedStringKey("help_center_title"))
+                .font(.title2)
+                .bold()
+                .padding(.top)
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(LocalizedStringKey("help_center_description"))
+                        .font(.body)
+                    
+                    // Add more help content or FAQs here
+                    Text(LocalizedStringKey("faq1"))
+                        .font(.headline)
+                    Text(LocalizedStringKey("faq1_answer"))
+                        .font(.body)
+                    
+                    Text(LocalizedStringKey("faq2"))
+                        .font(.headline)
+                    Text(LocalizedStringKey("faq2_answer"))
+                        .font(.body)
+                    
+                    // Add additional FAQs as needed
+                }
+                .padding()
+            }
+            
+            Spacer()
+        }
+        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+        .foregroundColor(.white)
     }
 }
 
-#Preview {
-    HelpView()
+struct HelpView_Previews: PreviewProvider {
+    static var previews: some View {
+        HelpView()
+    }
 }
