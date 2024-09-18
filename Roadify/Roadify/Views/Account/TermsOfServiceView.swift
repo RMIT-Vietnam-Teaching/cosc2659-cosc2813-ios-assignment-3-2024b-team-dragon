@@ -25,12 +25,13 @@ struct TermsOfServiceView: View {
                 
                 For more information or if you have any questions, please contact us at RodifySupport@gmail.com.
                 """)
-                    .padding()
+                    .padding(.horizontal)
                 
                 Spacer()
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
         }
-        .padding()
         .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
     }

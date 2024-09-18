@@ -13,6 +13,7 @@
 "please_restart" = "Please restart the app to apply the changes.";
 "language_change_title" = "Language Change";
 "ok" = "OK";
+
 // AccountViewModel
 "no_email" = "No Email";
 "no_username" = "No Username";
