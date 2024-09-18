@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct RoutingView: View {
-	@Binding var startingPoint: String
+	@Binding var startPoint: String
 	@Binding var endPoint: String
+	var coordinator: MapViewRepresentable.Coordinator
 	
 	var body: some View {
 		VStack {
@@ -22,12 +24,11 @@ struct RoutingView: View {
 				
 				VStack (spacing: 15) {
 					// Starting Point
-					TextField("Starting Point", text: $startingPoint)
+					TextField("Starting Point", text: $startPoint)
 						.padding()
 						.background(Color.white)
 						.cornerRadius(8)
 						.shadow(radius: 4)
-						.disabled(true)
 					
 					HStack {
 						// End Point
@@ -37,9 +38,9 @@ struct RoutingView: View {
 							.cornerRadius(8)
 							.shadow(radius: 4)
 						
+						// Go Button
 						Button(action: {
-							print("Starting Point: \(startingPoint)")
-							print("End Point: \(endPoint)")
+							coordinator.drawRoute(startPoint: startPoint, endPoint: endPoint)
 						}) {
 							Text("Go")
 								.padding()
@@ -60,9 +61,11 @@ struct RoutingView: View {
 	}
 }
 
-struct RoutingView_Previews: PreviewProvider {
-	static var previews: some View {
-		RoutingView(startingPoint: .constant("37.7749, -122.4194"),
-					endPoint: .constant("34.0522, -118.2437"))
-	}
-}
+
+//
+//struct RoutingView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		RoutingView(startingPoint: .constant("37.7749, -122.4194"),
+//					endPoint: .constant("34.0522, -118.2437"))
+//	}
+//}

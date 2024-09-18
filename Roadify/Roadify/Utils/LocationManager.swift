@@ -23,8 +23,18 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 	// Request location permission
 	func requestLocationPermission() {
 		if CLLocationManager.locationServicesEnabled() {
-			locationManager.requestWhenInUseAuthorization()
-			locationManager.startUpdatingLocation()
+			let status = locationManager.authorizationStatus
+			
+			switch status {
+			case .notDetermined:
+				locationManager.requestWhenInUseAuthorization()
+			case .restricted, .denied:
+				print("Location access restricted or denied.")
+			case .authorizedWhenInUse, .authorizedAlways:
+				locationManager.startUpdatingLocation()
+			default:
+				break
+			}
 		} else {
 			print("Location services are not enabled.")
 		}

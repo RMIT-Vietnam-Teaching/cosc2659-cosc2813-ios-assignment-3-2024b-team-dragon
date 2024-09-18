@@ -18,7 +18,10 @@ struct MapView: View {
 	@State private var pinDescription: String = ""
 	@State private var pinImages: [UIImage] = []  // Array for selected images
 	
-	@State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
+	@State private var selectedCoordinate: CLLocationCoordinate2D?
+	@State private var startingCoordinate: CLLocationCoordinate2D?
+	@State private var endingCoordinate: CLLocationCoordinate2D?
+	
 	@State private var startPoint: String = ""
 	@State private var endPoint: String = ""
 	
@@ -27,6 +30,7 @@ struct MapView: View {
 	
 	@State private var showPinModel: Bool = false
 	@State private var showRoutingView: Bool = false
+	@State private var mapView = MKMapView()
 	
 	let firebaseService = FirebaseService()  // Firebase service instance
 	let geocodingService = GeocodingService()
@@ -39,11 +43,16 @@ struct MapView: View {
 			MapViewRepresentable(
 				pins: $pins,
 				showPinModal: $showPinModel,
-				selectedCoordinate: $selectedCoordinate, showRoutingView: $showRoutingView,
+				selectedCoordinate: $selectedCoordinate,
+				showRoutingView: $showRoutingView,
+				startingCoordinate: $startingCoordinate, // Pass new bindings
+				endingCoordinate: $endingCoordinate,
 				onMapClick: { coordinate in
-					geocodingService.getAddress(from: coordinate) { address in
-						endPoint = address ?? "\(coordinate.latitude), \(coordinate.longitude)"
-						showRoutingView = true
+					if showRoutingView {
+						geocodingService.getAddress(from: coordinate) { address in
+							endPoint = address ?? "\(coordinate.latitude), \(coordinate.longitude)"
+							endingCoordinate = coordinate
+						}
 					}
 				}
 			)
@@ -108,6 +117,7 @@ struct MapView: View {
 					HStack {
 						Button(action: {
 							withAnimation {
+								showPinModel = false
 								showRoutingView = false // Close the RoutingView
 								dismissKeyboard() // Dismiss the keyboard
 							}
@@ -123,18 +133,30 @@ struct MapView: View {
 						.padding(.leading)
 						Spacer()
 					}
-					RoutingView(startingPoint: $startPoint, endPoint: $endPoint)
-						.onDisappear {
-							showPinModel = false
-						}
-					Spacer()
-				}
-				.onAppear() {
-					if startPoint.isEmpty, let userLocation = locationManager.userLocation {
-						geocodingService.getAddress(from: userLocation) { address in
-							startPoint = address ?? "Current Location"
+					RoutingView(
+						startPoint: $startPoint,
+						endPoint: $endPoint,
+						coordinator: MapViewRepresentable.Coordinator(
+							MapViewRepresentable(
+								pins: $pins,
+								showPinModal: $showPinModel,
+								selectedCoordinate: $selectedCoordinate,
+								showRoutingView: $showRoutingView,
+								startingCoordinate: $startingCoordinate,
+								endingCoordinate: $endingCoordinate
+							),
+							mapView: mapView
+						)
+					)
+					.onAppear {
+						if startPoint.isEmpty, let userLocation = locationManager.userLocation {
+							startingCoordinate = userLocation
+							geocodingService.getAddress(from: userLocation) { address in
+								startPoint = address ?? "Current Location"
+							}
 						}
 					}
+					Spacer()
 				}
 			}
 			
@@ -142,6 +164,9 @@ struct MapView: View {
 				VStack {
 					Spacer()
 					DestinationView(destinationAddress: $destinationAddress, showRoutingView: $showRoutingView)
+						.onTapGesture {
+							showRoutingView = true
+						}
 				}
 			}
 		}
@@ -203,7 +228,6 @@ struct MapView: View {
 	func dismissKeyboard() {
 		UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 	}
-	
 }
 
 struct MapView_Previews: PreviewProvider {

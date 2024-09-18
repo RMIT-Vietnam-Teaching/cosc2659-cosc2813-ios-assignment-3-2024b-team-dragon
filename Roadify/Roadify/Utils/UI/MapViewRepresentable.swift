@@ -14,8 +14,10 @@ struct MapViewRepresentable: UIViewRepresentable {
 	@Binding var showPinModal: Bool
 	@Binding var selectedCoordinate: CLLocationCoordinate2D?
 	@Binding var showRoutingView: Bool
+	@Binding var startingCoordinate: CLLocationCoordinate2D?
+	@Binding var endingCoordinate: CLLocationCoordinate2D?
 	
-	var onMapClick: ((CLLocationCoordinate2D) -> Void)?  // Closure to handle map clicks
+	var onMapClick: ((CLLocationCoordinate2D) -> Void)?
 	
 	let mapView = MKMapView()
 	let locationManager = CLLocationManager()
@@ -30,10 +32,10 @@ struct MapViewRepresentable: UIViewRepresentable {
 		
 		let longPressGesture = UILongPressGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleLongPress(gesture:)))
 		mapView.addGestureRecognizer(longPressGesture)
-	
 		
 		return mapView
 	}
+
 	
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		uiView.removeAnnotations(uiView.annotations)
@@ -69,12 +71,66 @@ struct MapViewRepresentable: UIViewRepresentable {
 				
 				parent.selectedCoordinate = coordinate
 				parent.showPinModal = true
-//				parent.showRoutingView = false
-				parent.onMapClick?(coordinate)  // Call the closure
+				parent.onMapClick?(coordinate)
 				
 				print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
 			}
 		}
+		
+		func drawRoute(startPoint: String, endPoint: String) {
+			let geocodingService = GeocodingService()
+			
+			// Geocode the starting point
+			geocodingService.getCoordinate(from: startPoint) { startCoordinate in
+				guard let startCoordinate = startCoordinate else {
+					print("Failed to get starting coordinate")
+					return
+				}
+				print("Starting Coordinate: \(startCoordinate)")
+				
+				// Geocode the end point
+				geocodingService.getCoordinate(from: endPoint) { endCoordinate in
+					guard let endCoordinate = endCoordinate else {
+						print("Failed to get ending coordinate")
+						return
+					}
+					print("Ending Coordinate: \(endCoordinate)")
+					
+					// Create and configure the directions request
+					let startPlacemark = MKPlacemark(coordinate: startCoordinate)
+					let endPlacemark = MKPlacemark(coordinate: endCoordinate)
+					
+					let request = MKDirections.Request()
+					request.source = MKMapItem(placemark: startPlacemark)
+					request.destination = MKMapItem(placemark: endPlacemark)
+					request.transportType = .automobile
+					
+					let directions = MKDirections(request: request)
+					
+					directions.calculate { response, error in
+						if let error = error {
+							print("Error calculating directions: \(error.localizedDescription)")
+							return
+						}
+						
+						guard let route = response?.routes.first else {
+							print("No route found")
+							return
+						}
+						
+						// Add the route as an overlay on the map
+						self.mapView.addOverlay(route.polyline)
+						
+						self.mapView.setVisibleMapRect(
+							route.polyline.boundingMapRect,
+							edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20),
+							animated: true
+						)
+					}
+				}
+			}
+		}
+
 		
 		func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 			let centerCoordinate = mapView.centerCoordinate
@@ -84,12 +140,12 @@ struct MapViewRepresentable: UIViewRepresentable {
 		
 		func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 			let identifier = "AccidentPin"
-			var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+			var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 			
 			if annotationView == nil {
-				annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+				annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 				annotationView?.canShowCallout = true
-				annotationView?.pinTintColor = UIColor.orange
+//				annotationView?.pinTintColor = UIColor.orange
 			} else {
 				annotationView?.annotation = annotation
 			}
@@ -97,6 +153,16 @@ struct MapViewRepresentable: UIViewRepresentable {
 			print("MapView: Rendering custom pin view for annotation.")
 			
 			return annotationView
+		}
+		
+		func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+			if let polyline = overlay as? MKPolyline {
+				let renderer = MKPolylineRenderer(polyline: polyline)
+				renderer.strokeColor = UIColor.red // Customize the route color here
+				renderer.lineWidth = 3 // Customize the width of the route
+				return renderer
+			}
+			return MKOverlayRenderer(overlay: overlay)
 		}
 	}
 }

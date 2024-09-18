@@ -10,7 +10,6 @@ import CoreLocation
 
 /// A service class for geocoding coordinates to addresses and vice versa.
 class GeocodingService {
-	
 	private let geocoder = CLGeocoder()
 	
 	/// Converts a coordinate to a human-readable address.
