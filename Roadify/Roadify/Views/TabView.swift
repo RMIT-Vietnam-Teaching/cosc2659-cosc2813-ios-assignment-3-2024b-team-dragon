@@ -5,6 +5,7 @@ struct TabView: View {
 	@StateObject private var authManager = AuthManager()
 	@State private var selectedTab = 0
 	@State private var showWelcomeView = true // First launch
+	@State private var showWelcomeView = true // First launch
 	
 	var body: some View {
 		VStack(spacing: 0) {

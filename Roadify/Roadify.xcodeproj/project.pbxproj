@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334E8122C93518C00DA52F6 /* ImagePicker.swift */; };
+		033DA9BE2C99CA3300A71506 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DA9BD2C99CA3300A71506 /* SearchBar.swift */; };
 		0362DA452C9190F9008ED49A /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA442C9190F9008ED49A /* SignInView.swift */; };
 		0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA462C9192AB008ED49A /* SignInViewModel.swift */; };
 		0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA482C9193E4008ED49A /* LoginCredentials.swift */; };
@@ -16,6 +17,9 @@
 		0362DA4F2C91A687008ED49A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4E2C91A687008ED49A /* User.swift */; };
 		0362DA512C91AF2D008ED49A /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA502C91AF2D008ED49A /* AccountView.swift */; };
 		0362DA542C91B1C1008ED49A /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA532C91B1C1008ED49A /* SettingsRow.swift */; };
+		0390D2132C97D8A600901461 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2122C97D8A600901461 /* AlertView.swift */; };
+		0390D2152C97DD3300901461 /* AlertDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2142C97DD3300901461 /* AlertDetailsView.swift */; };
+		0390D2172C97E06000901461 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2162C97E06000901461 /* AlertViewModel.swift */; };
 		03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2376A2C8C925D0095D755 /* FirebaseService.swift */; };
 		03E2376D2C8EB02E0095D755 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */; };
 		03E237702C8EB1B60095D755 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2376F2C8EB1B60095D755 /* FirebaseAnalytics */; };
@@ -50,6 +54,8 @@
 		B875DF572C96D992004CED7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF562C96D992004CED7E /* LocationManager.swift */; };
 		B875DF592C97C145004CED7E /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF582C97C145004CED7E /* RoutingView.swift */; };
 		B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF5A2C97CADF004CED7E /* DestinationView.swift */; };
+		B875DF592C97C145004CED7E /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF582C97C145004CED7E /* RoutingView.swift */; };
+		B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875DF5A2C97CADF004CED7E /* DestinationView.swift */; };
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
 		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
@@ -73,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		0334E8122C93518C00DA52F6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		033DA9BD2C99CA3300A71506 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		0362DA442C9190F9008ED49A /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		0362DA462C9192AB008ED49A /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		0362DA482C9193E4008ED49A /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
@@ -81,6 +88,9 @@
 		0362DA4E2C91A687008ED49A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0362DA502C91AF2D008ED49A /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		0362DA532C91B1C1008ED49A /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		0390D2122C97D8A600901461 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = Roadify/Utils/UI/AlertView.swift; sourceTree = SOURCE_ROOT; };
+		0390D2142C97DD3300901461 /* AlertDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertDetailsView.swift; path = Roadify/Utils/UI/AlertDetailsView.swift; sourceTree = SOURCE_ROOT; };
+		0390D2162C97E06000901461 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A125CDA2C99F7D700F70798 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -154,6 +164,7 @@
 				0362DA532C91B1C1008ED49A /* SettingsRow.swift */,
 				0334E8122C93518C00DA52F6 /* ImagePicker.swift */,
 				B8675E172C95810500B649B3 /* MapViewRepresentable.swift */,
+				033DA9BD2C99CA3300A71506 /* SearchBar.swift */,
 				0A6FE70B2C999B330055B534 /* GIFImage.swift */,
 			);
 			path = UI;
@@ -197,6 +208,7 @@
 				B8675E192C95863700B649B3 /* ProgressViewModel.swift */,
 				B88A54822C9536D0002AE8DF /* PageViewModel.swift */,
 				0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */,
+				0390D2162C97E06000901461 /* AlertViewModel.swift */,
 				0A125CDC2C9AAA8900F70798 /* ActivityLogsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -262,6 +274,7 @@
 				B875DF582C97C145004CED7E /* RoutingView.swift */,
 				E9B8AE1A2C932A510037450A /* PinFormView.swift */,
 				B875DF5A2C97CADF004CED7E /* DestinationView.swift */,
+				B875DF5A2C97CADF004CED7E /* DestinationView.swift */,
 				E99257592C98617500A44500 /* DetailPinView.swift */,
 			);
 			path = Map;
@@ -297,6 +310,8 @@
 		B875DF522C95ED47004CED7E /* Alert */ = {
 			isa = PBXGroup;
 			children = (
+				0390D2122C97D8A600901461 /* AlertView.swift */,
+				0390D2142C97DD3300901461 /* AlertDetailsView.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -453,6 +468,10 @@
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
 				B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */,
 				0ABCBF062C9597A4002F62EE /* NotificationsView.swift in Sources */,
+				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
+				0390D2152C97DD3300901461 /* AlertDetailsView.swift in Sources */,
+				0390D2172C97E06000901461 /* AlertViewModel.swift in Sources */,
+				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
 				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
 				0ABCBF0A2C959B30002F62EE /* ActivityLogsView.swift in Sources */,
@@ -478,6 +497,8 @@
 				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
 				0ABCBF082C959B0B002F62EE /* ManageAccountView.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
+				0390D2132C97D8A600901461 /* AlertView.swift in Sources */,
+				033DA9BE2C99CA3300A71506 /* SearchBar.swift in Sources */,
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
 				0A6FE70C2C999B330055B534 /* GIFImage.swift in Sources */,
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,

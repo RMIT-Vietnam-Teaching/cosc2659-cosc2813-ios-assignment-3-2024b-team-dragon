@@ -1,10 +1,3 @@
-//
-//  PinModel.swift
-//  Roadify
-//
-//  Created by Lê Phước on 12/9/24.
-//
-
 import Foundation
 import CoreLocation
 import SwiftUI
