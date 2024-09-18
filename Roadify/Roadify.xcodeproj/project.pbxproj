@@ -24,6 +24,8 @@
 		03E2377C2C8F2C3F0095D755 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377B2C8F2C3F0095D755 /* FirebaseFirestore */; };
 		03E2377E2C8F2C3F0095D755 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 03E2377D2C8F2C3F0095D755 /* FirebaseStorage */; };
 		0A125CDB2C99F7D700F70798 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A125CDA2C99F7D700F70798 /* AuthManager.swift */; };
+		0A125CDD2C9AAA8900F70798 /* ActivityLogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A125CDC2C9AAA8900F70798 /* ActivityLogsViewModel.swift */; };
+		0A125CE32C9AB3CC00F70798 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A125CE22C9AB3CC00F70798 /* ActivityLog.swift */; };
 		0A6FE70A2C9994AB0055B534 /* AccountNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FE7092C9994AB0055B534 /* AccountNotLoginView.swift */; };
 		0A6FE70C2C999B330055B534 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FE70B2C999B330055B534 /* GIFImage.swift */; };
 		0A6FE7142C99A7920055B534 /* GIF2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A6FE7132C99A7920055B534 /* GIF2.gif */; };
@@ -74,6 +76,8 @@
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A125CDA2C99F7D700F70798 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		0A125CDC2C9AAA8900F70798 /* ActivityLogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogsViewModel.swift; sourceTree = "<group>"; };
+		0A125CE22C9AB3CC00F70798 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		0A6FE7092C9994AB0055B534 /* AccountNotLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotLoginView.swift; sourceTree = "<group>"; };
 		0A6FE70B2C999B330055B534 /* GIFImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImage.swift; sourceTree = "<group>"; };
 		0A6FE7132C99A7920055B534 /* GIF2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GIF2.gif; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				0362DA482C9193E4008ED49A /* LoginCredentials.swift */,
 				0362DA4E2C91A687008ED49A /* User.swift */,
 				E992574F2C9579DF00A44500 /* News.swift */,
+				0A125CE22C9AB3CC00F70798 /* ActivityLog.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 				B8675E192C95863700B649B3 /* ProgressViewModel.swift */,
 				B88A54822C9536D0002AE8DF /* PageViewModel.swift */,
 				0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */,
+				0A125CDC2C9AAA8900F70798 /* ActivityLogsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -400,6 +406,7 @@
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
 				0ABCBF022C959718002F62EE /* PrivacyView.swift in Sources */,
 				E99257522C957A1300A44500 /* NewsView.swift in Sources */,
+				0A125CDD2C9AAA8900F70798 /* ActivityLogsViewModel.swift in Sources */,
 				B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */,
 				0A6FE7162C99ABCF0055B534 /* SplashScreenView.swift in Sources */,
 				E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */,
@@ -419,6 +426,7 @@
 				0A6FE70C2C999B330055B534 /* GIFImage.swift in Sources */,
 				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
 				0A125CDB2C99F7D700F70798 /* AuthManager.swift in Sources */,
+				0A125CE32C9AB3CC00F70798 /* ActivityLog.swift in Sources */,
 				0ABCBF0E2C959B77002F62EE /* TermsOfServiceView.swift in Sources */,
 				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
 				B832439B2C958C8200064A77 /* TabView.swift in Sources */,

@@ -1,35 +1,65 @@
 import SwiftUI
 
 struct ActivityLogsView: View {
+    @StateObject private var viewModel = ActivityLogsViewModel()
+    
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Activity Logs")
-                .font(.title2)
-                .bold()
-            
-            // Display activity logs here
-
-            Button(action: {
-                // Handle log out from all devices
-            }) {
-                settingsRow(iconName: "arrow.right.circle", label: "Log Out from All Devices")
+        NavigationView {
+            VStack(spacing: 20) {
+                Text("Activity Logs")
+                    .font(.title2)
+                    .bold()
+                    .padding(.top, 20)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                        .padding()
+                } else if let errorMessage = viewModel.errorMessage {
+                    Text("Error: \(errorMessage)")
+                        .foregroundColor(.red)
+                        .padding()
+                } else if viewModel.activityLogs.isEmpty {
+                    Text("No activity logs available.")
+                        .foregroundColor(.gray)
+                        .padding()
+                } else {
+                    List(viewModel.activityLogs) { log in
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(log.action)
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                            Text("\(log.timestamp, formatter: dateFormatter)")
+                                .font(.subheadline)
+                                .foregroundColor(Color("SecondaryColor"))
+                        }
+                        .padding(.vertical, 5)
+                        .background(Color("PrimaryColor"))
+                        .cornerRadius(8)
+                        .listRowBackground(Color("PrimaryColor")) // Set the background color for list rows
+                    }
+                    .listStyle(PlainListStyle())
+                    .background(Color("PrimaryColor"))
+                }
+                
+                Spacer()
             }
-
-            Spacer()
+            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationBarHidden(true)
         }
-        .padding()
-        .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
-        .foregroundColor(.white)
     }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }
+}
 
-    private func settingsRow(iconName: String, label: String) -> some View {
-        HStack {
-            Image(systemName: iconName)
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+struct ActivityLogsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ActivityLogsView()
     }
 }

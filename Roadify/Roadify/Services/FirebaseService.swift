@@ -2,6 +2,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
 import CoreLocation
 import UIKit
 
@@ -12,7 +13,13 @@ class FirebaseService: NSObject, ObservableObject {
     // MARK: - Save User Details to Firestore using User model
     func saveUser(user: User, completion: @escaping (Error?) -> Void) {
         db.collection("users").document(user.id).setData(user.toDictionary()) { error in
-            completion(error)
+            if let error = error {
+                completion(error)
+            } else {
+                // Log the profile update activity
+                self.logActivity(action: "Profile Updated", metadata: ["username": user.username])
+                completion(nil)
+            }
         }
     }
 
@@ -198,4 +205,22 @@ class FirebaseService: NSObject, ObservableObject {
 			}
 		}
 	}
+    
+    // MARK: - Log Activity
+    func logActivity(action: String, metadata: [String: Any]? = nil) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let logData: [String: Any] = [
+            "userId": user.uid,
+            "action": action,
+            "timestamp": Timestamp(date: Date()),
+            "metadata": metadata ?? [:]
+        ]
+        
+        db.collection("activityLogs").addDocument(data: logData) { error in
+            if let error = error {
+                print("Error logging activity: \(error.localizedDescription)")
+            }
+        }
+    }
 }
