@@ -25,6 +25,7 @@ struct MapView: View {
     @State private var showRoutingView: Bool = false
     
     let firebaseService = FirebaseService()  // Firebase service instance
+    let pinService = PinService()  // Pin service instance
     
     // MARK: - Body
     var body: some View {
@@ -132,7 +133,7 @@ struct MapView: View {
         }
         
         // Save the pin to Firebase, passing the user instance
-        firebaseService.savePin(
+        pinService.savePin(
             title: pinTitle,
             description: pinDescription,
             coordinate: coordinate,
@@ -155,7 +156,7 @@ struct MapView: View {
     
     // MARK: - Fetch pins from Firebase and display them on the map
     func fetchPins() {
-        firebaseService.fetchPins { result in
+        pinService.fetchPins { result in
             switch result {
             case .success(let fetchedPins):
                 pins = fetchedPins

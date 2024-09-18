@@ -10,11 +10,13 @@ class AlertViewModel: ObservableObject {
     @Published var searchText: String = "" // The search query from the view
     
     private var firebaseService: FirebaseService
+    private var pinService: PinService
     private var cancellables = Set<AnyCancellable>()
     private var locationManager: LocationManager
     
-    init(firebaseService: FirebaseService = FirebaseService(), locationManager: LocationManager = LocationManager()) {
+	init(firebaseService: FirebaseService = FirebaseService(), pinService: PinService = PinService(), locationManager: LocationManager = LocationManager()) {
         self.firebaseService = firebaseService
+		self.pinService = pinService
         self.locationManager = locationManager
         fetchPins()
         bindLocationUpdates()
@@ -52,7 +54,7 @@ class AlertViewModel: ObservableObject {
     
     // Fetch pins from Firebase through FirebaseService
     func fetchPins() {
-        firebaseService.fetchPins { [weak self] result in
+        pinService.fetchPins { [weak self] result in
             switch result {
             case .success(let fetchedPins):
                 DispatchQueue.main.async {

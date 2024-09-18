@@ -27,6 +27,7 @@ struct PinFormView: View {
 
     let onSubmit: () -> Void  // This closure will be called when the user submits the form
     let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
+    let pinService = PinService()
 
     // MARK: - Body
     var body: some View {
@@ -194,7 +195,7 @@ struct PinFormView: View {
         }
 
         // Save the pin to Firebase, passing the user and current timestamp
-        firebaseService.savePin(
+        pinService.savePin(
             title: title,
             description: description,
             coordinate: coordinate,

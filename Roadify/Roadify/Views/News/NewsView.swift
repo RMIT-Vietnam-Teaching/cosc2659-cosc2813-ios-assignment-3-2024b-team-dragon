@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewsView: View {
-    @StateObject private var firebaseService = FirebaseService()
+	@StateObject private var newsService = NewsService()
     @State private var newsArticles: [News] = []
     @State private var showAddNewsForm = false
 
@@ -125,7 +125,7 @@ struct NewsView: View {
     }
 
     private func fetchNewsFromFirebase() {
-        firebaseService.fetchNews { result in
+        newsService.fetchNews { result in
             switch result {
             case .success(let fetchedNews):
                 self.newsArticles = fetchedNews

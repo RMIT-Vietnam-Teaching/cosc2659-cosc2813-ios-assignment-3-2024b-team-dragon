@@ -1,8 +1,7 @@
 import Foundation
 import UIKit
-/*
+
 class NewsService: FirebaseService {
-    
     // Fetch News
     func fetchNews(completion: @escaping (Result<[News], Error>) -> Void) {
         db.collection("news").getDocuments { (snapshot, error) in
@@ -55,4 +54,3 @@ class NewsService: FirebaseService {
         }
     }
 }
-*/

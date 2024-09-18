@@ -17,7 +17,7 @@ struct AddNewsFormView: View {
     @State private var showImagePicker = false  // Trigger for image picker sheet
     @State private var isUploading: Bool = false  // To show loading indicator during upload
     
-    @StateObject private var firebaseService = FirebaseService()
+    @StateObject private var newsService = NewsService()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -111,7 +111,7 @@ struct AddNewsFormView: View {
                     imageName: ""  // Image URL will be set after uploading
                 )
                 
-                firebaseService.addNews(news: newNews, image: image) { error in  // Pass single image
+                newsService.addNews(news: newNews, image: image) { error in  // Pass single image
                     isUploading = false
                     if let error = error {
                         print("Error adding news: \(error.localizedDescription)")
