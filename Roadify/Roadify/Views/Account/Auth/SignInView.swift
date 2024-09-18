@@ -23,7 +23,8 @@ struct SignInView: View {
                 
                 // Email Field
                 customTextField("Email Address", text: $viewModel.loginCredentials.email, field: .email, iconName: "envelope")
-                
+                    .autocapitalization(.none) // Disable autocapitalization
+
                 // Password Field with eye icon toggle
                 passwordTextField("Password", text: $viewModel.loginCredentials.password, field: .password, iconName: "lock", isPasswordVisible: $isPasswordVisible)
                 

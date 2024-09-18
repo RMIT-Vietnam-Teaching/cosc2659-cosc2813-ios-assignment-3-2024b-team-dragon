@@ -13,6 +13,7 @@ class AccountViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     private var storage = Storage.storage()
+    private var firebaseService = FirebaseService()
     
     init() {
         fetchUserData()
@@ -64,6 +65,9 @@ class AccountViewModel: ObservableObject {
                     self.address = address
                     self.mobilePhone = mobilePhone
                     self.profileImageUrl = imageUrl
+                    
+                    // Log the profile update activity
+                    self.firebaseService.logActivity(action: "Profile Updated", metadata: ["username": username])
                 }
             } else {
                 // If no image was updated, just update the other details
@@ -77,6 +81,10 @@ class AccountViewModel: ObservableObject {
                 self.username = username
                 self.address = address
                 self.mobilePhone = mobilePhone
+                
+                // Log the profile update activity
+                self.firebaseService.logActivity(action: "Profile Updated", metadata: ["username": username])
+
             }
         }
     }
@@ -119,6 +127,9 @@ class AccountViewModel: ObservableObject {
             self.address = ""
             self.mobilePhone = ""
             self.profileImageUrl = ""
+            
+            // Log the logout activity
+            self.firebaseService.logActivity(action: "User Logged Out")
         } catch let error {
             print("Error signing out: \(error.localizedDescription)")
         }
