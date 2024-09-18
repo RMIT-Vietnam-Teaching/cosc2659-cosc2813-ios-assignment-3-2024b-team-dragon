@@ -31,20 +31,20 @@ struct ActivityLogsView: View {
                                 .foregroundColor(Color.white)
                             Text("\(log.timestamp, formatter: dateFormatter)")
                                 .font(.subheadline)
-                                .foregroundColor(Color("SecondaryColor"))
+                                .foregroundColor(Color("SubColor"))
                         }
                         .padding(.vertical, 5)
-                        .background(Color("PrimaryColor"))
+                        .background(Color("MainColor"))
                         .cornerRadius(8)
-                        .listRowBackground(Color("PrimaryColor")) // Set the background color for list rows
+                        .listRowBackground(Color("MainColor")) // Set the background color for list rows
                     }
                     .listStyle(PlainListStyle())
-                    .background(Color("PrimaryColor"))
+                    .background(Color("MainColor"))
                 }
                 
                 Spacer()
             }
-            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
             .navigationBarHidden(true)
         }

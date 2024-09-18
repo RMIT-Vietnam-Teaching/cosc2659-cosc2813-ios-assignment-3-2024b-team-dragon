@@ -19,12 +19,12 @@ struct AccountNotLoginView: View {
                     Text("Sign in to help the ")
                         .foregroundColor(.white)
                     + Text("community")
-                        .foregroundColor(Color("SecondaryColor"))
+                        .foregroundColor(Color("SubColor"))
                     + Text(" and ")
                         .foregroundColor(.white)
                     
                     Text("connect")
-                        .foregroundColor(Color("SecondaryColor"))
+                        .foregroundColor(Color("SubColor"))
                     + Text(" with other drivers")
                         .foregroundColor(.white)
                 }
@@ -56,7 +56,7 @@ struct AccountNotLoginView: View {
                     Text("Already had a")
                         .foregroundColor(.white)
                     + Text(" Roadify")
-                        .foregroundColor(Color("SecondaryColor"))
+                        .foregroundColor(Color("SubColor"))
                     + Text(" account?")
                         .foregroundColor(.white)
                 }
@@ -71,8 +71,8 @@ struct AccountNotLoginView: View {
                         .bold()
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color("PrimaryColor")) // Background set to PrimaryColor
-                        .foregroundColor(Color("SecondaryColor")) // Text set to SecondaryColor
+                        .background(Color("MainColor")) // Background set to MainColor
+                        .foregroundColor(Color("SubColor")) // Text set to SubColor
                         .cornerRadius(10)
                         .overlay( // Adding a grey border
                             RoundedRectangle(cornerRadius: 10)
@@ -93,7 +93,7 @@ struct AccountNotLoginView: View {
                 }
             }
             .padding()
-            .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         }
     }
 }

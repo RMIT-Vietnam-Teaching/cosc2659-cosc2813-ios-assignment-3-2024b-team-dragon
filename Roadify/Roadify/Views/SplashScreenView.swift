@@ -6,7 +6,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         ZStack {
-            Color("PrimaryColor").ignoresSafeArea(.all) // Background color of the splash screen
+            Color("MainColor").ignoresSafeArea(.all) // Background color of the splash screen
             
             VStack {
                 // Display the GIF

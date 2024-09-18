@@ -1,66 +1,65 @@
-
 import Foundation
 import SwiftUI
 
 struct TabView: View {
-    @StateObject private var authManager = AuthManager()
+	@StateObject private var authManager = AuthManager()
 	@State private var selectedTab = 0
 	@State private var showWelcomeView = true // First launch
 	
 	var body: some View {
-		VStack (spacing: 0) {
-            if authManager.isLoggedIn {
-                switch selectedTab {
-                case 0:
-                    MapView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                case 1:
-                    NewsView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                case 2:
-                    MapView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                case 3:
-                    AccountView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                default:
-                    Text("Invalid tab")
-                }
-            } else {
-                switch selectedTab {
-                case 0:
-                    MapView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                case 1:
-                    NewsView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                case 2:
-                    MapView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                case 3:
-                    AccountNotLoginView()
-                        .onAppear {
-                            authManager.refreshAuthStatus()
-                        }
-                default:
-                    Text("Invalid tab")
-                }
-            }
-		
+		VStack(spacing: 0) {
+			if authManager.isLoggedIn {
+				switch selectedTab {
+				case 0:
+					MapView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				case 1:
+					NewsView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				case 2:
+					MapView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				case 3:
+					AccountView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				default:
+					Text("Invalid tab")
+				}
+			} else {
+				switch selectedTab {
+				case 0:
+					MapView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				case 1:
+					NewsView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				case 2:
+					MapView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				case 3:
+					AccountNotLoginView()
+						.onAppear {
+							authManager.refreshAuthStatus()
+						}
+				default:
+					Text("Invalid tab")
+				}
+			}
+			
 			HStack {
 				// MapsView
 				TabButtonView(viewIsSelected: "map_on", viewIsNotSelected: "map_off", isSelected: selectedTab == 0) {
@@ -79,15 +78,13 @@ struct TabView: View {
 				
 				// ProfileView
 				TabButtonView(viewIsSelected: "user_on", viewIsNotSelected: "user_off", isSelected: selectedTab == 3) {
-                    selectedTab = 3
+					selectedTab = 3
 				}
 			}
 			.padding()
-			.background(Color("Primary"))
+			.background(Color("MainColor"))
 		}
 		.edgesIgnoringSafeArea(.bottom)
-			}
-		}
 		.onAppear {
 			checkFirstLaunch()
 		}
@@ -109,3 +106,4 @@ struct TabView_Previews: PreviewProvider {
 		TabView()
 	}
 }
+
