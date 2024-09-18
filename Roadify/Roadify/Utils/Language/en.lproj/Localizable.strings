@@ -31,7 +31,7 @@
 "faq1" = "How do I reset my password?";
 "faq1_answer" = "To reset your password, go to the settings page and click on 'Reset Password'. Follow the instructions to create a new password.";
 "faq2" = "How do I contact support?";
-"faq2_answer" = "You can contact support by going to the 'Contact Us' section in the app or by emailing RoadifySupport@gmail.com.";
+"faq2_answer" = "You can contact support by going to the 'Contact Us' section in the app or by emailing roadify911@gmail.com.";
 
 //ReportABugView
 "report_bug_title" = "Report a Bug";

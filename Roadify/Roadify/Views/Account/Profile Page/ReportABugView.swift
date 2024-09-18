@@ -63,7 +63,7 @@ struct MailView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let mailVC = MFMailComposeViewController()
         mailVC.mailComposeDelegate = context.coordinator
-        mailVC.setToRecipients(["RoadifySupport@gmail.com"])
+        mailVC.setToRecipients(["roadify911@gmail.com"])
         mailVC.setSubject(NSLocalizedString("user_enquiry_subject", comment: "Subject for the user enquiry email"))
         mailVC.setMessageBody(enquiry, isHTML: false)
         return mailVC

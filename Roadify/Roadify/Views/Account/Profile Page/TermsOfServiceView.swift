@@ -23,7 +23,7 @@ struct TermsOfServiceView: View {
                 
                 5. **Changes to Terms**: We may update these terms from time to time. Any changes will be posted in this section.
                 
-                For more information or if you have any questions, please contact us at RodifySupport@gmail.com.
+                For more information or if you have any questions, please contact us at roadify911@gmail.com.
                 """)
                     .padding(.horizontal)
                 
