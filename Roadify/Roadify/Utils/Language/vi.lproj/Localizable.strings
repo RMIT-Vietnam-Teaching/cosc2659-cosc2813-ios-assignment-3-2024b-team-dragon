@@ -1,1 +1,26 @@
-"title" = "Trò Chơi Ghép Thẻ";
+//AccountView
+"profile_title" = "Hồ Sơ Của Tôi";
+"settings_preferences" = "Cài Đặt Và Tùy Chọn";
+"notifications" = "Thông Báo";
+"privacy" = "Quyền Riêng Tư";
+"language" = "Ngôn Ngữ";
+"change_language" = "Thay Đổi Ngôn Ngữ";
+"select_language" = "Chọn một ngôn ngữ";
+"support" = "Hỗ Trợ";
+"help_center" = "Trung tâm trợ giúp";
+"report_bug" = "Báo lỗi";
+"log_out" = "Đăng xuất";
+"please_restart" = "Vui lòng khởi động lại ứng dụng để áp dụng thay đổi.";
+"language_change_title" = "Thay đổi ngôn ngữ";
+"ok" = "Đồng ý";
+
+//AccountViewModel Localizable Strings
+"no_email" = "Không có email";
+"no_username" = "Không có tên người dùng";
+"guest" = "Khách";
+"not_logged_in" = "Chưa đăng nhập";
+"profile_updated" = "Đã cập nhật hồ sơ";
+"error_uploading_image" = "Lỗi khi tải lên hình ảnh";
+"error_getting_image_url" = "Lỗi khi lấy URL hình ảnh";
+"error_signing_out" = "Lỗi khi đăng xuất";
+"user_logged_out" = "Người dùng đã đăng xuất";

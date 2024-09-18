@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct AccountView: View {
-    @ObservedObject var viewModel = AccountViewModel() // Use AccountViewModel
+    @AppStorage("appLanguage") var appLanguage: String = "en" // Store app language
+    @ObservedObject var viewModel = AccountViewModel()
     @State private var showEditProfile = false
     @State private var showPrivacyView = false
     @State private var showNotificationsView = false
@@ -11,7 +12,7 @@ struct AccountView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("My Profile")
+            Text(LocalizedStringKey("profile_title"))
                 .font(.title2)
                 .bold()
             
@@ -57,23 +58,23 @@ struct AccountView: View {
             }
             
             // Settings and Preferences
-            Section(header: Text("Settings and Preferences").font(.subheadline)) {
+            Section(header: Text(LocalizedStringKey("settings_preferences")).font(.subheadline)) {
                 Button(action: {
                     showNotificationsView = true
                 }) {
-                    settingsRow(iconName: "bell", label: "Notifications")
+                    settingsRow(iconName: "bell", label: LocalizedStringKey("notifications"))
                 }
                 .sheet(isPresented: $showNotificationsView) {
-                    NotificationsView() // Placeholder for actual view
+                    NotificationsView()
                 }
                 
                 Button(action: {
                     showPrivacyView = true
                 }) {
-                    settingsRow(iconName: "lock.shield", label: "Privacy")
+                    settingsRow(iconName: "lock.shield", label: LocalizedStringKey("privacy"))
                 }
                 .sheet(isPresented: $showPrivacyView) {
-                    PrivacyView() // PrivacyView containing Change Password
+                    PrivacyView()
                 }
                 
                 Button(action: {
@@ -87,9 +88,9 @@ struct AccountView: View {
             }
             
             // Support
-            Section(header: Text("Support").font(.subheadline)) {
-                SettingsRow(iconName: "questionmark.circle", label: "Help centre")
-                SettingsRow(iconName: "flag", label: "Report a bug")
+            Section(header: Text(LocalizedStringKey("support")).font(.subheadline)) {
+                settingsRow(iconName: "questionmark.circle", label: LocalizedStringKey("help_center"))
+                settingsRow(iconName: "flag", label: LocalizedStringKey("report_bug"))
             }
             
             // Log out
@@ -99,7 +100,7 @@ struct AccountView: View {
                 HStack {
                     Image(systemName: "arrow.backward")
                         .foregroundColor(.red)
-                    Text("Log out")
+                    Text(LocalizedStringKey("log_out"))
                         .foregroundColor(.red)
                     Spacer()
                 }
@@ -108,12 +109,15 @@ struct AccountView: View {
             
             Spacer()
         }
+        .onAppear {
+            setLanguageBasedOnAppLanguage()
+        }
         .padding()
         .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
     }
     
-    private func settingsRow(iconName: String, label: String) -> some View {
+    private func settingsRow(iconName: String, label: LocalizedStringKey) -> some View {
         HStack {
             Image(systemName: iconName)
             Text(label)
@@ -126,7 +130,7 @@ struct AccountView: View {
     
     private func languageRow(language: String, flag: String) -> some View {
         HStack {
-            Image(flag) // Display the flag image
+            Image(flag)
                 .resizable()
                 .frame(width: 24, height: 24)
             Text(language)
@@ -137,15 +141,30 @@ struct AccountView: View {
         .padding()
         .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
+    
+    // Function to set the initial language and flag based on appLanguage value
+    private func setLanguageBasedOnAppLanguage() {
+        if appLanguage == "vi" {
+            selectedLanguage = "Vietnamese"
+            selectedLanguageFlag = "vn"
+        } else {
+            selectedLanguage = "English"
+            selectedLanguageFlag = "us"
+        }
+    }
 }
 
+// MARK: - Language Selection
 struct LanguageSelectionView: View {
     @Binding var selectedLanguage: String
     @Binding var selectedLanguageFlag: String
+    @AppStorage("appLanguage") var appLanguage: String = "en"
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         VStack {
-            Text("Select Language")
+            Text(LocalizedStringKey("select_language"))
                 .font(.title2)
                 .bold()
                 .padding(.top)
@@ -153,6 +172,7 @@ struct LanguageSelectionView: View {
             Button(action: {
                 selectedLanguage = "English"
                 selectedLanguageFlag = "us"
+                changeLanguage(to: "en")
             }) {
                 languageRow(language: "English", flag: "us")
             }
@@ -160,6 +180,7 @@ struct LanguageSelectionView: View {
             Button(action: {
                 selectedLanguage = "Vietnamese"
                 selectedLanguageFlag = "vn"
+                changeLanguage(to: "vi")
             }) {
                 languageRow(language: "Vietnamese", flag: "vn")
             }
@@ -169,6 +190,13 @@ struct LanguageSelectionView: View {
         .padding()
         .background(Color("PrimaryColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text(LocalizedStringKey("language_change_title")),
+                message: Text(alertMessage),
+                dismissButton: .default(Text(LocalizedStringKey("ok")))
+            )
+        }
     }
     
     private func languageRow(language: String, flag: String) -> some View {
@@ -182,6 +210,17 @@ struct LanguageSelectionView: View {
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+    }
+    
+    // Function to change the language and show alert
+    func changeLanguage(to language: String) {
+        appLanguage = language
+        UserDefaults.standard.set([language], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+        
+        // Show alert with a restart message
+        alertMessage = NSLocalizedString("please_restart", comment: "Please restart the app to apply the changes.")
+        showAlert = true
     }
 }
 
