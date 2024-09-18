@@ -92,18 +92,18 @@ struct AlertDetailsView: View {
     }
 }
 
-// Preview with a mock Pin object
-struct AlertDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let mockPin = Pin(
-            id: "1",
-            latitude: 10.762622,
-            longitude: 106.660172,
-            title: "Two Cars Crash At The Cross Road",
-            description: "No casualties, slow traffic.",
-            status: .verified,
-            imageUrls: ["https://via.placeholder.com/300"]
-        )
-        AlertDetailsView(pin: mockPin)
-    }
-}
+//// Preview with a mock Pin object
+//struct AlertDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let mockPin = Pin(
+//            id: "1",
+//            latitude: 10.762622,
+//            longitude: 106.660172,
+//            title: "Two Cars Crash At The Cross Road",
+//            description: "No casualties, slow traffic.",
+//            status: .verified,
+//            imageUrls: ["https://via.placeholder.com/300"]
+//        )
+//        AlertDetailsView(pin: mockPin)
+//    }
+//}

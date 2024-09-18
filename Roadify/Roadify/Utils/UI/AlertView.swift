@@ -27,7 +27,7 @@ struct AlertView: View {
 
                             VStack(alignment: .leading, spacing: 5) {
                                 Text(pin.title)
-                                    .foregroundColor(Color("SecondaryColor"))
+                                    .foregroundColor(Color("SubColor"))
                                     .font(.headline)
                                 Text("\(viewModel.calculateDistance(pin: pin), specifier: "%.1f") km")
                                     .foregroundColor(.gray)
@@ -42,7 +42,7 @@ struct AlertView: View {
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))  // Set background color to match design
             .navigationBarHidden(true)
         }
-        .accentColor(Color("SecondaryColor"))
+        .accentColor(Color("SubColor"))
         .onAppear {
             viewModel.fetchPins()
         }
