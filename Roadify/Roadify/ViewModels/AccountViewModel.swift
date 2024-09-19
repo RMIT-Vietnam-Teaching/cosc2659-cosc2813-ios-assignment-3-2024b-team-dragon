@@ -14,6 +14,7 @@ class AccountViewModel: ObservableObject {
     private var db = Firestore.firestore()
     private var storage = Storage.storage()
     private var firebaseService = FirebaseService()
+    private var userService = UserService()
     
     init() {
         fetchUserData()
@@ -22,22 +23,22 @@ class AccountViewModel: ObservableObject {
     // Fetch user data from Firestore
     func fetchUserData() {
         if let user = Auth.auth().currentUser {
-            self.email = user.email ?? "No Email"
+            self.email = user.email ?? NSLocalizedString("no_email", comment: "No email available")
             
             let userRef = db.collection("users").document(user.uid)
             userRef.getDocument { (document, error) in
                 if let document = document, document.exists {
-                    self.username = document.data()?["username"] as? String ?? "No Username"
+                    self.username = document.data()?["username"] as? String ?? NSLocalizedString("no_username", comment: "No username available")
                     self.profileImageUrl = document.data()?["profileImageUrl"] as? String ?? ""
                     self.address = document.data()?["address"] as? String ?? ""
                     self.mobilePhone = document.data()?["mobilePhone"] as? String ?? ""
                 } else {
-                    self.username = "No Username"
+                    self.username = NSLocalizedString("no_username", comment: "No username available")
                 }
             }
         } else {
-            self.username = "Guest"
-            self.email = "Not logged in"
+            self.username = NSLocalizedString("guest", comment: "Guest user")
+            self.email = NSLocalizedString("not_logged_in", comment: "User not logged in")
         }
     }
     
@@ -48,7 +49,7 @@ class AccountViewModel: ObservableObject {
             
             // Save profile image if it was updated
             if let image = profileImage {
-                uploadProfileImage(image: image) { [weak self] url in
+                userService.uploadProfileImage(image: image) { [weak self] url in
                     guard let self = self else { return }
                     guard let imageUrl = url else { return }
                     
@@ -67,7 +68,7 @@ class AccountViewModel: ObservableObject {
                     self.profileImageUrl = imageUrl
                     
                     // Log the profile update activity
-                    self.firebaseService.logActivity(action: "Profile Updated", metadata: ["username": username])
+                    self.firebaseService.logActivity(action: NSLocalizedString("profile_updated", comment: "Profile updated"), metadata: ["username": username])
                 }
             } else {
                 // If no image was updated, just update the other details
@@ -83,55 +84,27 @@ class AccountViewModel: ObservableObject {
                 self.mobilePhone = mobilePhone
                 
                 // Log the profile update activity
-                self.firebaseService.logActivity(action: "Profile Updated", metadata: ["username": username])
-
+                self.firebaseService.logActivity(action: NSLocalizedString("profile_updated", comment: "Profile updated"), metadata: ["username": username])
             }
         }
     }
     
-    // Function to upload profile image to Firebase Storage
-    private func uploadProfileImage(image: UIImage, completion: @escaping (String?) -> Void) {
-        guard let user = Auth.auth().currentUser else { return }
-        
-        let storageRef = storage.reference().child("profile_images/\(user.uid).jpg")
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
-        
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
-        
-        storageRef.putData(imageData, metadata: metadata) { _, error in
-            if let error = error {
-                print("Error uploading image: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
-            
-            // Fetch the download URL
-            storageRef.downloadURL { url, error in
-                if let error = error {
-                    print("Error getting image URL: \(error.localizedDescription)")
-                    completion(nil)
-                } else {
-                    completion(url?.absoluteString)
-                }
-            }
-        }
-    }
+    
     // Log out the user
     func logOut() {
         do {
             try Auth.auth().signOut()
             // Reset published variables after logout
-            self.username = "Guest"
-            self.email = "Not logged in"
+            self.username = NSLocalizedString("guest", comment: "Guest user")
+            self.email = NSLocalizedString("not_logged_in", comment: "User not logged in")
             self.address = ""
             self.mobilePhone = ""
             self.profileImageUrl = ""
             
             // Log the logout activity
-            self.firebaseService.logActivity(action: "User Logged Out")
+            self.firebaseService.logActivity(action: NSLocalizedString("user_logged_out", comment: "User logged out"))
         } catch let error {
-            print("Error signing out: \(error.localizedDescription)")
+            print(NSLocalizedString("error_signing_out", comment: "Error signing out") + ": \(error.localizedDescription)")
         }
     }
 }

@@ -93,7 +93,7 @@ struct ManageAccountDataView: View {
 					deletionError = "Failed to delete account: \(error.localizedDescription)"
 				} else {
 					// Successfully deleted account, handle sign-out and delay
-					DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+					DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
 						viewModel.logOut()
 						isDeleting = false // Hide progress indicator
 					}

@@ -1,1 +1,39 @@
-"title" = "Memory Card Game";
+//AccountView
+"profile_title" = "My Profile";
+"settings_preferences" = "Settings and Preferences";
+"notifications" = "Notifications";
+"privacy" = "Privacy";
+"language" = "Language";
+"change_language" = "Change Language";
+"select_language" = "Select a language";
+"support" = "Support";
+"help_center" = "Help center";
+"report_bug" = "Report a bug";
+"log_out" = "Log out";
+"please_restart" = "Please restart the app to apply the changes.";
+"language_change_title" = "Language Change";
+"ok" = "OK";
+
+// AccountViewModel
+"no_email" = "No Email";
+"no_username" = "No Username";
+"guest" = "Guest";
+"not_logged_in" = "Not logged in";
+"profile_updated" = "Profile Updated";
+"error_uploading_image" = "Error uploading image";
+"error_getting_image_url" = "Error getting image URL";
+"error_signing_out" = "Error signing out";
+"user_logged_out" = "User Logged Out";
+
+//HelpView
+"help_center_title" = "Help Center";
+"help_center_description" = "Welcome to the Help Center. Here you can find answers to common questions and issues.";
+"faq1" = "How do I reset my password?";
+"faq1_answer" = "To reset your password, go to the settings page and click on 'Reset Password'. Follow the instructions to create a new password.";
+"faq2" = "How do I contact support?";
+"faq2_answer" = "You can contact support by going to the 'Contact Us' section in the app or by emailing roadify911@gmail.com.";
+
+//ReportABugView
+"report_bug_title" = "Report a Bug";
+"report_bug_description" = "If you encounter any issues or have suggestions, please let us know by filling out the form below.";
+"submit" = "Submit";
