@@ -10,48 +10,63 @@ import SwiftUI
 import MessageUI
 
 struct ReportABugView: View {
+    @Environment(\.dismiss) var dismiss
 	@AppStorage("appLanguage") private var appLanguage: String = "en"
 	@State private var enquiry: String = ""
 	@State private var showMailCompose = false
 	@State private var result: Result<MFMailComposeResult, Error>? = nil
 	
 	var body: some View {
-		VStack(spacing: 20) {
-			Text(NSLocalizedString("report_bug_title", comment: "Title for the report bug view"))
-				.font(.title2)
-				.bold()
-				.padding(.top)
-			
-			Text(NSLocalizedString("report_bug_description", comment: "Description for the report bug view"))
-			
-			TextEditor(text: $enquiry)
-				.frame(height: 200)
-				.padding()
-				.background(Color("ThirdColor").opacity(0.1))
-				.cornerRadius(10)
-				.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-				.foregroundColor(.black)
-			
-			Button(action: {
-				sendEmail()
-			}) {
-				Text(NSLocalizedString("submit", comment: "Submit button text"))
-					.font(.headline)
-					.foregroundColor(.black)
-					.padding()
-					.background(Color("SubColor"))
-					.cornerRadius(10)
-			}
-			.disabled(enquiry.isEmpty)
-			
-			Spacer()
-		}
-		.padding()
-		.background(Color("MainColor").edgesIgnoringSafeArea(.all))
-		.foregroundColor(.white)
-		.sheet(isPresented: $showMailCompose) {
-			MailView(result: $result, enquiry: enquiry)
-		}
+        NavigationStack {
+            VStack(spacing: 20) {
+                Spacer()
+                
+                Text(NSLocalizedString("report_bug_description", comment: "Description for the report bug view"))
+                
+                TextEditor(text: $enquiry)
+                    .frame(height: 200)
+                    .padding()
+                    .background(Color("ThirdColor").opacity(0.1))
+                    .cornerRadius(10)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                    .foregroundColor(.black)
+                
+                Button(action: {
+                    sendEmail()
+                }) {
+                    Text(NSLocalizedString("submit", comment: "Submit button text"))
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(Color("SubColor"))
+                        .cornerRadius(10)
+                }
+                .disabled(enquiry.isEmpty)
+                
+                Spacer()
+            }
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationTitle(NSLocalizedString("report_bug_title", comment: "Title for the report bug view"))
+            .onAppear(){
+                NavigationBarAppearance.setupNavigationBar()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss() // Dismiss the sheet when the "X" is tapped
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+            .sheet(isPresented: $showMailCompose) {
+                MailView(result: $result, enquiry: enquiry)
+            }
+            
+        }
 	}
 	
 	private func sendEmail() {

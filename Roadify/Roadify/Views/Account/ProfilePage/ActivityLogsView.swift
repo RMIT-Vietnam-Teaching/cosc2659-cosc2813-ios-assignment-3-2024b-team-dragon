@@ -9,15 +9,13 @@ import Foundation
 import SwiftUI
 
 struct ActivityLogsView: View {
+    @Environment(\.dismiss) var dismiss
 	@StateObject private var viewModel = ActivityLogsViewModel()
 	
 	var body: some View {
 		NavigationView {
 			VStack(spacing: 20) {
-				Text("Activity Logs")
-					.font(.title2)
-					.bold()
-					.padding(.top, 20)
+				Text("")
 					.frame(maxWidth: .infinity, alignment: .center)
 				
 				if viewModel.isLoading {
@@ -52,9 +50,23 @@ struct ActivityLogsView: View {
 				
 				Spacer()
 			}
-			.background(Color("MainColor").edgesIgnoringSafeArea(.all))
-			.foregroundColor(.white)
-			.navigationBarHidden(true)
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationTitle("Activity Logs")
+            .onAppear(){
+                NavigationBarAppearance.setupNavigationBar()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss() // Dismiss the sheet when the "X" is tapped
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
 		}
 	}
 	

@@ -28,6 +28,8 @@ struct AccountView: View {
 				.font(.title2)
 				.bold()
 			
+            Spacer()
+            
 			Button(action: {
 				showEditProfile = true
 			}) {
@@ -199,78 +201,98 @@ struct AccountView: View {
 	}
 }
 
+
 // MARK: - Language Selection
 struct LanguageSelectionView: View {
-	@Binding var selectedLanguage: String
-	@Binding var selectedLanguageFlag: String
-	@AppStorage("appLanguage") var appLanguage: String = "en"
-	@State private var showAlert = false
-	@State private var alertMessage = ""
-	
-	var body: some View {
-		VStack {
-			Text(LocalizedStringKey("select_language"))
-				.font(.title2)
-				.bold()
-				.padding(.top)
-			
-			Button(action: {
-				selectedLanguage = "English"
-				selectedLanguageFlag = "us"
-				changeLanguage(to: "en")
-			}) {
-				languageRow(language: "English", flag: "us")
-			}
-			
-			Button(action: {
-				selectedLanguage = "Vietnamese"
-				selectedLanguageFlag = "vn"
-				changeLanguage(to: "vi")
-			}) {
-				languageRow(language: "Vietnamese", flag: "vn")
-			}
-			
-			Spacer()
-		}
-		.padding()
-		.background(Color("MainColor").edgesIgnoringSafeArea(.all))
-		.foregroundColor(.white)
-		.alert(isPresented: $showAlert) {
-			Alert(
-				title: Text(LocalizedStringKey("language_change_title")),
-				message: Text(alertMessage),
-				dismissButton: .default(Text(LocalizedStringKey("ok")))
-			)
-		}
-	}
-	
-	private func languageRow(language: String, flag: String) -> some View {
-		HStack {
-			Image(flag)
-				.resizable()
-				.frame(width: 24, height: 24)
-			Text(language)
-				.font(.headline)
-			Spacer()
-		}
-		.padding()
-		.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
-	}
-	
-	// Function to change the language and show alert
-	func changeLanguage(to language: String) {
-		appLanguage = language
-		UserDefaults.standard.set([language], forKey: "AppleLanguages")
-		UserDefaults.standard.synchronize()
-		
-		// Show alert with a restart message
-		alertMessage = NSLocalizedString("please_restart", comment: "Please restart the app to apply the changes.")
-		showAlert = true
-	}
+    @Binding var selectedLanguage: String
+    @Binding var selectedLanguageFlag: String
+    @AppStorage("appLanguage") var appLanguage: String = "en"
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @Environment(\.dismiss) var dismiss
+    
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                
+                Button(action: {
+                    selectedLanguage = "English"
+                    selectedLanguageFlag = "us"
+                    changeLanguage(to: "en")
+                }) {
+                    languageRow(language: "English", flag: "us")
+                }
+                
+                Button(action: {
+                    selectedLanguage = "Vietnamese"
+                    selectedLanguageFlag = "vn"
+                    changeLanguage(to: "vi")
+                }) {
+                    languageRow(language: "Vietnamese", flag: "vn")
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationTitle(LocalizedStringKey("select_language"))
+            .onAppear(){
+                NavigationBarAppearance.setupNavigationBar()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss() // Dismiss the view when "X" is tapped
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(LocalizedStringKey("language_change_title")),
+                    message: Text(alertMessage),
+                    dismissButton: .default(Text(LocalizedStringKey("ok")))
+                )
+            }
+        }
+    }
+    
+    private func languageRow(language: String, flag: String) -> some View {
+        HStack {
+            Image(flag)
+                .resizable()
+                .frame(width: 24, height: 24)
+            Text(language)
+                .font(.headline)
+            Spacer()
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+    }
+    
+    // Function to change the language and show alert
+    func changeLanguage(to language: String) {
+        appLanguage = language
+        UserDefaults.standard.set([language], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+        
+        // Show alert with a restart message
+        alertMessage = NSLocalizedString("please_restart", comment: "Please restart the app to apply the changes.")
+        showAlert = true
+    }
 }
 
-struct AccountView_Previews: PreviewProvider {
-	static var previews: some View {
-		AccountView()
-	}
+struct LanguageSelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        // Provide sample data for previews
+        LanguageSelectionView(
+            selectedLanguage: .constant("English"),
+            selectedLanguageFlag: .constant("us")
+        )
+    }
 }

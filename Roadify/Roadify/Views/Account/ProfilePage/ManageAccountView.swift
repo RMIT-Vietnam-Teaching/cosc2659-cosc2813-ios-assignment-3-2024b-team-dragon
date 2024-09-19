@@ -11,50 +11,65 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct ManageAccountDataView: View {
+    @Environment(\.dismiss) var dismiss
 	@StateObject private var viewModel = AccountViewModel()
 	@State private var showDeleteConfirmation = false
 	@State private var deletionError: String?
 	@State private var isDeleting = false
 	
 	var body: some View {
-		VStack(spacing: 20) {
-			Text("Manage Account Data")
-				.font(.title2)
-				.bold()
-			
-			Button(action: {
-				showDeleteConfirmation = true
-			}) {
-				settingsRow(iconName: "trash", label: "Delete Account")
-			}
-			.alert(isPresented: $showDeleteConfirmation) {
-				Alert(
-					title: Text("Delete Account"),
-					message: Text("Are you sure you want to delete your account? This action cannot be undone."),
-					primaryButton: .destructive(Text("Delete")) {
-						deleteAccount()
-					},
-					secondaryButton: .cancel()
-				)
-			}
-			
-			if isDeleting {
-				ProgressView()
-					.progressViewStyle(CircularProgressViewStyle(tint: .green))
-					.padding()
-			}
-			
-			if let deletionError = deletionError {
-				Text("Error: \(deletionError)")
-					.foregroundColor(.red)
-					.padding()
-			}
-			
-			Spacer()
-		}
-		.padding()
-		.background(Color("MainColor").edgesIgnoringSafeArea(.all))
-		.foregroundColor(.white)
+        NavigationStack {
+            VStack(spacing: 20) {
+                Button(action: {
+                    showDeleteConfirmation = true
+                }) {
+                    settingsRow(iconName: "trash", label: "Delete Account")
+                }
+                .alert(isPresented: $showDeleteConfirmation) {
+                    Alert(
+                        title: Text("Delete Account"),
+                        message: Text("Are you sure you want to delete your account? This action cannot be undone."),
+                        primaryButton: .destructive(Text("Delete")) {
+                            deleteAccount()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
+                
+                if isDeleting {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .green))
+                        .padding()
+                }
+                
+                if let deletionError = deletionError {
+                    Text("Error: \(deletionError)")
+                        .foregroundColor(.red)
+                        .padding()
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationTitle("Manage Account Data")
+            .onAppear(){
+                NavigationBarAppearance.setupNavigationBar()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss() // Dismiss the sheet when the "X" is tapped
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+        }
 	}
 	
 	private func settingsRow(iconName: String, label: String) -> some View {
