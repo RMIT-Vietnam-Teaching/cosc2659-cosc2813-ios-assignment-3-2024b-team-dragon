@@ -2,7 +2,7 @@
 //  ReportABugView.swift
 //  Roadify
 //
-//  Created by Cường Võ Duy on 19/9/24.
+//  Created by Nguyễn Tuấn Dũngy on 19/9/24.
 //
 
 import Foundation

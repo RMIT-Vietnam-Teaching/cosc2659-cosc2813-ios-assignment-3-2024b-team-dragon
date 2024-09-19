@@ -2,7 +2,7 @@
 //  AccountView.swift
 //  Roadify
 //
-//  Created by Cường Võ Duy on 19/9/24.
+//  Created by Nguyễn Tuấn Dũng on 19/9/24.
 //
 
 import Foundation
@@ -11,6 +11,8 @@ import SwiftUI
 struct AccountView: View {
 	@AppStorage("appLanguage") var appLanguage: String = "en" // Store app language
 	@ObservedObject var viewModel = AccountViewModel()
+    @State private var showAlert = false
+    @State private var isNavigating = false
 	@State private var showEditProfile = false
 	@State private var showPrivacyView = false
 	@State private var showNotificationsView = false
@@ -118,19 +120,37 @@ struct AccountView: View {
 				}
 			}
 			
-			// Log out
-			Button(action: {
-				viewModel.logOut()
-			}) {
-				HStack {
-					Image(systemName: "arrow.backward")
-						.foregroundColor(.red)
-					Text(LocalizedStringKey("log_out"))
-						.foregroundColor(.red)
-					Spacer()
-				}
-				.padding()
-			}
+            // Log out Button
+            Button(action: {
+                showAlert = true
+            }) {
+                HStack {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.red)
+                    Text(LocalizedStringKey("log_out"))
+                        .foregroundColor(.red)
+                    Spacer()
+                }
+                .padding()
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(LocalizedStringKey("are_you_sure")),
+                    message: Text(LocalizedStringKey("are_you_sure_message")),
+                    primaryButton: .destructive(Text(LocalizedStringKey("yes"))) {
+                        // User confirmed logout
+                        viewModel.logOut()
+                        isNavigating = true
+                    },
+                    secondaryButton: .cancel(Text(LocalizedStringKey("no")))
+                )
+            }
+            .background(
+                NavigationLink(destination: AccountNotLoginView(), isActive: $isNavigating) {
+                    EmptyView()
+                }
+                .hidden() // Hide the NavigationLink
+            )
 			
 			Spacer()
 		}

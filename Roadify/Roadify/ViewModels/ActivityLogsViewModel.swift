@@ -1,3 +1,10 @@
+//
+//  ActivityLogs.swift
+//  Roadify
+//
+//  Created by Nguyễn Tuấn Dũng on 19/9/24.
+//
+
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
