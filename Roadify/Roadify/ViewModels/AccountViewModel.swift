@@ -10,13 +10,15 @@ class AccountViewModel: ObservableObject {
     @Published var profileImageUrl: String = ""
     @Published var address: String = ""
     @Published var mobilePhone: String = ""
+    @Published var isAdmin: Bool = false
     
     private var db = Firestore.firestore()
     private var storage = Storage.storage()
-    private var firebaseService = FirebaseService()
+    var firebaseService = FirebaseService()
     
     init() {
         fetchUserData()
+        checkIfAdmin()
     }
     
     // Fetch user data from Firestore
@@ -38,6 +40,23 @@ class AccountViewModel: ObservableObject {
         } else {
             self.username = "Guest"
             self.email = "Not logged in"
+        }
+    }
+    
+    // Fetch admin status from Firestore
+    func checkIfAdmin() {
+        guard let user = Auth.auth().currentUser else {
+            self.isAdmin = false
+            return
+        }
+        
+        let userRef = db.collection("users").document(user.uid)
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.isAdmin = document.data()?["isAdmin"] as? Bool ?? false
+            } else {
+                self.isAdmin = false
+            }
         }
     }
     

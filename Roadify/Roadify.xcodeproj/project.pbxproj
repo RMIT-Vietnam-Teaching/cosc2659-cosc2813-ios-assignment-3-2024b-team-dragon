@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -65,6 +65,8 @@
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
 		B8E66F292C84C77E0033A939 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */; };
+		E926EA512C9C3CEC006F4C69 /* PendingPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E926EA502C9C3CE9006F4C69 /* PendingPinViewModel.swift */; };
+		E926EA532C9C3DC2006F4C69 /* UserManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E926EA522C9C3DC0006F4C69 /* UserManagementViewModel.swift */; };
 		E99257502C9579DF00A44500 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992574F2C9579DF00A44500 /* News.swift */; };
 		E99257522C957A1300A44500 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257512C957A1300A44500 /* NewsView.swift */; };
 		E99257542C957A3C00A44500 /* DetailNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257532C957A3C00A44500 /* DetailNewsView.swift */; };
@@ -136,6 +138,8 @@
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
 		B8E66F252C84C77E0033A939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8E66F282C84C77E0033A939 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E926EA502C9C3CE9006F4C69 /* PendingPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingPinViewModel.swift; sourceTree = "<group>"; };
+		E926EA522C9C3DC0006F4C69 /* UserManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementViewModel.swift; sourceTree = "<group>"; };
 		E992574F2C9579DF00A44500 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E99257512C957A1300A44500 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E99257532C957A3C00A44500 /* DetailNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsView.swift; sourceTree = "<group>"; };
@@ -147,6 +151,10 @@
 		E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
 		E9F1C2F12C996DCF009ACA55 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E926EA462C9C2562006F4C69 /* AdminProfilePage */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdminProfilePage; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B8E66F1B2C84C77D0033A939 /* Frameworks */ = {
@@ -210,6 +218,8 @@
 		03E237662C8C90560095D755 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E926EA522C9C3DC0006F4C69 /* UserManagementViewModel.swift */,
+				E926EA502C9C3CE9006F4C69 /* PendingPinViewModel.swift */,
 				E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */,
 				B830F06E2C942E4A008931E0 /* TabButtonView.swift */,
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
@@ -314,6 +324,7 @@
 		B875DF502C95ED3C004CED7E /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				E926EA462C9C2562006F4C69 /* AdminProfilePage */,
 				B81FB92D2C9C0E3300DB90C1 /* ProfilePage */,
 				B875DF532C95ED78004CED7E /* Auth */,
 			);
@@ -405,6 +416,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				E926EA462C9C2562006F4C69 /* AdminProfilePage */,
+			);
 			name = Roadify;
 			packageProductDependencies = (
 				03E2376F2C8EB1B60095D755 /* FirebaseAnalytics */,
@@ -489,9 +503,11 @@
 				0362DA492C9193E4008ED49A /* LoginCredentials.swift in Sources */,
 				0362DA452C9190F9008ED49A /* SignInView.swift in Sources */,
 				B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */,
+				E926EA512C9C3CEC006F4C69 /* PendingPinViewModel.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
 				B81FB93F2C9C0E7A00DB90C1 /* PrivacyView.swift in Sources */,
 				0390D2152C97DD3300901461 /* AlertDetailsView.swift in Sources */,
+				E926EA532C9C3DC2006F4C69 /* UserManagementViewModel.swift in Sources */,
 				0390D2172C97E06000901461 /* AlertViewModel.swift in Sources */,
 				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
 				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
