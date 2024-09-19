@@ -1,5 +1,5 @@
 //
-//  UserManagementView.swift
+//  PinManagementView.swift
 //  Roadify
 //
 //  Created by Lê Phước on 19/9/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct UserManagementView: View {
-    @ObservedObject var viewModel = UserManagementViewModel()
+struct PinManagementView: View {
+    @ObservedObject var viewModel = PinManagementViewModel()
     @Environment(\.presentationMode) var presentationMode  // To handle the back button
 
     var body: some View {
@@ -26,7 +26,7 @@ struct UserManagementView: View {
                 Spacer()
 
                 // Centered title
-                Text("User Management")
+                Text("Pin Management")
                     .font(.title2)
                     .bold()
                     .foregroundColor(.white)
@@ -41,43 +41,45 @@ struct UserManagementView: View {
 
             ScrollView {
                 VStack(spacing: 16) {
-                    ForEach(viewModel.users) { user in
+                    ForEach(viewModel.verifiedPins) { pin in
                         VStack {
                             HStack {
-                                // Static profile image (Placeholder for now)
-                                Image("staticProfilePlaceholder")  // Use your placeholder image name
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(Circle())
+                                // Pin Image (Placeholder for now)
+                                if let imageUrl = pin.imageUrls.first, let url = URL(string: imageUrl) {
+                                    AsyncImage(url: url) { image in
+                                        image
+                                            .resizable()
+                                            .frame(width: 60, height: 60)
+                                            .clipShape(Rectangle())
+                                    } placeholder: {
+                                        Rectangle()
+                                            .fill(Color.gray)
+                                            .frame(width: 60, height: 60)
+                                    }
+                                } else {
+                                    Rectangle()
+                                        .fill(Color.gray)
+                                        .frame(width: 60, height: 60)
+                                }
 
                                 VStack(alignment: .leading) {
-                                    Text(user.username)
+                                    Text(pin.title)
                                         .font(.headline)
                                         .foregroundColor(Color("SubColor"))  // Adjust based on color scheme
                                     
-                                    Text(user.email)
+                                    Text("\(String(format: "%.1f", pin.latitude)), \(String(format: "%.1f", pin.longitude)) km")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                 }
 
                                 Spacer()
 
-                                HStack {
-                                    Button(action: {
-                                        viewModel.approveUser(user)
-                                    }) {
-                                        Image(systemName: "checkmark.circle.fill")
-                                            .font(.largeTitle)
-                                            .foregroundColor(.green)
-                                    }
-                                    
-                                    Button(action: {
-                                        viewModel.rejectUser(user)
-                                    }) {
-                                        Image(systemName: "xmark.circle.fill")
-                                            .font(.largeTitle)
-                                            .foregroundColor(.red)
-                                    }
+                                Button(action: {
+                                    viewModel.deletePin(pin)
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.red)
                                 }
                             }
                             .padding(.vertical, 8)
@@ -85,7 +87,7 @@ struct UserManagementView: View {
                             .cornerRadius(10)
                             .padding(.horizontal)
                             
-                            // Add a gray line (divider) below each user rectangle
+                            // Add a gray line (divider) below each pin rectangle
                             Divider()
                                 .background(Color.gray)
                                 .padding(.horizontal)
@@ -97,13 +99,13 @@ struct UserManagementView: View {
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .onAppear {
-            viewModel.fetchNonAdminUsers()
+            viewModel.fetchVerifiedPins()
         }
     }
 }
 
-struct UserManagementView_Previews: PreviewProvider {
+struct PinManagementView_Previews: PreviewProvider {
     static var previews: some View {
-        UserManagementView()
+        PinManagementView()
     }
 }

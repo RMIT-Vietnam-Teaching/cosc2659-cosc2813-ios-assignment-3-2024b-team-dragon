@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdminPanelView: View {
     @State private var showPendingPinView = false
-    @State private var showUserManagementView = false
+    @State private var showPinManagementView = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -27,12 +27,12 @@ struct AdminPanelView: View {
             }
             
             Button(action: {
-                showUserManagementView = true
+                showPinManagementView = true
             }) {
-                settingsRow(iconName: "shield.fill", label: "User Management")
+                settingsRow(iconName: "shield.fill", label: "Pin Management")
             }
-            .sheet(isPresented: $showUserManagementView) {
-                UserManagementView() // Replace with your actual view for user management
+            .sheet(isPresented: $showPinManagementView) {
+                PinManagementView() // Replace with your actual view for user management
             }
             
             Spacer()
