@@ -19,6 +19,7 @@
 		0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */; };
 		0362DA4F2C91A687008ED49A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA4E2C91A687008ED49A /* User.swift */; };
 		0362DA542C91B1C1008ED49A /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA532C91B1C1008ED49A /* SettingsRow.swift */; };
+		0379B7272C9C3F5300DBF916 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379B7262C9C3F5300DBF916 /* Formatter.swift */; };
 		0390D2132C97D8A600901461 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2122C97D8A600901461 /* AlertView.swift */; };
 		0390D2152C97DD3300901461 /* AlertDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2142C97DD3300901461 /* AlertDetailsView.swift */; };
 		0390D2172C97E06000901461 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2162C97E06000901461 /* AlertViewModel.swift */; };
@@ -94,6 +95,7 @@
 		0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0362DA4E2C91A687008ED49A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0362DA532C91B1C1008ED49A /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		0379B7262C9C3F5300DBF916 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		0390D2122C97D8A600901461 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = Roadify/Utils/UI/AlertView.swift; sourceTree = SOURCE_ROOT; };
 		0390D2142C97DD3300901461 /* AlertDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertDetailsView.swift; path = Roadify/Utils/UI/AlertDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		0390D2162C97E06000901461 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				0A125CE72C9ACD5400F70798 /* Language */,
 				0362DA522C91B16E008ED49A /* UI */,
 				B875DF562C96D992004CED7E /* LocationManager.swift */,
+				0379B7262C9C3F5300DBF916 /* Formatter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
 				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
+				0379B7272C9C3F5300DBF916 /* Formatter.swift in Sources */,
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
 				E99257522C957A1300A44500 /* NewsView.swift in Sources */,
 				0A125CDD2C9AAA8900F70798 /* ActivityLogsViewModel.swift in Sources */,

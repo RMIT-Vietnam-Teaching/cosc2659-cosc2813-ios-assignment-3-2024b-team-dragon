@@ -5,7 +5,6 @@ struct AlertDetailsView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            // Title Section
             VStack {
                 Text("Alerts")
                     .font(.title)
@@ -16,8 +15,7 @@ struct AlertDetailsView: View {
                     .font(.headline)
                     .foregroundColor(Color.white)
                 
-                // Add data timestamp here
-                Text("9:41 05/09")
+                Text(Formatter.formatDate(pin.timestamp))
                     .font(.subheadline)
                     .foregroundColor(Color.white)
             }
@@ -36,7 +34,6 @@ struct AlertDetailsView: View {
                 }
             }
             
-            // Thumbs up and down section
             HStack(spacing: 20) {
                 HStack {
                     Text("34")
@@ -92,18 +89,20 @@ struct AlertDetailsView: View {
     }
 }
 
-//// Preview with a mock Pin object
-//struct AlertDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let mockPin = Pin(
-//            id: "1",
-//            latitude: 10.762622,
-//            longitude: 106.660172,
-//            title: "Two Cars Crash At The Cross Road",
-//            description: "No casualties, slow traffic.",
-//            status: .verified,
-//            imageUrls: ["https://via.placeholder.com/300"]
-//        )
-//        AlertDetailsView(pin: mockPin)
-//    }
-//}
+// Preview with a mock Pin object
+struct AlertDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        let mockPin = Pin(
+            id: "1",
+            latitude: 10.762622,
+            longitude: 106.660172,
+            title: "Two Cars Crash At The Cross Road",
+            description: "No casualties, slow traffic.",
+            status: .verified,
+            imageUrls: ["https://via.placeholder.com/300"],
+            timestamp: Date(),  // Timestamp when the pin was placed
+            reportedBy: "String" // ID of the user who reported the pin
+        )
+        AlertDetailsView(pin: mockPin)
+    }
+}

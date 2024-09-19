@@ -19,11 +19,23 @@ struct AlertView: View {
                 List(viewModel.filteredPins) { pin in
                     NavigationLink(destination: AlertDetailsView(pin: pin)) {
                         HStack {
-                            // Map Image (Placeholder)
-                            Image("map_on")
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                                .cornerRadius(8)
+                            if let imageUrl = pin.imageUrls.first, !imageUrl.isEmpty {
+                                AsyncImage(url: URL(string: imageUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                        .cornerRadius(8)
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                            } else {
+                                // Fallback image if there is no image URL
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .cornerRadius(8)
+                                    .foregroundColor(.gray)
+                            }
 
                             VStack(alignment: .leading, spacing: 5) {
                                 Text(pin.title)
