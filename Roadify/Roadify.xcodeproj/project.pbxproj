@@ -39,6 +39,7 @@
 		0A6FE7162C99ABCF0055B534 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6FE7152C99ABCF0055B534 /* SplashScreenView.swift */; };
 		0A6FE7182C99ABEC0055B534 /* GIF1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0A6FE7172C99ABEB0055B534 /* GIF1.gif */; };
 		0A918D922C9CAFF000A4B746 /* NavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918D912C9CAFF000A4B746 /* NavigationBarAppearance.swift */; };
+		0A918D982C9D965E00A4B746 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918D972C9D965E00A4B746 /* LanguageSelectionView.swift */; };
 		0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */; };
 		0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */; };
 		B81FB92F2C9C0E5000DB90C1 /* AccountNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB92E2C9C0E5000DB90C1 /* AccountNotLoginView.swift */; };
@@ -112,6 +113,7 @@
 		0A6FE7152C99ABCF0055B534 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		0A6FE7172C99ABEB0055B534 /* GIF1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GIF1.gif; sourceTree = "<group>"; };
 		0A918D912C9CAFF000A4B746 /* NavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarAppearance.swift; sourceTree = "<group>"; };
+		0A918D972C9D965E00A4B746 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		B81FB92E2C9C0E5000DB90C1 /* AccountNotLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotLoginView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				033DA9BD2C99CA3300A71506 /* SearchBar.swift */,
 				0A6FE70B2C999B330055B534 /* GIFImage.swift */,
 				0A918D912C9CAFF000A4B746 /* NavigationBarAppearance.swift */,
+				0A918D972C9D965E00A4B746 /* LanguageSelectionView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				B8675E1A2C95863700B649B3 /* ProgressViewModel.swift in Sources */,
 				E9B8AE192C9325990037450A /* MapView.swift in Sources */,
 				B81FB9332C9C0E5C00DB90C1 /* ActivityLogsView.swift in Sources */,
+				0A918D982C9D965E00A4B746 /* LanguageSelectionView.swift in Sources */,
 				0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */,
 				E9F1C2F22C996DD7009ACA55 /* ImagePickerView.swift in Sources */,
 				B81FB9312C9C0E5700DB90C1 /* AccountView.swift in Sources */,

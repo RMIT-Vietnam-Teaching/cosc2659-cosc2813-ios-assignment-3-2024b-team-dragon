@@ -24,7 +24,7 @@ class ActivityLogsViewModel: ObservableObject {
     
     func fetchActivityLogs() {
         guard let user = Auth.auth().currentUser else {
-            self.errorMessage = "User not logged in."
+            self.errorMessage = NSLocalizedString("activityLogs_error_notLoggedIn", comment: "User not logged in error")
             return
         }
         
@@ -41,7 +41,7 @@ class ActivityLogsViewModel: ObservableObject {
                     }
                     
                     guard let documents = querySnapshot?.documents else {
-                        self.errorMessage = "No activity logs found."
+                        self.errorMessage = NSLocalizedString("activityLogs_error_noLogsFound", comment: "No activity logs found error")
                         return
                     }
                     
@@ -71,7 +71,7 @@ class ActivityLogsViewModel: ObservableObject {
         
         db.collection("activityLogs").addDocument(data: newLog) { error in
             if let error = error {
-                print("Error adding activity log: \(error.localizedDescription)")
+                print(NSLocalizedString("activityLogs_error_addingLog", comment: "Error adding activity log") + ": \(error.localizedDescription)")
             }
         }
     }

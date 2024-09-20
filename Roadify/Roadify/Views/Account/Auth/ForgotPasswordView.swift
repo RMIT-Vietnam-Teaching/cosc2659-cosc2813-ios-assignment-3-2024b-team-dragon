@@ -22,10 +22,10 @@ struct ForgotPasswordView: View {
             VStack(spacing: 20) {
                 // Email Input Field
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Email")
+                    Text(NSLocalizedString("forgotPassword_emailLabel", comment: "Label for email field"))
                         .font(.headline)
                     
-                    TextField("Enter your email", text: $email)
+                    TextField(NSLocalizedString("forgotPassword_placeholderEmail", comment: "Placeholder for email input"), text: $email)
                         .autocapitalization(.none)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
@@ -40,7 +40,7 @@ struct ForgotPasswordView: View {
                 }) {
                     HStack {
                         Spacer()
-                        Text("Confirm Your Email")
+                        Text(NSLocalizedString("forgotPassword_confirmButton", comment: "Button title to confirm email"))
                             .foregroundColor(Color.black)
                             .bold()
                         Spacer()
@@ -62,7 +62,7 @@ struct ForgotPasswordView: View {
             }
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
-            .navigationTitle("Change your Password")
+            .navigationTitle(NSLocalizedString("forgotPassword_navigationTitle", comment: "Navigation title for forgot password"))
             .onAppear(){
                 NavigationBarAppearance.setupNavigationBar()
             }
@@ -78,7 +78,7 @@ struct ForgotPasswordView: View {
                 }
             }
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Notification"), message: Text(alertMessage), dismissButton: .default(Text("OK"), action: {
+                Alert(title: Text(NSLocalizedString("forgotPassword_alertTitle", comment: "Alert title")), message: Text(alertMessage), dismissButton: .default(Text(NSLocalizedString("forgotPassword_alertButtonOK", comment: "Alert button OK")), action: {
                     // Go back to the SignInView after pressing OK
                     self.presentationMode.wrappedValue.dismiss()
                 }))
@@ -93,9 +93,9 @@ struct ForgotPasswordView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 isLoading = false
                 if let error = error {
-                    alertMessage = "Error: \(error.localizedDescription)"
+                    alertMessage = NSLocalizedString("forgotPassword_errorMessage", comment: "Error message") + "\(error.localizedDescription)"
                 } else {
-                    alertMessage = "A confirmation link has been sent to your email."
+                    alertMessage = NSLocalizedString("forgotPassword_emailSentMessage", comment: "Confirmation email sent message")
                 }
                 showAlert = true
             }

@@ -21,7 +21,7 @@ struct EditProfileView: View {
 	
 	var body: some View {
 		VStack(spacing: 20) {
-			Text("Edit Profile")
+			Text(NSLocalizedString("editProfile_title", comment: "No email available"))
 				.font(.title2)
 				.bold()
 			
@@ -54,7 +54,7 @@ struct EditProfileView: View {
 				Button(action: {
 					showingImagePicker = true
 				}) {
-					Text("Change Profile Image")
+					Text(NSLocalizedString("editProfile_image", comment: "Change Profile Image"))
 						.font(.subheadline)
 						.foregroundColor(.blue)
 				}
@@ -67,9 +67,9 @@ struct EditProfileView: View {
 			
 			// Username Input
 			VStack(alignment: .leading, spacing: 8) {
-				Text("Username")
+				Text(NSLocalizedString("editProfile_username", comment: "Username of Edit Profile View"))
 					.font(.headline)
-				TextField("Enter your username", text: $username)
+				TextField(NSLocalizedString("editProfile_promptUsername", comment: "Prompt to change username"), text: $username)
 					.padding()
 					.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
 					.foregroundColor(.white)
@@ -77,9 +77,9 @@ struct EditProfileView: View {
 			
 			// Address Input
 			VStack(alignment: .leading, spacing: 8) {
-				Text("Address")
+				Text(NSLocalizedString("editProfile_address", comment: "Address"))
 					.font(.headline)
-				TextField("Enter your address", text: $address)
+				TextField(NSLocalizedString("editProfile_promptAddress", comment: "Prompt to change address"), text: $address)
 					.padding()
 					.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
 					.foregroundColor(.white)
@@ -87,11 +87,11 @@ struct EditProfileView: View {
 			
 			// Mobile Phone Input
 			VStack(alignment: .leading, spacing: 8) {
-				Text("Mobile Phone")
+				Text(NSLocalizedString("mobilePhone", comment: "add mobile phone"))
 					.font(.headline)
-				TextField("Enter your mobile phone", text: $mobilePhone)
+				TextField(NSLocalizedString("editProfile_promptMobile", comment: "Prompt to change Mobile"), text: $mobilePhone)
 					.padding()
-					.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
 					.foregroundColor(.white)
 			}
 			
@@ -105,7 +105,7 @@ struct EditProfileView: View {
 			}) {
 				HStack {
 					Spacer()
-					Text("Save Changes")
+					Text(NSLocalizedString("saveProfile", comment: "Save edit profile"))
 						.foregroundColor(Color("FourthColor"))
 						.bold()
 					Spacer()

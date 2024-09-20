@@ -1,6 +1,6 @@
-import SwiftUI
 import Firebase
 import FirebaseCore
+import SwiftUI
 
 @main
 struct RoadifyApp: App {
@@ -8,18 +8,17 @@ struct RoadifyApp: App {
         FirebaseApp.configure()
         print("Firebase Configured!")
 
-//		// For debug: clear UserDefaults
-//		let defaults = UserDefaults.standard
-//		let dictionary = defaults.dictionaryRepresentation()
-//		dictionary.keys.forEach { key in
-//			defaults.removeObject(forKey: key)
-//		}
+        //		// For debug: clear UserDefaults
+        //		let defaults = UserDefaults.standard
+        //		let dictionary = defaults.dictionaryRepresentation()
+        //		dictionary.keys.forEach { key in
+        //			defaults.removeObject(forKey: key)
+        //		}
     }
-    
+
     var body: some Scene {
         WindowGroup {
-			SplashScreenView()
+            SplashScreenView()
         }
     }
 }
-
