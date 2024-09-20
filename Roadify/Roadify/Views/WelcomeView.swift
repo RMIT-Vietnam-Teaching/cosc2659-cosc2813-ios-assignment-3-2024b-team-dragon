@@ -6,7 +6,8 @@ struct WelcomeView: View {
     let totalPage = 3
     
     var body: some View {
-        NavigationView {
+//        NavigationView { *FixYellowWarning*
+        NavigationStack {
             VStack {
                 HStack {
                     Spacer()
@@ -42,7 +43,9 @@ struct WelcomeView: View {
                             Circle()
                                 .frame(width: 10, height: 10)
                                 .foregroundColor(currentPage == index ? Color("SubColor") : .gray)
-                                .animation(.easeInOut)
+//                                .animation(.easeInOut) *FixYellowWarning*
+								.animation(.easeInOut, value: 1)
+
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
@@ -52,13 +55,18 @@ struct WelcomeView: View {
                 Spacer()
                 
                 // Navigation Link to TabView
-                NavigationLink(
-                    destination: TabView().navigationBarBackButtonHidden(true), // Replace with your TabView
-                    isActive: $navigateToTabView,
-                    label: {
-                        EmptyView()
-                    }
-                )
+//                NavigationLink(
+//                    destination: TabView().navigationBarBackButtonHidden(true), // Replace with your TabView
+//                    isActive: $navigateToTabView,
+//                    label: {
+//                        EmptyView()
+//                    }
+//                ) *FixYellowWarning*
+				.navigationDestination(isPresented: $navigateToTabView) {
+						TabView().navigationBarBackButtonHidden(true)
+//						EmptyView()
+					}
+						
             }
             .background(Color("MainColor"))
             .edgesIgnoringSafeArea(.all)

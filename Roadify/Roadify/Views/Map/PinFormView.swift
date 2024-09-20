@@ -21,12 +21,14 @@ struct PinFormView: View {
     @State private var showImagePicker: Bool = false
     @State private var selectedImages: [UIImage] = []  // Array for selected images
     @State private var isUploading: Bool = false  // Show a loading state while uploading images
+	@State private var titleError: Bool = false
+	@State private var descriptionError: Bool = false
 
     @State private var latitude: String = ""
     @State private var longitude: String = ""
 
-    let onSubmit: () -> Void  // This closure will be called when the user submits the form
-    let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
+	let onSubmit: (_ completion: @escaping () -> Void) -> Void
+	let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
     let pinService = PinService()
 
     // MARK: - Body
@@ -57,20 +59,35 @@ struct PinFormView: View {
                 .padding()
 
             // MARK: - Add title
-            TextField("Title", text: $title)
+			TextField(titleError ? "Title cannot be empty" : "Title", text: $title)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
                 .shadow(color: .gray, radius: 1, x: 0, y: 2)
                 .padding([.trailing,.leading])
+				.overlay(
+					RoundedRectangle(cornerRadius: 10)
+						.stroke(titleError ? Color.red : Color.clear, lineWidth: 3)
+						.padding([.trailing,.leading])
+				)
+				.onChange(of: title) {
+					titleError = false
+				}
 
             HStack (spacing: 0) {
                 // MARK: - Add description
-                TextField("Description", text: $description)
+				TextField(descriptionError ? "Description cannot be empty" : "Description", text: $description)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(color: .gray, radius: 1, x: 0, y: 1)
+					.overlay(
+						RoundedRectangle(cornerRadius: 10)
+							.stroke(descriptionError ? Color.red : Color.clear, lineWidth: 3)
+					)
+					.onChange(of: description) {
+						descriptionError = false
+					}
 
                 // MARK: - Add Image
                 Button(action: {
@@ -92,8 +109,10 @@ struct PinFormView: View {
                         .edgesIgnoringSafeArea(.bottom)
                 }
                 .padding(.leading)
+				
                 .onChange(of: selectedImages) { newImages in
-                    images.append(contentsOf: newImages)  // Append the selected images
+                    images.append(contentsOf: newImages)
+					// Append the selected images
                 }
             }
             .padding()
@@ -145,7 +164,7 @@ struct PinFormView: View {
                         }
                 }
             }
-            .padding()
+			.padding([.top, .leading, .trailing])
 
             // MARK: - Image Preview
             ScrollView(.horizontal, showsIndicators: false) {
@@ -157,61 +176,55 @@ struct PinFormView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }
-            }
-            .padding()
-
-            // Loading indicator
-            if isUploading {
-                ProgressView("Uploading...")
-                    .padding()
-                    .progressViewStyle(ProgressViewModel(color: Color("SubColor"), textColor: Color.white, text: "Uploading..."))
+				.padding()
             }
 
-            // MARK: - Add pin button
-            Button {
-                savePin()
-            } label: {
-                Label(String("Add Pin"), systemImage: "plus.circle")
-                    .foregroundStyle(Color("SubColor"))
-            }
-            .buttonStyle(.bordered)
-            .controlSize(.large)
-            .padding()
+            // MARK: - Loading indicator/ Add pin button
+			HStack {
+				if isUploading {
+					Spacer()
+					ProgressView("Uploading...")
+						.progressViewStyle(ProgressViewModel(color: Color("SubColor"), textColor: Color.white, text: "Uploading..."))
+				} else {
+					Button {
+						validateAndSubmit()
+					} label: {
+						Label("Add Pin", systemImage: "plus.circle")
+							.foregroundStyle(Color("SubColor"))
+					}
+					.buttonStyle(.bordered)
+					.controlSize(.large)
+					.padding([.bottom, .trailing, .leading])
+				}
+			}
         }
         .background(Color("MainColor"))
         .padding()
     }
-
-    // Save the pin to Firebase
-    func savePin() {
-        guard let coordinate = selectedCoordinate else { return }
-
-        isUploading = true  // Show the loading indicator while uploading
-
-        // Fetch the current user from Firebase Authentication
-        guard let currentUser = firebaseService.getCurrentUser() else {
-            print("Error: User not logged in")
-            return
-        }
-
-        // Save the pin to Firebase, passing the user and current timestamp
-        pinService.savePin(
-            title: title,
-            description: description,
-            coordinate: coordinate,
-            images: images,
-            user: currentUser  // Pass the current user
-        ) { error in
-            isUploading = false  // Hide the loading indicator
-            if let error = error {
-                print("Error saving pin to Firestore: \(error.localizedDescription)")
-            } else {
-                print("Pin successfully saved to Firestore!")
-                onSubmit()  // Trigger the onSubmit action after saving
-                showModal = false  // Close the modal after submission
-            }
-        }
-    }
+	
+	// MARK: - Validation Function
+	func validateAndSubmit() {
+		// Reset errors
+		titleError = false
+		descriptionError = false
+		
+		// Validate title /description
+		if title.isEmpty {
+			titleError = true
+		}
+		if description.isEmpty {
+			descriptionError = true
+		}
+		
+		if titleError || descriptionError {
+			return
+		}
+		
+		isUploading = true
+		onSubmit {
+			isUploading = false
+		}
+	}
 }
 
 struct PinFormView_Previews: PreviewProvider {
@@ -228,9 +241,8 @@ struct PinFormView_Previews: PreviewProvider {
 			images: $images,
 			showModal: $showModal,
 			selectedCoordinate: $selectedCoordinate,
-			onSubmit: {
-				// Add action to be performed on submit if needed
-				print("Pin submitted")
+			onSubmit: {completion in 
+				completion()
 			}
 		)
 		.previewLayout(.sizeThatFits)  // Adjusts preview size to fit the content

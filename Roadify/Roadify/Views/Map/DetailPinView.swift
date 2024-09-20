@@ -25,8 +25,8 @@ struct DetailPinView: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 24))
                 }
-                .padding(.top, 10)
-                .padding(.trailing, 10)
+				.padding([.top, .trailing], 20)
+
             }
 
             // Pin Title and Date
@@ -105,7 +105,9 @@ struct DetailPinView: View {
         .cornerRadius(20)
         .shadow(radius: 10)
         .transition(.move(edge: .bottom))
-        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5))
+//        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5)) 
+		.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
+		
     }
 
     // Helper to format date

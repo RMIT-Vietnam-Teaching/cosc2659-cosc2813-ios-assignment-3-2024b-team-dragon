@@ -1,0 +1,55 @@
+  Cuong-ConnectWelcomeView
+  Cuong-Direction
+  Cuong-FixMapUI
+  Cuong-FixNewsUI
+  Cuong-Location
+  Cuong-MapView
+  Cuong-TabView
+  Cuong-WelcomeView
+  Dung-UX/UI
+  Phuoc-Views-MapKit
+  Phuoc-Views-News-NewUI
+* main
+  remotes/origin/Cuong-ConnectWelcomeView
+  remotes/origin/Cuong-Direction
+  remotes/origin/Cuong-FixMapUI
+  remotes/origin/Cuong-FixNewsUI
+  remotes/origin/Cuong-Location
+  remotes/origin/Cuong-MapView
+  remotes/origin/Cuong-TabView
+  remotes/origin/Cuong-WelcomeView
+  remotes/origin/DucAnh
+  remotes/origin/DucAnh-AlertView
+  remotes/origin/DucAnh-FirebaseAuth
+  remotes/origin/DucAnh-Fix
+  remotes/origin/DucAnh-Services-Firebase
+  remotes/origin/Dung-UI
+  remotes/origin/Dung-UI-2
+  remotes/origin/Dung-UX/UI
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/Phuoc-Admin
+  remotes/origin/Phuoc-Views-MapKit
+  remotes/origin/Phuoc-Views-MapView
+  remotes/origin/Phuoc-Views-News
+  remotes/origin/Phuoc-Views-News-NewUI
+  remotes/origin/main
+
+
+'init(destination:isActive:label:)' was deprecated in iOS 16.0: use NavigationLink(value:label:), 
+or navigationDestination(isPresented:destination:), inside a NavigationStack or NavigationSplitView
+
+
+NavigationLink(
+     destination: Verification(phoneLoginData: phoneLoginData), 
+     isActive: $phoneLoginData.goToVerify) {
+          Text("")
+               .hidden()
+     }
+
+
+.navigationDestination(
+     isPresented: $phoneLoginData.goToVerify) {
+          Verification(phoneLoginData: phoneLoginData)
+          Text("")
+              .hidden()
+     }

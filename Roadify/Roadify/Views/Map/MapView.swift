@@ -49,9 +49,12 @@ struct MapView: View {
                         images: $pinImages,
                         showModal: $showPinModel,
                         selectedCoordinate: $selectedCoordinate,
-                        onSubmit: {
-                            addPin()
-                        }
+						onSubmit: {completion in 
+							DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+								completion()
+							}
+							addPin()
+						}
                     )
                     .background(Color("MainColor"))
                     .transition(.move(edge: .bottom))
@@ -112,13 +115,11 @@ struct MapView: View {
         }
         // Present the detail view
         if let pin = selectedPin {
-            VStack {
-                Spacer()
-                DetailPinView(selectedPin: $selectedPin, pin: pin)
-                    .background(Color("MainColor"))
-                    .transition(.move(edge: .bottom))
-                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5))
-            }
+			DetailPinView(selectedPin: $selectedPin, pin: pin)
+				.background(Color("MainColor"))
+				.transition(.move(edge: .bottom))
+//                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5))
+				.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
         }
     }
     

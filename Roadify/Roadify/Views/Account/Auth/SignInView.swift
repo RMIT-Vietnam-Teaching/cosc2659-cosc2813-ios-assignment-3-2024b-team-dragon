@@ -14,7 +14,8 @@ struct SignInView: View {
     @State private var isLoading: Bool = false
     
     var body: some View {
-        NavigationView {
+//        NavigationView { *FixYellowWarning*
+        NavigationStack {
             VStack(spacing: 20) {
                 Text("Sign In")
                     .font(.largeTitle)
@@ -59,9 +60,13 @@ struct SignInView: View {
                 }
                 
                 // Navigate if logged in successfully
-                NavigationLink(destination: TabView(), isActive: $viewModel.isLoggedIn) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: TabView(), isActive: $viewModel.isLoggedIn) {
+//                    EmptyView()
+//                } *FixYellowWarning*
+				.navigationDestination(isPresented: $viewModel.isLoggedIn) {
+					TabView()
+					EmptyView()
+				}
                 
                 Spacer()
                 

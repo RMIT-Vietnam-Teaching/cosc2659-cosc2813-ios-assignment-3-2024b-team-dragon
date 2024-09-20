@@ -74,17 +74,17 @@ struct MapViewRepresentable: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             let centerCoordinate = mapView.centerCoordinate
             parent.selectedCoordinate = centerCoordinate
-            print("MapView: Region changed. Center coordinates - Latitude: \(centerCoordinate.latitude), Longitude: \(centerCoordinate.longitude)")
+//            print("MapView: Region changed. Center coordinates - Latitude: \(centerCoordinate.latitude), Longitude: \(centerCoordinate.longitude)")
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             let identifier = "AccidentPin"
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+			var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
             
             if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier) 
                 annotationView?.canShowCallout = true
-                annotationView?.pinTintColor = UIColor.orange
+				annotationView?.tintColor = UIColor.orange
             } else {
                 annotationView?.annotation = annotation
             }

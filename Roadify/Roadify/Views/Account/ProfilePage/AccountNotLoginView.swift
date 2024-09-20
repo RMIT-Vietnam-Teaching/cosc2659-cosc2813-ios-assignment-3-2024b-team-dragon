@@ -92,12 +92,23 @@ struct AccountNotLoginView: View {
 				Spacer()
 				
 				// Navigation Links
-				NavigationLink(destination: SignUpView(), isActive: $navigateToRegister) {
-					EmptyView()
-				}
+//				NavigationLink(destination: SignUpView(), isActive: $navigateToRegister) {
+//					EmptyView()
+//				} *FixYellowWarning*
 				
-				NavigationLink(destination: SignInView(), isActive: $navigateToLogin) {
-					EmptyView()
+				.navigationDestination(
+					isPresented: $navigateToRegister) {
+						SignUpView()
+						EmptyView()
+					}
+				
+//				NavigationLink(destination: SignInView(), isActive: $navigateToLogin) {
+//					EmptyView() *FixYellowWarning*
+					
+				.navigationDestination(
+					isPresented: $navigateToLogin) {
+						SignInView()
+						EmptyView()
 				}
 			}
 			.padding()

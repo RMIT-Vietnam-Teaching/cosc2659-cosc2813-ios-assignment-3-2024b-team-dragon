@@ -118,10 +118,17 @@ struct SignUpView: View {
                     }
                 }
 
-                NavigationLink(destination: SignInView(), isActive: $navigateToSignIn) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: SignInView(), isActive: $navigateToSignIn) {
+//                    EmptyView()
+//                }
+				
+				
             }
+			.navigationDestination(isPresented: $navigateToSignIn) {
+				SignInView()
+				EmptyView()
+			}
+			
             .padding()
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         }
@@ -152,11 +159,17 @@ struct SignUpView: View {
                         .background(Color.clear)
                         .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                         .focused($focusedField, equals: field)
-                        .onChange(of: focusedField) { newValue in
-                            if newValue == nil {
-                                self.activeField = field
-                            }
-                        }
+//                        .onChange(of: focusedField) { newValue in
+//                            if newValue == nil {
+//                                self.activeField = field
+//                            }
+//                        } *FixYellowWarning*
+						.onChange(of: focusedField, { oldValue, newValue in
+							if newValue == nil {
+								self.activeField = field
+							}
+						})
+					
                         .onTapGesture {
                             self.activeField = field
                         }
@@ -210,11 +223,18 @@ struct SignUpView: View {
                     .background(Color.clear)
                     .foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
                     .focused($focusedField, equals: field)
-                    .onChange(of: focusedField) { newValue in
-                        if newValue == nil {
-                            self.activeField = field
-                        }
-                    }
+					
+//                    .onChange(of: focusedField) { newValue in
+//                        if newValue == nil {
+//                            self.activeField = field
+//                        }
+//                    } *FixYellowWarning*
+					.onChange(of: focusedField, {oldValue, newValue in
+						if newValue == nil {
+							self.activeField = field
+						}
+					})
+					
                     .onTapGesture {
                         self.activeField = field
                     }
