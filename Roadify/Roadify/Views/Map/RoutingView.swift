@@ -1,10 +1,3 @@
-//
-//  DestinationView.swift
-//  Roadify
-//
-//  Created by Cường Võ Duy on 16/9/24.
-//
-
 import SwiftUI
 
 struct RoutingView: View {

@@ -17,18 +17,24 @@ struct ActivityLogsView: View {
             VStack(spacing: 20) {
                 Text("")
                     .frame(maxWidth: .infinity, alignment: .center)
-                
+
                 if viewModel.isLoading {
                     ProgressView(NSLocalizedString("activityLogs_loading", comment: "Loading..."))
                         .padding()
                 } else if let errorMessage = viewModel.errorMessage {
-                    Text(NSLocalizedString("activityLogs_error", comment: "Error message") + ": \(errorMessage)")
-                        .foregroundColor(.red)
-                        .padding()
+                    Text(
+                        NSLocalizedString("activityLogs_error", comment: "Error message")
+                            + ": \(errorMessage)"
+                    )
+                    .foregroundColor(.red)
+                    .padding()
                 } else if viewModel.activityLogs.isEmpty {
-                    Text(NSLocalizedString("activityLogs_noLogs", comment: "No activity logs available"))
-                        .foregroundColor(.gray)
-                        .padding()
+                    Text(
+                        NSLocalizedString(
+                            "activityLogs_noLogs", comment: "No activity logs available")
+                    )
+                    .foregroundColor(.gray)
+                    .padding()
                 } else {
                     List(viewModel.activityLogs) { log in
                         VStack(alignment: .leading, spacing: 5) {
@@ -42,25 +48,25 @@ struct ActivityLogsView: View {
                         .padding(.vertical, 5)
                         .background(Color("MainColor"))
                         .cornerRadius(8)
-                        .listRowBackground(Color("MainColor")) // Set the background color for list rows
+                        .listRowBackground(Color("MainColor"))  // Set the background color for list rows
                     }
                     .listStyle(PlainListStyle())
                     .background(Color("MainColor"))
                 }
-                
+
                 Spacer()
             }
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
             .navigationTitle(NSLocalizedString("activityLogs_title", comment: "Activity Logs"))
-            .onAppear(){
+            .onAppear {
                 NavigationBarAppearance.setupNavigationBar()
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        dismiss() // Dismiss the sheet when the "X" is tapped
+                        dismiss()  // Dismiss the sheet when the "X" is tapped
                     }) {
                         Image(systemName: "xmark")
                             .foregroundColor(.white)
@@ -69,7 +75,7 @@ struct ActivityLogsView: View {
             }
         }
     }
-    
+
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

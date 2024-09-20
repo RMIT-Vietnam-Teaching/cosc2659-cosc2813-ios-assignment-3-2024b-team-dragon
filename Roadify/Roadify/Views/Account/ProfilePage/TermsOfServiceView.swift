@@ -1,16 +1,20 @@
+import Foundation
 import SwiftUI
 
 struct TermsOfServiceView: View {
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Spacer()
-                    Text(NSLocalizedString("terms_of_service_text", comment: "Terms of Service Description"))
-                        .padding(.horizontal)
-                    
+                    Text(
+                        NSLocalizedString(
+                            "terms_of_service_text", comment: "Terms of Service Description")
+                    )
+                    .padding(.horizontal)
+
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -18,7 +22,9 @@ struct TermsOfServiceView: View {
             }
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
-            .navigationTitle(NSLocalizedString("terms_of_service_title", comment: "Terms of Service Title"))
+            .navigationTitle(
+                NSLocalizedString("terms_of_service_title", comment: "Terms of Service Title")
+            )
             .onAppear {
                 NavigationBarAppearance.setupNavigationBar()
             }
@@ -26,7 +32,7 @@ struct TermsOfServiceView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        dismiss() // Dismiss the sheet when the "X" is tapped
+                        dismiss()  // Dismiss the sheet when the "X" is tapped
                     }) {
                         Image(systemName: "xmark")
                             .foregroundColor(.white)

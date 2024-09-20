@@ -1,10 +1,3 @@
-//
-//  ImagePickerViewModel.swift
-//  Roadify
-//
-//  Created by Lê Phước on 17/9/24.
-//
-
 import SwiftUI
 import Photos
 

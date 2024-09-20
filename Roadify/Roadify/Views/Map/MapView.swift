@@ -1,10 +1,3 @@
-//
-//  MapView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 9/9/24.
-//
-
 import SwiftUI
 import MapKit
 import CoreLocation
@@ -49,10 +42,7 @@ struct MapView: View {
                         images: $pinImages,
                         showModal: $showPinModel,
                         selectedCoordinate: $selectedCoordinate,
-						onSubmit: {completion in 
-							DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-								completion()
-							}
+						onSubmit: {
 							addPin()
 						}
                     )

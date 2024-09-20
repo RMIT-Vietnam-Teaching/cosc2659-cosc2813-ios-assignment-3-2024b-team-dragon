@@ -15,10 +15,13 @@ struct PrivacyPolicyView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    
-                    Text(NSLocalizedString("privacy_policy_text", comment: "Privacy Policy Description"))
-                        .padding()
-                    
+
+                    Text(
+                        NSLocalizedString(
+                            "privacy_policy_text", comment: "Privacy Policy Description")
+                    )
+                    .padding()
+
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -26,7 +29,9 @@ struct PrivacyPolicyView: View {
             }
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
-            .navigationTitle(NSLocalizedString("privacy_policy_title", comment: "Privacy Policy Title"))
+            .navigationTitle(
+                NSLocalizedString("privacy_policy_title", comment: "Privacy Policy Title")
+            )
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 NavigationBarAppearance.setupNavigationBar()

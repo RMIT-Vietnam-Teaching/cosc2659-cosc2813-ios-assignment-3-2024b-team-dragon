@@ -1,9 +1,3 @@
-//  AddNewsFormView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 14/9/24.
-//
-
 import SwiftUI
 
 struct AddNewsFormView: View {

@@ -1,10 +1,3 @@
-//
-//  TabButtonView.swift
-//  Roadify
-//
-//  Created by Cường Võ Duy on 13/9/24.
-//
-
 import Foundation
 import SwiftUI
 

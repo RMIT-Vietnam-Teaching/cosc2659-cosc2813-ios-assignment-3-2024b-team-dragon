@@ -46,7 +46,7 @@ class AlertViewModel: ObservableObject {
     // Filter pins based on the search text
     private func filterPins(searchText: String) {
         if searchText.isEmpty {
-            filteredPins = pins  // If search text is empty, show all pins
+            filteredPins = pins
         } else {
             filteredPins = pins.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
         }
@@ -59,7 +59,7 @@ class AlertViewModel: ObservableObject {
             case .success(let fetchedPins):
                 DispatchQueue.main.async {
                     self?.pins = fetchedPins
-                    self?.filteredPins = fetchedPins  // Initialize with all pins
+                    self?.filteredPins = fetchedPins 
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

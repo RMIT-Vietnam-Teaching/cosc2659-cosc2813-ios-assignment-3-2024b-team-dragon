@@ -14,17 +14,33 @@ struct AlertView: View {
                 
                 // Search Bar
                 SearchBar(label: "Search Alerts", text: $viewModel.searchText)
-                
-                // List of Alerts (Filtered)
+            
+                // List of Pins
                 List(viewModel.filteredPins) { pin in
-                    NavigationLink(destination: AlertDetailsView(pin: pin)) {
+                    NavigationLink(
+                        destination: AlertDetailsView(viewModel: AlertDetailsViewModel(pin: pin))  // Pass the ViewModel to the detail view
+                    ) {
                         HStack {
-                            // Map Image (Placeholder)
-                            Image("map_on")
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                                .cornerRadius(8)
+                            // Display Pin image
+                            if let imageUrl = pin.imageUrls.first, !imageUrl.isEmpty {
+                                AsyncImage(url: URL(string: imageUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                        .cornerRadius(8)
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                            } else {
+                                // Fallback image if no image URL
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .cornerRadius(8)
+                                    .foregroundColor(.gray)
+                            }
 
+                            // Display Pin title and distance
                             VStack(alignment: .leading, spacing: 5) {
                                 Text(pin.title)
                                     .foregroundColor(Color("SubColor"))

@@ -45,7 +45,6 @@ class PinService: FirebaseService {
         }
     }
     
-	// MARK: - Save Pin
 	func savePin(title: String, description: String, coordinate: CLLocationCoordinate2D?, images: [UIImage], user: User, completion: @escaping (Error?) -> Void) {
 		guard let coordinate = coordinate else {
 			completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Coordinate is required."]))
@@ -74,4 +73,6 @@ class PinService: FirebaseService {
 			}
 		}
 	}
+    
+    
 }
