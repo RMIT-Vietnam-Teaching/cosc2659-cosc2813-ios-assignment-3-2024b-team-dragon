@@ -23,9 +23,10 @@ struct MapViewRepresentable: UIViewRepresentable {
 	let locationManager = CLLocationManager()
 	
 	func makeUIView(context: Context) -> MKMapView {
+		mapView.delegate = context.coordinator
+
 		mapView.showsUserLocation = true
 		mapView.userTrackingMode = .follow
-		mapView.delegate = context.coordinator
 		
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.startUpdatingLocation()
@@ -35,11 +36,10 @@ struct MapViewRepresentable: UIViewRepresentable {
 		
 		return mapView
 	}
-
 	
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		uiView.removeAnnotations(uiView.annotations)
-		
+
 		for pin in pins {
 			let annotation = MKPointAnnotation()
 			annotation.coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
@@ -52,7 +52,9 @@ struct MapViewRepresentable: UIViewRepresentable {
 	}
 	
 	func makeCoordinator() -> Coordinator {
-		return Coordinator(self, mapView: mapView)
+		let coordinator = Coordinator(self, mapView: mapView)
+		mapView.delegate = coordinator
+		return coordinator
 	}
 	
 	class Coordinator: NSObject, MKMapViewDelegate {
@@ -118,10 +120,12 @@ struct MapViewRepresentable: UIViewRepresentable {
 							return
 						}
 						
-						// Add the route as an overlay on the map
-						self.mapView.addOverlay(route.polyline)
+						print("Route found with distance: \(route.distance) meters")
 						
-						self.mapView.setVisibleMapRect(
+						// Add the route as an overlay on the map
+						self.parent.mapView.addOverlay(route.polyline)
+
+						self.parent.mapView.setVisibleMapRect(
 							route.polyline.boundingMapRect,
 							edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20),
 							animated: true
@@ -131,6 +135,16 @@ struct MapViewRepresentable: UIViewRepresentable {
 			}
 		}
 
+		func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+			print("Renderer requested for overlay")
+			if let polyline = overlay as? MKPolyline {
+				let renderer = MKPolylineRenderer(polyline: polyline)
+				renderer.strokeColor = UIColor.red
+				renderer.lineWidth = 3
+				return renderer
+			}
+			return MKOverlayRenderer()
+		}
 		
 		func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 			let centerCoordinate = mapView.centerCoordinate
@@ -153,16 +167,6 @@ struct MapViewRepresentable: UIViewRepresentable {
 			print("MapView: Rendering custom pin view for annotation.")
 			
 			return annotationView
-		}
-		
-		func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-			if let polyline = overlay as? MKPolyline {
-				let renderer = MKPolylineRenderer(polyline: polyline)
-				renderer.strokeColor = UIColor.red // Customize the route color here
-				renderer.lineWidth = 3 // Customize the width of the route
-				return renderer
-			}
-			return MKOverlayRenderer(overlay: overlay)
 		}
 	}
 }

@@ -31,7 +31,7 @@ struct RoutingView: View {
 						.shadow(radius: 4)
 					
 					HStack {
-						// End Point
+						// End Point¡
 						TextField("End Point", text: $endPoint)
 							.padding()
 							.background(Color.white)
@@ -60,7 +60,6 @@ struct RoutingView: View {
 		.shadow(radius: 5)
 	}
 }
-
 
 //
 //struct RoutingView_Previews: PreviewProvider {

@@ -44,8 +44,8 @@ struct PinFormView: View {
 						.foregroundColor(.gray)
 						.font(.system(size: 24))
 				}
-				.padding(.top, 10)
-				.padding(.trailing, 10)
+				.padding(.top, 20)
+				.padding(.trailing, 20)
 			}
 
             Text("Press on the map\nto pin accidents or traffic jams")
@@ -182,7 +182,6 @@ struct PinFormView: View {
 //			.frame(maxWidth: .infinity)
         }
 		.background(Color("MainColor"))
-        .padding()
     }
     
 	// Save the pin to Firebase

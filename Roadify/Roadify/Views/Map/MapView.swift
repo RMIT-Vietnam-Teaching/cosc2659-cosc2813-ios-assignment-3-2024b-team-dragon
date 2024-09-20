@@ -32,7 +32,7 @@ struct MapView: View {
 	@State private var showRoutingView: Bool = false
 	@State private var mapView = MKMapView()
 	
-	let firebaseService = FirebaseService()  // Firebase service instance
+	let firebaseService = FirebaseService()
 	let geocodingService = GeocodingService()
 
 	
@@ -45,7 +45,7 @@ struct MapView: View {
 				showPinModal: $showPinModel,
 				selectedCoordinate: $selectedCoordinate,
 				showRoutingView: $showRoutingView,
-				startingCoordinate: $startingCoordinate, // Pass new bindings
+				startingCoordinate: $startingCoordinate,
 				endingCoordinate: $endingCoordinate,
 				onMapClick: { coordinate in
 					if showRoutingView {
