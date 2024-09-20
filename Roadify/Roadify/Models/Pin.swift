@@ -14,6 +14,8 @@ struct Pin: Identifiable {
     var imageUrls: [String] = []  // Store URLs of uploaded images
     var timestamp: Date  // Timestamp when the pin was placed
     var reportedBy: String  // ID of the user who reported the pin
+    var likes: Int  // Number of likes
+    var dislikes: Int  // Number of dislikes
 
     enum PinStatus: String {
         case pending = "Pending"
@@ -30,7 +32,9 @@ struct Pin: Identifiable {
             "status": status.rawValue,
             "imageUrls": imageUrls,
             "timestamp": Timestamp(date: timestamp),  // Save as Firestore Timestamp
-            "reportedBy": reportedBy  // Save the user ID
+            "reportedBy": reportedBy,  // Save the user ID
+            "likes": likes,
+            "dislikes": dislikes
         ]
     }
 
@@ -44,7 +48,9 @@ struct Pin: Identifiable {
               let status = PinStatus(rawValue: statusString),
               let imageUrls = data["imageUrls"] as? [String],
               let timestamp = data["timestamp"] as? Timestamp,
-              let reportedBy = data["reportedBy"] as? String else {
+              let reportedBy = data["reportedBy"] as? String,
+              let likes = data["likes"] as? Int,
+              let dislikes = data["dislikes"] as? Int else {
             return nil
         }
 
@@ -57,10 +63,12 @@ struct Pin: Identifiable {
         self.imageUrls = imageUrls
         self.timestamp = timestamp.dateValue()  // Convert Firestore Timestamp to Date
         self.reportedBy = reportedBy
+        self.likes = likes
+        self.dislikes = dislikes
     }
 
     // Custom initializer for creating new pins
-    init(id: String = UUID().uuidString, latitude: Double, longitude: Double, title: String, description: String, status: PinStatus, imageUrls: [String] = [], timestamp: Date, reportedBy: String) {
+    init(id: String = UUID().uuidString, latitude: Double, longitude: Double, title: String, description: String, status: PinStatus, imageUrls: [String] = [], timestamp: Date, reportedBy: String, likes: Int = 0, dislikes: Int = 0) {
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
@@ -70,5 +78,7 @@ struct Pin: Identifiable {
         self.imageUrls = imageUrls
         self.timestamp = timestamp
         self.reportedBy = reportedBy
+        self.likes = likes
+        self.dislikes = dislikes
     }
 }

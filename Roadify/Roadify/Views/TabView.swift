@@ -5,6 +5,7 @@ struct TabView: View {
 	@StateObject private var authManager = AuthManager()
 	@State private var selectedTab = 0
 	@State private var showWelcomeView = true // First launch
+    @StateObject private var accountViewModel = AccountViewModel()
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -26,7 +27,7 @@ struct TabView: View {
 							authManager.refreshAuthStatus()
 						}
 				case 3:
-					AccountView()
+					AccountView(viewModel: accountViewModel)
 						.onAppear {
 							authManager.refreshAuthStatus()
 						}
