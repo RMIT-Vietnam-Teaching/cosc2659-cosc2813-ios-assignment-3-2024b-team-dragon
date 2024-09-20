@@ -27,9 +27,7 @@ struct AccountView: View {
 			Text(LocalizedStringKey("profile_title"))
 				.font(.title2)
 				.bold()
-			
-            Spacer()
-            
+			            
 			Button(action: {
 				showEditProfile = true
 			}) {

@@ -52,8 +52,9 @@ class FirebaseService: NSObject, ObservableObject {
 				completion(error)
 			} else {
 				// Log the profile update activity
-				self.logActivity(action: "Profile Updated", metadata: ["username": user.username])
-				completion(nil)
+                // Log the profile update activity
+                self.logActivity(action: NSLocalizedString("profile_action_updated", comment: "Profile Updated"), metadata: ["username": user.username])
+                completion(nil)
 			}
 		}
 	}

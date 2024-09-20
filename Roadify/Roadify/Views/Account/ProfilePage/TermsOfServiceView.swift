@@ -8,22 +8,8 @@ struct TermsOfServiceView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Spacer()
-                    Text("""
-                    Welcome to our application. By using our app, you agree to the following terms of service:
-                    
-                    1. **Acceptance of Terms**: By accessing or using our application, you agree to be bound by these terms.
-                    
-                    2. **User Responsibilities**: You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.
-                    
-                    3. **Prohibited Activities**: You agree not to engage in any illegal or unauthorized activities when using our app.
-                    
-                    4. **Termination**: We reserve the right to terminate your access to our app if you violate these terms.
-                    
-                    5. **Changes to Terms**: We may update these terms from time to time. Any changes will be posted in this section.
-                    
-                    For more information or if you have any questions, please contact us at roadify911@gmail.com.
-                    """)
-                    .padding(.horizontal)
+                    Text(NSLocalizedString("terms_of_service_text", comment: "Terms of Service Description"))
+                        .padding(.horizontal)
                     
                     Spacer()
                 }
@@ -32,8 +18,8 @@ struct TermsOfServiceView: View {
             }
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
-            .navigationTitle("Terms of Service")
-            .onAppear(){
+            .navigationTitle(NSLocalizedString("terms_of_service_title", comment: "Terms of Service Title"))
+            .onAppear {
                 NavigationBarAppearance.setupNavigationBar()
             }
             .navigationBarTitleDisplayMode(.inline)

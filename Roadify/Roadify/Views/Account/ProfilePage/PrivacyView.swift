@@ -23,7 +23,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showManageAccountData = true
                 }) {
-                    settingsRow(iconName: "doc.text", label: "Manage Account Data")
+                    settingsRow(iconName: "doc.text", label: NSLocalizedString("Privacy_ManageAccount", comment: "ManageAcccount Title"))
                 }
                 .sheet(isPresented: $showManageAccountData) {
                     ManageAccountDataView()
@@ -35,7 +35,7 @@ struct PrivacyView: View {
                 }) {
                     HStack {
                         Image(systemName: "key.fill")
-                        Text("Change Password")
+                        Text(NSLocalizedString("Privacy_ChangePassword", comment: "Change Password"))
                         Spacer()
                         Image(systemName: "chevron.right")
                     }
@@ -49,7 +49,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showActivityLogs = true
                 }) {
-                    settingsRow(iconName: "clock", label: "Activity Logs")
+                    settingsRow(iconName: "clock", label: NSLocalizedString("Privacy_Logs", comment: "ActivityLogs"))
                 }
                 .sheet(isPresented: $showActivityLogs) {
                     ActivityLogsView()
@@ -58,7 +58,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showPrivacyPolicy = true
                 }) {
-                    settingsRow(iconName: "doc.text.magnifyingglass", label: "Privacy Policy")
+                    settingsRow(iconName: "doc.text.magnifyingglass", label: NSLocalizedString("Privacy_Policy", comment: "Privacy Policy"))
                 }
                 .sheet(isPresented: $showPrivacyPolicy) {
                     PrivacyPolicyView()
@@ -67,7 +67,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showTermsOfService = true
                 }) {
-                    settingsRow(iconName: "doc.text", label: "Terms of Service")
+                    settingsRow(iconName: "doc.text", label: NSLocalizedString("Privacy_Terms", comment: "Terms of Service"))
                 }
                 .sheet(isPresented: $showTermsOfService) {
                     TermsOfServiceView()
@@ -79,7 +79,7 @@ struct PrivacyView: View {
             .padding(.top, 20)
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
-            .navigationTitle("Privacy Settings")
+            .navigationTitle(NSLocalizedString("Privacy_nav", comment: "Privacy Nav Bar"))
             .onAppear(){
                 NavigationBarAppearance.setupNavigationBar()
             }
@@ -106,11 +106,5 @@ struct PrivacyView: View {
 		}
 		.padding()
 		.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
-	}
-}
-
-struct PrivacyView_Previews: PreviewProvider {
-	static var previews: some View {
-		PrivacyView()
 	}
 }

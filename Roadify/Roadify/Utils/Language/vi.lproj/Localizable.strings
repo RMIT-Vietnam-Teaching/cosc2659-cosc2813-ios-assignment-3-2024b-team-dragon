@@ -37,3 +37,68 @@
 "report_bug_title" = "Báo cáo Lỗi";
 "report_bug_description" = "Nếu bạn gặp phải bất kỳ vấn đề nào hoặc có đề xuất, vui lòng cho chúng tôi biết bằng cách điền vào mẫu dưới đây.";
 "submit" = "Gửi";
+
+//EditProfileView
+"editProfile_title" = "Chỉnh Sửa Trang Cá Nhân";
+"editProfile_image" = "Thay đổi Ảnh đại diện";
+"editProfile_username" = "Tên Tài Khoản";
+"editProfile_promptUsername" = "Thay Đổi Tên Tài Khoản";
+"editProfile_address" = "Địa chỉ";
+"editProfile_promptAddress" = "Thay Đổi Địa Chỉ";
+"mobilePhone" = "Số Điện Thoại";
+"editProfile_promptMobile" = "Thay Đổi Số Điện Thoại";
+"saveProfile" = "Lưu Thay Đổi";
+
+//PrivacyView
+"Privacy_ManageAccount" = "Quản Lý Dữ Liệu Tài Khoản";
+"Privacy_ChangePassword" = "Thay Đổi Mật Khẩu";
+"Privacy_Logs" = "Lịch Sử Hoạt Động";
+"Privacy_Policy" = "Quyền Riêng Tư";
+"Privacy_Terms" = "Điều Khoản";
+"Privacy_nav" = "Cài Đặt Riêng Tư";
+
+//ManageAccountView
+"ManageAccount_deleteAccount" = "Xóa Tài Khoản";
+"alert_deleteTitle" = "Xóa Tài Khoản của bạn";
+"ManageAccount_AreUSure" = "Bạn có chắc chắn muốn xóa Tài Khoản của mình không? Hành động này không thể hoàn tác.";
+"ManageAccount_deleteButton" = "Xóa";
+"ManageAccount_title" = "Quản Lý Dữ Liệu Tài Khoản";
+"ManageAccount_errorNoUser" = "Lỗi: Không có tài khoản nào hiện đang đăng nhập";
+"ManageAccount_FailtoDelete1" = "Lỗi: Không thể xóa dữ liệu người dùng từ Firestore";
+"ManageAccount_FailtoDelete2" = "Lỗi: Không thể xóa xác thực người dùng";
+
+//ForgotPasswordView
+"forgotPassword_emailLabel" = "Email";
+"forgotPassword_placeholderEmail" = "Nhập email của bạn";
+"forgotPassword_confirmButton" = "Xác nhận Email của bạn";
+"forgotPassword_navigationTitle" = "Đổi Mật Khẩu";
+"forgotPassword_alertTitle" = "Kiểm tra Email của bạn";
+"forgotPassword_alertButtonOK" = "OK";
+"forgotPassword_errorMessage" = "Lỗi: ";
+"forgotPassword_emailSentMessage" = "Một liên kết xác nhận đã được gửi đến email của bạn.";
+
+// ActivityLogsView
+"activityLogs_loading" = "Đang tải...";
+"activityLogs_error" = "Lỗi";
+"activityLogs_noLogs" = "Không có nhật ký hoạt động nào.";
+"activityLogs_title" = "Nhật Ký Hoạt Động";
+//ActivityLogsViewModel
+"activityLogs_error_notLoggedIn" = "Người dùng chưa đăng nhập.";
+"activityLogs_error_noLogsFound" = "Không tìm thấy nhật ký hoạt động.";
+"activityLogs_error_addingLog" = "Lỗi khi thêm nhật ký hoạt động";
+"activityLogs_UserNotLoggedIn" = "Tài khoản được đăng nhập";
+
+// SignInViewModel
+"signIn_error_loginFailed" = "Đăng nhập thất bại";
+"signIn_action_loggedIn" = "Người dùng đã đăng nhập";
+
+// Profile Updates
+"profile_action_updated" = "Cập nhật hồ sơ";
+
+// Privacy Policy
+"privacy_policy_text" = "Quyền riêng tư của bạn rất quan trọng đối với chúng tôi. Chính sách quyền riêng tư này giải thích cách chúng tôi thu thập, sử dụng, tiết lộ và bảo vệ thông tin của bạn khi bạn sử dụng ứng dụng của chúng tôi.\n\n1. Thông Tin Thu Thập: Chúng tôi có thể thu thập thông tin về bạn khi bạn sử dụng ứng dụng của chúng tôi, bao gồm dữ liệu cá nhân như tên, email và hình ảnh hồ sơ của bạn.\n\n2. Dữ Liệu Sử Dụng: Chúng tôi thu thập dữ liệu sử dụng để cải thiện dịch vụ của mình và cung cấp trải nghiệm người dùng tốt hơn.\n\n3. Chia Sẻ Dữ Liệu: Chúng tôi không chia sẻ thông tin cá nhân của bạn với bên thứ ba mà không có sự đồng ý của bạn, trừ khi được yêu cầu theo luật pháp.\n\n4. Bảo Mật: Chúng tôi thực hiện các biện pháp bảo mật để bảo vệ dữ liệu của bạn khỏi truy cập và sử dụng trái phép.\n\n5. Thay Đổi: Chúng tôi có thể cập nhật chính sách quyền riêng tư này từ thời gian này sang thời gian khác. Bất kỳ thay đổi nào sẽ được đăng trong phần này.\n\nNếu bạn có bất kỳ câu hỏi nào về chính sách quyền riêng tư này, vui lòng liên hệ với chúng tôi qua địa chỉ roadify911@gmail.com.";
+"privacy_policy_title" = "Chính Sách Quyền Riêng Tư";
+
+// Terms of Service
+"terms_of_service_text" = "Chào mừng bạn đến với ứng dụng của chúng tôi. Bằng cách sử dụng ứng dụng của chúng tôi, bạn đồng ý với các điều khoản dịch vụ sau:\n\n1. Chấp Nhận Điều Khoản: Bằng cách truy cập hoặc sử dụng ứng dụng của chúng tôi, bạn đồng ý bị ràng buộc bởi các điều khoản này.\n\n2. Trách Nhiệm Của Người Dùng: Bạn có trách nhiệm duy trì tính bảo mật của thông tin tài khoản của mình và cho tất cả các hoạt động diễn ra dưới tài khoản của bạn.\n\n3. Các Hoạt Động Bị Cấm: Bạn đồng ý không tham gia vào bất kỳ hoạt động bất hợp pháp hoặc trái phép nào khi sử dụng ứng dụng của chúng tôi.\n\n4. Chấm Dứt: Chúng tôi có quyền chấm dứt quyền truy cập của bạn vào ứng dụng của chúng tôi nếu bạn vi phạm các điều khoản này.\n\n5. Thay Đổi Điều Khoản: Chúng tôi có thể cập nhật các điều khoản này theo thời gian. Bất kỳ thay đổi nào sẽ được đăng trong phần này.\n\nĐể biết thêm thông tin hoặc nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua địa chỉ roadify911@gmail.com.";
+"terms_of_service_title" = "Điều Khoản Dịch Vụ";

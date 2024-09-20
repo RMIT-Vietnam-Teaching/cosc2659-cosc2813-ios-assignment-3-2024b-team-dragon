@@ -37,3 +37,67 @@
 "report_bug_title" = "Report a Bug";
 "report_bug_description" = "If you encounter any issues or have suggestions, please let us know by filling out the form below.";
 "submit" = "Submit";
+
+//EditProfileView
+"editProfile_title" = "Edit Profile";
+"editProfile_image" = "Change your Profile Image";
+"editProfile_username" = "Username";
+"editProfile_promptUsername" = "Change Username";
+"editProfile_address" = "Address";
+"editProfile_promptAddress" = "Change Address";
+"mobilePhone" = "Mobile Phone";
+"editProfile_promptMobile" = "Change Mobile Phone";
+"saveProfile" = "Save Profile";
+
+//PrivacyView
+"Privacy_ManageAccount" = "Manage Account Data";
+"Privacy_ChangePassword" = "Change Password";
+"Privacy_Logs" = "Activity Logs";
+"Privacy_Policy" = "Privacy Policy";
+"Privacy_Terms" = "Terms of Service";
+"Privacy_nav" = "Privacy Settings";
+
+//ManageAccountView
+"ManageAccount_deleteAccount" = "Delete Account";
+"alert_deleteTitle" = "Delete your Account";
+"ManageAccount_AreUSure" = "Are you sure you want to Delete your Account ? This action cannot be undone.";
+"ManageAccount_deleteButton" = "Delete";
+"ManageAccount_title" = "Manage Account Data";
+"ManageAccount_errorNoUser" = "Error: No account is currenly logged in";
+"ManageAccount_FailtoDelete1" = "Error: Fail to delete user data from Firestore";
+"ManageAccount_FailtoDelete2" = "Error: Fail to delete user authentication";
+
+//ForgotPasswordView
+"forgotPassword_emailLabel" = "Email";
+"forgotPassword_placeholderEmail" = "Enter your email";
+"forgotPassword_confirmButton" = "Confirm Your Email";
+"forgotPassword_navigationTitle" = "Change your Password";
+"forgotPassword_alertTitle" = "Check your email";
+"forgotPassword_alertButtonOK" = "OK";
+"forgotPassword_errorMessage" = "Error: ";
+"forgotPassword_emailSentMessage" = "A confirmation link has been sent to your email.";
+
+////ActivityLogsView
+"activityLogs_loading" = "Loading...";
+"activityLogs_error" = "Error";
+"activityLogs_noLogs" = "No activity logs available.";
+"activityLogs_title" = "Activity Logs";
+//ActivityLogsViewModel
+"activityLogs_error_notLoggedIn" = "User not logged in.";
+"activityLogs_error_noLogsFound" = "No activity logs found.";
+"activityLogs_error_addingLog" = "Error adding activity log";
+
+// SignInViewModel
+"signIn_error_loginFailed" = "Login failed";
+"signIn_action_loggedIn" = "User Logged In";
+
+// Profile Updates
+"profile_action_updated" = "Profile Updated";
+
+// Privacy Policy
+"privacy_policy_text" = "Your privacy is important to us. This privacy policy explains how we collect, use, disclose, and safeguard your information when you use our application.\n\n1. Information Collection: We may collect information about you when you use our app, including personal data like your name, email, and profile image.\n\n2. Usage Data: We collect usage data to improve our services and provide better user experience.\n\n3. Data Sharing: We do not share your personal information with third parties without your consent, except as required by law.\n\n4. Security: We implement security measures to protect your data from unauthorized access and use.\n\n5. Changes: We may update this privacy policy from time to time. Any changes will be posted in this section.\n\nIf you have any questions about this privacy policy, please contact us at roadify911@gmail.com.";
+"privacy_policy_title" = "Privacy Policy";
+
+// Terms of Service
+"terms_of_service_text" = "Welcome to our application. By using our app, you agree to the following terms of service:\n\n1. Acceptance of Terms: By accessing or using our application, you agree to be bound by these terms.\n\n2. User Responsibilities: You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.\n\n3. Prohibited Activities: You agree not to engage in any illegal or unauthorized activities when using our app.\n\n4. Termination: We reserve the right to terminate your access to our app if you violate these terms.\n\n5. Changes to Terms: We may update these terms from time to time. Any changes will be posted in this section.\n\nFor more information or if you have any questions, please contact us at roadify911@gmail.com.";
+"terms_of_service_title" = "Terms of Service";

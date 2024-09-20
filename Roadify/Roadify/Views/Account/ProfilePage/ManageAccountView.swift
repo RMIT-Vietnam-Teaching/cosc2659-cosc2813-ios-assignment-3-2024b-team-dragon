@@ -23,13 +23,13 @@ struct ManageAccountDataView: View {
                 Button(action: {
                     showDeleteConfirmation = true
                 }) {
-                    settingsRow(iconName: "trash", label: "Delete Account")
+                    settingsRow(iconName: "trash", label: NSLocalizedString("ManageAccount_deleteAccount", comment: "Delete Account"))
                 }
                 .alert(isPresented: $showDeleteConfirmation) {
                     Alert(
-                        title: Text("Delete Account"),
-                        message: Text("Are you sure you want to delete your account? This action cannot be undone."),
-                        primaryButton: .destructive(Text("Delete")) {
+                        title: Text(NSLocalizedString("alert_deleteTitle", comment: "Delete Account Alert Title")),
+                        message: Text(NSLocalizedString("ManageAccount_AreUSure", comment: "Delete Prompt")),
+                        primaryButton: .destructive(Text(NSLocalizedString("ManageAccount_deleteButton", comment: "Button to Delete in Alert"))) {
                             deleteAccount()
                         },
                         secondaryButton: .cancel()
@@ -54,7 +54,7 @@ struct ManageAccountDataView: View {
             .padding(.top, 20)
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
-            .navigationTitle("Manage Account Data")
+            .navigationTitle(NSLocalizedString("ManageAccount_title", comment: "Manage Account Data"))
             .onAppear(){
                 NavigationBarAppearance.setupNavigationBar()
             }
@@ -85,7 +85,7 @@ struct ManageAccountDataView: View {
 	
 	private func deleteAccount() {
 		guard let user = Auth.auth().currentUser else {
-			deletionError = "No user is currently logged in."
+			deletionError = NSLocalizedString("ManageAccount_errorNoUser", comment: "No User Error")
 			return
 		}
 		
@@ -97,7 +97,7 @@ struct ManageAccountDataView: View {
 		// Delete user data from Firestore
 		db.collection("users").document(user.uid).delete { error in
 			if let error = error {
-				deletionError = "Failed to delete user data from Firestore: \(error.localizedDescription)"
+				deletionError = NSLocalizedString("ManageAccount_FailtoDelete1", comment: "faile to delete") + "\(error.localizedDescription)"
 				isDeleting = false // Hide progress indicator
 				return
 			}
@@ -105,7 +105,7 @@ struct ManageAccountDataView: View {
 			// Delete user from Firebase Authentication
 			user.delete { error in
 				if let error = error {
-					deletionError = "Failed to delete account: \(error.localizedDescription)"
+					deletionError = NSLocalizedString("ManageAccount_FailtoDelete2", comment: "fail to delete") + "\(error.localizedDescription)"
 				} else {
 					// Successfully deleted account, handle sign-out and delay
 					DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -115,11 +115,5 @@ struct ManageAccountDataView: View {
 				}
 			}
 		}
-	}
-}
-
-struct ManageAccountDataView_Previews: PreviewProvider {
-	static var previews: some View {
-		ManageAccountDataView()
 	}
 }

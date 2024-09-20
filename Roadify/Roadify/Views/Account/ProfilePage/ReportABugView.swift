@@ -2,7 +2,7 @@
 //  ReportABugView.swift
 //  Roadify
 //
-//  Created by Nguyễn Tuấn Dũngy on 19/9/24.
+//  Created by Nguyễn Tuấn Dũng on 19/9/24.
 //
 
 import Foundation
@@ -18,9 +18,7 @@ struct ReportABugView: View {
 	
 	var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                Spacer()
-                
+            VStack(spacing: 20) {                
                 Text(NSLocalizedString("report_bug_description", comment: "Description for the report bug view"))
                 
                 TextEditor(text: $enquiry)
@@ -45,6 +43,8 @@ struct ReportABugView: View {
                 
                 Spacer()
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
             .foregroundColor(.white)
             .navigationTitle(NSLocalizedString("report_bug_title", comment: "Title for the report bug view"))

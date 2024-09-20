@@ -18,7 +18,7 @@ struct RoadifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AccountView()
+            SplashScreenView()
         }
     }
 }
