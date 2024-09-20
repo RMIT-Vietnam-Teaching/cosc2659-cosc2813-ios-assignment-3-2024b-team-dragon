@@ -18,7 +18,7 @@ struct TabView: View {
 						}
 				case 1:
 					NewsView()
-						.onAppear {
+						.onAppear { 	
 							authManager.refreshAuthStatus()
 						}
 				case 2:
@@ -85,6 +85,7 @@ struct TabView: View {
 			.padding()
 			.background(Color("MainColor"))
 		}
+		.padding(.bottom)
 		.edgesIgnoringSafeArea(.bottom)
 		.onAppear {
 			checkFirstLaunch()

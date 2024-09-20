@@ -18,10 +18,11 @@ struct WelcomeView: View {
                             Text("Skip")
                                 .foregroundColor(Color("SubColor"))
                                 .bold()
-                                .padding([.top, .trailing], 35)
+                                .padding(.trailing, 35)
                         }
                     }
-                }
+				}
+				.padding(.top, 90)
                 
                 Spacer()
                 
