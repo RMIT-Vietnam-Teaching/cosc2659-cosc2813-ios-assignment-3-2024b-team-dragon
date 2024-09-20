@@ -71,23 +71,6 @@ class AccountViewModel: ObservableObject {
         }
     }
 
-    // Fetch admin status from Firestore
-    func checkIfAdmin() {
-        guard let user = Auth.auth().currentUser else {
-            self.isAdmin = false
-            return
-        }
-
-        let userRef = db.collection("users").document(user.uid)
-        userRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                self.isAdmin = document.data()?["isAdmin"] as? Bool ?? false
-            } else {
-                self.isAdmin = false
-            }
-        }
-    }
-
     // Save the updated profile to Firestore and Firebase Storage
     func saveProfile(username: String, address: String, mobilePhone: String, profileImage: UIImage?)
     {
