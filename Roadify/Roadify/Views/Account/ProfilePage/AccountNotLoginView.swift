@@ -2,7 +2,7 @@
 //  AccountNotLoginView.swift
 //  Roadify
 //
-//  Created by Cường Võ Duy on 19/9/24.
+//  Created by Nguyễn Tuấn Dũng on 19/9/24.
 //
 
 import Foundation
@@ -42,8 +42,9 @@ struct AccountNotLoginView: View {
 				Spacer()
 				
 				// Add the GIF
-				GIFImage(gifName: "GIF2") // Use the name 'gif' without the .gif extension
-					.frame(width: 300, height: 300)
+				GIFImage(gifName: "GIF2")
+					.frame(width: 250, height: 250)
+    
 				
 				// Register Button
 				Button(action: {

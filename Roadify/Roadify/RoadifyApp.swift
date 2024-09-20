@@ -7,7 +7,7 @@ struct RoadifyApp: App {
     init() {
         FirebaseApp.configure()
         print("Firebase Configured!")
-		
+
 //		// For debug: clear UserDefaults
 //		let defaults = UserDefaults.standard
 //		let dictionary = defaults.dictionaryRepresentation()
@@ -18,7 +18,7 @@ struct RoadifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            AccountView()
         }
     }
 }

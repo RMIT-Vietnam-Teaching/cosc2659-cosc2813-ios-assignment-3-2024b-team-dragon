@@ -2,17 +2,23 @@
 //  AccountView.swift
 //  Roadify
 //
-//  Created by Cường Võ Duy on 19/9/24.
+//  Created by Nguyễn Tuấn Dũng on 19/9/24.
 //
 
 import Foundation
 import SwiftUI
 
 struct AccountView: View {
-    @AppStorage("appLanguage") var appLanguage: String = "en" // Store app language
+    @AppStorage("appLanguage") var appLanguage: String = "en"  // Store app language
     @ObservedObject var viewModel = AccountViewModel()
+
+    @State private var showAlert = false
+    @State private var isNavigating = false
+
     @State private var showEditProfile = false
+
     @State private var showAdminPanelView = false
+
     @State private var showPrivacyView = false
     @State private var showNotificationsView = false
     @State private var showLanguageView = false
@@ -27,11 +33,15 @@ struct AccountView: View {
                 .font(.title2)
                 .bold()
 
+            Spacer()
+
             Button(action: {
                 showEditProfile = true
             }) {
                 HStack {
-                    if let profileImageUrl = URL(string: viewModel.profileImageUrl), !viewModel.profileImageUrl.isEmpty {
+                    if let profileImageUrl = URL(string: viewModel.profileImageUrl),
+                        !viewModel.profileImageUrl.isEmpty
+                    {
                         AsyncImage(url: profileImageUrl) { image in
                             image
                                 .resizable()
@@ -62,7 +72,8 @@ struct AccountView: View {
                     Image(systemName: "chevron.right")
                 }
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
+                .background(
+                    RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
             }
             .sheet(isPresented: $showEditProfile) {
                 EditProfileView(viewModel: viewModel)
@@ -80,7 +91,8 @@ struct AccountView: View {
                         Image(systemName: "chevron.right")
                     }
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+                    .background(
+                        RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                 }
                 .sheet(isPresented: $showAdminPanelView) {  // Present the Admin Panel
                     AdminPanelView()
@@ -113,7 +125,9 @@ struct AccountView: View {
                     languageRow(language: selectedLanguage, flag: selectedLanguageFlag)
                 }
                 .sheet(isPresented: $showLanguageView) {
-                    LanguageSelectionView(selectedLanguage: $selectedLanguage, selectedLanguageFlag: $selectedLanguageFlag)
+                    LanguageSelectionView(
+                        selectedLanguage: $selectedLanguage,
+                        selectedLanguageFlag: $selectedLanguageFlag)
                 }
             }
 
@@ -122,7 +136,8 @@ struct AccountView: View {
                 Button(action: {
                     showHelpView = true
                 }) {
-                    settingsRow(iconName: "questionmark.circle", label: LocalizedStringKey("help_center"))
+                    settingsRow(
+                        iconName: "questionmark.circle", label: LocalizedStringKey("help_center"))
                 }
                 .sheet(isPresented: $showHelpView) {
                     HelpView()
@@ -139,8 +154,9 @@ struct AccountView: View {
             }
 
             // Log out
+            // Log out Button
             Button(action: {
-                viewModel.logOut()
+                showAlert = true
             }) {
                 HStack {
                     Image(systemName: "arrow.backward")
@@ -151,6 +167,24 @@ struct AccountView: View {
                 }
                 .padding()
             }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(LocalizedStringKey("are_you_sure")),
+                    message: Text(LocalizedStringKey("are_you_sure_message")),
+                    primaryButton: .destructive(Text(LocalizedStringKey("yes"))) {
+                        // User confirmed logout
+                        viewModel.logOut()
+                        isNavigating = true
+                    },
+                    secondaryButton: .cancel(Text(LocalizedStringKey("no")))
+                )
+            }
+            .background(
+                NavigationLink(destination: AccountNotLoginView(), isActive: $isNavigating) {
+                    EmptyView()
+                }
+                .hidden()  // Hide the NavigationLink
+            )
 
             Spacer()
         }
@@ -187,6 +221,7 @@ struct AccountView: View {
         .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
 
+    // Function to set the initial language and flag based on appLanguage value
     private func setLanguageBasedOnAppLanguage() {
         if appLanguage == "vi" {
             selectedLanguage = "Vietnamese"
@@ -200,72 +235,87 @@ struct AccountView: View {
 
 // MARK: - Language Selection
 struct LanguageSelectionView: View {
-	@Binding var selectedLanguage: String
-	@Binding var selectedLanguageFlag: String
-	@AppStorage("appLanguage") var appLanguage: String = "en"
-	@State private var showAlert = false
-	@State private var alertMessage = ""
-	
-	var body: some View {
-		VStack {
-			Text(LocalizedStringKey("select_language"))
-				.font(.title2)
-				.bold()
-				.padding(.top)
-			
-			Button(action: {
-				selectedLanguage = "English"
-				selectedLanguageFlag = "us"
-				changeLanguage(to: "en")
-			}) {
-				languageRow(language: "English", flag: "us")
-			}
-			
-			Button(action: {
-				selectedLanguage = "Vietnamese"
-				selectedLanguageFlag = "vn"
-				changeLanguage(to: "vi")
-			}) {
-				languageRow(language: "Vietnamese", flag: "vn")
-			}
-			
-			Spacer()
-		}
-		.padding()
-		.background(Color("MainColor").edgesIgnoringSafeArea(.all))
-		.foregroundColor(.white)
-		.alert(isPresented: $showAlert) {
-			Alert(
-				title: Text(LocalizedStringKey("language_change_title")),
-				message: Text(alertMessage),
-				dismissButton: .default(Text(LocalizedStringKey("ok")))
-			)
-		}
-	}
-	
-	private func languageRow(language: String, flag: String) -> some View {
-		HStack {
-			Image(flag)
-				.resizable()
-				.frame(width: 24, height: 24)
-			Text(language)
-				.font(.headline)
-			Spacer()
-		}
-		.padding()
-		.background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
-	}
-	
-	// Function to change the language and show alert
-	func changeLanguage(to language: String) {
-		appLanguage = language
-		UserDefaults.standard.set([language], forKey: "AppleLanguages")
-		UserDefaults.standard.synchronize()
-		
-		// Show alert with a restart message
-		alertMessage = NSLocalizedString("please_restart", comment: "Please restart the app to apply the changes.")
-		showAlert = true
-	}
+    @Binding var selectedLanguage: String
+    @Binding var selectedLanguageFlag: String
+    @AppStorage("appLanguage") var appLanguage: String = "en"
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        NavigationStack {
+            VStack {
+
+                Button(action: {
+                    selectedLanguage = "English"
+                    selectedLanguageFlag = "us"
+                    changeLanguage(to: "en")
+                }) {
+                    languageRow(language: "English", flag: "us")
+                }
+
+                Button(action: {
+                    selectedLanguage = "Vietnamese"
+                    selectedLanguageFlag = "vn"
+                    changeLanguage(to: "vi")
+                }) {
+                    languageRow(language: "Vietnamese", flag: "vn")
+                }
+
+                Spacer()
+            }
+            .padding()
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationTitle(LocalizedStringKey("select_language"))
+            .onAppear {
+                NavigationBarAppearance.setupNavigationBar()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss()  // Dismiss the view when "X" is tapped
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(LocalizedStringKey("language_change_title")),
+                    message: Text(alertMessage),
+                    dismissButton: .default(Text(LocalizedStringKey("ok")))
+                )
+            }
+        }
+    }
+
+    private func languageRow(language: String, flag: String) -> some View {
+        HStack {
+            Image(flag)
+                .resizable()
+                .frame(width: 24, height: 24)
+            Text(language)
+                .font(.headline)
+            Spacer()
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
+    }
+
+    // Function to change the language and show alert
+    func changeLanguage(to language: String) {
+        appLanguage = language
+        UserDefaults.standard.set([language], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+
+        // Show alert with a restart message
+        alertMessage = NSLocalizedString(
+            "please_restart", comment: "Please restart the app to apply the changes.")
+        showAlert = true
+    }
 }
 
 struct AccountView_Previews: PreviewProvider {
