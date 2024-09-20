@@ -14,59 +14,62 @@ struct NewsView: View {
 	
 	var body: some View {
 		NavigationView {
-			VStack (spacing: 0) {
-				Text("News")
-					.font(.system(size: 28, weight: .bold))
-					.foregroundColor(.white)
-					.padding(.top, 16)
-					.frame(maxWidth: .infinity, minHeight: 60)
-					.background(Color("MainColor"))
-				
-				List(newsArticles) { article in
-					NavigationLink(destination: DetailNewsView(newsArticle: article)) {
-						HStack(spacing: 16) {
-							// Larger image with rounded corners
-							AsyncImage(url: URL(string: article.imageName)) { image in
-								image.resizable()
-									.scaledToFill()
-									.frame(width: 80, height: 80)
-									.cornerRadius(12)
-									.padding(.leading, 10)
-									.clipped()
-							} placeholder: {
-								ProgressView()
-							}
-							
-							VStack(alignment: .leading, spacing: 4) {
-								// Stylized Title
-								Text(article.title)
-									.font(.system(size: 18, weight: .semibold))
-									.foregroundColor(Color("SubColor"))
-									.lineLimit(2)
-									.truncationMode(.tail)
+			ZStack (alignment: .bottom){
+				VStack (spacing: 0) {
+					Text("News")
+						.font(.system(size: 28, weight: .bold))
+						.foregroundColor(.white)
+						.padding()
+						.frame(maxWidth: .infinity, minHeight: 60)
+						.background(Color("MainColor"))
+					
+					List(newsArticles) { article in
+						NavigationLink(destination: DetailNewsView(newsArticle: article)) {
+							HStack(spacing: 16) {
+								// Larger image with rounded corners
+								AsyncImage(url: URL(string: article.imageName)) { image in
+									image.resizable()
+										.scaledToFill()
+										.frame(width: 80, height: 80)
+										.cornerRadius(12)
+										.clipped()
+								} placeholder: {
+									ProgressView()
+								}
 								
-								Text(article.category)
-									.font(.system(size: 14))
-									.foregroundColor(.white)
-									.padding(.top, 4)
+								VStack(alignment: .leading, spacing: 4) {
+									// Stylized Title
+									Text(article.title)
+										.font(.system(size: 18, weight: .semibold))
+										.foregroundColor(Color("SubColor"))
+										.lineLimit(2)
+										.truncationMode(.tail)
+										.padding(.trailing, 20)
+									Text(article.category)
+										.font(.system(size: 14))
+										.foregroundColor(.white)
+										.padding(.top, 4)
+								}
 							}
-							.background(Color("MainColor"))
 						}
+						.listRowBackground(Color("MainColor"))
+						.listRowSeparator(.hidden)
 					}
-					.listRowBackground(Color("MainColor"))
-					.listRowSeparatorTint(Color("SubColor"))
+					.listStyle(PlainListStyle())
+					.background(Color("MainColor"))
+					.edgesIgnoringSafeArea(.all)
 				}
-				.background(Color("MainColor"))
-				
+				.onAppear {
+					fetchNewsFromFirebase()  // Fetch news on view appearance
+				}
 				// AddNewsFormView appears as an overlay when showAddNewsForm is true
 				if showAddNewsForm {
 					VStack {
+						Spacer()
 						AddNewsFormView(showModal: $showAddNewsForm) {
 							fetchNewsFromFirebase()  // Refresh the news list after adding new news
 						}
 						.background(Color("MainColor"))
-						.cornerRadius(20)
-						.padding(.bottom)
 						.transition(.move(edge: .bottom))
 					}
 				}
@@ -88,15 +91,13 @@ struct NewsView: View {
 								.clipShape(Circle())
 								.shadow(radius: 5)
 						}
-						.padding(.trailing, 30)
+						.padding([.trailing, .bottom], 30)
 					}
-					.background(Color("MainColor"))
 				}
 			}
-			.onAppear {
-				fetchNewsFromFirebase()  // Fetch news on view appearance
-			}
 		}
+		.background(Color("MainColor")
+			.edgesIgnoringSafeArea(.all))
 	}
 	
 	private func fetchNewsFromFirebase() {

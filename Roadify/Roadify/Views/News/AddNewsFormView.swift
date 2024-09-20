@@ -33,8 +33,7 @@ struct AddNewsFormView: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 24))
                 }
-                .padding(.top, 10)
-                .padding(.trailing, 10)
+				.padding([.top, .trailing], 20)
             }
 
             // Title of the form
@@ -84,21 +83,16 @@ struct AddNewsFormView: View {
             }
             .padding(.bottom, 12)
 
-            // Image Picker Button and selected image preview
-            HStack(spacing: 16) {
-                
 
-                // Preview the selected images if available
-                if let selectedImage = selectedImages.first {  // Only show the first image
-                    Image(uiImage: selectedImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                        .cornerRadius(10)
-                        .padding(.leading, 10)
-                }
-            }
-            .padding(.horizontal)
+			// Preview the selected images if available
+			if let selectedImage = selectedImages.first {  // Only show the first image
+				Image(uiImage: selectedImage)
+					.resizable()
+					.scaledToFit()
+					.frame(width: 100, height: 100)
+					.cornerRadius(10)
+					.padding(.leading, 10)
+			}
 
             // Add News button
             Button(action: {
@@ -132,7 +126,7 @@ struct AddNewsFormView: View {
             }
             .buttonStyle(.bordered)
             .controlSize(.large)
-            .padding(.top, 10)
+			.padding()
 
             // Loading indicator if uploading
             if isUploading {
@@ -140,9 +134,7 @@ struct AddNewsFormView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: Color("SubColor")))
                     .padding()
             }
-
         }
-		.edgesIgnoringSafeArea(.bottom)
         .background(Color("MainColor"))
     }
 }

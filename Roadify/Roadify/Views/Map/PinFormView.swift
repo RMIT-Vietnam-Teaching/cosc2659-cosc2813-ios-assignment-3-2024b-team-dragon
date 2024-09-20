@@ -34,7 +34,6 @@ struct PinFormView: View {
         VStack (spacing: 0) {
             HStack {
                 Spacer()
-
                 // MARK: - Form close button
                 Button(action: {
                     withAnimation {
@@ -45,8 +44,7 @@ struct PinFormView: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 24))
                 }
-                .padding(.top, 10)
-                .padding(.trailing, 10)
+				.padding([.top, .trailing], 20)
             }
 
             Text("Press on the map\nto pin accidents or traffic jams")
@@ -179,8 +177,7 @@ struct PinFormView: View {
             .padding()
         }
         .background(Color("MainColor"))
-        .padding()
-    }
+	}
 
     // Save the pin to Firebase
     func savePin() {

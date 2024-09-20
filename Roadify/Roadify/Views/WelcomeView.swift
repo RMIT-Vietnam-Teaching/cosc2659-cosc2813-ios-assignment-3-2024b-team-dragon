@@ -21,7 +21,7 @@ struct WelcomeView: View {
                         }
                     }
 				}
-				.padding(.top, 50)
+				.padding(.top, 90)
                 
                 Spacer()
                 
