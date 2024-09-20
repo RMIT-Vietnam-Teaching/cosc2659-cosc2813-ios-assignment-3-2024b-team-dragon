@@ -11,11 +11,11 @@ struct Pin: Identifiable {
     var title: String
     var description: String
     var status: PinStatus
-    var imageUrls: [String] = []  // Store URLs of uploaded images
-    var timestamp: Date  // Timestamp when the pin was placed
-    var reportedBy: String  // ID of the user who reported the pin
-    var likes: Int  // Number of likes
-    var dislikes: Int  // Number of dislikes
+    var imageUrls: [String] = []
+    var timestamp: Date
+    var reportedBy: String
+    var likes: Int
+    var dislikes: Int
 
     enum PinStatus: String {
         case pending = "Pending"
@@ -31,8 +31,8 @@ struct Pin: Identifiable {
             "longitude": longitude,
             "status": status.rawValue,
             "imageUrls": imageUrls,
-            "timestamp": Timestamp(date: timestamp),  // Save as Firestore Timestamp
-            "reportedBy": reportedBy,  // Save the user ID
+            "timestamp": Timestamp(date: timestamp),
+            "reportedBy": reportedBy,
             "likes": likes,
             "dislikes": dislikes
         ]
@@ -61,7 +61,7 @@ struct Pin: Identifiable {
         self.longitude = longitude
         self.status = status
         self.imageUrls = imageUrls
-        self.timestamp = timestamp.dateValue()  // Convert Firestore Timestamp to Date
+        self.timestamp = timestamp.dateValue()  
         self.reportedBy = reportedBy
         self.likes = likes
         self.dislikes = dislikes

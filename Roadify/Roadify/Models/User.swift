@@ -2,13 +2,13 @@ import Foundation
 import FirebaseFirestore
 
 struct User: Identifiable {
-    var id: String  // The user's Firebase UID
+    var id: String  
     var username: String
     var firstName: String
     var lastName: String
     var email: String
     var createdAt: Date
-    var isAdmin: Bool  // New: Admin status
+    var isAdmin: Bool
     
     // Initializer
     init(id: String, username: String, firstName: String, lastName: String, email: String, createdAt: Date, isAdmin: Bool) {

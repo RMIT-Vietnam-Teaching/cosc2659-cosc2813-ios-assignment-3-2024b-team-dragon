@@ -5,7 +5,7 @@ struct News: Identifiable {
     var title: String
     var category: String
     var description: String
-    var imageName: String  // This will hold the image URL after Firebase Storage upload
+    var imageName: String  
     
     // Firebase convenience initializer
     init?(id: String, data: [String: Any]) {
