@@ -59,29 +59,34 @@ struct AddNewsFormView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
 
-                TextField("Description", text: $description)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+				HStack {
+					TextField("Description", text: $description)
+						.padding()
+						.background(Color.white)
+						.cornerRadius(10)
+						.padding(.leading)
+					
+					Button(action: {
+						showImagePicker = true  // Show the custom image picker
+					}) {
+						Image(systemName: "photo")
+							.font(.system(size: 24))
+							.padding()
+							.foregroundColor(Color("SubColor"))
+							.background(Color.white)
+							.cornerRadius(10)
+					}
+					.padding(.trailing)
+					.sheet(isPresented: $showImagePicker) {
+						ImagePickerView(selectedImages: $selectedImages)
+					}
+				}
             }
             .padding(.bottom, 12)
 
             // Image Picker Button and selected image preview
             HStack(spacing: 16) {
-                Button(action: {
-                    showImagePicker = true  // Show the custom image picker
-                }) {
-                    Image(systemName: "photo")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color("SubColor"))
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                }
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePickerView(selectedImages: $selectedImages)
-                }
+                
 
                 // Preview the selected images if available
                 if let selectedImage = selectedImages.first {  // Only show the first image
@@ -136,9 +141,23 @@ struct AddNewsFormView: View {
                     .padding()
             }
 
-            Spacer()
         }
+		.edgesIgnoringSafeArea(.bottom)
         .background(Color("MainColor"))
-        .padding()
     }
+}
+
+
+struct AddNewsFormView_Previews: PreviewProvider {
+	@State static var showModal = true
+	
+	static var previews: some View {
+		AddNewsFormView(showModal: $showModal) {
+			print("News added successfully!")
+		}
+		.preferredColorScheme(.dark)
+		.frame(width: 300, height: 400)
+		.padding()
+		.background(Color.gray.opacity(0.2))
+	}
 }

@@ -17,10 +17,11 @@ struct WelcomeView: View {
                             Text("Skip")
                                 .foregroundColor(Color("SubColor"))
                                 .bold()
-                                .padding([.top, .trailing], 35)
+                                .padding(.trailing, 35)
                         }
                     }
-                }
+				}
+				.padding(.top, 50)
                 
                 Spacer()
                 
@@ -42,7 +43,7 @@ struct WelcomeView: View {
                             Circle()
                                 .frame(width: 10, height: 10)
                                 .foregroundColor(currentPage == index ? Color("SubColor") : .gray)
-                                .animation(.easeInOut)
+								.animation(.easeInOut, value: 1)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }

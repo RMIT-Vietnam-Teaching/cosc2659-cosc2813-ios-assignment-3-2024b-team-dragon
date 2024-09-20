@@ -35,7 +35,7 @@ struct DetailNewsView: View {
             
             Spacer()
         }
-        .background(Color.black.edgesIgnoringSafeArea(.all)) // Background
+        .background(Color("MainColor").edgesIgnoringSafeArea(.all)) // Background
         .navigationBarTitle("", displayMode: .inline)
     }
 }
