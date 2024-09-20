@@ -1,10 +1,3 @@
-//
-//  PinFormView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 12/9/24.
-//
-
 import SwiftUI
 import UIKit
 import CoreLocation

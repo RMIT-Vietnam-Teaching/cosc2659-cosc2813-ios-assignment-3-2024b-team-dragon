@@ -1,10 +1,3 @@
-//
-//  AccountNotLoginView.swift
-//  Roadify
-//
-//  Created by Cường Võ Duy on 19/9/24.
-//
-
 import Foundation
 import SwiftUI
 

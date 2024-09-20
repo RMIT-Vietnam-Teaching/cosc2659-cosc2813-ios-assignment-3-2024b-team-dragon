@@ -1,10 +1,3 @@
-//
-//  MapView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 9/9/24.
-//
-
 import SwiftUI
 import MapKit
 import CoreLocation

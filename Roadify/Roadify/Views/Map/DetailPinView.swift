@@ -1,10 +1,3 @@
-//
-//  DetailPinView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 16/9/24.
-//
-
 import SwiftUI
 
 struct DetailPinView: View {
