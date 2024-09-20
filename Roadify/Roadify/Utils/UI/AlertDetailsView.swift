@@ -36,7 +36,7 @@ struct AlertDetailsView: View {
             
             HStack(spacing: 20) {
                 HStack {
-                    Text("34")
+                    Text("\(pin.likes)")
                         .font(.headline)
                         .foregroundColor(.white)
                     Image(systemName: "hand.thumbsup.fill")
@@ -44,7 +44,7 @@ struct AlertDetailsView: View {
                 }
                 
                 HStack {
-                    Text("2")
+                    Text("\(pin.dislikes)")
                         .font(.headline)
                         .foregroundColor(.white)
                     Image(systemName: "hand.thumbsdown.fill")
@@ -55,30 +55,12 @@ struct AlertDetailsView: View {
             
             // Statuses and information section
             VStack(alignment: .leading, spacing: 5) {
-                Text("No casualties")
-                    .font(.body)
-                    .foregroundColor(.white)
-                
-                Text("Slow traffic")
+                Text(pin.description)
                     .font(.body)
                     .foregroundColor(.white)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
-            
-            // Add comment button
-            Button(action: {
-                // Add comment action here
-            }) {
-                Text("Add comment")
-                    .font(.headline)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal, 20)
-            }
-            .padding(.top, 20)
             
             Spacer()
         }
@@ -101,7 +83,9 @@ struct AlertDetailsView_Previews: PreviewProvider {
             status: .verified,
             imageUrls: ["https://via.placeholder.com/300"],
             timestamp: Date(),  // Timestamp when the pin was placed
-            reportedBy: "String" // ID of the user who reported the pin
+            reportedBy: "String", // ID of the user who reported the pin
+            likes: 15,
+            dislikes: 2
         )
         AlertDetailsView(pin: mockPin)
     }

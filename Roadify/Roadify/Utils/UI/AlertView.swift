@@ -12,10 +12,8 @@ struct AlertView: View {
                     .foregroundColor(Color.white)
                     .padding(.top, 20)
                 
-                // Search Bar
                 SearchBar(label: "Search Alerts", text: $viewModel.searchText)
-                
-                // List of Alerts (Filtered)
+            
                 List(viewModel.filteredPins) { pin in
                     NavigationLink(destination: AlertDetailsView(pin: pin)) {
                         HStack {
