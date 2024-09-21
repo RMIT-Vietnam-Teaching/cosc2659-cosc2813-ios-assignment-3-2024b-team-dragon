@@ -4,6 +4,8 @@ struct WelcomeView: View {
     @State private var currentPage = 0
     @State private var navigateToTabView = false // New state variable
     let totalPage = 3
+    @State private var selectedTab: Int = 0
+
     
     var body: some View {
 //        NavigationView { *FixYellowWarning*
@@ -64,7 +66,7 @@ struct WelcomeView: View {
 //                    }
 //                ) *FixYellowWarning*
 				.navigationDestination(isPresented: $navigateToTabView) {
-						TabView().navigationBarBackButtonHidden(true)
+						TabView(selectedTab: $selectedTab).navigationBarBackButtonHidden(true)
 //						EmptyView()
 					}
 						

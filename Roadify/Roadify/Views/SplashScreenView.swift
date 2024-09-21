@@ -3,6 +3,7 @@ import SwiftUI
 struct SplashScreenView: View {
     @StateObject private var authManager = AuthManager()
     @State private var navigateToNextView = false
+    @State private var selectedTab: Int = 0
     
     var body: some View {
         ZStack {
@@ -24,7 +25,7 @@ struct SplashScreenView: View {
         }
         .fullScreenCover(isPresented: $navigateToNextView) {
             if authManager.isLoggedIn {
-                TabView()
+                TabView(selectedTab: $selectedTab)
             } else {
                 WelcomeView()
             }

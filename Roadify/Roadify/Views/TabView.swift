@@ -3,9 +3,8 @@ import SwiftUI
 
 struct TabView: View {
 	@StateObject private var authManager = AuthManager()
-	@State private var selectedTab = 0
+    @Binding var selectedTab: Int
 	@State private var showWelcomeView = true // First launch
-    @StateObject private var accountViewModel = AccountViewModel()
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -27,7 +26,7 @@ struct TabView: View {
 							authManager.refreshAuthStatus()
 						}
 				case 3:
-					AccountView(viewModel: accountViewModel)
+					AccountView()
 						.onAppear {
 							authManager.refreshAuthStatus()
 						}
@@ -103,9 +102,9 @@ struct TabView: View {
 	}
 }
 
-struct TabView_Previews: PreviewProvider {
-	static var previews: some View {
-		TabView()
-	}
-}
+//struct TabView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		TabView()
+//	}
+//}
 

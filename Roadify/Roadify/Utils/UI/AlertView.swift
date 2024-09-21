@@ -62,6 +62,7 @@ struct AlertView: View {
         .onAppear {
             viewModel.fetchVerifiedPins()  // Fetch only verified pins
         }
+        .navigationBarBackButtonHidden(true) // This hides the back button
     }
 }
 

@@ -96,6 +96,7 @@ struct NewsView: View {
 		}
 		.background(Color("MainColor")
 			.edgesIgnoringSafeArea(.all))
+        .navigationBarBackButtonHidden(true) // This hides the back button
 	}
 	
 	private func fetchNewsFromFirebase() {

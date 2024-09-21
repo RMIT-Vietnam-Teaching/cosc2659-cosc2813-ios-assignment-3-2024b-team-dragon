@@ -14,7 +14,7 @@ enum SignInField: Hashable {
 
 struct SignInView: View {
     @ObservedObject var viewModel = SignInViewModel()
-
+    @State private var selectedTab: Int = 3 // Set to 3 for AccountView
     @FocusState private var focusedField: SignInField?
     @State private var activeField: SignInField? = nil
     @State private var isPasswordVisible: Bool = false
@@ -72,13 +72,9 @@ struct SignInView: View {
                 }
 
                 // Navigate if logged in successfully
-                //                NavigationLink(destination: TabView(), isActive: $viewModel.isLoggedIn) {
-                //                    EmptyView()
-                //                } *FixYellowWarning*
-                .navigationDestination(isPresented: $viewModel.isLoggedIn) {
-                    AccountView()  // Double-check
-                    EmptyView()
-                }
+                NavigationLink(destination: TabView(selectedTab: $selectedTab), isActive: $viewModel.isLoggedIn) {
+                                    EmptyView()
+                                }
 
                 Spacer()
 

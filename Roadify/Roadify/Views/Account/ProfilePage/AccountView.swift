@@ -26,6 +26,8 @@ struct AccountView: View {
     @State private var showReportBugView = false
     @State private var selectedLanguage = "English"
     @State private var selectedLanguageFlag = "us"
+    @State private var selectedTab: Int = 3 // Set to 3 for AccountView
+
 
     var body: some View {
         VStack(spacing: 20) {
@@ -180,7 +182,7 @@ struct AccountView: View {
                 )
             }
             .background(
-                NavigationLink(destination: AccountNotLoginView(), isActive: $isNavigating) {
+                NavigationLink(destination: TabView(selectedTab: $selectedTab), isActive: $isNavigating) {
                     EmptyView()
                 }
                 .hidden()  // Hide the NavigationLink
@@ -194,6 +196,7 @@ struct AccountView: View {
         .padding()
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
+        .navigationBarBackButtonHidden(true)
     }
 
     private func languageRow(language: String, flag: String) -> some View {

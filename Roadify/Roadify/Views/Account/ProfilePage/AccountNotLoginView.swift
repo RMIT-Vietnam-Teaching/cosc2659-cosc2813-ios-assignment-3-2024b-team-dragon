@@ -120,6 +120,7 @@ struct AccountNotLoginView: View {
             .padding()
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         }
+        .navigationBarBackButtonHidden(true) // This hides the back button
     }
 }
 
