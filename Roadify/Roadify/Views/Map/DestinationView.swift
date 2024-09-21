@@ -6,7 +6,7 @@ struct DestinationView: View {
 	
 	var body: some View {
 		VStack {
-			Spacer().frame(height: 20)
+			Spacer().frame(height: 15)
 			HStack {
 				Text("Where are you going to?")
 					.foregroundStyle(Color.white)

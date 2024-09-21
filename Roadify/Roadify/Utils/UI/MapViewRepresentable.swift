@@ -10,13 +10,14 @@ struct MapViewRepresentable: UIViewRepresentable {
 	@Binding var startingCoordinate: CLLocationCoordinate2D?
 	@Binding var endingCoordinate: CLLocationCoordinate2D?
 	@Binding var mapView: MKMapView
-
-	var onMapClick: ((CLLocationCoordinate2D) -> Void)?
-
-	let mapView = MKMapView()
-	let locationManager = CLLocationManager()
+	@Binding var selectedPin: Pin?  // New binding for the selected pin
+	@Binding var endPoint: String
 	
-    // MARK: - makeUIView function
+	var onMapClick: ((CLLocationCoordinate2D) -> Void)?
+	let locationManager = CLLocationManager()
+	let geocodingService = GeocodingService()
+	
+	// MARK: - makeUIView function
 	func makeUIView(context: Context) -> MKMapView {
 		mapView.showsUserLocation = true
 		mapView.userTrackingMode = .follow
@@ -31,7 +32,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 		return mapView
 	}
 	
-    // MARK: - updateUIView function
+	// MARK: - updateUIView function
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		uiView.removeAnnotations(uiView.annotations)
 		
@@ -67,18 +68,26 @@ struct MapViewRepresentable: UIViewRepresentable {
 				let touchPoint = gesture.location(in: mapView)
 				let coordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
 				
-                self.removeRoutes()
-
-				parent.selectedCoordinate = coordinate
-				parent.showPinModal = true
-                parent.onMapClick?(coordinate)
-
+				self.removeRoutes()
 				
-				print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
+				if parent.showRoutingView {
+					parent.endingCoordinate = coordinate
+					parent.geocodingService.getAddress(from: coordinate) { address in
+						self.parent.endPoint = address ?? "\(coordinate.latitude), \(coordinate.longitude)"
+					}
+					print("MapView: Destination set to - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
+				} else {
+					// If RoutingView is not shown, show the pin modal
+					parent.selectedCoordinate = coordinate
+					parent.showPinModal = true
+					parent.onMapClick?(coordinate)
+					print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
+				}
 			}
 		}
+
 		
-// MARK: - drawRoute function
+		// MARK: - drawRoute function
 		func drawRoute(startPoint: String, endPoint: String) {
 			let geocodingService = GeocodingService()
 			
@@ -119,7 +128,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 							return
 						}
 						
-//						print("Route found with distance: \(route.distance) meters")
+						//						print("Route found with distance: \(route.distance) meters")
 						
 						// Add the route as an overlay on the map
 						self.parent.mapView.addOverlay(route.polyline)
@@ -132,13 +141,13 @@ struct MapViewRepresentable: UIViewRepresentable {
 				}
 			}
 		}
-
+		
 		// MARK: - removeRoute function
 		func removeRoutes() {
 			let overlays = mapView.overlays
 			mapView.removeOverlays(overlays.filter { $0 is MKPolyline })
 		}
-
+		
 		func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 			print("Renderer requested for overlay")
 			if let polyline = overlay as? MKPolyline {
@@ -149,21 +158,15 @@ struct MapViewRepresentable: UIViewRepresentable {
 			}
 			return MKOverlayRenderer()
 		}
-
-		func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-			let centerCoordinate = mapView.centerCoordinate
-			parent.selectedCoordinate = centerCoordinate
-			print("MapView: Region changed. Center coordinates - Latitude: \(centerCoordinate.latitude), Longitude: \(centerCoordinate.longitude)")
-		}
 		
 		func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 			let identifier = "AccidentPin"
-			var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+			var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 			
 			if annotationView == nil {
-				annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+				annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 				annotationView?.canShowCallout = true
-				annotationView?.pinTintColor = UIColor.orange
+//				annotationView?.pinTintColor = UIColor.orange
 			} else {
 				annotationView?.annotation = annotation
 			}
@@ -172,28 +175,28 @@ struct MapViewRepresentable: UIViewRepresentable {
 			
 			return annotationView
 		}
-
-        // Handle pin selection
-        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            guard let annotation = view.annotation else { return }
-            
-            let selectedLat = annotation.coordinate.latitude
-            let selectedLon = annotation.coordinate.longitude
-            
-            // Find the corresponding pin from the pins array
-            if let selectedPin = parent.pins.first(where: { pin in
-                pin.latitude == selectedLat && pin.longitude == selectedLon
-            }) {
-                parent.selectedPin = selectedPin  // Set the selected pin
-                print("MapView: Pin selected - \(selectedPin.title)")
-            }
-        }
+		
+		// Handle pin selection
+		func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+			guard let annotation = view.annotation else { return }
+			
+			let selectedLat = annotation.coordinate.latitude
+			let selectedLon = annotation.coordinate.longitude
+			
+			// Find the corresponding pin from the pins array
+			if let selectedPin = parent.pins.first(where: { pin in
+				pin.latitude == selectedLat && pin.longitude == selectedLon
+			}) {
+				parent.selectedPin = selectedPin  // Set the selected pin
+				print("MapView: Pin selected - \(selectedPin.title)")
+			}
+		}
 	}
-	
-extension MKMapView {
-    func centerToCoordinate(_ coordinate: CLLocationCoordinate2D, animated: Bool = true) {
-    let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-    self.setRegion(region, animated: animated)
 }
 
+extension MKMapView {
+	func centerToCoordinate(_ coordinate: CLLocationCoordinate2D, animated: Bool = true) {
+		let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+		self.setRegion(region, animated: animated)
+	}
 }

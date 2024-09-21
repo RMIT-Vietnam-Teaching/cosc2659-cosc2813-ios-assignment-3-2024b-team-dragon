@@ -18,7 +18,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         let unResponsivenessUI = DispatchQueue(label: "unResponsivenessUI")
         unResponsivenessUI.async {
             if CLLocationManager.locationServicesEnabled() {
-                let status = locationManager.authorizationStatus
+				let status = self.locationManager.authorizationStatus
 
                 switch status {
                 case .notDetermined:

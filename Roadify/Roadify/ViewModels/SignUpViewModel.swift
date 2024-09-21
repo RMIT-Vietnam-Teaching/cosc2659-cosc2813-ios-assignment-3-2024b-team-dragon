@@ -96,21 +96,22 @@ class SignUpViewModel: ObservableObject {
             }
 
             if let userID = Auth.auth().currentUser?.uid {
-                _ = User(
+                let user = User(
                     id: userID,
                     username: self?.username ?? "",
                     firstName: self?.firstName ?? "",
                     lastName: self?.lastName ?? "",
                     email: self?.email ?? "",
-                    createdAt: Date()
+					createdAt: Date(),
+					isAdmin: false
                 )
-                //                self?.firebaseService.saveUser(user: user) { error in
-                //                    if let error = error {
-                //                        self?.errorMessage = "Failed to save user details: \(error.localizedDescription)"
-                //                    } else {
-                //                        self?.isRegistered = true
-                //                    }
-                //                }
+				self?.firebaseService.saveUser(user: user) { error in
+					if let error = error {
+						self?.errorMessage = "Failed to save user details: \(error.localizedDescription)"
+					} else {
+						self?.isRegistered = true
+					}
+				}
             }
 
             self?.sendEmailVerification()
