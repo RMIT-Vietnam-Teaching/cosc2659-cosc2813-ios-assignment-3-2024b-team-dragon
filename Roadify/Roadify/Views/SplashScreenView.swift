@@ -1,10 +1,12 @@
 import SwiftUI
+import AVFoundation
 
 struct SplashScreenView: View {
     @StateObject private var authManager = AuthManager()
     @State private var navigateToNextView = false
     @State private var selectedTab: Int = 0
-    
+    @State private var audioPlayer: AVAudioPlayer?
+
     var body: some View {
         ZStack {
             Color("MainColor").ignoresSafeArea(.all) // Background color of the splash screen
@@ -16,8 +18,10 @@ struct SplashScreenView: View {
             }
         }
         .onAppear {
+            playSound()
             // Simulate a delay for the splash screen
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                audioPlayer?.stop() // Stop the sound
                 withAnimation {
                     navigateToNextView = true
                 }
@@ -29,6 +33,18 @@ struct SplashScreenView: View {
             } else {
                 WelcomeView()
             }
+        }
+    }
+    
+    private func playSound() {
+        // Load sound from the Assets catalog
+        guard let asset = NSDataAsset(name: "sound") else { return }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(data: asset.data)
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound: \(error)")
         }
     }
 }
