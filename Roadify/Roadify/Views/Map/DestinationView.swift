@@ -31,7 +31,6 @@ struct DestinationView: View {
 		.cornerRadius(15)
 		.padding()
 		.shadow(radius: 5)
-		
 	}
 }
 

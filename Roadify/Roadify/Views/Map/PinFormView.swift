@@ -187,6 +187,7 @@ struct PinFormView: View {
 							ProgressViewModel(
 								color: Color("SubColor"), textColor: Color.white,
 								text: "Uploading..."))
+						.padding()
 				} else {
 					Button {
 						validateAndSubmit()

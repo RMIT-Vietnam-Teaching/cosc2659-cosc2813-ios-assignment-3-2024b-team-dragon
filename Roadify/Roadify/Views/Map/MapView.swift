@@ -111,20 +111,21 @@ struct MapView: View {
 						}
                 }
             }
+			
+			// Present the detail view
+			if let pin = selectedPin {
+				VStack {
+					Spacer()
+					DetailPinView(selectedPin: $selectedPin, pin: pin)
+				}
+			}
         }
         .onAppear {
             fetchPins()  // Fetch pins from Firebase on load
             locationManager.requestLocationPermission() // Ask user for location permission
         }
 		
-        // Present the detail view
-        if let pin = selectedPin {
-			DetailPinView(selectedPin: $selectedPin, pin: pin)
-				.background(Color("MainColor"))
-				.transition(.move(edge: .bottom))
-//                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5))
-				.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
-        }
+        
     }
     
     // MARK: - Function to add the pin after form submission

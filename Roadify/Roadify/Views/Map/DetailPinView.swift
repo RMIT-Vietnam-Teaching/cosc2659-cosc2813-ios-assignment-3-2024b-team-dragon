@@ -50,8 +50,6 @@ struct DetailPinView: View {
                 .padding([.leading, .trailing, .top], 16)
             }
 
-            Spacer()
-
             // Buttons Section (Like/Dislike and View in Alert)
             HStack {
                 // Like Button
@@ -94,13 +92,17 @@ struct DetailPinView: View {
             .padding(.top, 20)
             .padding(.bottom, 20)
         }
-        .background(Color("MainColor")) // Use the same color as PinFormView
-        .cornerRadius(20)
-        .shadow(radius: 10)
+		.background(Color("MainColor"))
+		.cornerRadius(15)
+		.overlay(
+			RoundedRectangle(cornerRadius: 15)
+				.stroke(Color.white.opacity(0.2), lineWidth: 2)
+		)
+		.shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
         .transition(.move(edge: .bottom))
 //        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5)) 
 		.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
-		
+		.padding()
     }
 
     // Helper to format date
