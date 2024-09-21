@@ -65,6 +65,7 @@
 		0A918D982C9D965E00A4B746 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A918D972C9D965E00A4B746 /* LanguageSelectionView.swift */; };
 		0ABCBEFC2C9421B2002F62EE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */; };
 		0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */; };
+		0AC32F8D2C9F878C007E6A94 /* Use.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AC32F8C2C9F8782007E6A94 /* Use.txt */; };
 		B81FB92F2C9C0E5000DB90C1 /* AccountNotLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB92E2C9C0E5000DB90C1 /* AccountNotLoginView.swift */; };
 		B81FB9312C9C0E5700DB90C1 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB9302C9C0E5700DB90C1 /* AccountView.swift */; };
 		B81FB9332C9C0E5C00DB90C1 /* ActivityLogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB9322C9C0E5C00DB90C1 /* ActivityLogsView.swift */; };
@@ -167,6 +168,7 @@
 		0ABCBEFB2C9421B2002F62EE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0ABCBEFD2C9428E5002F62EE /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		0AC32F8B2C9F85BD007E6A94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0AC32F8C2C9F8782007E6A94 /* Use.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Use.txt; sourceTree = "<group>"; };
 		B81FB92E2C9C0E5000DB90C1 /* AccountNotLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotLoginView.swift; sourceTree = "<group>"; };
 		B81FB9302C9C0E5700DB90C1 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		B81FB9322C9C0E5C00DB90C1 /* ActivityLogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogsView.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 		0A29235F2C9F8309008F0BA9 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0AC32F8C2C9F8782007E6A94 /* Use.txt */,
 				0A2923772C9F831A008F0BA9 /* Montserrat */,
 			);
 			path = fonts;
@@ -596,6 +599,7 @@
 				0A125CF72C9ACDCF00F70798 /* Localizable.strings in Resources */,
 				B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */,
 				0A2923782C9F831A008F0BA9 /* Montserrat-BoldItalic.ttf in Resources */,
+				0AC32F8D2C9F878C007E6A94 /* Use.txt in Resources */,
 				0A2923792C9F831A008F0BA9 /* Montserrat-ThinItalic.ttf in Resources */,
 				0A29237A2C9F831A008F0BA9 /* README.txt in Resources */,
 				0A29237B2C9F831A008F0BA9 /* Montserrat-SemiBold.ttf in Resources */,
