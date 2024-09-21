@@ -21,7 +21,6 @@ struct MapView: View {
 	@Binding var selectedPin: Pin?
 	@Binding var selectedTab: Int
 	@Binding var isFromMapView: Bool
-	@Binding var isDetailPinViewPresented: Bool
 
 	@State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
 	@State private var startingCoordinate: CLLocationCoordinate2D?
@@ -248,20 +247,19 @@ struct MapView: View {
 			if let pin = selectedPin {
 				VStack {
 					Spacer()
-					DetailPinView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented, pin: pin)
+					DetailPinView(selectedPin: $selectedPin,
+								  selectedTab: $selectedTab,
+								  isFromMapView: $isFromMapView,
+								  pin: pin)
 				}
-				.onAppear {
-					isDetailPinViewPresented = true
-				}
+
 			}
-			
 		}
 		.onAppear {
-			fetchPins()  // Fetch pins from Firebase on load
-			locationManager.requestLocationPermission() // Ask user for location permission
+			fetchPins()
+			locationManager.requestLocationPermission()
+			selectedPin = nil
 		}
-		
-		
 	}
 	
 	// MARK: - Function to add the pin after form submission
@@ -334,9 +332,8 @@ struct MapView_Previews: PreviewProvider {
 	@State static var selectedPin: Pin?
 	@State static var selectedTab: Int = 0
 	@State static var isFromMapView: Bool = false
-	@State static var isDetailPinViewPresented: Bool = false
 	
 	static var previews: some View {
-		MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+		MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 	}
 }

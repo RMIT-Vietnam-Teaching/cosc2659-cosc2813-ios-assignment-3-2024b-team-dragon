@@ -7,8 +7,6 @@ struct RoadifyApp: App {
 	@State private var selectedPin: Pin?
 	@State private var selectedTab: Int = 0
 	@State private var isFromMapView: Bool = false
-	@State private var isDetailPinViewPresented: Bool = false
-
 	
     init() {
         FirebaseApp.configure()
@@ -24,7 +22,7 @@ struct RoadifyApp: App {
 
     var body: some Scene {
         WindowGroup {
-			SplashScreenView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+			SplashScreenView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
         }
     }
 }

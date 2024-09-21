@@ -10,14 +10,13 @@ struct TabView: View {
 	@Binding var selectedPin: Pin?
 	@Binding var selectedTab: Int
 	@Binding var isFromMapView: Bool
-	@Binding var isDetailPinViewPresented: Bool
 	
 	var body: some View {
 		VStack(spacing: 0) {
 			if authManager.isLoggedIn {
 				switch selectedTab {
 				case 0:
-					MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+					MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 						.onAppear {	authManager.refreshAuthStatus()	}
 				case 1:
 					NewsView()
@@ -37,7 +36,7 @@ struct TabView: View {
 			} else {
 				switch selectedTab {
 				case 0:
-					MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+					MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 						.onAppear {
 							authManager.refreshAuthStatus()
 						}
@@ -107,11 +106,10 @@ struct TabView_Previews: PreviewProvider {
 	@State static var selectedPin: Pin?
 	@State static var selectedTab: Int = 0
 	@State static var isFromMapView: Bool = false
-	@State static var isDetailPinViewPresented: Bool = false
 
 	
 	static var previews: some View {
-		TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+		TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 	}
 }
 

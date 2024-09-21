@@ -4,7 +4,6 @@ struct DetailPinView: View {
 	@Binding var selectedPin: Pin?
 	@Binding var selectedTab: Int
 	@Binding var isFromMapView: Bool
-	@Binding var isDetailPinViewPresented: Bool
 	
     let pin: Pin
 
@@ -14,8 +13,8 @@ struct DetailPinView: View {
             HStack {
                 Spacer()
                 Button(action: {
-					isDetailPinViewPresented = false
-                }) {
+					selectedPin = nil
+				}) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.gray)
                         .font(.system(size: 24))
@@ -71,7 +70,7 @@ struct DetailPinView: View {
 					selectedTab = 2
 					selectedPin = pin
 					isFromMapView = true
-					isDetailPinViewPresented = false
+					
 				}) {
                     Text("View in Alert")
                         .font(.headline)
@@ -135,9 +134,8 @@ struct DetailPinView_Previews: PreviewProvider {
 	@State static var selectedPin: Pin?
 	@State static var selectedTab: Int = 0
 	@State static var isFromMapView: Bool = false
-	@State static var isDetailPinViewPresented: Bool = false
 	
 	static var previews: some View {
-		DetailPinView(selectedPin: .constant(mockPin), selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented, pin: mockPin)
+		DetailPinView(selectedPin: .constant(mockPin), selectedTab: $selectedTab, isFromMapView: $isFromMapView, pin: mockPin)
 	}
 }

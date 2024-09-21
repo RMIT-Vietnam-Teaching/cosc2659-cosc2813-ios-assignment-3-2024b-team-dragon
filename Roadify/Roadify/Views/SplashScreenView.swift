@@ -7,8 +7,6 @@ struct SplashScreenView: View {
 	@Binding var selectedPin: Pin?
 	@Binding var selectedTab: Int
 	@Binding var isFromMapView: Bool
-	@Binding var isDetailPinViewPresented: Bool
-
     
     var body: some View {
         ZStack {
@@ -30,9 +28,9 @@ struct SplashScreenView: View {
         }
         .fullScreenCover(isPresented: $navigateToNextView) {
             if authManager.isLoggedIn {
-				TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+				TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
             } else {
-				WelcomeView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+				WelcomeView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
             }
         }
     }
@@ -42,9 +40,8 @@ struct SplashScreenView_Previews: PreviewProvider {
 	@State static var selectedPin: Pin?
 	@State static var selectedTab: Int = 0
 	@State static var isFromMapView: Bool = false
-	@State static var isDetailPinViewPresented: Bool = false
 
     static var previews: some View {
-		SplashScreenView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+		SplashScreenView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
     }
 }

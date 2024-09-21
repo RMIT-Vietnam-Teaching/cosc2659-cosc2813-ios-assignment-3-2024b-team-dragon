@@ -7,7 +7,6 @@ struct WelcomeView: View {
 	@Binding var selectedPin: Pin?
 	@Binding var selectedTab: Int
 	@Binding var isFromMapView: Bool
-	@Binding var isDetailPinViewPresented: Bool
 	
     let totalPage = 3
     
@@ -70,7 +69,7 @@ struct WelcomeView: View {
 //                    }
 //                ) *FixYellowWarning*
 				.navigationDestination(isPresented: $navigateToTabView) {
-					TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented).navigationBarBackButtonHidden(true)
+					TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView).navigationBarBackButtonHidden(true)
 //						EmptyView()
 					}
 						
@@ -124,9 +123,8 @@ struct WelcomeView_Previews: PreviewProvider {
 	@State static var selectedPin: Pin?
 	@State static var selectedTab: Int = 0
 	@State static var isFromMapView: Bool = false
-	@State static var isDetailPinViewPresented: Bool = false
 
     static var previews: some View {
-		WelcomeView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
+		WelcomeView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
     }
 }
