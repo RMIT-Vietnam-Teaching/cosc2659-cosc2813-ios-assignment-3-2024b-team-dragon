@@ -29,9 +29,11 @@ struct AccountView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text(LocalizedStringKey("profile_title"))
-                .font(.title2)
-                .bold()
+			if !viewModel.isAdmin {
+				Text(LocalizedStringKey("profile_title"))
+					.font(.title2)
+					.bold()
+			}
 
             Spacer()
 
@@ -164,7 +166,7 @@ struct AccountView: View {
                         .foregroundColor(.red)
                     Spacer()
                 }
-                .padding()
+				.padding([.top, .leading, .bottom])
             }
             .alert(isPresented: $showAlert) {
                 Alert(
@@ -184,8 +186,6 @@ struct AccountView: View {
                 }
                 .hidden()  // Hide the NavigationLink
             )
-
-            Spacer()
         }
         .onAppear {
             setLanguageBasedOnAppLanguage()
