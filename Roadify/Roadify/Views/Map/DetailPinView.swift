@@ -49,7 +49,7 @@ struct DetailPinView: View {
                 }
                 .padding([.leading, .trailing, .top], 16)
             }
-
+ 
             // Buttons Section (Like/Dislike and View in Alert)
             HStack {
                 // Like Button
