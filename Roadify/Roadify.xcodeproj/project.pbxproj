@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,9 @@
 		B81FB93F2C9C0E7A00DB90C1 /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB93E2C9C0E7A00DB90C1 /* PrivacyView.swift */; };
 		B81FB9412C9C0E7E00DB90C1 /* ReportABugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB9402C9C0E7E00DB90C1 /* ReportABugView.swift */; };
 		B81FB9432C9C0E8300DB90C1 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81FB9422C9C0E8300DB90C1 /* TermsOfServiceView.swift */; };
+		B82E84B82C9EC72B0048530D /* AdminPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82E84B52C9EC72B0048530D /* AdminPanelView.swift */; };
+		B82E84B92C9EC72B0048530D /* PendingPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82E84B62C9EC72B0048530D /* PendingPinView.swift */; };
+		B82E84BA2C9EC72B0048530D /* PinManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82E84B72C9EC72B0048530D /* PinManagementView.swift */; };
 		B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830F06E2C942E4A008931E0 /* TabButtonView.swift */; };
 		B832439B2C958C8200064A77 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B832439A2C958C8200064A77 /* TabView.swift */; };
 		B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */; };
@@ -131,6 +134,9 @@
 		B81FB93E2C9C0E7A00DB90C1 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
 		B81FB9402C9C0E7E00DB90C1 /* ReportABugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportABugView.swift; sourceTree = "<group>"; };
 		B81FB9422C9C0E8300DB90C1 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
+		B82E84B52C9EC72B0048530D /* AdminPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPanelView.swift; sourceTree = "<group>"; };
+		B82E84B62C9EC72B0048530D /* PendingPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingPinView.swift; sourceTree = "<group>"; };
+		B82E84B72C9EC72B0048530D /* PinManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinManagementView.swift; sourceTree = "<group>"; };
 		B830F06E2C942E4A008931E0 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabButtonView.swift; path = Roadify/Views/TabButtonView.swift; sourceTree = SOURCE_ROOT; };
 		B832439A2C958C8200064A77 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerViewModel.swift; sourceTree = "<group>"; };
@@ -159,10 +165,6 @@
 		E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
 		E9F1C2F12C996DCF009ACA55 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E926EA462C9C2562006F4C69 /* AdminProfilePage */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AdminProfilePage; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B8E66F1B2C84C77D0033A939 /* Frameworks */ = {
@@ -213,9 +215,9 @@
 		03E237652C8C8F6B0095D755 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B875DF502C95ED3C004CED7E /* Account */,
 				B875DF522C95ED47004CED7E /* Alert */,
 				B875DF512C95ED40004CED7E /* News */,
-				B875DF502C95ED3C004CED7E /* Account */,
 				B875DF4F2C95ED29004CED7E /* Map */,
 				B832439A2C958C8200064A77 /* TabView.swift */,
 				B88A54802C9533FE002AE8DF /* WelcomeView.swift */,
@@ -321,6 +323,16 @@
 			path = ProfilePage;
 			sourceTree = "<group>";
 		};
+		B82E84BC2C9EC7680048530D /* AdminProfilePage */ = {
+			isa = PBXGroup;
+			children = (
+				B82E84B52C9EC72B0048530D /* AdminPanelView.swift */,
+				B82E84B62C9EC72B0048530D /* PendingPinView.swift */,
+				B82E84B72C9EC72B0048530D /* PinManagementView.swift */,
+			);
+			path = AdminProfilePage;
+			sourceTree = "<group>";
+		};
 		B875DF4F2C95ED29004CED7E /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,7 +348,7 @@
 		B875DF502C95ED3C004CED7E /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				E926EA462C9C2562006F4C69 /* AdminProfilePage */,
+				B82E84BC2C9EC7680048530D /* AdminProfilePage */,
 				B81FB92D2C9C0E3300DB90C1 /* ProfilePage */,
 				B875DF532C95ED78004CED7E /* Auth */,
 			);
@@ -427,9 +439,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				E926EA462C9C2562006F4C69 /* AdminProfilePage */,
 			);
 			name = Roadify;
 			packageProductDependencies = (
@@ -548,6 +557,9 @@
 				03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */,
 				B81FB9372C9C0E6700DB90C1 /* HelpView.swift in Sources */,
 				035FB6D62C9B2C740066AE41 /* NewsService.swift in Sources */,
+				B82E84B82C9EC72B0048530D /* AdminPanelView.swift in Sources */,
+				B82E84B92C9EC72B0048530D /* PendingPinView.swift in Sources */,
+				B82E84BA2C9EC72B0048530D /* PinManagementView.swift in Sources */,
 				E992575A2C98617600A44500 /* DetailPinView.swift in Sources */,
 				B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */,
 				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
