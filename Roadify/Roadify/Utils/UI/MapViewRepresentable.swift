@@ -76,6 +76,8 @@ struct MapViewRepresentable: UIViewRepresentable {
 				let touchPoint = gesture.location(in: mapView)
 				let coordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
 				
+				self.removeRoutes()
+				
 				parent.selectedCoordinate = coordinate
 				parent.showPinModal = true
 				parent.onMapClick?(coordinate)
