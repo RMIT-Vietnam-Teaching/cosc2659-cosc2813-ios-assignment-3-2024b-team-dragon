@@ -15,7 +15,7 @@ struct AlertView: View {
 				VStack(spacing: 20) {
 					// Title Section
 					Text("Alerts")
-						.font(.largeTitle)
+						.font(.system(size: 28, weight: .bold))
 						.foregroundColor(Color.white)
 						.padding(.top, 20)
 					
