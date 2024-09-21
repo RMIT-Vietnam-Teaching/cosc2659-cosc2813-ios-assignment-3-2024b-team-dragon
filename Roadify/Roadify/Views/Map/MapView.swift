@@ -57,7 +57,7 @@ struct MapView: View {
 							addPin()
 						}
                     )
-                    .background(Color("MainColor"))
+//                    .background(Color("MainColor"))
                     .transition(.move(edge: .bottom))
                     .animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: showPinModel)
                 }
@@ -95,7 +95,7 @@ struct MapView: View {
             }
             
             // MARK: - Destination View
-            if showRoutingView {
+            if showRoutingView && !showPinModel {
                 VStack {
                     RoutingView()
                     Spacer()

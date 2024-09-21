@@ -7,7 +7,7 @@ struct NewsView: View {
 	
 	var body: some View {
 		NavigationView {
-			ZStack (alignment: .bottom){
+			ZStack (alignment: .bottom) {
 				VStack (spacing: 0) {
 					Text("News")
 						.font(.system(size: 28, weight: .bold))
@@ -18,31 +18,37 @@ struct NewsView: View {
 					
 					List(newsArticles) { article in
 						NavigationLink(destination: DetailNewsView(newsArticle: article)) {
-							HStack(spacing: 16) {
-								// Larger image with rounded corners
-								AsyncImage(url: URL(string: article.imageName)) { image in
-									image.resizable()
-										.scaledToFill()
-										.frame(width: 80, height: 80)
-										.cornerRadius(12)
-										.clipped()
-								} placeholder: {
-									ProgressView()
+							VStack(spacing: 20) {
+								HStack {
+									// Larger image with rounded corners
+									AsyncImage(url: URL(string: article.imageName)) { image in
+										image.resizable()
+											.scaledToFill()
+											.frame(width: 80, height: 80)
+											.cornerRadius(12)
+											.clipped()
+									} placeholder: {
+										ProgressView()
+									}
+									
+									VStack(alignment: .leading, spacing: 4) {
+										// Stylized Title
+										Text(article.title)
+											.font(.system(size: 18, weight: .semibold))
+											.foregroundColor(Color("SubColor"))
+											.lineLimit(2)
+											.truncationMode(.tail)
+											.padding(.trailing, 20)
+										Text(article.category)
+											.font(.system(size: 14))
+											.foregroundColor(.white)
+											.padding(.top, 4)
+									}
+									Spacer()
 								}
-								
-								VStack(alignment: .leading, spacing: 4) {
-									// Stylized Title
-									Text(article.title)
-										.font(.system(size: 18, weight: .semibold))
-										.foregroundColor(Color("SubColor"))
-										.lineLimit(2)
-										.truncationMode(.tail)
-										.padding(.trailing, 20)
-									Text(article.category)
-										.font(.system(size: 14))
-										.foregroundColor(.white)
-										.padding(.top, 4)
-								}
+								Divider()
+									.background(Color.gray)
+									.padding(.horizontal)
 							}
 						}
 						.listRowBackground(Color("MainColor"))
@@ -62,7 +68,6 @@ struct NewsView: View {
 						AddNewsFormView(showModal: $showAddNewsForm) {
 							fetchNewsFromFirebase()  // Refresh the news list after adding new news
 						}
-						.background(Color("MainColor"))
 						.transition(.move(edge: .bottom))
 					}
 				}

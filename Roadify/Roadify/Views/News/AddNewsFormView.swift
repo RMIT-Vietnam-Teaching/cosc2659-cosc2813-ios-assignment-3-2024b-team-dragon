@@ -129,7 +129,14 @@ struct AddNewsFormView: View {
                     .padding()
             }
         }
-        .background(Color("MainColor"))
+		.background(Color("MainColor"))
+		.cornerRadius(15)
+		.overlay(
+			RoundedRectangle(cornerRadius: 15)
+				.stroke(Color.white.opacity(0.2), lineWidth: 2)
+		)
+		.shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+		.padding()
     }
 }
 

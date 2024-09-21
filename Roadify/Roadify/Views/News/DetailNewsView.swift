@@ -8,8 +8,9 @@ struct DetailNewsView: View {
             Text(newsArticle.title)
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(Color("SubColor"))
-				.padding([.top, .leading, .trailing], 100)
-            
+				.padding(.top, 120)
+				.padding(.horizontal)
+			
             AsyncImage(url: URL(string: newsArticle.imageName)) { image in
                 image
                     .resizable()

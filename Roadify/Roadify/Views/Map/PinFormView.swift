@@ -46,7 +46,7 @@ struct PinFormView: View {
 				
 			}
 			
-			Text("Press on the map\nto pin accidents or traffic jams")
+			Text("Add accident pin")
 				.foregroundStyle(Color.white)
 				.font(.title2)
 				.multilineTextAlignment(.center)
@@ -68,6 +68,7 @@ struct PinFormView: View {
 				.onChange(of: title) {
 					titleError = false
 				}
+				.padding([.leading, .trailing])
 			
 			HStack (spacing: 0) {
 				// MARK: - Add description
@@ -83,6 +84,7 @@ struct PinFormView: View {
 					.onChange(of: description) {
 						descriptionError = false
 					}
+					.padding(.leading)
 				
 				// MARK: - Add Image
 				Button(action: {
@@ -103,7 +105,7 @@ struct PinFormView: View {
 					ImagePickerView(selectedImages: $selectedImages)  // Pass selectedImages
 						.edgesIgnoringSafeArea(.bottom)
 				}
-				.padding(.leading)
+				.padding([.leading, .trailing])
 				.onChange(of: selectedImages) { newImages in
 					images.append(contentsOf: newImages)  // Append the selected images
 				}
@@ -113,9 +115,9 @@ struct PinFormView: View {
 			// MARK: - Pin Longitude and Latitude
 			VStack(alignment: .leading, spacing: 10) {
 				Text("Pin Location")
-					.foregroundStyle(Color.white)
+					.foregroundStyle(Color("SubColor"))
 					.font(.headline)
-					.padding(.bottom, 5)
+					.padding([.leading, .bottom])
 				
 				// Latitude
 				HStack {
@@ -123,6 +125,7 @@ struct PinFormView: View {
 						.font(.subheadline)
 						.foregroundStyle(.gray)
 						.frame(width: 80)
+						.padding(.leading)
 					
 					TextField("Latitude", text: $latitude)
 						.padding()
@@ -135,6 +138,7 @@ struct PinFormView: View {
 								latitude = String(coordinate.latitude)
 							}
 						}
+						.padding(.trailing)
 				}
 				
 				// Longitude
@@ -143,7 +147,8 @@ struct PinFormView: View {
 						.font(.subheadline)
 						.foregroundColor(.gray)
 						.frame(width: 80)
-					
+						.padding(.leading)
+
 					TextField("Longitude", text: $longitude)
 						.padding()
 						.background(Color.white)
@@ -155,6 +160,7 @@ struct PinFormView: View {
 								longitude = String(coordinate.longitude)
 							}
 						}
+						.padding(.trailing)
 				}
 			}
 			.padding([.top, .leading, .trailing])
@@ -195,6 +201,13 @@ struct PinFormView: View {
 			}
 		}
 		.background(Color("MainColor"))
+		.cornerRadius(15)
+		.overlay(
+			RoundedRectangle(cornerRadius: 15)
+				.stroke(Color.white.opacity(0.2), lineWidth: 2)
+		)
+		.shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+		.padding()
 	}
 	
 	// Save the pin to Firebase
