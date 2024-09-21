@@ -7,14 +7,19 @@
 
 import Foundation
 import FirebaseFirestore
-import SwiftUI
+import CoreLocation
+import Combine
 
 class PinManagementViewModel: ObservableObject {
     @Published var verifiedPins: [Pin] = []
+    @Published var userLocation: CLLocationCoordinate2D? = nil
     private var pinService = PinService()
+    private var locationManager = LocationManager()
+    private var cancellables = Set<AnyCancellable>()
 
     init() {
         fetchVerifiedPins()
+        bindLocationUpdates()
     }
 
     // Fetch pins that are marked as verified
@@ -39,5 +44,23 @@ class PinManagementViewModel: ObservableObject {
                 self.verifiedPins.removeAll { $0.id == pin.id }  // Remove from local list
             }
         }
+    }
+
+    // Bind LocationManager updates to track user location
+    private func bindLocationUpdates() {
+        locationManager.$userLocation
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] location in
+                self?.userLocation = location
+            }
+            .store(in: &cancellables)
+    }
+
+    // Calculate distance between the user's location and a pin
+    func calculateDistance(pin: Pin) -> Double {
+        guard let userLocation = userLocation else { return 0 }
+        let pinLocation = CLLocation(latitude: pin.latitude, longitude: pin.longitude)
+        let userLocationCL = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        return userLocationCL.distance(from: pinLocation) / 1000  // Convert to kilometers
     }
 }

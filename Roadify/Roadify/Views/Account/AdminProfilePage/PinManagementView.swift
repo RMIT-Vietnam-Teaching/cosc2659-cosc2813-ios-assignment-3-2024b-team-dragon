@@ -32,10 +32,6 @@ struct PinManagementView: View {
                     .foregroundColor(.white)
 
                 Spacer()
-                
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.white)
-                    .font(.title2)
             }
             .padding()
 
@@ -44,7 +40,7 @@ struct PinManagementView: View {
                     ForEach(viewModel.verifiedPins) { pin in
                         VStack {
                             HStack {
-                                // Pin Image (Placeholder for now)
+                                // Pin Image
                                 if let imageUrl = pin.imageUrls.first, let url = URL(string: imageUrl) {
                                     AsyncImage(url: url) { image in
                                         image
@@ -67,7 +63,13 @@ struct PinManagementView: View {
                                         .font(.headline)
                                         .foregroundColor(Color("SubColor"))  // Adjust based on color scheme
                                     
-                                    Text("\(String(format: "%.1f", pin.latitude)), \(String(format: "%.1f", pin.longitude)) km")
+                                    // Display accurate distance from user location
+                                    Text("\(String(format: "%.1f", viewModel.calculateDistance(pin: pin))) km")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+
+                                    // Display the date the pin was added
+                                    Text("Added: \(formattedDate(pin.timestamp))")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                 }
@@ -101,6 +103,14 @@ struct PinManagementView: View {
         .onAppear {
             viewModel.fetchVerifiedPins()
         }
+    }
+    
+    // Helper function to format the timestamp
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium  // Customize as needed (e.g., .long, .short)
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
     }
 }
 
