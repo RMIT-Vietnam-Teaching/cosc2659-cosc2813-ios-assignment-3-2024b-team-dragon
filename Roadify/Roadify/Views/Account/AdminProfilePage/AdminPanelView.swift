@@ -8,50 +8,54 @@
 import SwiftUI
 
 struct AdminPanelView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var showPendingPinView = false
     @State private var showPinManagementView = false
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Admin Panel")
-                .font(.title2)
-                .bold()
-            
-            Button(action: {
-                showPendingPinView = true
-            }) {
-                settingsRow(iconName: "gift.fill", label: "Pending Pins")
+        NavigationStack {
+            VStack(spacing: 20) {
+                
+                Button(action: {
+                    showPendingPinView = true
+                }) {
+                    SettingsRow(iconName: "gift.fill", label: NSLocalizedString("PendingPins", comment: "Pending Pins"))
+                }
+                .sheet(isPresented: $showPendingPinView) {
+                    PendingPinView() // Replace with your actual view for pending pins
+                }
+                
+                Button(action: {
+                    showPinManagementView = true
+                }) {
+                    SettingsRow(iconName: "shield.fill", label: NSLocalizedString("PinManagement", comment: "Pin Management"))
+                }
+                .sheet(isPresented: $showPinManagementView) {
+                    PinManagementView() // Replace with your actual view for pin management
+                }
+                
+                Spacer()
             }
-            .sheet(isPresented: $showPendingPinView) {
-                PendingPinView() // Replace with your actual view for pending pins
+            .padding()
+            .background(Color("MainColor").edgesIgnoringSafeArea(.all))
+            .foregroundColor(.white)
+            .navigationTitle(NSLocalizedString("Admin_nav", comment: "Admin Panel"))
+            .onAppear {
+                NavigationBarAppearance.setupNavigationBar()
             }
-            
-            Button(action: {
-                showPinManagementView = true
-            }) {
-                settingsRow(iconName: "shield.fill", label: "Pin Management")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 24))
+                    }
+                }
             }
-            .sheet(isPresented: $showPinManagementView) {
-                PinManagementView() // Replace with your actual view for user management
-            }
-            
-            Spacer()
         }
-        .padding()
-        .background(Color("MainColor").edgesIgnoringSafeArea(.all))
-        .foregroundColor(.white)
-    }
-    
-    private func settingsRow(iconName: String, label: String) -> some View {
-        HStack {
-            Image(systemName: iconName)
-                .foregroundColor(Color("SubColor")) // Adjust the color to match the icons
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
 }
 

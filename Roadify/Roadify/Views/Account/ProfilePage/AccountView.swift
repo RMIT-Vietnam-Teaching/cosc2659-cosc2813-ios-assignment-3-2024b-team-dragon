@@ -86,6 +86,7 @@ struct AccountView: View {
                 }) {
                     HStack {
                         Image(systemName: "person.crop.square")
+                            .foregroundColor(.green)
                         Text("Admin Panel")
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -104,7 +105,7 @@ struct AccountView: View {
                 Button(action: {
                     showNotificationsView = true
                 }) {
-                    settingsRow(iconName: "bell", label: LocalizedStringKey("notifications"))
+                    SettingsRow(iconName: "bell", label: NSLocalizedString("notifications", comment: ""))
                 }
                 .sheet(isPresented: $showNotificationsView) {
                     NotificationsView()
@@ -113,7 +114,7 @@ struct AccountView: View {
                 Button(action: {
                     showPrivacyView = true
                 }) {
-                    settingsRow(iconName: "lock.shield", label: LocalizedStringKey("privacy"))
+                    SettingsRow(iconName: "lock.shield", label: NSLocalizedString("privacy", comment: ""))
                 }
                 .sheet(isPresented: $showPrivacyView) {
                     PrivacyView()
@@ -136,8 +137,8 @@ struct AccountView: View {
                 Button(action: {
                     showHelpView = true
                 }) {
-                    settingsRow(
-                        iconName: "questionmark.circle", label: LocalizedStringKey("help_center"))
+                    SettingsRow(
+                        iconName: "questionmark.circle", label: NSLocalizedString("help_center",comment: ""))
                 }
                 .sheet(isPresented: $showHelpView) {
                     HelpView()
@@ -146,7 +147,7 @@ struct AccountView: View {
                 Button(action: {
                     showReportBugView = true
                 }) {
-                    settingsRow(iconName: "flag", label: LocalizedStringKey("report_bug"))
+                    SettingsRow(iconName: "flag", label: NSLocalizedString("report_bug", comment: ""))
                 }
                 .sheet(isPresented: $showReportBugView) {
                     ReportABugView()
@@ -193,17 +194,6 @@ struct AccountView: View {
         .padding()
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
-    }
-
-    private func settingsRow(iconName: String, label: LocalizedStringKey) -> some View {
-        HStack {
-            Image(systemName: iconName)
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
 
     private func languageRow(language: String, flag: String) -> some View {
