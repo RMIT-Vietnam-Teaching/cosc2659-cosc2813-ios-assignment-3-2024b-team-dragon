@@ -15,11 +15,14 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 	
 	// Request location permission
 	func requestLocationPermission() {
-		if CLLocationManager.locationServicesEnabled() {
-			locationManager.requestWhenInUseAuthorization()
-			locationManager.startUpdatingLocation()
-		} else {
-			print("Location services are not enabled.")
+		let unResponsivenessUI = DispatchQueue(label: "unResponsivenessUI")
+		unResponsivenessUI.async {
+			if CLLocationManager.locationServicesEnabled() {
+				self.locationManager.requestWhenInUseAuthorization()
+				self.locationManager.startUpdatingLocation()
+			} else {
+				print("Location services are not enabled.")
+			}
 		}
 	}
 	
