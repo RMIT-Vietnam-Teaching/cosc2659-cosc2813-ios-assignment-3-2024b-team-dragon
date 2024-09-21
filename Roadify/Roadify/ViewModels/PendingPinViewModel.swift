@@ -7,13 +7,19 @@
 
 import Foundation
 import Firebase
+import CoreLocation
+import Combine
 
 class PendingPinViewModel: ObservableObject {
     @Published var pendingPins: [Pin] = []
+    @Published var userLocation: CLLocationCoordinate2D? = nil
     private var pinService = PinService()
+    private var locationManager = LocationManager()
+    private var cancellables = Set<AnyCancellable>()
     
     init() {
         fetchPendingPins()
+        bindLocationUpdates()
     }
     
     // Fetch pending pins from the Firestore database
@@ -56,5 +62,23 @@ class PendingPinViewModel: ObservableObject {
     // Helper function to remove the pin from the list
     private func removePinFromList(_ pin: Pin) {
         self.pendingPins.removeAll { $0.id == pin.id }
+    }
+    
+    // Bind LocationManager updates to track user location
+    private func bindLocationUpdates() {
+        locationManager.$userLocation
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] location in
+                self?.userLocation = location
+            }
+            .store(in: &cancellables)
+    }
+    
+    // Calculate distance between the user's location and a pin
+    func calculateDistance(pin: Pin) -> Double {
+        guard let userLocation = userLocation else { return 0 }
+        let pinLocation = CLLocation(latitude: pin.latitude, longitude: pin.longitude)
+        let userLocationCL = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        return userLocationCL.distance(from: pinLocation) / 1000  // Convert to kilometers
     }
 }
