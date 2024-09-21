@@ -1,3 +1,10 @@
+//
+//  MapView.swift
+//  Roadify
+//
+//  Created by Lê Phước on 9/9/24.
+//
+
 import SwiftUI
 import MapKit
 import CoreLocation
@@ -41,8 +48,12 @@ struct MapView: View {
                         description: $pinDescription,
                         images: $pinImages,
                         showModal: $showPinModel,
-                        selectedCoordinate: $selectedCoordinate,
-						onSubmit: {
+						selectedCoordinate: $selectedCoordinate,
+						showPinModel: $showPinModel,
+						onSubmit: {completion in
+							DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+								completion()
+							}
 							addPin()
 						}
                     )
@@ -79,7 +90,6 @@ struct MapView: View {
                         }
                     }
                     .padding(30)
-                    
                     Spacer()
                 }
             }
@@ -96,6 +106,9 @@ struct MapView: View {
                 VStack {
                     Spacer()
                     DestinationView(destinationAddress: $destinationAddress, showRoutingView: $showRoutingView)
+						.onTapGesture {
+							showRoutingView = true
+						}
                 }
             }
         }
@@ -103,6 +116,7 @@ struct MapView: View {
             fetchPins()  // Fetch pins from Firebase on load
             locationManager.requestLocationPermission() // Ask user for location permission
         }
+		
         // Present the detail view
         if let pin = selectedPin {
 			DetailPinView(selectedPin: $selectedPin, pin: pin)

@@ -24,6 +24,7 @@ struct DestinationView: View {
 					.onTapGesture {
 						showRoutingView = true
 					}
+					.disabled(true)
 			}
 		}
 		.background(Color("MainColor"))
