@@ -8,6 +8,7 @@ class AlertViewModel: ObservableObject {
     @Published var userLocation: CLLocationCoordinate2D? = nil
     @Published var errorMessage: String? = nil
     @Published var searchText: String = "" // The search query from the view
+	
     
     private var firebaseService: FirebaseService
     private var pinService: PinService

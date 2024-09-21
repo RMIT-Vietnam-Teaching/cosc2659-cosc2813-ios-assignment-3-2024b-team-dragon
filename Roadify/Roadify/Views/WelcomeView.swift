@@ -3,6 +3,12 @@ import SwiftUI
 struct WelcomeView: View {
     @State private var currentPage = 0
     @State private var navigateToTabView = false // New state variable
+	
+	@Binding var selectedPin: Pin?
+	@Binding var selectedTab: Int
+	@Binding var isFromMapView: Bool
+	@Binding var isDetailPinViewPresented: Bool
+	
     let totalPage = 3
     
     var body: some View {
@@ -64,7 +70,7 @@ struct WelcomeView: View {
 //                    }
 //                ) *FixYellowWarning*
 				.navigationDestination(isPresented: $navigateToTabView) {
-						TabView().navigationBarBackButtonHidden(true)
+					TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented).navigationBarBackButtonHidden(true)
 //						EmptyView()
 					}
 						
@@ -115,7 +121,12 @@ struct WelcomeView: View {
 }
 
 struct WelcomeView_Previews: PreviewProvider {
+	@State static var selectedPin: Pin?
+	@State static var selectedTab: Int = 0
+	@State static var isFromMapView: Bool = false
+	@State static var isDetailPinViewPresented: Bool = false
+
     static var previews: some View {
-        WelcomeView()
+		WelcomeView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView, isDetailPinViewPresented: $isDetailPinViewPresented)
     }
 }
