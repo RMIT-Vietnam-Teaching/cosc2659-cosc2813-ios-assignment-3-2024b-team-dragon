@@ -61,7 +61,7 @@ struct AlertView: View {
 				// Hidden NavigationLink for automatic navigation
 				NavigationLink(destination:
 								AlertDetailsView(viewModel: AlertDetailsViewModel(pin: selectedPin!)),
-							   isActive: .constant(isFromMapView && selectedPin != nil) // Make it active based on conditions
+							   isActive: .constant(isFromMapView && selectedPin != nil)
 				) {
 					EmptyView()
 				}

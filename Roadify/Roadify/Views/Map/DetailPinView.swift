@@ -14,9 +14,7 @@ struct DetailPinView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    withAnimation {
-						selectedPin = nil
-                    }
+					isDetailPinViewPresented = false
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.gray)
