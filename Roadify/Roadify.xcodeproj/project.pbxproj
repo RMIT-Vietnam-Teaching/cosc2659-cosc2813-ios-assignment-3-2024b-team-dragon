@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0334E8122C93518C00DA52F6 /* ImagePicker.swift */; };
 		033DA9BE2C99CA3300A71506 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DA9BD2C99CA3300A71506 /* SearchBar.swift */; };
 		035FB6D22C9B2B150066AE41 /* PinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FB6D12C9B2B150066AE41 /* PinService.swift */; };
 		035FB6D42C9B2C050066AE41 /* ImageUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035FB6D32C9B2C050066AE41 /* ImageUploadService.swift */; };
@@ -92,7 +91,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0334E8122C93518C00DA52F6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		033DA9BD2C99CA3300A71506 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		035FB6D12C9B2B150066AE41 /* PinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinService.swift; sourceTree = "<group>"; };
 		035FB6D32C9B2C050066AE41 /* ImageUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadService.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				0362DA532C91B1C1008ED49A /* SettingsRow.swift */,
-				0334E8122C93518C00DA52F6 /* ImagePicker.swift */,
 				B8675E172C95810500B649B3 /* MapViewRepresentable.swift */,
 				033DA9BD2C99CA3300A71506 /* SearchBar.swift */,
 				0A6FE70B2C999B330055B534 /* GIFImage.swift */,
@@ -576,7 +573,6 @@
 				0362DA4B2C919DEF008ED49A /* SignUpView.swift in Sources */,
 				035FB6D22C9B2B150066AE41 /* PinService.swift in Sources */,
 				0A6FE70C2C999B330055B534 /* GIFImage.swift in Sources */,
-				0334E8132C93518C00DA52F6 /* ImagePicker.swift in Sources */,
 				B81FB92F2C9C0E5000DB90C1 /* AccountNotLoginView.swift in Sources */,
 				0A125CDB2C99F7D700F70798 /* AuthManager.swift in Sources */,
 				0A125CE32C9AB3CC00F70798 /* ActivityLog.swift in Sources */,
