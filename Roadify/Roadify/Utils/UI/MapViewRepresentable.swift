@@ -16,12 +16,12 @@ struct MapViewRepresentable: UIViewRepresentable {
 	@Binding var showRoutingView: Bool
 	@Binding var startingCoordinate: CLLocationCoordinate2D?
 	@Binding var endingCoordinate: CLLocationCoordinate2D?
-	
+	@Binding var mapView: MKMapView
+
 	var onMapClick: ((CLLocationCoordinate2D) -> Void)?
-	
-	let mapView = MKMapView()
 	let locationManager = CLLocationManager()
 	
+	// MARK: - makeUIView function
 	func makeUIView(context: Context) -> MKMapView {
 		mapView.delegate = context.coordinator
 
@@ -37,6 +37,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 		return mapView
 	}
 	
+	// MARK: - updateUIView function
 	func updateUIView(_ uiView: MKMapView, context: Context) {
 		uiView.removeAnnotations(uiView.annotations)
 
@@ -51,11 +52,14 @@ struct MapViewRepresentable: UIViewRepresentable {
 		print("MapView: Updated map with pins")
 	}
 	
+	// MARK: - makeCoordinator function
 	func makeCoordinator() -> Coordinator {
 		let coordinator = Coordinator(self, mapView: mapView)
 		mapView.delegate = coordinator
 		return coordinator
 	}
+	
+	
 	
 	class Coordinator: NSObject, MKMapViewDelegate {
 		var parent: MapViewRepresentable
@@ -66,6 +70,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 			self.mapView = mapView
 		}
 		
+		// MARK: - Handle Long press
 		@objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
 			if gesture.state == .began {
 				let touchPoint = gesture.location(in: mapView)
@@ -79,6 +84,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 			}
 		}
 		
+		// MARK: - drawRoute function
 		func drawRoute(startPoint: String, endPoint: String) {
 			let geocodingService = GeocodingService()
 			
@@ -98,14 +104,13 @@ struct MapViewRepresentable: UIViewRepresentable {
 					}
 					print("Ending Coordinate: \(endCoordinate)")
 					
-					// Create and configure the directions request
+					// configure the directions request
 					let startPlacemark = MKPlacemark(coordinate: startCoordinate)
 					let endPlacemark = MKPlacemark(coordinate: endCoordinate)
 					
 					let request = MKDirections.Request()
 					request.source = MKMapItem(placemark: startPlacemark)
 					request.destination = MKMapItem(placemark: endPlacemark)
-					request.transportType = .automobile
 					
 					let directions = MKDirections(request: request)
 					
@@ -120,11 +125,10 @@ struct MapViewRepresentable: UIViewRepresentable {
 							return
 						}
 						
-						print("Route found with distance: \(route.distance) meters")
+//						print("Route found with distance: \(route.distance) meters")
 						
 						// Add the route as an overlay on the map
 						self.parent.mapView.addOverlay(route.polyline)
-
 						self.parent.mapView.setVisibleMapRect(
 							route.polyline.boundingMapRect,
 							edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20),
@@ -133,6 +137,12 @@ struct MapViewRepresentable: UIViewRepresentable {
 					}
 				}
 			}
+		}
+
+		// MARK: - removeRoute function
+		func removeRoutes() {
+			let overlays = mapView.overlays
+			mapView.removeOverlays(overlays.filter { $0 is MKPolyline })
 		}
 
 		func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -169,4 +179,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 			return annotationView
 		}
 	}
+	
+	
+
 }

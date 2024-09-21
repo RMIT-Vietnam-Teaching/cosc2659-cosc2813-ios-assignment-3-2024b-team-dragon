@@ -47,6 +47,7 @@ struct MapView: View {
 				showRoutingView: $showRoutingView,
 				startingCoordinate: $startingCoordinate,
 				endingCoordinate: $endingCoordinate,
+				mapView: $mapView,
 				onMapClick: { coordinate in
 					if showRoutingView {
 						geocodingService.getAddress(from: coordinate) { address in
@@ -120,6 +121,21 @@ struct MapView: View {
 								showPinModel = false
 								showRoutingView = false // Close the RoutingView
 								dismissKeyboard() // Dismiss the keyboard
+								
+								// Remove existing route
+								let coordinator = MapViewRepresentable.Coordinator(
+									MapViewRepresentable(
+										pins: $pins,
+										showPinModal: $showPinModel,
+										selectedCoordinate: $selectedCoordinate,
+										showRoutingView: $showRoutingView,
+										startingCoordinate: $startingCoordinate,
+										endingCoordinate: $endingCoordinate,
+										mapView: $mapView
+									),
+									mapView: mapView
+								)
+								coordinator.removeRoutes()
 							}
 						}) {
 							Image(systemName: "chevron.left.circle.fill")
@@ -143,7 +159,8 @@ struct MapView: View {
 								selectedCoordinate: $selectedCoordinate,
 								showRoutingView: $showRoutingView,
 								startingCoordinate: $startingCoordinate,
-								endingCoordinate: $endingCoordinate
+								endingCoordinate: $endingCoordinate,
+								mapView: $mapView
 							),
 							mapView: mapView
 						)
