@@ -23,15 +23,17 @@ struct MapView: View {
     @State private var pins: [Pin] = []  // Store pins to be passed to the map view
     @State private var destinationAddress: String = "" // Destination pin
     @State private var showRoutingView: Bool = false
-    
+	@State private var mapView: MKMapView = MKMapView()
+	
     let firebaseService = FirebaseService()  // Firebase service instance
     let pinService = PinService()  // Pin service instance
+	
     
     // MARK: - Body
     var body: some View {
         ZStack {
             // MARK: - Show map
-            MapViewRepresentable(pins: $pins, showPinModal: $showPinModel, selectedCoordinate: $selectedCoordinate, selectedPin: $selectedPin)
+			MapViewRepresentable(pins: $pins, showPinModal: $showPinModel, selectedCoordinate: $selectedCoordinate, selectedPin: $selectedPin, mapView: $mapView)
                 .edgesIgnoringSafeArea(.all)
                 .onTapGesture {
                     withAnimation {
@@ -63,11 +65,33 @@ struct MapView: View {
                 }
             }
             
-            // MARK: - Add pin using button
             if !showPinModel && !showRoutingView {
                 VStack {
                     HStack {
+						// MARK: - Move to current location
+						Button(action: {
+							withAnimation {
+								if let userLocation = locationManager.userLocation {
+									selectedCoordinate = userLocation
+									mapView.centerToCoordinate(userLocation)
+//									print("\(userLocation)")
+								} else {
+									print("User location is not available.")
+									selectedCoordinate = nil
+								}
+							}
+						}) {
+							Image(systemName: "location.circle.fill")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.background(Color.white)
+								.clipShape(Circle())
+								.shadow(radius: 4)
+								.foregroundColor(Color("MainColor"))
+						}
                         Spacer()
+						
+						// MARK: - Add pin using button
                         Button(action: {
                             withAnimation {
                                 if let userLocation = locationManager.userLocation {
@@ -80,7 +104,7 @@ struct MapView: View {
                                 print("Button pressed, showing pin form")
                             }
                         }) {
-                            Image(systemName: "location.circle.fill")
+                            Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 .background(Color.white)

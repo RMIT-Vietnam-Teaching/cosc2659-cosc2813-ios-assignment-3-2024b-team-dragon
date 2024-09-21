@@ -3,7 +3,7 @@ import MapKit
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-	@Published var userLocation: CLLocationCoordinate2D?  // User's current location
+	@Published var userLocation: CLLocationCoordinate2D?  // User current location
 	private var locationManager = CLLocationManager()
 	
 	override init() {

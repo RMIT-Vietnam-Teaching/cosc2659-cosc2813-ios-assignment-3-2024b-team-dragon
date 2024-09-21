@@ -7,8 +7,8 @@ struct MapViewRepresentable: UIViewRepresentable {
     @Binding var showPinModal: Bool
     @Binding var selectedCoordinate: CLLocationCoordinate2D?
     @Binding var selectedPin: Pin?  // New binding for the selected pin
-    
-    let mapView = MKMapView()
+	@Binding var mapView: MKMapView
+	
     let locationManager = CLLocationManager()
     
     func makeUIView(context: Context) -> MKMapView {
@@ -103,4 +103,11 @@ struct MapViewRepresentable: UIViewRepresentable {
             }
         }
     }
+}
+
+extension MKMapView {
+	func centerToCoordinate(_ coordinate: CLLocationCoordinate2D, animated: Bool = true) {
+		let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+		self.setRegion(region, animated: animated)
+	}
 }
