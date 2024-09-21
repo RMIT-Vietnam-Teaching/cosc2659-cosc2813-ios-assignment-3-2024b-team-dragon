@@ -60,7 +60,7 @@ struct AlertView: View {
         }
         .accentColor(Color("SubColor"))
         .onAppear {
-            viewModel.fetchPins()
+            viewModel.fetchVerifiedPins()  // Fetch only verified pins
         }
     }
 }

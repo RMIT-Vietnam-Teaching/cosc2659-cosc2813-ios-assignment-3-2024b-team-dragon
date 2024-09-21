@@ -4,21 +4,21 @@ import CoreLocation
 
 class AlertViewModel: ObservableObject {
     @Published var pins: [Pin] = []
-    @Published var filteredPins: [Pin] = [] // Filtered pins based on search
+    @Published var filteredPins: [Pin] = []
     @Published var userLocation: CLLocationCoordinate2D? = nil
     @Published var errorMessage: String? = nil
-    @Published var searchText: String = "" // The search query from the view
+    @Published var searchText: String = ""
     
     private var firebaseService: FirebaseService
     private var pinService: PinService
     private var cancellables = Set<AnyCancellable>()
     private var locationManager: LocationManager
     
-	init(firebaseService: FirebaseService = FirebaseService(), pinService: PinService = PinService(), locationManager: LocationManager = LocationManager()) {
+    init(firebaseService: FirebaseService = FirebaseService(), pinService: PinService = PinService(), locationManager: LocationManager = LocationManager()) {
         self.firebaseService = firebaseService
-		self.pinService = pinService
+        self.pinService = pinService
         self.locationManager = locationManager
-        fetchPins()
+        fetchVerifiedPins()
         bindLocationUpdates()
         bindSearchText()
     }
@@ -52,14 +52,14 @@ class AlertViewModel: ObservableObject {
         }
     }
     
-    // Fetch pins from Firebase through FirebaseService
-    func fetchPins() {
+    // Fetch only verified pins from Firebase through FirebaseService
+    func fetchVerifiedPins() {
         pinService.fetchPins { [weak self] result in
             switch result {
             case .success(let fetchedPins):
                 DispatchQueue.main.async {
-                    self?.pins = fetchedPins
-                    self?.filteredPins = fetchedPins 
+                    self?.pins = fetchedPins.filter { $0.status == .verified }  // Filter only verified pins
+                    self?.filteredPins = self?.pins ?? []
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

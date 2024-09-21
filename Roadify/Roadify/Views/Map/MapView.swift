@@ -42,9 +42,9 @@ struct MapView: View {
                         images: $pinImages,
                         showModal: $showPinModel,
                         selectedCoordinate: $selectedCoordinate,
-						onSubmit: {
-							addPin()
-						}
+                        onSubmit: {
+                            addPin()
+                        }
                     )
                     .background(Color("MainColor"))
                     .transition(.move(edge: .bottom))
@@ -100,16 +100,15 @@ struct MapView: View {
             }
         }
         .onAppear {
-            fetchPins()  // Fetch pins from Firebase on load
+            fetchVerifiedPins()  // Fetch only verified pins from Firebase on load
             locationManager.requestLocationPermission() // Ask user for location permission
         }
         // Present the detail view
         if let pin = selectedPin {
-			DetailPinView(selectedPin: $selectedPin, pin: pin)
-				.background(Color("MainColor"))
-				.transition(.move(edge: .bottom))
-//                    .animation(Animation.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5))
-				.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
+            DetailPinView(selectedPin: $selectedPin, pin: pin)
+                .background(Color("MainColor"))
+                .transition(.move(edge: .bottom))
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
         }
     }
     
@@ -137,7 +136,7 @@ struct MapView: View {
             }
             
             print("Pin added successfully")
-            fetchPins()  // Refresh pins after adding a new one
+            fetchVerifiedPins()  // Refresh pins after adding a new one
             pinTitle = ""
             pinDescription = ""
             pinImages = []
@@ -145,13 +144,13 @@ struct MapView: View {
         }
     }
     
-    // MARK: - Fetch pins from Firebase and display them on the map
-    func fetchPins() {
+    // MARK: - Fetch only verified pins from Firebase and display them on the map
+    func fetchVerifiedPins() {
         pinService.fetchPins { result in
             switch result {
             case .success(let fetchedPins):
-                pins = fetchedPins
-                print("Pins successfully fetched and displayed on map.")
+                pins = fetchedPins.filter { $0.status == .verified }  // Filter to show only verified pins
+                print("Verified pins successfully fetched and displayed on map.")
             case .failure(let error):
                 print("Error fetching pins: \(error.localizedDescription)")
             }
