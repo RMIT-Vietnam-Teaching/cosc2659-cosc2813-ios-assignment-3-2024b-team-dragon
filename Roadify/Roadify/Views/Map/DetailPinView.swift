@@ -15,7 +15,7 @@ struct DetailPinView: View {
                 Spacer()
                 Button(action: {
                     withAnimation {
-						isDetailPinViewPresented = false
+						selectedPin = nil
                     }
                 }) {
                     Image(systemName: "xmark.circle.fill")
