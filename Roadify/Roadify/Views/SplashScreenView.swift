@@ -3,6 +3,10 @@ import SwiftUI
 struct SplashScreenView: View {
     @StateObject private var authManager = AuthManager()
     @State private var navigateToNextView = false
+	
+	@Binding var selectedPin: Pin?
+	@Binding var selectedTab: Int
+	@Binding var isFromMapView: Bool
     
     var body: some View {
         ZStack {
@@ -24,16 +28,20 @@ struct SplashScreenView: View {
         }
         .fullScreenCover(isPresented: $navigateToNextView) {
             if authManager.isLoggedIn {
-                TabView()
+				TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
             } else {
-                WelcomeView()
+				WelcomeView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
             }
         }
     }
 }
 
 struct SplashScreenView_Previews: PreviewProvider {
+	@State static var selectedPin: Pin?
+	@State static var selectedTab: Int = 0
+	@State static var isFromMapView: Bool = false
+
     static var previews: some View {
-        SplashScreenView()
+		SplashScreenView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
     }
 }

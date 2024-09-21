@@ -4,6 +4,10 @@ import SwiftUI
 
 @main
 struct RoadifyApp: App {
+	@State private var selectedPin: Pin?
+	@State private var selectedTab: Int = 0
+	@State private var isFromMapView: Bool = false
+	
     init() {
         FirebaseApp.configure()
         print("Firebase Configured!")
@@ -18,7 +22,7 @@ struct RoadifyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+			SplashScreenView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
         }
     }
 }

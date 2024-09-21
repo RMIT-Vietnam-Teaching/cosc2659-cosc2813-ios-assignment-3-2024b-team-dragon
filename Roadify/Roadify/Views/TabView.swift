@@ -3,29 +3,28 @@ import SwiftUI
 
 struct TabView: View {
 	@StateObject private var authManager = AuthManager()
-	@State private var selectedTab = 0
+	@StateObject private var accountViewModel = AccountViewModel()
+
 	@State private var showWelcomeView = true // First launch
-    @StateObject private var accountViewModel = AccountViewModel()
+	
+	@Binding var selectedPin: Pin?
+	@Binding var selectedTab: Int
+	@Binding var isFromMapView: Bool
 	
 	var body: some View {
 		VStack(spacing: 0) {
 			if authManager.isLoggedIn {
 				switch selectedTab {
 				case 0:
-					MapView()
-						.onAppear {
-							authManager.refreshAuthStatus()
-						}
+					MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
+						.onAppear {	authManager.refreshAuthStatus()	}
 				case 1:
 					NewsView()
-						.onAppear { 	
-							authManager.refreshAuthStatus()
-						}
+						.onAppear {	authManager.refreshAuthStatus()	}
 				case 2:
-					AlertView()
-						.onAppear {
-							authManager.refreshAuthStatus()
-						}
+					AlertView(selectedPin: $selectedPin, selectedTab: $selectedTab,
+							  isFromMapView: $isFromMapView)
+						.onAppear { authManager.refreshAuthStatus() }
 				case 3:
 					AccountView(viewModel: accountViewModel)
 						.onAppear {
@@ -37,7 +36,7 @@ struct TabView: View {
 			} else {
 				switch selectedTab {
 				case 0:
-					MapView()
+					MapView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 						.onAppear {
 							authManager.refreshAuthStatus()
 						}
@@ -47,7 +46,7 @@ struct TabView: View {
 							authManager.refreshAuthStatus()
 						}
 				case 2:
-					AlertView()
+					AlertView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 						.onAppear {
 							authManager.refreshAuthStatus()
 						}
@@ -104,8 +103,13 @@ struct TabView: View {
 }
 
 struct TabView_Previews: PreviewProvider {
+	@State static var selectedPin: Pin?
+	@State static var selectedTab: Int = 0
+	@State static var isFromMapView: Bool = false
+
+	
 	static var previews: some View {
-		TabView()
+		TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 	}
 }
 
