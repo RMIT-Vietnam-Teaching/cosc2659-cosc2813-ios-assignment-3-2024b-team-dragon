@@ -10,15 +10,14 @@ import SwiftUI
 
 struct AccountView: View {
     @AppStorage("appLanguage") var appLanguage: String = "en"  // Store app language
+    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false  // Store dark mode preference
     @ObservedObject var viewModel = AccountViewModel()
 
     @State private var showAlert = false
     @State private var isNavigating = false
 
     @State private var showEditProfile = false
-
     @State private var showAdminPanelView = false
-
     @State private var showPrivacyView = false
     @State private var showNotificationsView = false
     @State private var showLanguageView = false
@@ -26,25 +25,25 @@ struct AccountView: View {
     @State private var showReportBugView = false
     @State private var selectedLanguage = "English"
     @State private var selectedLanguageFlag = "us"
-	
-	@Binding var selectedPin: Pin?
-	@Binding var selectedTab: Int
-	@Binding var isFromMapView: Bool
-	
+
+    @Binding var selectedPin: Pin?
+    @Binding var selectedTab: Int
+    @Binding var isFromMapView: Bool
+
     var body: some View {
         VStack {
-			if !viewModel.isAdmin {
-				Text(LocalizedStringKey("profile_title"))
-					.font(.title2)
-					.bold()
-			}
+            if !viewModel.isAdmin {
+                Text(LocalizedStringKey("profile_title"))
+                    .font(.title2)
+                    .bold()
+            }
 
             Button(action: {
                 showEditProfile = true
             }) {
                 HStack {
                     if let profileImageUrl = URL(string: viewModel.profileImageUrl),
-                        !viewModel.profileImageUrl.isEmpty
+                       !viewModel.profileImageUrl.isEmpty
                     {
                         AsyncImage(url: profileImageUrl) { image in
                             image
@@ -81,6 +80,7 @@ struct AccountView: View {
             }
             .sheet(isPresented: $showEditProfile) {
                 EditProfileView(viewModel: viewModel)
+                    .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
             }
 
             // Admin Panel Button (conditionally visible based on isAdmin in ViewModel)
@@ -101,7 +101,22 @@ struct AccountView: View {
                 }
                 .sheet(isPresented: $showAdminPanelView) {  // Present the Admin Panel
                     AdminPanelView()
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
                 }
+            }
+
+            // Dark/Light Mode Toggle Button
+            Button(action: {
+                darkModeEnabled.toggle()
+            }) {
+                HStack {
+                    Image(systemName: darkModeEnabled ? "moon.fill" : "sun.max.fill")
+                        .foregroundColor(.yellow)
+                    Text(darkModeEnabled ? "Switch to Dark Mode" : "Switch to Light Mode")
+                    Spacer()
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.1)))
             }
 
             // Settings and Preferences
@@ -113,6 +128,7 @@ struct AccountView: View {
                 }
                 .sheet(isPresented: $showNotificationsView) {
                     NotificationsView()
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
                 }
 
                 Button(action: {
@@ -122,6 +138,7 @@ struct AccountView: View {
                 }
                 .sheet(isPresented: $showPrivacyView) {
                     PrivacyView()
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
                 }
 
                 Button(action: {
@@ -133,28 +150,7 @@ struct AccountView: View {
                     LanguageSelectionView(
                         selectedLanguage: $selectedLanguage,
                         selectedLanguageFlag: $selectedLanguageFlag)
-                }
-            }
-
-            // Support
-            Section(header: Text(LocalizedStringKey("support")).font(.subheadline)) {
-                Button(action: {
-                    showHelpView = true
-                }) {
-                    SettingsRow(
-                        iconName: "questionmark.circle", label: NSLocalizedString("help_center",comment: ""))
-                }
-                .sheet(isPresented: $showHelpView) {
-                    HelpView()
-                }
-
-                Button(action: {
-                    showReportBugView = true
-                }) {
-                    SettingsRow(iconName: "flag", label: NSLocalizedString("report_bug", comment: ""))
-                }
-                .sheet(isPresented: $showReportBugView) {
-                    ReportABugView()
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
                 }
             }
 
@@ -169,7 +165,7 @@ struct AccountView: View {
                         .foregroundColor(.red)
                     Spacer()
                 }
-				.padding([.top, .leading, .bottom])
+                .padding([.top, .leading, .bottom])
             }
             .alert(isPresented: $showAlert) {
                 Alert(
@@ -183,16 +179,17 @@ struct AccountView: View {
                     secondaryButton: .cancel(Text(LocalizedStringKey("no")))
                 )
             }
-			VStack {
-				Spacer(minLength: 15)
-				NavigationLink(destination:
-								TabView(selectedPin: $selectedPin,
-										selectedTab: $selectedTab,
-										isFromMapView: $isFromMapView),
-							   isActive: $isNavigating) {
-				}
-			}
-		}
+
+            VStack {
+                Spacer(minLength: 15)
+                NavigationLink(destination:
+                                TabView(selectedPin: $selectedPin,
+                                        selectedTab: $selectedTab,
+                                        isFromMapView: $isFromMapView),
+                               isActive: $isNavigating) {
+                }
+            }
+        }
         .onAppear {
             setLanguageBasedOnAppLanguage()
         }
@@ -200,6 +197,8 @@ struct AccountView: View {
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .navigationBarBackButtonHidden(true)
+        // Apply the color scheme based on user selection
+        .preferredColorScheme(darkModeEnabled ? .dark : .light)
     }
 
     private func languageRow(language: String, flag: String) -> some View {
