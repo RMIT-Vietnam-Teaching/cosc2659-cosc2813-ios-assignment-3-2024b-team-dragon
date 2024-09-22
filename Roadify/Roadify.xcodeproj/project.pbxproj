@@ -20,8 +20,6 @@
 		0362DA542C91B1C1008ED49A /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0362DA532C91B1C1008ED49A /* SettingsRow.swift */; };
 		0379B7272C9C3F5300DBF916 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379B7262C9C3F5300DBF916 /* Formatter.swift */; };
 		0379B7292C9D92A600DBF916 /* AlertDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0379B7282C9D92A600DBF916 /* AlertDetailsViewModel.swift */; };
-		0390D2132C97D8A600901461 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2122C97D8A600901461 /* AlertView.swift */; };
-		0390D2152C97DD3300901461 /* AlertDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2142C97DD3300901461 /* AlertDetailsView.swift */; };
 		0390D2172C97E06000901461 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2162C97E06000901461 /* AlertViewModel.swift */; };
 		03E2376B2C8C925D0095D755 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E2376A2C8C925D0095D755 /* FirebaseService.swift */; };
 		03E2376D2C8EB02E0095D755 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */; };
@@ -91,6 +89,8 @@
 		B88A54812C9533FE002AE8DF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54802C9533FE002AE8DF /* WelcomeView.swift */; };
 		B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A54822C9536D0002AE8DF /* PageViewModel.swift */; };
 		B88A61432C9843C900E7D09B /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A61422C9843C900E7D09B /* GeocodingService.swift */; };
+		B88FB4D82C9FF82C0046E213 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FB4D72C9FF82C0046E213 /* AlertView.swift */; };
+		B88FB4DA2C9FF8410046E213 /* AlertDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FB4D92C9FF8410046E213 /* AlertDetailsView.swift */; };
 		B8ACE6822C9B3E05003932F3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACE6812C9B3E05003932F3 /* UserService.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -129,8 +129,6 @@
 		0362DA532C91B1C1008ED49A /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 		0379B7262C9C3F5300DBF916 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		0379B7282C9D92A600DBF916 /* AlertDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDetailsViewModel.swift; sourceTree = "<group>"; };
-		0390D2122C97D8A600901461 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = Roadify/Utils/UI/AlertView.swift; sourceTree = SOURCE_ROOT; };
-		0390D2142C97DD3300901461 /* AlertDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertDetailsView.swift; path = Roadify/Utils/UI/AlertDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		0390D2162C97E06000901461 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		03E2376A2C8C925D0095D755 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		03E2376C2C8EB02E0095D755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -196,6 +194,8 @@
 		B88A54802C9533FE002AE8DF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B88A54822C9536D0002AE8DF /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 		B88A61422C9843C900E7D09B /* GeocodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
+		B88FB4D72C9FF82C0046E213 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		B88FB4D92C9FF8410046E213 /* AlertDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDetailsView.swift; sourceTree = "<group>"; };
 		B8ACE6812C9B3E05003932F3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
@@ -468,8 +468,8 @@
 		B875DF522C95ED47004CED7E /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				0390D2122C97D8A600901461 /* AlertView.swift */,
-				0390D2142C97DD3300901461 /* AlertDetailsView.swift */,
+				B88FB4D72C9FF82C0046E213 /* AlertView.swift */,
+				B88FB4D92C9FF8410046E213 /* AlertDetailsView.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -644,6 +644,7 @@
 				B81FB9332C9C0E5C00DB90C1 /* ActivityLogsView.swift in Sources */,
 				E9A922F62C9FEC3800456680 /* NotificationItem.swift in Sources */,
 				0A918D982C9D965E00A4B746 /* LanguageSelectionView.swift in Sources */,
+				B88FB4DA2C9FF8410046E213 /* AlertDetailsView.swift in Sources */,
 				0ABCBEFE2C9428E5002F62EE /* AccountViewModel.swift in Sources */,
 				E9F1C2F22C996DD7009ACA55 /* ImagePickerView.swift in Sources */,
 				B81FB9312C9C0E5700DB90C1 /* AccountView.swift in Sources */,
@@ -655,7 +656,6 @@
 				E926EA512C9C3CEC006F4C69 /* PendingPinViewModel.swift in Sources */,
 				0362DA4D2C919E90008ED49A /* SignUpViewModel.swift in Sources */,
 				B81FB93F2C9C0E7A00DB90C1 /* PrivacyView.swift in Sources */,
-				0390D2152C97DD3300901461 /* AlertDetailsView.swift in Sources */,
 				E926EA532C9C3DC2006F4C69 /* PinManagementViewModel.swift in Sources */,
 				0390D2172C97E06000901461 /* AlertViewModel.swift in Sources */,
 				B875DF5B2C97CADF004CED7E /* DestinationView.swift in Sources */,
@@ -692,7 +692,6 @@
 				E99257582C958C3000A44500 /* AddNewsFormView.swift in Sources */,
 				035FB6D42C9B2C050066AE41 /* ImageUploadService.swift in Sources */,
 				B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */,
-				0390D2132C97D8A600901461 /* AlertView.swift in Sources */,
 				0379B7292C9D92A600DBF916 /* AlertDetailsViewModel.swift in Sources */,
 				033DA9BE2C99CA3300A71506 /* SearchBar.swift in Sources */,
 				B81FB9432C9C0E8300DB90C1 /* TermsOfServiceView.swift in Sources */,
@@ -704,6 +703,7 @@
 				0A125CE32C9AB3CC00F70798 /* ActivityLog.swift in Sources */,
 				E9F1C2EE2C99636F009ACA55 /* ImagePickerViewModel.swift in Sources */,
 				0362DA4F2C91A687008ED49A /* User.swift in Sources */,
+				B88FB4D82C9FF82C0046E213 /* AlertView.swift in Sources */,
 				B832439B2C958C8200064A77 /* TabView.swift in Sources */,
 				B88A54832C9536D0002AE8DF /* PageViewModel.swift in Sources */,
 				B81FB9392C9C0E6C00DB90C1 /* ManageAccountView.swift in Sources */,
