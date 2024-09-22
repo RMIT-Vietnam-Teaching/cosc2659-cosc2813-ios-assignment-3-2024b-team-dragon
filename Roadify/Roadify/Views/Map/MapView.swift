@@ -251,7 +251,6 @@ struct MapView: View {
 			}
 		}
 		.onAppear {
-			fetchPins()
 			fetchVerifiedPins()
 			locationManager.requestLocationPermission()  // Ask user for location permission
 		}
@@ -282,7 +281,6 @@ struct MapView: View {
 			}
 			
 			print("Pin added successfully")
-			fetchPins()
 			fetchVerifiedPins()
 			pinTitle = ""
 			pinDescription = ""
@@ -291,18 +289,18 @@ struct MapView: View {
 		}
 	}
 	
-	// MARK: - Fetch pins from Firebase and display them on the map
-	func fetchPins() {
-		pinService.fetchPins { result in
-			switch result {
-			case .success(let fetchedPins):
-				pins = fetchedPins
-				print("Pins successfully fetched and displayed on map.")
-			case .failure(let error):
-				print("Error fetching pins: \(error.localizedDescription)")
-			}
-		}
-	}
+//	// MARK: - Fetch pins from Firebase and display them on the map
+//	func fetchPins() {
+//		pinService.fetchPins { result in
+//			switch result {
+//			case .success(let fetchedPins):
+//				pins = fetchedPins
+//				print("Pins successfully fetched and displayed on map.")
+//			case .failure(let error):
+//				print("Error fetching pins: \(error.localizedDescription)")
+//			}
+//		}
+//	}
 	
 	// MARK: - Fetch only verified pins from Firebase and display them on the map
 	func fetchVerifiedPins() {

@@ -33,7 +33,15 @@ class PinService: FirebaseService {
     func updatePin(pin: Pin, completion: @escaping (Error?) -> Void) {
         let ref = db.collection("pins").document(pin.id)
         ref.setData(pin.toDictionary()) { error in
-            completion(error)
+            if let error = error {
+                completion(error)
+            } else {
+                // Check if the pin was verified and trigger a notification
+                if pin.status == .verified {
+                    self.notifyUserForVerifiedPin(pin: pin)
+                }
+                completion(nil)
+            }
         }
     }
 
@@ -74,5 +82,42 @@ class PinService: FirebaseService {
 		}
 	}
     
+    // Function to trigger notification for verified pin
+    func notifyUserForVerifiedPin(pin: Pin) {
+        let content = UNMutableNotificationContent()
+        content.title = "Your pin has been verified!"
+        content.body = "The pin titled '\(pin.title)' has been verified by the admin."
+        content.sound = .default
+        
+        // Trigger notification after 1 second
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
+        // Request ID is the pin's unique ID
+        let request = UNNotificationRequest(identifier: pin.id, content: content, trigger: trigger)
+
+        // Add the notification request
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Failed to schedule notification: \(error.localizedDescription)")
+            }
+        }
+    }
     
+    // Function to check for nearby pins
+    func checkForNearbyPins(userLocation: CLLocationCoordinate2D, pins: [Pin], completion: @escaping ([Pin]) -> Void) {
+        var nearbyPins: [Pin] = []
+        
+        for pin in pins {
+            let pinLocation = CLLocation(latitude: pin.latitude, longitude: pin.longitude)
+            let userLocationCL = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+            let distanceInMeters = userLocationCL.distance(from: pinLocation)
+            
+            // Check if the pin is within 1 km
+            if distanceInMeters <= 1000 {
+                nearbyPins.append(pin)
+            }
+        }
+        
+        completion(nearbyPins)  // Return the nearby pins
+    }
 }
