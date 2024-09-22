@@ -3,7 +3,10 @@ import SwiftUI
 
 struct SplashScreenView: View {
     @StateObject private var authManager = AuthManager()
+	
     @State private var navigateToNextView = false
+	@State private var audioPlayer: AVAudioPlayer?
+
     @Binding var selectedPin: Pin?
     @Binding var selectedTab: Int
     @Binding var isFromMapView: Bool

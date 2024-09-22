@@ -26,18 +26,18 @@ struct AccountView: View {
     @State private var showReportBugView = false
     @State private var selectedLanguage = "English"
     @State private var selectedLanguageFlag = "us"
-    @State private var selectedTab: Int = 3 // Set to 3 for AccountView
-
-
+	
+	@Binding var selectedPin: Pin?
+	@Binding var selectedTab: Int
+	@Binding var isFromMapView: Bool
+	
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
 			if !viewModel.isAdmin {
 				Text(LocalizedStringKey("profile_title"))
 					.font(.title2)
 					.bold()
 			}
-
-            Spacer()
 
             Button(action: {
                 showEditProfile = true
@@ -183,13 +183,16 @@ struct AccountView: View {
                     secondaryButton: .cancel(Text(LocalizedStringKey("no")))
                 )
             }
-            .background(
-                NavigationLink(destination: TabView(selectedTab: $selectedTab), isActive: $isNavigating) {
-                    EmptyView()
-                }
-                .hidden()  // Hide the NavigationLink
-            )
-        }
+			VStack {
+				Spacer(minLength: 15)
+				NavigationLink(destination:
+								TabView(selectedPin: $selectedPin,
+										selectedTab: $selectedTab,
+										isFromMapView: $isFromMapView),
+							   isActive: $isNavigating) {
+				}
+			}
+		}
         .onAppear {
             setLanguageBasedOnAppLanguage()
         }
@@ -222,15 +225,5 @@ struct AccountView: View {
             selectedLanguage = "English"
             selectedLanguageFlag = "us"
         }
-    }
-}
-
-struct AccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        // Create an instance of the ViewModel with admin privileges
-        let viewModel = AccountViewModel()
-        viewModel.isAdmin = true  // Set admin status to true for preview
-
-        return AccountView(viewModel: viewModel)
     }
 }

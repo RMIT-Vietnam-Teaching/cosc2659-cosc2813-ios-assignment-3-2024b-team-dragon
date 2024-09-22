@@ -12,9 +12,13 @@ struct AccountNotLoginView: View {
     @State private var navigateToLogin: Bool = false
     @State private var navigateToRegister: Bool = false
 
+	@Binding var selectedPin: Pin?
+	@Binding var selectedTab: Int
+	@Binding var isFromMapView: Bool
+	
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack {
                 // Title or message to indicate the user is not logged in
                 Text("You're not logged in")
                     .font(.title)
@@ -61,7 +65,7 @@ struct AccountNotLoginView: View {
                         .foregroundColor(Color.black)
                         .cornerRadius(10)
                 }
-                .padding(.horizontal, 30)
+				.padding([.horizontal, .bottom], 30)
 
                 // "New to Roadify?"
                 HStack {
@@ -103,8 +107,7 @@ struct AccountNotLoginView: View {
                     .navigationDestination(
                         isPresented: $navigateToRegister
                     ) {
-                        SignUpView()
-                        EmptyView()
+						SignUpView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
                     }
 
                     //				NavigationLink(destination: SignInView(), isActive: $navigateToLogin) {
@@ -113,8 +116,7 @@ struct AccountNotLoginView: View {
                     .navigationDestination(
                         isPresented: $navigateToLogin
                     ) {
-                        SignInView()
-                        EmptyView()
+						SignInView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
                     }
             }
             .padding()
@@ -124,8 +126,8 @@ struct AccountNotLoginView: View {
     }
 }
 
-struct AccountNotLoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountNotLoginView()
-    }
-}
+//struct AccountNotLoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AccountNotLoginView()
+//    }
+//}

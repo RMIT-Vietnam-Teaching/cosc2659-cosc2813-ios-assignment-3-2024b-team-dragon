@@ -24,7 +24,9 @@ struct SignUpView: View {
     @State private var navigateToSignIn: Bool = false // State for navigation
     @State private var showContinueButton: Bool = true // State for showing/hiding Continue button
     
-
+	@Binding var selectedPin: Pin?
+	@Binding var selectedTab: Int
+	@Binding var isFromMapView: Bool
     
     var body: some View {
         NavigationStack {
@@ -132,7 +134,7 @@ struct SignUpView: View {
 				
             }
 			.navigationDestination(isPresented: $navigateToSignIn) {
-				SignInView()
+				SignInView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
 				EmptyView()
 			}
 			

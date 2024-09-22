@@ -9,7 +9,7 @@ struct WelcomeView: View {
     @Binding var isFromMapView: Bool
 
     let totalPage = 3
-    @State private var selectedTab: Int = 0
+//    @State private var selectedTab: Int = 0
 
     var body: some View {
         //        NavigationView { *FixYellowWarning*

@@ -31,7 +31,7 @@ struct TabView: View {
                     )
                     .onAppear { authManager.refreshAuthStatus() }
                 case 3:
-                    AccountView()
+					AccountView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
                         .onAppear {
                             authManager.refreshAuthStatus()
                         }
@@ -62,7 +62,7 @@ struct TabView: View {
                         authManager.refreshAuthStatus()
                     }
                 case 3:
-                    AccountNotLoginView()
+					AccountNotLoginView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
                         .onAppear {
                             authManager.refreshAuthStatus()
                         }
@@ -125,8 +125,8 @@ struct TabView: View {
     }
 }
 
-struct TabView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabView()
-    }
-}
+//struct TabView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TabView()
+//    }
+//}
