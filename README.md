@@ -6,7 +6,7 @@
 
 <p align="center">Roadify your way home</p>
 
-## 📖 Description
+## Description
 - This application is the final assessment project for the COSC2659 - iOS Development course at RMIT University, Vietnam. 
 - The project serves as a practical demonstration of the skills and knowledge acquired throughout the course, covering key aspects of iOS application development.
 
