@@ -9,7 +9,9 @@ struct DestinationView: View {
 			Spacer().frame(height: 15)
 			HStack {
 				Text("Where are you going to?")
+					.font(.system(size: 18, weight: .bold, design: .default))
 					.foregroundStyle(Color.white)
+					.padding([.top, .bottom], 10)
 				Spacer()
 			}
 			.padding(.leading)
