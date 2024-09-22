@@ -12,6 +12,8 @@ struct MapViewRepresentable: UIViewRepresentable {
 	@Binding var mapView: MKMapView
 	@Binding var selectedPin: Pin?  // New binding for the selected pin
 	@Binding var endPoint: String
+	@Binding var selectedTab: Int
+	@ObservedObject var authManager: AuthManager
 	
 	var onMapClick: ((CLLocationCoordinate2D) -> Void)?
 	let locationManager = CLLocationManager()
@@ -75,17 +77,22 @@ struct MapViewRepresentable: UIViewRepresentable {
 					parent.geocodingService.getAddress(from: coordinate) { address in
 						self.parent.endPoint = address ?? "\(coordinate.latitude), \(coordinate.longitude)"
 					}
-					print("MapView: Destination set to - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
+					// print("MapView: Destination set to - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
 				} else {
-					// If RoutingView is not shown, show the pin modal
-					parent.selectedCoordinate = coordinate
-					parent.showPinModal = true
-					parent.onMapClick?(coordinate)
-					print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
+					if parent.authManager.isLoggedIn {
+						
+						// If RoutingView is not shown, show the pin modal
+						parent.selectedCoordinate = coordinate
+						parent.showPinModal = true
+						parent.onMapClick?(coordinate)
+						// print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
+					} else {
+						// User is not logged in, switch to sign-in view
+						parent.selectedTab = 3 // Switch to sign-in/signup tab
+					}
 				}
 			}
 		}
-
 		
 		// MARK: - drawRoute function
 		func drawRoute(startPoint: String, endPoint: String) {
@@ -166,7 +173,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 			if annotationView == nil {
 				annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 				annotationView?.canShowCallout = true
-//				annotationView?.pinTintColor = UIColor.orange
+				//				annotationView?.pinTintColor = UIColor.orange
 			} else {
 				annotationView?.annotation = annotation
 			}

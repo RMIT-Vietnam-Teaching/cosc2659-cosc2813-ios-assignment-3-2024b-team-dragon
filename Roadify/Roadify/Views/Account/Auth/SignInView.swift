@@ -21,7 +21,7 @@ struct SignInView: View {
     @State private var isLoading: Bool = false
 
     var body: some View {
-        //        NavigationView { *FixYellowWarning*
+        //        NavigationView { *FixYellowWarning*no
         NavigationStack {
             VStack(spacing: 20) {
                 Text("Sign In")
