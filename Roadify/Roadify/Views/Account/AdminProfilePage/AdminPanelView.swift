@@ -11,7 +11,8 @@ struct AdminPanelView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showPendingPinView = false
     @State private var showPinManagementView = false
-    
+    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false  // Track dark mode
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -22,7 +23,9 @@ struct AdminPanelView: View {
                     SettingsRow(iconName: "gift.fill", label: NSLocalizedString("PendingPins", comment: "Pending Pins"))
                 }
                 .sheet(isPresented: $showPendingPinView) {
-                    PendingPinView() // Replace with your actual view for pending pins
+                    // Pass darkModeEnabled to PendingPinView and apply the color scheme
+                    PendingPinView()
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
                 
                 Button(action: {
@@ -31,7 +34,9 @@ struct AdminPanelView: View {
                     SettingsRow(iconName: "shield.fill", label: NSLocalizedString("PinManagement", comment: "Pin Management"))
                 }
                 .sheet(isPresented: $showPinManagementView) {
-                    PinManagementView() // Replace with your actual view for pin management
+                    // Pass darkModeEnabled to PinManagementView and apply the color scheme
+                    PinManagementView()
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
                 
                 Spacer()
