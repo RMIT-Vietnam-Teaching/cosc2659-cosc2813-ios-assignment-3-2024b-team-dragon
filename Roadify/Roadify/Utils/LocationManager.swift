@@ -67,7 +67,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     // Periodically check for nearby pins
     func startCheckingForNearbyPins() {
-        checkNearbyPinsTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+        checkNearbyPinsTimer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { _ in
             self.checkForNearbyPins()
         }
     }
