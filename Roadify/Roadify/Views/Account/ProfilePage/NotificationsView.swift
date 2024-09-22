@@ -1,11 +1,32 @@
 import SwiftUI
 
 struct NotificationsView: View {
-	var body: some View {
-		Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-	}
-}
+    @StateObject private var viewModel = NotificationsViewModel()
 
-#Preview {
-	NotificationsView()
+    var body: some View {
+        NavigationView {
+            List(viewModel.notifications) { notification in
+                VStack(alignment: .leading) {
+                    Text(notification.title)
+                        .font(.headline)
+                    Text(notification.body)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    Text("\(notification.timestamp, formatter: notificationDateFormatter)")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
+                .padding(.vertical, 5)
+            }
+            .navigationTitle("Notifications")
+        }
+    }
+    
+    // Formatter for displaying timestamp
+    var notificationDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }
 }
