@@ -112,3 +112,10 @@
 "PendingPins" = "Pending Pins";
 "PinManagement" = "Pin Management";
 "Admin_nav" = "Admin Panel";
+
+"darkMode" = "Switch to Dark mode";
+"lightMode" = "Switch to Light mode";
+
+// Map View
+"destination" = "Where are you going to?";
+"destination_textfield" = "Enter destination";

@@ -8,7 +8,7 @@ struct DestinationView: View {
 		VStack {
 			Spacer().frame(height: 15)
 			HStack {
-				Text("Where are you going to?")
+				Text(NSLocalizedString("destination", comment: ""))
 					.font(.system(size: 18, weight: .bold, design: .default))
 					.foregroundStyle(Color.white)
 					.padding([.top, .bottom], 10)
@@ -17,7 +17,7 @@ struct DestinationView: View {
 			.padding(.leading)
 			
 			HStack {
-				TextField("Enter destination", text: $destinationAddress)
+				TextField(NSLocalizedString("destination_textfield", comment: ""), text: $destinationAddress)
 					.padding()
 					.background(Color.white)
 					.cornerRadius(10)

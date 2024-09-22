@@ -111,3 +111,10 @@
 "PendingPins" = "Ghim Chờ Duyệt";
 "PinManagement" = "Quản Lý Ghim";
 "Admin_nav" = "Bảng Điều Khiển";
+
+"darkMode" = "Chuyển giao diện tối";
+"lightMode" = "Chuyển giao diện sáng";
+
+// Map View
+"destination" = "Bạn muốn đến đâu?";
+"destination_textfield" = "Điểm đến";

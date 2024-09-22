@@ -91,7 +91,7 @@ struct AccountView: View {
                     HStack {
                         Image(systemName: "person.crop.square")
                             .foregroundColor(.green)
-                        Text("Admin Panel")
+                        Text(NSLocalizedString("Admin_nav", comment: ""))
                         Spacer()
                         Image(systemName: "chevron.right")
                     }
@@ -112,7 +112,8 @@ struct AccountView: View {
                 HStack {
                     Image(systemName: darkModeEnabled ? "moon.fill" : "sun.max.fill")
                         .foregroundColor(.yellow)
-                    Text(darkModeEnabled ? "Switch to Dark Mode" : "Switch to Light Mode")
+                    Text(darkModeEnabled ? NSLocalizedString("lightMode", comment: "") : NSLocalizedString("darkMode", comment: ""))
+					
                     Spacer()
                 }
                 .padding()
