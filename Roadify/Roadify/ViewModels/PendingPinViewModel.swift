@@ -39,11 +39,15 @@ class PendingPinViewModel: ObservableObject {
     func acceptPin(_ pin: Pin) {
         var updatedPin = pin
         updatedPin.status = .verified
+        
         pinService.updatePin(pin: updatedPin) { error in
             if let error = error {
                 print("Error accepting pin: \(error.localizedDescription)")
             } else {
                 self.removePinFromList(pin)
+                
+                // Notify the user who placed the pin
+                self.pinService.notifyUserForVerifiedPin(pin: updatedPin)
             }
         }
     }

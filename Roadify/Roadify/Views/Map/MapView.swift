@@ -14,8 +14,8 @@ import UIKit
 struct MapView: View {
     // MARK: - Variables
     @StateObject private var locationManager = LocationManager()
-	@StateObject private var authManager = AuthManager()
-	
+    @StateObject private var authManager = AuthManager()
+
     @State private var pinTitle: String = ""
     @State private var pinDescription: String = ""
     @State private var pinImages: [UIImage] = []  // Array for selected images
@@ -56,8 +56,8 @@ struct MapView: View {
                 mapView: $mapView,
                 selectedPin: $selectedPin,
                 endPoint: $endPoint,
-				selectedTab: $selectedTab,
-				authManager: authManager,
+                selectedTab: $selectedTab,
+                authManager: authManager,
                 onMapClick: { coordinate in
                     if showRoutingView {
                         geocodingService.getAddress(from: coordinate) { address in
@@ -84,8 +84,8 @@ struct MapView: View {
                             mapView: $mapView,
                             selectedPin: $selectedPin,
                             endPoint: $endPoint,
-							selectedTab: $selectedTab,
-							authManager: authManager
+                            selectedTab: $selectedTab,
+                            authManager: authManager
                         ),
                         mapView: mapView
                     )
@@ -146,20 +146,20 @@ struct MapView: View {
 
                         // MARK: - Add pin using button
                         Button(action: {
-							if authManager.isLoggedIn {
-								withAnimation {
-									if let userLocation = locationManager.userLocation {
-										selectedCoordinate = userLocation
-									} else {
-										// print("User location is not available.")
-										selectedCoordinate = nil
-									}
-									showPinModel = true
-								}
-							} else {
-								selectedTab = 3 // Switch to signin/signup view
-							}
-                                // print("Button pressed, showing pin form")
+                            if authManager.isLoggedIn {
+                                withAnimation {
+                                    if let userLocation = locationManager.userLocation {
+                                        selectedCoordinate = userLocation
+                                    } else {
+                                        // print("User location is not available.")
+                                        selectedCoordinate = nil
+                                    }
+                                    showPinModel = true
+                                }
+                            } else {
+                                selectedTab = 3  // Switch to signin/signup view
+                            }
+                            // print("Button pressed, showing pin form")
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
@@ -197,8 +197,8 @@ struct MapView: View {
                                         mapView: $mapView,
                                         selectedPin: $selectedPin,
                                         endPoint: $endPoint,
-										selectedTab: $selectedTab,
-										authManager: authManager
+                                        selectedTab: $selectedTab,
+                                        authManager: authManager
                                     ),
                                     mapView: mapView
                                 )
@@ -230,8 +230,8 @@ struct MapView: View {
                                 mapView: $mapView,
                                 selectedPin: $selectedPin,
                                 endPoint: $endPoint,
-								selectedTab: $selectedTab,
-								authManager: authManager
+                                selectedTab: $selectedTab,
+                                authManager: authManager
                             ),
                             mapView: mapView
                         )
