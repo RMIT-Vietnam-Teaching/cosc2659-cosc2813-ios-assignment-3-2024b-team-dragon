@@ -13,6 +13,10 @@
 "please_restart" = "Vui lòng khởi động lại ứng dụng để áp dụng thay đổi.";
 "language_change_title" = "Thay đổi ngôn ngữ";
 "ok" = "Đồng ý";
+"are_you_sure" = "Cảnh báo";
+"are_you_sure_message" = "Bạn có chắc chắn muốn đăng xuất?";
+"yes" = "Có";
+"no" = "Không";
 
 //AccountViewModel
 "no_email" = "Không có email";
@@ -102,3 +106,8 @@
 // Terms of Service
 "terms_of_service_text" = "Chào mừng bạn đến với ứng dụng của chúng tôi. Bằng cách sử dụng ứng dụng của chúng tôi, bạn đồng ý với các điều khoản dịch vụ sau:\n\n1. Chấp Nhận Điều Khoản: Bằng cách truy cập hoặc sử dụng ứng dụng của chúng tôi, bạn đồng ý bị ràng buộc bởi các điều khoản này.\n\n2. Trách Nhiệm Của Người Dùng: Bạn có trách nhiệm duy trì tính bảo mật của thông tin tài khoản của mình và cho tất cả các hoạt động diễn ra dưới tài khoản của bạn.\n\n3. Các Hoạt Động Bị Cấm: Bạn đồng ý không tham gia vào bất kỳ hoạt động bất hợp pháp hoặc trái phép nào khi sử dụng ứng dụng của chúng tôi.\n\n4. Chấm Dứt: Chúng tôi có quyền chấm dứt quyền truy cập của bạn vào ứng dụng của chúng tôi nếu bạn vi phạm các điều khoản này.\n\n5. Thay Đổi Điều Khoản: Chúng tôi có thể cập nhật các điều khoản này theo thời gian. Bất kỳ thay đổi nào sẽ được đăng trong phần này.\n\nĐể biết thêm thông tin hoặc nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua địa chỉ roadify911@gmail.com.";
 "terms_of_service_title" = "Điều Khoản Dịch Vụ";
+
+//AdminPanelView
+"PendingPins" = "Ghim Chờ Duyệt";
+"PinManagement" = "Quản Lý Ghim";
+"Admin_nav" = "Bảng Điều Khiển";

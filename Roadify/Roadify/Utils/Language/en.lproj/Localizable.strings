@@ -13,6 +13,12 @@
 "please_restart" = "Please restart the app to apply the changes.";
 "language_change_title" = "Language Change";
 "ok" = "OK";
+"are_you_sure" = "Alert";
+"are_you_sure_message" = "Are you sure you want to log out?";
+"yes" = "Yes";
+"no" = "No";
+
+
 
 // AccountViewModel
 "no_email" = "No Email";
@@ -101,3 +107,8 @@
 // Terms of Service
 "terms_of_service_text" = "Welcome to our application. By using our app, you agree to the following terms of service:\n\n1. Acceptance of Terms: By accessing or using our application, you agree to be bound by these terms.\n\n2. User Responsibilities: You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.\n\n3. Prohibited Activities: You agree not to engage in any illegal or unauthorized activities when using our app.\n\n4. Termination: We reserve the right to terminate your access to our app if you violate these terms.\n\n5. Changes to Terms: We may update these terms from time to time. Any changes will be posted in this section.\n\nFor more information or if you have any questions, please contact us at roadify911@gmail.com.";
 "terms_of_service_title" = "Terms of Service";
+
+//AdminPanelView
+"PendingPins" = "Pending Pins";
+"PinManagement" = "Pin Management";
+"Admin_nav" = "Admin Panel";

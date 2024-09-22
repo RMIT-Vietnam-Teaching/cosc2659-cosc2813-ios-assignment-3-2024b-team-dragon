@@ -64,12 +64,13 @@ struct ActivityLogsView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         dismiss()  // Dismiss the sheet when the "X" is tapped
                     }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 24))
                     }
                 }
             }

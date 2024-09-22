@@ -41,9 +41,13 @@ struct AccountNotLoginView: View {
 
                 Spacer()
 
-                // Add the GIF
-                GIFImage(gifName: "GIF2")
-                    .frame(width: 250, height: 250)
+//                // Add the GIF
+//                GIFImage(gifName: "GIF2")
+//                    .frame(width: 250, height: 250)
+                
+                Image("NotLogin")
+                    .resizable()
+                    .frame(width: 300, height: 300)
 
                 // Register Button
                 Button(action: {
@@ -116,6 +120,7 @@ struct AccountNotLoginView: View {
             .padding()
             .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         }
+        .navigationBarBackButtonHidden(true) // This hides the back button
     }
 }
 

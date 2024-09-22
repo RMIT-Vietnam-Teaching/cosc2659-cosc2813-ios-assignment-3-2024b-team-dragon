@@ -23,7 +23,7 @@ struct ManageAccountDataView: View {
                 Button(action: {
                     showDeleteConfirmation = true
                 }) {
-                    settingsRow(
+                    SettingsRow(
                         iconName: "trash",
                         label: NSLocalizedString(
                             "ManageAccount_deleteAccount", comment: "Delete Account"))
@@ -73,27 +73,17 @@ struct ManageAccountDataView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         dismiss()  // Dismiss the sheet when the "X" is tapped
                     }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 24))
                     }
                 }
             }
         }
-    }
-
-    private func settingsRow(iconName: String, label: String) -> some View {
-        HStack {
-            Image(systemName: iconName)
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
 
     private func deleteAccount() {

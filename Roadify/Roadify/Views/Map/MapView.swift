@@ -279,6 +279,8 @@ struct MapView: View {
             selectedPin = nil
             locationManager.requestLocationPermission()  // Ask user for location permission
         }
+        .navigationBarBackButtonHidden(true)  // This hides the back button
+
     }
 
     // MARK: - Function to add the pin after form submission

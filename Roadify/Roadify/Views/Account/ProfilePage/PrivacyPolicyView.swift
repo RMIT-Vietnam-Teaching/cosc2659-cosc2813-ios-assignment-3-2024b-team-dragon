@@ -37,12 +37,13 @@ struct PrivacyPolicyView: View {
                 NavigationBarAppearance.setupNavigationBar()
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         dismiss()
                     }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 24))
                     }
                 }
             }

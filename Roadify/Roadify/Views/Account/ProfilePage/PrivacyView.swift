@@ -22,7 +22,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showManageAccountData = true
                 }) {
-                    settingsRow(
+                    SettingsRow(
                         iconName: "doc.text",
                         label: NSLocalizedString(
                             "Privacy_ManageAccount", comment: "ManageAcccount Title"))
@@ -37,6 +37,7 @@ struct PrivacyView: View {
                 }) {
                     HStack {
                         Image(systemName: "key.fill")
+                            .foregroundColor(.green)
                         Text(
                             NSLocalizedString("Privacy_ChangePassword", comment: "Change Password"))
                         Spacer()
@@ -53,7 +54,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showActivityLogs = true
                 }) {
-                    settingsRow(
+                    SettingsRow(
                         iconName: "clock",
                         label: NSLocalizedString("Privacy_Logs", comment: "ActivityLogs"))
                 }
@@ -64,7 +65,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showPrivacyPolicy = true
                 }) {
-                    settingsRow(
+                    SettingsRow(
                         iconName: "doc.text.magnifyingglass",
                         label: NSLocalizedString("Privacy_Policy", comment: "Privacy Policy"))
                 }
@@ -75,7 +76,7 @@ struct PrivacyView: View {
                 Button(action: {
                     showTermsOfService = true
                 }) {
-                    settingsRow(
+                    SettingsRow(
                         iconName: "doc.text",
                         label: NSLocalizedString("Privacy_Terms", comment: "Terms of Service"))
                 }
@@ -95,26 +96,16 @@ struct PrivacyView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         dismiss()  // Dismiss the sheet when the "X" is tapped
                     }) {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.white)
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 24))
                     }
                 }
             }
         }
-    }
-
-    private func settingsRow(iconName: String, label: String) -> some View {
-        HStack {
-            Image(systemName: iconName)
-            Text(label)
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
     }
 }
