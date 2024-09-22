@@ -1,3 +1,14 @@
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 3
+ Author: Team Dragon
+ Created date: 19/9/24
+ Last modified: 22/9/24
+ Acknowledgement:
+ */
+
 //
 //  AccountView.swift
 //  Roadify
@@ -112,7 +123,7 @@ struct AccountView: View {
                 HStack {
                     Image(systemName: darkModeEnabled ? "moon.fill" : "sun.max.fill")
                         .foregroundColor(.yellow)
-                    Text(darkModeEnabled ? NSLocalizedString("lightMode", comment: "") : NSLocalizedString("darkMode", comment: ""))
+                    Text(darkModeEnabled ? NSLocalizedString("darkMode", comment: "") : NSLocalizedString("lightMode", comment: ""))
 					
                     Spacer()
                 }
@@ -155,6 +166,30 @@ struct AccountView: View {
                 }
             }
 
+			// Support
+			Section(header: Text(LocalizedStringKey("support")).font(.subheadline)) {
+				Button(action: {
+					showHelpView = true
+				}) {
+					SettingsRow(
+						iconName: "questionmark.circle", label: NSLocalizedString("help_center",comment: ""))
+				}
+				.sheet(isPresented: $showHelpView) {
+					HelpView()
+					.preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+				}
+				
+				Button(action: {
+					showReportBugView = true
+				}) {
+					SettingsRow(iconName: "flag", label: NSLocalizedString("report_bug", comment: ""))
+				}
+				.sheet(isPresented: $showReportBugView) {
+					ReportABugView()
+					.preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+				}
+			}
+			
             // Log out Button
             Button(action: {
                 showAlert = true

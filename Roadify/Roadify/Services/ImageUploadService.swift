@@ -1,41 +1,18 @@
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 3
+ Author: Team Dragon
+ Created date: 
+ Last modified: 22/9/24
+ Acknowledgement:
+ */
+
 import Foundation
 import FirebaseStorage
 import UIKit
 
-//    func uploadImages(images: [UIImage], completion: @escaping ([String]) -> Void) {
-//        var uploadedImageURLs: [String] = []
-//        let dispatchGroup = DispatchGroup()
-//        
-//        for image in images {
-//            dispatchGroup.enter()
-//            let imageID = UUID().uuidString
-//            let storageRef = storage.reference().child("images/\(imageID).jpg")  // Using inherited 'storage' property
-//            
-//            if let imageData = image.jpegData(compressionQuality: 0.8) {
-//                storageRef.putData(imageData, metadata: nil) { (_, error) in
-//                    if let error = error {
-//                        print("Error uploading image: \(error.localizedDescription)")
-//                        dispatchGroup.leave()
-//                        return
-//                    }
-//                    storageRef.downloadURL { (url, error) in
-//                        if let url = url {
-//                            uploadedImageURLs.append(url.absoluteString)
-//                        }
-//                        dispatchGroup.leave()
-//                    }
-//                }
-//            } else {
-//                print("Error: Could not convert UIImage to JPEG data.")
-//                dispatchGroup.leave()
-//            }
-//        }
-//        
-//        dispatchGroup.notify(queue: .main) {
-//            completion(uploadedImageURLs)
-//        }
-//    }
-	
 class ImageUploadService: FirebaseService {
     
     // MARK: - Upload a Single Image
