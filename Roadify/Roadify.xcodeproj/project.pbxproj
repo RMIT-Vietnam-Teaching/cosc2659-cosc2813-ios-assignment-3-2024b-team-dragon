@@ -91,6 +91,10 @@
 		B88A61432C9843C900E7D09B /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A61422C9843C900E7D09B /* GeocodingService.swift */; };
 		B88FB4D82C9FF82C0046E213 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FB4D72C9FF82C0046E213 /* AlertView.swift */; };
 		B88FB4DA2C9FF8410046E213 /* AlertDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FB4D92C9FF8410046E213 /* AlertDetailsView.swift */; };
+		B88FB4DC2CA042B70046E213 /* TabView.gif in Resources */ = {isa = PBXBuildFile; fileRef = B88FB4DB2CA042B70046E213 /* TabView.gif */; };
+		B88FB4DE2CA042C40046E213 /* MVRoute.gif in Resources */ = {isa = PBXBuildFile; fileRef = B88FB4DD2CA042C40046E213 /* MVRoute.gif */; };
+		B88FB4E02CA042D80046E213 /* MVCreatePin2.gif in Resources */ = {isa = PBXBuildFile; fileRef = B88FB4DF2CA042D80046E213 /* MVCreatePin2.gif */; };
+		B88FB4E22CA042E40046E213 /* AlertView.gif in Resources */ = {isa = PBXBuildFile; fileRef = B88FB4E12CA042E40046E213 /* AlertView.gif */; };
 		B8ACE6822C9B3E05003932F3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACE6812C9B3E05003932F3 /* UserService.swift */; };
 		B8E66F222C84C77D0033A939 /* RoadifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E66F212C84C77D0033A939 /* RoadifyApp.swift */; };
 		B8E66F262C84C77E0033A939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E66F252C84C77E0033A939 /* Assets.xcassets */; };
@@ -196,6 +200,10 @@
 		B88A61422C9843C900E7D09B /* GeocodingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		B88FB4D72C9FF82C0046E213 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		B88FB4D92C9FF8410046E213 /* AlertDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDetailsView.swift; sourceTree = "<group>"; };
+		B88FB4DB2CA042B70046E213 /* TabView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TabView.gif; sourceTree = "<group>"; };
+		B88FB4DD2CA042C40046E213 /* MVRoute.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = MVRoute.gif; sourceTree = "<group>"; };
+		B88FB4DF2CA042D80046E213 /* MVCreatePin2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = MVCreatePin2.gif; sourceTree = "<group>"; };
+		B88FB4E12CA042E40046E213 /* AlertView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = AlertView.gif; sourceTree = "<group>"; };
 		B8ACE6812C9B3E05003932F3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B8E66F1E2C84C77D0033A939 /* Roadify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E66F212C84C77D0033A939 /* RoadifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadifyApp.swift; sourceTree = "<group>"; };
@@ -328,6 +336,10 @@
 		03E237692C8C90C40095D755 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B88FB4DB2CA042B70046E213 /* TabView.gif */,
+				B88FB4DD2CA042C40046E213 /* MVRoute.gif */,
+				B88FB4DF2CA042D80046E213 /* MVCreatePin2.gif */,
+				B88FB4E12CA042E40046E213 /* AlertView.gif */,
 				0A6FE7132C99A7920055B534 /* GIF2.gif */,
 				0A6FE7172C99ABEB0055B534 /* GIF1.gif */,
 			);
@@ -599,7 +611,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88FB4E22CA042E40046E213 /* AlertView.gif in Resources */,
 				0A6FE7142C99A7920055B534 /* GIF2.gif in Resources */,
+				B88FB4DE2CA042C40046E213 /* MVRoute.gif in Resources */,
+				B88FB4DC2CA042B70046E213 /* TabView.gif in Resources */,
 				0A125CF62C9ACDCF00F70798 /* Localizable.strings in Resources */,
 				B8E66F292C84C77E0033A939 /* Preview Assets.xcassets in Resources */,
 				0A125CF72C9ACDCF00F70798 /* Localizable.strings in Resources */,
@@ -628,6 +643,7 @@
 				0A29238C2C9F831A008F0BA9 /* Montserrat-Regular.ttf in Resources */,
 				0A29238D2C9F831A008F0BA9 /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				0A6FE7182C99ABEC0055B534 /* GIF1.gif in Resources */,
+				B88FB4E02CA042D80046E213 /* MVCreatePin2.gif in Resources */,
 				03E2376D2C8EB02E0095D755 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
