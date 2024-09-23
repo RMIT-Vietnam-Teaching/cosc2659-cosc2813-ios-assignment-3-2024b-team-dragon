@@ -9,7 +9,6 @@
  Acknowledgement:
  */
 
-
 import Foundation
 
 struct News: Identifiable {

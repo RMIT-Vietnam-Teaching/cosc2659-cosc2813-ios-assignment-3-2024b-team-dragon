@@ -9,7 +9,6 @@
  Acknowledgement:
  */
 
-
 import SwiftUI
 import MapKit
 import CoreLocation

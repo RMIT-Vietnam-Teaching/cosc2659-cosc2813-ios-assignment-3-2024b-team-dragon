@@ -16,7 +16,7 @@ import SwiftUI
 import UIKit
 
 struct Pin: Identifiable {
-    var id: String  // Firestore document ID
+    var id: String 
     var latitude: Double
     var longitude: Double
     var title: String
