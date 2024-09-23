@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -95,9 +95,9 @@ struct AlertView: View {
 		}
 		.accentColor(Color("SubColor"))
 		.onAppear {
-			viewModel.fetchVerifiedPins()  // Fetch only verified pins
+			viewModel.fetchVerifiedPins()
 		}
-		.navigationBarBackButtonHidden(true)  // This hides the back button
+		.navigationBarBackButtonHidden(true) 
 	}
 }
 

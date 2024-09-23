@@ -6,27 +6,15 @@
  Author: Team Dragon
  Created date: 16/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  GeocodingService.swift
-//  Roadify
-//
-//  Created by Cường Võ Duy on 16/9/24.
-//
 
 import Foundation
 import CoreLocation
 
-/// A service class for geocoding coordinates to addresses and vice versa.
 class GeocodingService {
 	private let geocoder = CLGeocoder()
 	
-	/// Converts a coordinate to a human-readable address.
-	/// - Parameters:
-	///   - coordinate: The coordinate to convert.
-	///   - completion: A closure called with the address string or `nil` if an error occurs.
 	func getAddress(from coordinate: CLLocationCoordinate2D, completion: @escaping (String?) -> Void) {
 		let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
 		geocoder.reverseGeocodeLocation(location) { placemarks, error in
@@ -60,10 +48,6 @@ class GeocodingService {
 		}
 	}
 	
-	/// Converts an address to coordinates.
-	/// - Parameters:
-	///   - address: The address to convert.
-	///   - completion: A closure called with the coordinate or `nil` if an error occurs.
 	func getCoordinate(from address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
 		geocoder.geocodeAddressString(address) { placemarks, error in
 			if let error = error {

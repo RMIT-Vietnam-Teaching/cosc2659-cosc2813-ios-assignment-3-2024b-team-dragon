@@ -6,21 +6,21 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
 
 struct NotificationsView: View {
     @StateObject private var viewModel = NotificationsViewModel()
-    @Environment(\.presentationMode) var presentationMode  // To handle the back button
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                 // Back button
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()  // Go back to the previous view
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.white)
@@ -59,16 +59,12 @@ struct NotificationsView: View {
                                 }
 
                                 Spacer()
-
-                                // Optional: Add any action button here, like mark as read or delete
-                                // Button for delete or mark as read
                             }
                             .padding(.vertical, 8)
                             .background(Color("MainColor").opacity(0.2))
                             .cornerRadius(10)
                             .padding(.horizontal)
 
-                            // Add a gray line (divider) below each notification
                             Divider()
                                 .background(Color.gray)
                                 .padding(.horizontal)

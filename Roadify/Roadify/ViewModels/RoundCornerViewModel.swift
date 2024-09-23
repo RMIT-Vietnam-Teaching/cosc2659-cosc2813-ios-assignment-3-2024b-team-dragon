@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 13/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  RoundCorner.swift
-//  Roadify
-//
-//  Created by Cường Võ Duy on 13/9/24.
-//
 
 import Foundation
 import SwiftUI

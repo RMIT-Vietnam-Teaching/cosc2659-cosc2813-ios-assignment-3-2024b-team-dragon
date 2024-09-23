@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  ManageAccountView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import FirebaseAuth
 import FirebaseFirestore
@@ -86,7 +79,7 @@ struct ManageAccountDataView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                        dismiss()
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)
@@ -103,9 +96,8 @@ struct ManageAccountDataView: View {
             return
         }
 
-        isDeleting = true  // Show progress indicator
+        isDeleting = true
 
-        // Initialize Firestore
         let db = Firestore.firestore()
 
         // Delete user data from Firestore
@@ -114,7 +106,7 @@ struct ManageAccountDataView: View {
                 deletionError =
                     NSLocalizedString("ManageAccount_FailtoDelete1", comment: "faile to delete")
                     + "\(error.localizedDescription)"
-                isDeleting = false  // Hide progress indicator
+                isDeleting = false
                 return
             }
 
@@ -128,7 +120,7 @@ struct ManageAccountDataView: View {
                     // Successfully deleted account, handle sign-out and delay
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                         viewModel.logOut()
-                        isDeleting = false  // Hide progress indicator
+                        isDeleting = false 
                     }
                 }
             }

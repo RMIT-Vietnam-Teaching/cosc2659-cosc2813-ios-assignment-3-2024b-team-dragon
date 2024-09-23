@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -47,7 +47,7 @@ class AlertViewModel: ObservableObject {
     // Bind searchText to filter pins dynamically
     private func bindSearchText() {
         $searchText
-            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Delay the filtering slightly
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .sink { [weak self] searchText in
                 self?.filterPins(searchText: searchText)
             }
@@ -69,7 +69,7 @@ class AlertViewModel: ObservableObject {
             switch result {
             case .success(let fetchedPins):
                 DispatchQueue.main.async {
-                    self?.pins = fetchedPins.filter { $0.status == .verified }  // Filter only verified pins
+                    self?.pins = fetchedPins.filter { $0.status == .verified } 
                     self?.filteredPins = self?.pins ?? []
                 }
             case .failure(let error):
@@ -85,6 +85,6 @@ class AlertViewModel: ObservableObject {
         guard let userLocation = userLocation else { return 0 }
         let pinLocation = CLLocation(latitude: pin.latitude, longitude: pin.longitude)
         let userLocationCL = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        return userLocationCL.distance(from: pinLocation) / 1000  // Convert to km
+        return userLocationCL.distance(from: pinLocation) / 1000
     }
 }

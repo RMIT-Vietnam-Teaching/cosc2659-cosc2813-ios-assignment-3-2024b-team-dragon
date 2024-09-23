@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Foundation
@@ -43,7 +43,7 @@ struct TermsOfServiceView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                        dismiss()  
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)

@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  PrivacyView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import Foundation
 import SwiftUI
@@ -59,7 +52,7 @@ struct PrivacyView: View {
                         RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                 }
                 .sheet(isPresented: $showForgotPasswordView) {
-                    ForgotPasswordView()  // Navigate to ForgotPasswordView
+                    ForgotPasswordView()
                 }
 
                 Button(action: {
@@ -109,7 +102,7 @@ struct PrivacyView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                        dismiss() 
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)

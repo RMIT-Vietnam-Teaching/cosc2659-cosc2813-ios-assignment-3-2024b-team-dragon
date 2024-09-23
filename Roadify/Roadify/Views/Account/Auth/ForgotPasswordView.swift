@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  ForgotPasswordView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import SwiftUI
 import FirebaseAuth
@@ -31,7 +24,6 @@ struct ForgotPasswordView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                // Email Input Field
                 VStack(alignment: .leading, spacing: 8) {
                     Text(NSLocalizedString("forgotPassword_emailLabel", comment: "Label for email field"))
                         .font(.headline)
@@ -61,7 +53,6 @@ struct ForgotPasswordView: View {
                 }
                 .padding(.horizontal, 20)
 
-                // Show loading spinner if email is being sent
                 if isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.green))
@@ -81,7 +72,7 @@ struct ForgotPasswordView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss() // Dismiss the sheet when the "X" is tapped
+                        dismiss()
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)
@@ -91,7 +82,6 @@ struct ForgotPasswordView: View {
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text(NSLocalizedString("forgotPassword_alertTitle", comment: "Alert title")), message: Text(alertMessage), dismissButton: .default(Text(NSLocalizedString("forgotPassword_alertButtonOK", comment: "Alert button OK")), action: {
-                    // Go back to the SignInView after pressing OK
                     self.presentationMode.wrappedValue.dismiss()
                 }))
             }

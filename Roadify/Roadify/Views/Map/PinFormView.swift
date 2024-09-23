@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import CoreLocation
@@ -20,12 +20,12 @@ struct PinFormView: View {
     @Binding var description: String
     @Binding var images: [UIImage]
     @Binding var showModal: Bool
-    @Binding var selectedCoordinate: CLLocationCoordinate2D?  // Pass the selected coordinate for the pin
+    @Binding var selectedCoordinate: CLLocationCoordinate2D?
     @Binding var showPinModel: Bool
 
     @State private var showImagePicker: Bool = false
-    @State private var selectedImages: [UIImage] = []  // Array for selected images
-    @State private var isUploading: Bool = false  // Show a loading state while uploading images
+    @State private var selectedImages: [UIImage] = []
+    @State private var isUploading: Bool = false
 
     @State private var titleError: Bool = false
     @State private var descriptionError: Bool = false
@@ -34,7 +34,7 @@ struct PinFormView: View {
     @State private var longitude: String = ""
 
     let onSubmit: (_ completion: @escaping () -> Void) -> Void
-    let firebaseService = FirebaseService()  // Create an instance of FirebaseService to save pins
+    let firebaseService = FirebaseService()
     let pinService = PinService()
 
     // MARK: - Body
@@ -102,7 +102,7 @@ struct PinFormView: View {
 
                 // MARK: - Add Image
                 Button(action: {
-                    showImagePicker = true  // Trigger the image picker
+                    showImagePicker = true
                 }) {
                     HStack {
                         Image(systemName: "photo")
@@ -116,12 +116,12 @@ struct PinFormView: View {
                     .shadow(color: .gray, radius: 1, x: 0, y: 1)
                 }
                 .sheet(isPresented: $showImagePicker) {
-                    ImagePickerView(selectedImages: $selectedImages)  // Pass selectedImages
+                    ImagePickerView(selectedImages: $selectedImages)
                         .edgesIgnoringSafeArea(.bottom)
                 }
                 .padding([.leading, .trailing])
                 .onChange(of: selectedImages) { newImages in
-                    images.append(contentsOf: newImages)  // Append the selected images
+                    images.append(contentsOf: newImages)
                 }
             }
             .padding()
@@ -230,7 +230,7 @@ struct PinFormView: View {
     func savePin() {
         guard let coordinate = selectedCoordinate else { return }
 
-        isUploading = true  // Show the loading indicator while uploading
+        isUploading = true
 
         // Fetch the current user from Firebase Authentication
         guard let currentUser = firebaseService.getCurrentUser() else {
@@ -244,14 +244,14 @@ struct PinFormView: View {
             description: description,
             coordinate: coordinate,
             images: images,
-            user: currentUser  // Pass the current user
+            user: currentUser
         ) { error in
-            isUploading = false  // Hide the loading indicator
+            isUploading = false
             if let error = error {
                 print("Error saving pin to Firestore: \(error.localizedDescription)")
             } else {
                 print("Pin successfully saved to Firestore!")
-                showModal = false  // Close the modal after submission
+                showModal = false
             }
         }
     }
@@ -285,10 +285,10 @@ struct PinFormView: View {
 struct PinFormView_Previews: PreviewProvider {
     @State static var title: String = "Sample Pin Title"
     @State static var description: String = "Sample Pin Description"
-    @State static var images: [UIImage] = []  // Empty array for now
+    @State static var images: [UIImage] = []
     @State static var showModal: Bool = true
     @State static var selectedCoordinate: CLLocationCoordinate2D? = CLLocationCoordinate2D(
-        latitude: 37.7749, longitude: -122.4194)  // Example coordinate
+        latitude: 37.7749, longitude: -122.4194)
     static var previews: some View {
         PinFormView(
             title: $title,
@@ -301,6 +301,6 @@ struct PinFormView_Previews: PreviewProvider {
                 completion()
             }
         )
-        .previewLayout(.sizeThatFits)  // Adjusts preview size to fit the content
+        .previewLayout(.sizeThatFits)  
     }
 }

@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 22/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  NotificationsViewModel.swift
-//  Roadify
-//
-//  Created by Lê Phước on 22/9/24.
-//
 
 import Foundation
 import FirebaseAuth
@@ -50,8 +43,8 @@ class NotificationsViewModel: ObservableObject {
                         if notificationSet.contains(notification.id) {
                             return nil  // Skip duplicate notification
                         } else {
-                            notificationSet.insert(notification.id)  // Mark this notification as seen
-                            return notification  // Return unique notification
+                            notificationSet.insert(notification.id) 
+                            return notification
                         }
                     } else {
                         return nil

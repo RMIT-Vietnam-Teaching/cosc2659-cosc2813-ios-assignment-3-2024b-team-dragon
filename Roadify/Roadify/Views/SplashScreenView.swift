@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import AVFoundation
@@ -24,11 +24,11 @@ struct SplashScreenView: View {
 
     var body: some View {
         ZStack {
-            Color("MainColor").ignoresSafeArea(.all)  // Background color of the splash screen
+            Color("MainColor").ignoresSafeArea(.all)
 
             VStack {
                 // Display the GIF
-                GIFImage(gifName: "GIF1")  // Use the name without .gif extension
+                GIFImage(gifName: "GIF1")
                     .frame(width: 350, height: 350)
             }
         }
@@ -36,7 +36,7 @@ struct SplashScreenView: View {
             playSound()
             // Simulate a delay for the splash screen
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                audioPlayer?.stop()  // Stop the sound
+                audioPlayer?.stop() 
                 withAnimation {
                     navigateToNextView = true
                 }

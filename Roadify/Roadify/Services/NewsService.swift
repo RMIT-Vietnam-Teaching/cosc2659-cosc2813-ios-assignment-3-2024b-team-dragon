@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Foundation
@@ -51,7 +51,7 @@ class NewsService: FirebaseService {
             storageRef.downloadURL { (url, error) in
                 if let url = url {
                     var updatedNews = news
-                    updatedNews.imageName = url.absoluteString  // Store image URL in model
+                    updatedNews.imageName = url.absoluteString 
                     
                     // Save news to Firestore
                     let ref = self.db.collection("news").document(news.id)

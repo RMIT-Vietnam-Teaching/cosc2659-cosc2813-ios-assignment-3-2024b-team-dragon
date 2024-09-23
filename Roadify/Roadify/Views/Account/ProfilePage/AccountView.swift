@@ -6,22 +6,15 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  AccountView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import Foundation
 import SwiftUI
 
 struct AccountView: View {
-    @AppStorage("appLanguage") var appLanguage: String = "en"  // Store app language
-    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false  // Store dark mode preference
+    @AppStorage("appLanguage") var appLanguage: String = "en"
+    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false
     @ObservedObject var viewModel = AccountViewModel()
 
     @State private var showAlert = false
@@ -91,13 +84,12 @@ struct AccountView: View {
             }
             .sheet(isPresented: $showEditProfile) {
                 EditProfileView(viewModel: viewModel)
-                    .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+                    .preferredColorScheme(darkModeEnabled ? .dark : .light)
             }
 
-            // Admin Panel Button (conditionally visible based on isAdmin in ViewModel)
             if viewModel.isAdmin {
                 Button(action: {
-                    showAdminPanelView = true  // Show the Admin Panel when button is tapped
+                    showAdminPanelView = true
                 }) {
                     HStack {
                         Image(systemName: "person.crop.square")
@@ -110,9 +102,9 @@ struct AccountView: View {
                     .background(
                         RoundedRectangle(cornerRadius: 10).fill(Color("ThirdColor").opacity(0.5)))
                 }
-                .sheet(isPresented: $showAdminPanelView) {  // Present the Admin Panel
+                .sheet(isPresented: $showAdminPanelView) {
                     AdminPanelView()
-                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
             }
 
@@ -140,7 +132,7 @@ struct AccountView: View {
                 }
                 .sheet(isPresented: $showNotificationsView) {
                     NotificationsView()
-                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
 
                 Button(action: {
@@ -150,7 +142,7 @@ struct AccountView: View {
                 }
                 .sheet(isPresented: $showPrivacyView) {
                     PrivacyView()
-                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
 
                 Button(action: {
@@ -162,7 +154,7 @@ struct AccountView: View {
                     LanguageSelectionView(
                         selectedLanguage: $selectedLanguage,
                         selectedLanguageFlag: $selectedLanguageFlag)
-                        .preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+                        .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
             }
 
@@ -176,7 +168,7 @@ struct AccountView: View {
 				}
 				.sheet(isPresented: $showHelpView) {
 					HelpView()
-					.preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+					.preferredColorScheme(darkModeEnabled ? .dark : .light)
 				}
 				
 				Button(action: {
@@ -186,7 +178,7 @@ struct AccountView: View {
 				}
 				.sheet(isPresented: $showReportBugView) {
 					ReportABugView()
-					.preferredColorScheme(darkModeEnabled ? .dark : .light)  // Apply color scheme
+					.preferredColorScheme(darkModeEnabled ? .dark : .light)
 				}
 			}
 			
@@ -233,7 +225,6 @@ struct AccountView: View {
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .navigationBarBackButtonHidden(true)
-        // Apply the color scheme based on user selection
         .preferredColorScheme(darkModeEnabled ? .dark : .light)
     }
 

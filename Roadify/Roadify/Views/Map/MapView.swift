@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 9/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  MapView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 9/9/24.
-//
 
 import CoreLocation
 import FirebaseStorage
@@ -29,29 +22,29 @@ struct MapView: View {
 
     @State private var pinTitle: String = ""
     @State private var pinDescription: String = ""
-    @State private var pinImages: [UIImage] = []  // Array for selected images
+    @State private var pinImages: [UIImage] = []
 
     @Binding var selectedPin: Pin?
     @Binding var selectedTab: Int
     @Binding var isFromMapView: Bool
 
-    @State private var selectedCoordinate: CLLocationCoordinate2D?  // Optional selected location
+    @State private var selectedCoordinate: CLLocationCoordinate2D?
     @State private var startingCoordinate: CLLocationCoordinate2D?
     @State private var endingCoordinate: CLLocationCoordinate2D?
 
     @State private var startPoint: String = ""
     @State private var endPoint: String = ""
 
-    @State private var pins: [Pin] = []  // Store pins to be passed to the map view
-    @State private var destinationAddress: String = ""  // Destination pin
+    @State private var pins: [Pin] = []
+    @State private var destinationAddress: String = ""
 
     @State private var showPinModel: Bool = false
     @State private var showRoutingView: Bool = false
     @State private var mapView = MKMapView()
 
-    let firebaseService = FirebaseService()  // Firebase service instance
+    let firebaseService = FirebaseService()
     let geocodingService = GeocodingService()
-    let pinService = PinService()  // Pin service instance
+    let pinService = PinService()
 
     // MARK: - Body
     var body: some View {
@@ -81,7 +74,7 @@ struct MapView: View {
             .edgesIgnoringSafeArea(.all)
             .onTapGesture {
                 withAnimation {
-                    showRoutingView = false  // Close DestinationView when users tap outside
+                    showRoutingView = false
 
                     // Clear existing routes
                     let coordinator = MapViewRepresentable.Coordinator(
@@ -162,15 +155,13 @@ struct MapView: View {
                                     if let userLocation = locationManager.userLocation {
                                         selectedCoordinate = userLocation
                                     } else {
-                                        // print("User location is not available.")
                                         selectedCoordinate = nil
                                     }
                                     showPinModel = true
                                 }
                             } else {
-                                selectedTab = 3  // Switch to signin/signup view
+                                selectedTab = 3
                             }
-                            // print("Button pressed, showing pin form")
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
@@ -193,8 +184,8 @@ struct MapView: View {
                         Button(action: {
                             withAnimation {
                                 showPinModel = false
-                                showRoutingView = false  // Close the RoutingView
-                                dismissKeyboard()  // Dismiss the keyboard
+                                showRoutingView = false
+                                dismissKeyboard()
 
                                 // Remove existing route
                                 let coordinator = MapViewRepresentable.Coordinator(
@@ -288,10 +279,9 @@ struct MapView: View {
             fetchPins()
             fetchVerifiedPins()
             selectedPin = nil
-            locationManager.requestLocationPermission()  // Ask user for location permission
+            locationManager.requestLocationPermission()
         }
-        .navigationBarBackButtonHidden(true)  // This hides the back button
-
+        .navigationBarBackButtonHidden(true)
     }
 
     // MARK: - Function to add the pin after form submission
@@ -310,7 +300,7 @@ struct MapView: View {
             description: pinDescription,
             coordinate: coordinate,
             images: pinImages,
-            user: currentUser  // Pass the current logged-in user
+            user: currentUser
         ) { error in
             if let error = error {
                 print("Error adding pin: \(error.localizedDescription)")
@@ -345,7 +335,7 @@ struct MapView: View {
         pinService.fetchPins { result in
             switch result {
             case .success(let fetchedPins):
-                pins = fetchedPins.filter { $0.status == .verified }  // Filter to show only verified pins
+                pins = fetchedPins.filter { $0.status == .verified } 
                 print("Verified pins successfully fetched and displayed on map.")
             case .failure(let error):
                 print("Error fetching pins: \(error.localizedDescription)")

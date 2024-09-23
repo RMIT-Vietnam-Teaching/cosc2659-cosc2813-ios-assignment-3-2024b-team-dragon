@@ -6,21 +6,21 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
 
 struct AddNewsFormView: View {
-    @Binding var showModal: Bool  // Binding from parent to control visibility
-    var onSubmit: () -> Void  // Closure to trigger after successfully adding news
+    @Binding var showModal: Bool
+    var onSubmit: () -> Void
 
     @State private var title: String = ""
     @State private var category: String = ""
     @State private var description: String = ""
-    @State private var selectedImages: [UIImage] = []  // This holds the selected images
-    @State private var showImagePicker = false  // Trigger for image picker sheet
-    @State private var isUploading: Bool = false  // To show loading indicator during upload
+    @State private var selectedImages: [UIImage] = []
+    @State private var showImagePicker = false
+    @State private var isUploading: Bool = false
     
     @StateObject private var newsService = NewsService()
 
@@ -31,7 +31,7 @@ struct AddNewsFormView: View {
                 Spacer()
                 Button(action: {
                     withAnimation {
-                        showModal = false  // Dismiss the view using the binding
+                        showModal = false
                     }
                 }) {
                     Image(systemName: "xmark.circle.fill")
@@ -71,7 +71,7 @@ struct AddNewsFormView: View {
                         .padding(.leading)
                     
                     Button(action: {
-                        showImagePicker = true  // Show the custom image picker
+                        showImagePicker = true
                     }) {
                         Image(systemName: "photo")
                             .font(.system(size: 24))
@@ -90,7 +90,7 @@ struct AddNewsFormView: View {
 
 
             // Preview the selected images if available
-            if let selectedImage = selectedImages.first {  // Only show the first image
+            if let selectedImage = selectedImages.first {
                 Image(uiImage: selectedImage)
                     .resizable()
                     .scaledToFit()
@@ -112,23 +112,23 @@ struct AddNewsFormView: View {
                         return
                     }
                     
-                    isUploading = true  // Show progress during upload
+                    isUploading = true
                     
                     let newNews = News(
                         title: title,
                         category: category,
                         description: description,
-                        imageName: ""  // Image URL will be set after uploading
+                        imageName: ""
                     )
                     
                     newsService.addNews(news: newNews, image: image) { error in
-                        isUploading = false  // Hide the loading indicator
+                        isUploading = false
                         if let error = error {
                             print("Error adding news: \(error.localizedDescription)")
                         } else {
                             print("News successfully added!")
-                            showModal = false  // Dismiss the form
-                            onSubmit()  // Trigger the onSubmit closure to refresh the news list
+                            showModal = false
+                            onSubmit()  
                         }
                     }
                 }) {

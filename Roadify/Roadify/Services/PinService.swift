@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Firebase
@@ -96,13 +96,13 @@ class PinService: FirebaseService {
     // Function to trigger notification for verified pin
     func notifyUserForVerifiedPin(pin: Pin) {
         let userId = pin.reportedBy
-        let notificationId = pin.id  // Use the pin's unique ID as the notification ID
+        let notificationId = pin.id
         
         let notificationData: [String: Any] = [
             "title": "Your pin has been verified!",
             "body": "The pin titled '\(pin.title)' has been verified by the admin.",
-            "timestamp": Timestamp(date: Date()), // Store the time of notification
-            "read": false // Notifications are unread by default
+            "timestamp": Timestamp(date: Date()),
+            "read": false
         ]
 
         // Add the notification to Firestore
@@ -143,8 +143,8 @@ class PinService: FirebaseService {
         let notificationData: [String: Any] = [
             "title": "Your pin has been verified!",
             "body": "The pin titled '\(pin.title)' has been verified by the admin.",
-            "timestamp": Timestamp(date: Date()), // Store the time of notification
-            "read": false // Notifications are unread by default
+            "timestamp": Timestamp(date: Date()),
+            "read": false
         ]
         
         db.collection("users").document(userId).collection("notifications").addDocument(data: notificationData) { error in
@@ -171,6 +171,6 @@ class PinService: FirebaseService {
             }
         }
         
-        completion(nearbyPins)  // Return the nearby pins
+        completion(nearbyPins) 
     }
 }

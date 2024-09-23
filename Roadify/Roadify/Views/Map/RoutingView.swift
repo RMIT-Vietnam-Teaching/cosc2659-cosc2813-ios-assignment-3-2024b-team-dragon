@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -35,7 +35,7 @@ struct RoutingView: View {
 						.shadow(radius: 4)
 					
 					HStack {
-						// End Point¡
+						// End Point
 						TextField("End Point", text: $endPoint)
 							.padding()
 							.background(Color.white)
@@ -64,11 +64,3 @@ struct RoutingView: View {
 		.shadow(radius: 5)
 	}
 }
-
-//
-//struct RoutingView_Previews: PreviewProvider {
-//	static var previews: some View {
-//		RoutingView(startingPoint: .constant("37.7749, -122.4194"),
-//					endPoint: .constant("34.0522, -118.2437"))
-//	}
-//}

@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  AdminPanelView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 19/9/24.
-//
 
 import SwiftUI
 
@@ -22,7 +15,7 @@ struct AdminPanelView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showPendingPinView = false
     @State private var showPinManagementView = false
-    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false  // Track dark mode
+    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -34,7 +27,6 @@ struct AdminPanelView: View {
                     SettingsRow(iconName: "gift.fill", label: NSLocalizedString("PendingPins", comment: "Pending Pins"))
                 }
                 .sheet(isPresented: $showPendingPinView) {
-                    // Pass darkModeEnabled to PendingPinView and apply the color scheme
                     PendingPinView()
                         .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
@@ -45,7 +37,6 @@ struct AdminPanelView: View {
                     SettingsRow(iconName: "shield.fill", label: NSLocalizedString("PinManagement", comment: "Pin Management"))
                 }
                 .sheet(isPresented: $showPinManagementView) {
-                    // Pass darkModeEnabled to PinManagementView and apply the color scheme
                     PinManagementView()
                         .preferredColorScheme(darkModeEnabled ? .dark : .light)
                 }
@@ -63,7 +54,7 @@ struct AdminPanelView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                        dismiss() 
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)

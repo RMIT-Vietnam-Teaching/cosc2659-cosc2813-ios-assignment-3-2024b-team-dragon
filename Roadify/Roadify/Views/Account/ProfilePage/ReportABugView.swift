@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  ReportABugView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import Foundation
 import MessageUI
@@ -70,7 +63,7 @@ struct ReportABugView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                        dismiss()
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)
@@ -87,7 +80,6 @@ struct ReportABugView: View {
 
     private func sendEmail() {
         guard MFMailComposeViewController.canSendMail() else {
-            // Handle the case where the user cannot send email
             return
         }
 

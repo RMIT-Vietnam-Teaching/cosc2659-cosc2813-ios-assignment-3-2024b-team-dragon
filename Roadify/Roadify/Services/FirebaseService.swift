@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import CoreLocation
@@ -45,11 +45,11 @@ class FirebaseService: NSObject, ObservableObject {
             return User(
                 id: firebaseUser.uid,
                 username: firebaseUser.displayName ?? "",
-                firstName: "",  // Add actual user info if needed
-                lastName: "",  // Add actual user info if needed
+                firstName: "",
+                lastName: "",
                 email: firebaseUser.email ?? "",
-                createdAt: Date(),  // Replace with actual createdAt date if available
-                isAdmin: false  // Default to false, change based on your logic
+                createdAt: Date(),
+                isAdmin: false
             )
         }
         return nil
@@ -61,7 +61,6 @@ class FirebaseService: NSObject, ObservableObject {
             if let error = error {
                 completion(error)
             } else {
-                // Log the profile update activity
                 // Log the profile update activity
                 self.logActivity(
                     action: NSLocalizedString("profile_action_updated", comment: "Profile Updated"),

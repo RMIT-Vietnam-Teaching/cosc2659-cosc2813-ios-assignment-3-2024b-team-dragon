@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Foundation
@@ -22,10 +22,8 @@ class AuthManager: ObservableObject {
     
     private func checkUserAuthentication() {
         if Auth.auth().currentUser != nil {
-            // User is signed in
             self.isLoggedIn = true
         } else {
-            // No user is signed in
             self.isLoggedIn = false
         }
     }

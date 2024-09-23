@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Foundation
@@ -21,7 +21,6 @@ struct User: Identifiable {
     var createdAt: Date
     var isAdmin: Bool
     
-    // Initializer
     init(id: String, username: String, firstName: String, lastName: String, email: String, createdAt: Date, isAdmin: Bool) {
         self.id = id
         self.username = username
@@ -29,7 +28,7 @@ struct User: Identifiable {
         self.lastName = lastName
         self.email = email
         self.createdAt = createdAt
-        self.isAdmin = isAdmin  // Initialize admin status
+        self.isAdmin = isAdmin
     }
     
     // Convenience initializer to create a User object from Firestore data
@@ -39,7 +38,7 @@ struct User: Identifiable {
               let lastName = data["lastName"] as? String,
               let email = data["email"] as? String,
               let timestamp = data["createdAt"] as? Timestamp,
-              let isAdmin = data["isAdmin"] as? Bool else {  // Ensure admin status is retrieved
+              let isAdmin = data["isAdmin"] as? Bool else {
             return nil
         }
         
@@ -49,7 +48,7 @@ struct User: Identifiable {
         self.lastName = lastName
         self.email = email
         self.createdAt = timestamp.dateValue()
-        self.isAdmin = isAdmin  // Assign admin status
+        self.isAdmin = isAdmin
     }
     
     // Method to convert the User model to a dictionary for Firestore
@@ -60,7 +59,7 @@ struct User: Identifiable {
             "lastName": lastName,
             "email": email,
             "createdAt": Timestamp(date: createdAt),
-            "isAdmin": isAdmin  // Include admin status in the dictionary
+            "isAdmin": isAdmin 
         ]
     }
 }

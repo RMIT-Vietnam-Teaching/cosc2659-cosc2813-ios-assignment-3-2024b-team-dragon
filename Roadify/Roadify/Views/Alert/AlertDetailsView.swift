@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -49,7 +49,7 @@ struct AlertDetailsView: View {
 			HStack(spacing: 20) {
 				HStack {
 					Button(action: {
-						viewModel.incrementLikes()  // Call ViewModel's incrementLikes
+						viewModel.incrementLikes()
 					}) {
 						HStack {
 							Text("\(viewModel.pin.likes)")
@@ -63,7 +63,7 @@ struct AlertDetailsView: View {
 				
 				HStack {
 					Button(action: {
-						viewModel.incrementDislikes()  // Call ViewModel's incrementDislikes
+						viewModel.incrementDislikes()
 					}) {
 						HStack {
 							Text("\(viewModel.pin.dislikes)")
@@ -89,8 +89,8 @@ struct AlertDetailsView: View {
 			Spacer()
 		}
 		.padding()
-		.background(Color("MainColor").edgesIgnoringSafeArea(.all))  // Set background color
-		.navigationBarTitleDisplayMode(.inline)  // Set inline navigation
+		.background(Color("MainColor").edgesIgnoringSafeArea(.all))
+		.navigationBarTitleDisplayMode(.inline)  
 	}
 }
 

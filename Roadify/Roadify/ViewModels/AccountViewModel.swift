@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  AccountViewModel.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import FirebaseAuth
 import FirebaseFirestore
@@ -123,12 +116,10 @@ class AccountViewModel: ObservableObject {
                         "mobilePhone": mobilePhone,
                     ], merge: true)
 
-                // Update local variables
                 self.username = username
                 self.address = address
                 self.mobilePhone = mobilePhone
 
-                // Log the profile update activity
                 self.firebaseService.logActivity(
                     action: NSLocalizedString("profile_updated", comment: "Profile updated"),
                     metadata: ["username": username])
@@ -147,7 +138,6 @@ class AccountViewModel: ObservableObject {
             self.mobilePhone = ""
             self.profileImageUrl = ""
 
-            // Log the logout activity
             self.firebaseService.logActivity(
                 action: NSLocalizedString("user_logged_out", comment: "User logged out"))
         } catch let error {

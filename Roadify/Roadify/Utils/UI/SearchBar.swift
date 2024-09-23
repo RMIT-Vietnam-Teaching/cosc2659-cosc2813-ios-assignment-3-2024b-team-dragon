@@ -6,18 +6,18 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
 
 struct SearchBar: View {
     var label: String
-    @Binding var text: String  // Bind search text from the parent view
+    @Binding var text: String
 
     var body: some View {
         HStack {
-            TextField(label, text: $text)  // Bind to the provided text
+            TextField(label, text: $text) 
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(10)
                 .background(Color.white)

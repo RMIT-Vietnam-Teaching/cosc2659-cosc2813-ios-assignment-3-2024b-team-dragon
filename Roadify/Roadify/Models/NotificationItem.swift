@@ -6,15 +6,9 @@
  Author: Team Dragon
  Created date: 22/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
-//
-//  NotificationItem.swift
-//  Roadify
-//
-//  Created by Lê Phước on 22/9/24.
-//
 import Foundation
 import FirebaseCore
 

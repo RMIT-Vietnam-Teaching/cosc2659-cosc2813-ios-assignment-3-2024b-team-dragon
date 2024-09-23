@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  PinManagementViewModel.swift
-//  Roadify
-//
-//  Created by Lê Phước on 19/9/24.
-//
 
 import Foundation
 import FirebaseFirestore
@@ -38,7 +31,7 @@ class PinManagementViewModel: ObservableObject {
         pinService.fetchPins { result in
             switch result {
             case .success(let pins):
-                self.verifiedPins = pins.filter { $0.status == .verified }  // Only show verified pins
+                self.verifiedPins = pins.filter { $0.status == .verified }
             case .failure(let error):
                 print("Error fetching pins: \(error.localizedDescription)")
             }
@@ -52,7 +45,7 @@ class PinManagementViewModel: ObservableObject {
                 print("Error deleting pin: \(error.localizedDescription)")
             } else {
                 print("Pin deleted successfully!")
-                self.verifiedPins.removeAll { $0.id == pin.id }  // Remove from local list
+                self.verifiedPins.removeAll { $0.id == pin.id }
             }
         }
     }

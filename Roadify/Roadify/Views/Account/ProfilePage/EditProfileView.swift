@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 //
@@ -158,7 +158,6 @@ struct EditProfileView: View {
         .background(Color("MainColor").edgesIgnoringSafeArea(.all))
         .foregroundColor(.white)
         .onAppear {
-            // Initialize fields with the current profile data
             self.address = viewModel.address
             self.mobilePhone = viewModel.mobilePhone
             self.username = viewModel.username
@@ -178,7 +177,6 @@ struct ProfileImagePicker: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        // No update needed for now
     }
 
     func makeCoordinator() -> Coordinator {

@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  PendingPinViewModel.swift
-//  Roadify
-//
-//  Created by Lê Phước on 19/9/24.
-//
 
 import Foundation
 import Firebase
@@ -57,7 +50,6 @@ class PendingPinViewModel: ObservableObject {
             } else {
                 self.removePinFromList(pin)
                 
-                // Notify the user who placed the pin
                 self.pinService.notifyUserForVerifiedPin(pin: updatedPin)
             }
         }

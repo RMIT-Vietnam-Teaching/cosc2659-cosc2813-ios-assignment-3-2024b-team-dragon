@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 20/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  LanguageSelectionView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 20/9/24.
-//
 
 import Foundation
 import SwiftUI
@@ -61,7 +54,7 @@ struct LanguageSelectionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss() // Dismiss the view when "X" is tapped
+                        dismiss() 
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)

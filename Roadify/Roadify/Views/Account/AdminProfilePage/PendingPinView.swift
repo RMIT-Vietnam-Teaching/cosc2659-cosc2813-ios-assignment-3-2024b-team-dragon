@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  PendingPinView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 19/9/24.
-//
 
 import SwiftUI
 import Firebase
@@ -28,7 +21,7 @@ struct PendingPinView: View {
             HStack {
                 // Back button
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()  // Go back to the previous view (AdminPanelView)
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.white)
@@ -80,7 +73,7 @@ struct PendingPinView: View {
                                         .foregroundColor(.gray)
                                     
                                     // Display formatted date added
-                                    Text("Added: \(formattedDate(pin.timestamp))")
+                                    Text("Added: \(Formatter.formatDate(pin.timestamp))")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                 }
@@ -110,7 +103,6 @@ struct PendingPinView: View {
                             .cornerRadius(10)
                             .padding(.horizontal)
                             
-                            // Add a gray line (divider) below each pin rectangle
                             Divider()
                                 .background(Color.gray)
                                 .padding(.horizontal)
@@ -124,14 +116,6 @@ struct PendingPinView: View {
         .onAppear {
             viewModel.fetchPendingPins()
         }
-    }
-    
-    // Helper function to format the timestamp
-    private func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium  // Customize as needed (e.g., .long, .short)
-        formatter.timeStyle = .none
-        return formatter.string(from: date)
     }
 }
 

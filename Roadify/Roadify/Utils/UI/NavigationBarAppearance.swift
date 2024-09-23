@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 20/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  NavigationBarAppearance.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 20/9/24.
-//
 
 import Foundation
 import SwiftUI

@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -70,14 +70,14 @@ struct NewsView: View {
 					.edgesIgnoringSafeArea(.all)
 				}
 				.onAppear {
-					fetchNewsFromFirebase()  // Fetch news on view appearance
+					fetchNewsFromFirebase()
 				}
 				// AddNewsFormView appears as an overlay when showAddNewsForm is true
 				if showAddNewsForm {
 					VStack {
 						Spacer()
 						AddNewsFormView(showModal: $showAddNewsForm) {
-							fetchNewsFromFirebase()  // Refresh the news list after adding new news
+							fetchNewsFromFirebase()
 						}
 						.transition(.move(edge: .bottom))
 					}
@@ -107,7 +107,7 @@ struct NewsView: View {
 		}
 		.background(Color("MainColor")
 			.edgesIgnoringSafeArea(.all))
-        .navigationBarBackButtonHidden(true) // This hides the back button
+        .navigationBarBackButtonHidden(true) 
 	}
 	
 	private func fetchNewsFromFirebase() {

@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  ActivityLogsView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import Foundation
 import SwiftUI
@@ -59,7 +52,7 @@ struct ActivityLogsView: View {
                         .padding(.vertical, 5)
                         .background(Color("MainColor"))
                         .cornerRadius(8)
-                        .listRowBackground(Color("MainColor"))  // Set the background color for list rows
+                        .listRowBackground(Color("MainColor"))
                     }
                     .listStyle(PlainListStyle())
                     .background(Color("MainColor"))
@@ -77,7 +70,7 @@ struct ActivityLogsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()  // Dismiss the sheet when the "X" is tapped
+                        dismiss()
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)

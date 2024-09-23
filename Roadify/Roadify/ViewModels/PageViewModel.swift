@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Foundation
@@ -16,7 +16,7 @@ struct PageViewModel: View {
 	var image: String
 	var title: String
 	var description: String
-	var onNext: () -> Void  // Closure for button action
+	var onNext: () -> Void 
 	var progress: CGFloat
 	var progressColor: String
 	

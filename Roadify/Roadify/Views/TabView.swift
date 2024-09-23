@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Foundation
@@ -16,7 +16,7 @@ struct TabView: View {
     @StateObject private var authManager = AuthManager()
     @StateObject private var accountViewModel = AccountViewModel()
 
-    @State private var showWelcomeView = true  // First launch
+    @State private var showWelcomeView = true
 
     @Binding var selectedPin: Pin?
     @Binding var selectedTab: Int
@@ -135,9 +135,3 @@ struct TabView: View {
         }
     }
 }
-
-//struct TabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TabView()
-//    }
-//}

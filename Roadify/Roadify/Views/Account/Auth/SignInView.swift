@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  SignInView.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import SwiftUI
 
@@ -36,7 +29,6 @@ struct SignInView: View {
 	@Binding var isFromMapView: Bool
 	
 	var body: some View {
-		//        NavigationView { *FixYellowWarning*no
 		NavigationStack {
 			VStack(spacing: 20) {
 				Text("Sign In")
@@ -49,7 +41,7 @@ struct SignInView: View {
 					"Email Address", text: $viewModel.loginCredentials.email, field: .email,
 					iconName: "envelope"
 				)
-				.autocapitalization(.none)  // Disable autocapitalization
+				.autocapitalization(.none)
 				
 				// Password Field with eye icon toggle
 				passwordTextField(
@@ -68,7 +60,6 @@ struct SignInView: View {
 				
 				// Login Button
 				Button(action: {
-					// Start loading indicator while logging in
 					isLoading = true
 					viewModel.login()
 					
@@ -85,11 +76,6 @@ struct SignInView: View {
 						.cornerRadius(8)
 						.foregroundColor(Color.black)
 				}
-				
-				// Navigate if logged in successfully
-//				NavigationLink(destination: TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView), isActive: $viewModel.isLoggedIn) {
-//					EmptyView()
-//				}
 				
 				.navigationDestination(isPresented: $viewModel.isLoggedIn) {
 					TabView(selectedPin: $selectedPin, selectedTab: $selectedTab, isFromMapView: $isFromMapView)
@@ -133,7 +119,7 @@ struct SignInView: View {
 				HStack {
 					// Actual TextField
 					TextField(placeholder, text: text)
-						.padding(.leading, 30)  // Add padding to avoid overlapping with icon
+						.padding(.leading, 30)
 						.padding()
 						.background(Color.clear)
 						.foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))
@@ -171,7 +157,6 @@ struct SignInView: View {
 					.padding(.leading, 10)
 				
 				HStack {
-					// Actual TextField
 					Group {
 						if isPasswordVisible.wrappedValue {
 							TextField(placeholder, text: text)
@@ -179,7 +164,7 @@ struct SignInView: View {
 							SecureField(placeholder, text: text)
 						}
 					}
-					.padding(.leading, 30)  // Padding to avoid overlapping with icon
+					.padding(.leading, 30) 
 					.padding()
 					.background(Color.clear)
 					.foregroundColor(self.activeField == field ? .white : Color("ThirdColor"))

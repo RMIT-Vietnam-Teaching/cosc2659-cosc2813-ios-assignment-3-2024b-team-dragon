@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -115,7 +115,6 @@ struct DetailPinView: View {
 		)
 		.shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
         .transition(.move(edge: .bottom))
-//        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5)) 
 		.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5), value: 1)
 		.padding()
     }

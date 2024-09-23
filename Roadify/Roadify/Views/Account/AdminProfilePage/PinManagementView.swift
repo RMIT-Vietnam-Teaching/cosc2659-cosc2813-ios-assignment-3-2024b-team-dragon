@@ -6,28 +6,21 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  PinManagementView.swift
-//  Roadify
-//
-//  Created by Lê Phước on 19/9/24.
-//
 
 import SwiftUI
 
 struct PinManagementView: View {
     @ObservedObject var viewModel = PinManagementViewModel()
-    @Environment(\.presentationMode) var presentationMode  // To handle the back button
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                 // Back button
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()  // Go back to the previous view (AdminPanelView)
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.white)
@@ -72,7 +65,7 @@ struct PinManagementView: View {
                                 VStack(alignment: .leading) {
                                     Text(pin.title)
                                         .font(.headline)
-                                        .foregroundColor(Color("SubColor"))  // Adjust based on color scheme
+                                        .foregroundColor(Color("SubColor"))
                                     
                                     // Display accurate distance from user location
                                     Text("\(String(format: "%.1f", viewModel.calculateDistance(pin: pin))) km")
@@ -80,7 +73,7 @@ struct PinManagementView: View {
                                         .foregroundColor(.gray)
 
                                     // Display the date the pin was added
-                                    Text("Added: \(formattedDate(pin.timestamp))")
+                                    Text("Added: \(Formatter.formatDate(pin.timestamp))")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                 }
@@ -100,7 +93,6 @@ struct PinManagementView: View {
                             .cornerRadius(10)
                             .padding(.horizontal)
                             
-                            // Add a gray line (divider) below each pin rectangle
                             Divider()
                                 .background(Color.gray)
                                 .padding(.horizontal)
@@ -114,14 +106,6 @@ struct PinManagementView: View {
         .onAppear {
             viewModel.fetchVerifiedPins()
         }
-    }
-    
-    // Helper function to format the timestamp
-    private func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium  // Customize as needed (e.g., .long, .short)
-        formatter.timeStyle = .none
-        return formatter.string(from: date)
     }
 }
 

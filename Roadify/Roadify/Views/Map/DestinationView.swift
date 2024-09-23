@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -49,7 +49,6 @@ struct DestinationView: View {
 
 struct DestinationView_Previews: PreviewProvider {
 	static var previews: some View {
-		// Provide sample bindings for preview
 		DestinationView(destinationAddress: .constant(""), showRoutingView: .constant(false))
 	}
 }

@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import Firebase
@@ -54,6 +54,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     
     // Handle notifications while the app is in the foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound])  // Display the notification as an alert with sound
+        completionHandler([.alert, .sound])
     }
 }

@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -21,7 +21,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 	@Binding var startingCoordinate: CLLocationCoordinate2D?
 	@Binding var endingCoordinate: CLLocationCoordinate2D?
 	@Binding var mapView: MKMapView
-	@Binding var selectedPin: Pin?  // New binding for the selected pin
+	@Binding var selectedPin: Pin?
 	@Binding var endPoint: String
 	@Binding var selectedTab: Int
 	@ObservedObject var authManager: AuthManager
@@ -88,18 +88,15 @@ struct MapViewRepresentable: UIViewRepresentable {
 					parent.geocodingService.getAddress(from: coordinate) { address in
 						self.parent.endPoint = address ?? "\(coordinate.latitude), \(coordinate.longitude)"
 					}
-					// print("MapView: Destination set to - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
 				} else {
 					if parent.authManager.isLoggedIn {
-						
 						// If RoutingView is not shown, show the pin modal
 						parent.selectedCoordinate = coordinate
 						parent.showPinModal = true
 						parent.onMapClick?(coordinate)
-						// print("MapView: Long press detected. Coordinates - Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)")
 					} else {
 						// User is not logged in, switch to sign-in view
-						parent.selectedTab = 3 // Switch to sign-in/signup tab
+						parent.selectedTab = 3
 					}
 				}
 			}
@@ -145,9 +142,6 @@ struct MapViewRepresentable: UIViewRepresentable {
 							print("No route found")
 							return
 						}
-						
-						//						print("Route found with distance: \(route.distance) meters")
-						
 						// Add the route as an overlay on the map
 						self.parent.mapView.addOverlay(route.polyline)
 						self.parent.mapView.setVisibleMapRect(
@@ -184,7 +178,6 @@ struct MapViewRepresentable: UIViewRepresentable {
 			if annotationView == nil {
 				annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 				annotationView?.canShowCallout = true
-				//				annotationView?.pinTintColor = UIColor.orange
 			} else {
 				annotationView?.annotation = annotation
 			}
@@ -205,7 +198,7 @@ struct MapViewRepresentable: UIViewRepresentable {
 			if let selectedPin = parent.pins.first(where: { pin in
 				pin.latitude == selectedLat && pin.longitude == selectedLon
 			}) {
-				parent.selectedPin = selectedPin  // Set the selected pin
+				parent.selectedPin = selectedPin 
 				print("MapView: Pin selected - \(selectedPin.title)")
 			}
 		}

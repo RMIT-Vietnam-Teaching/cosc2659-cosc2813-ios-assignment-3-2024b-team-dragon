@@ -78,7 +78,6 @@
 		B82E84B82C9EC72B0048530D /* AdminPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82E84B52C9EC72B0048530D /* AdminPanelView.swift */; };
 		B82E84B92C9EC72B0048530D /* PendingPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82E84B62C9EC72B0048530D /* PendingPinView.swift */; };
 		B82E84BA2C9EC72B0048530D /* PinManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82E84B72C9EC72B0048530D /* PinManagementView.swift */; };
-		B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B830F06E2C942E4A008931E0 /* TabButtonView.swift */; };
 		B832439B2C958C8200064A77 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B832439A2C958C8200064A77 /* TabView.swift */; };
 		B849870B2C94741400DEB0CF /* RoundCornerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */; };
 		B8675E182C95810500B649B3 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8675E172C95810500B649B3 /* MapViewRepresentable.swift */; };
@@ -108,6 +107,7 @@
 		E992575A2C98617600A44500 /* DetailPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99257592C98617500A44500 /* DetailPinView.swift */; };
 		E9A922F62C9FEC3800456680 /* NotificationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A922F52C9FEC3700456680 /* NotificationItem.swift */; };
 		E9A922F82C9FEC5300456680 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A922F72C9FEC4B00456680 /* NotificationsViewModel.swift */; };
+		E9A923002CA14DCA00456680 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A922FF2CA14DC600456680 /* TabButtonView.swift */; };
 		E9B8AE172C93256A0037450A /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE162C93256A0037450A /* Pin.swift */; };
 		E9B8AE192C9325990037450A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE182C9325990037450A /* MapView.swift */; };
 		E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B8AE1A2C932A510037450A /* PinFormView.swift */; };
@@ -187,7 +187,6 @@
 		B82E84B52C9EC72B0048530D /* AdminPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPanelView.swift; sourceTree = "<group>"; };
 		B82E84B62C9EC72B0048530D /* PendingPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingPinView.swift; sourceTree = "<group>"; };
 		B82E84B72C9EC72B0048530D /* PinManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinManagementView.swift; sourceTree = "<group>"; };
-		B830F06E2C942E4A008931E0 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabButtonView.swift; path = Roadify/Views/TabButtonView.swift; sourceTree = SOURCE_ROOT; };
 		B832439A2C958C8200064A77 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerViewModel.swift; sourceTree = "<group>"; };
 		B8675E172C95810500B649B3 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
@@ -218,6 +217,7 @@
 		E99257592C98617500A44500 /* DetailPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPinView.swift; sourceTree = "<group>"; };
 		E9A922F52C9FEC3700456680 /* NotificationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItem.swift; sourceTree = "<group>"; };
 		E9A922F72C9FEC4B00456680 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		E9A922FF2CA14DC600456680 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
 		E9B8AE162C93256A0037450A /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		E9B8AE182C9325990037450A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9B8AE1A2C932A510037450A /* PinFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinFormView.swift; sourceTree = "<group>"; };
@@ -248,6 +248,7 @@
 		0362DA522C91B16E008ED49A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E9A922FF2CA14DC600456680 /* TabButtonView.swift */,
 				0362DA532C91B1C1008ED49A /* SettingsRow.swift */,
 				B8675E172C95810500B649B3 /* MapViewRepresentable.swift */,
 				033DA9BD2C99CA3300A71506 /* SearchBar.swift */,
@@ -293,7 +294,6 @@
 				E926EA522C9C3DC0006F4C69 /* PinManagementViewModel.swift */,
 				E926EA502C9C3CE9006F4C69 /* PendingPinViewModel.swift */,
 				E9F1C2ED2C996363009ACA55 /* ImagePickerViewModel.swift */,
-				B830F06E2C942E4A008931E0 /* TabButtonView.swift */,
 				0362DA462C9192AB008ED49A /* SignInViewModel.swift */,
 				0362DA4C2C919E90008ED49A /* SignUpViewModel.swift */,
 				B849870A2C94741400DEB0CF /* RoundCornerViewModel.swift */,
@@ -657,6 +657,7 @@
 			files = (
 				B8675E1A2C95863700B649B3 /* ProgressViewModel.swift in Sources */,
 				E9B8AE192C9325990037450A /* MapView.swift in Sources */,
+				E9A923002CA14DCA00456680 /* TabButtonView.swift in Sources */,
 				B81FB9332C9C0E5C00DB90C1 /* ActivityLogsView.swift in Sources */,
 				E9A922F62C9FEC3800456680 /* NotificationItem.swift in Sources */,
 				0A918D982C9D965E00A4B746 /* LanguageSelectionView.swift in Sources */,
@@ -681,7 +682,6 @@
 				0362DA472C9192AB008ED49A /* SignInViewModel.swift in Sources */,
 				E99257522C957A1300A44500 /* NewsView.swift in Sources */,
 				0A125CDD2C9AAA8900F70798 /* ActivityLogsViewModel.swift in Sources */,
-				B830F06F2C942E4A008931E0 /* TabButtonView.swift in Sources */,
 				0A6FE7162C99ABCF0055B534 /* SplashScreenView.swift in Sources */,
 				E9B8AE1B2C932A510037450A /* PinFormView.swift in Sources */,
 				B81FB93D2C9C0E7600DB90C1 /* PrivacyPolicyView.swift in Sources */,

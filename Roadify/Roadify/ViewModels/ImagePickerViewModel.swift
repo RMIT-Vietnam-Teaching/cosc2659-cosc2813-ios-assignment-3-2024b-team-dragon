@@ -6,18 +6,18 @@
  Author: Team Dragon
  Created date: 
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
 import Photos
 
 class ImagePickerViewModel: ObservableObject {
-    @Published var selectedImage: UIImage?  // Selected image
-    @Published var images: [UIImage] = []  // List of fetched images
+    @Published var selectedImage: UIImage?
+    @Published var images: [UIImage] = []
 
     init() {
-        requestPhotoLibraryAccess()  // Ask for permission at initialization
+        requestPhotoLibraryAccess()
     }
     
     // Request access to the photo library
@@ -26,7 +26,7 @@ class ImagePickerViewModel: ObservableObject {
 
         switch status {
         case .authorized:
-            loadPhotos()  // Load photos if already authorized
+            loadPhotos()
         case .notDetermined:
             // Request authorization and then load photos if granted
             PHPhotoLibrary.requestAuthorization { newStatus in
@@ -37,7 +37,6 @@ class ImagePickerViewModel: ObservableObject {
                 }
             }
         default:
-            // Handle denied or restricted status if necessary
             break
         }
     }
@@ -48,22 +47,22 @@ class ImagePickerViewModel: ObservableObject {
             let fetchOptions = PHFetchOptions()
             let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
             
-            var tempImages: [UIImage] = []  // Temporary array to avoid duplicate entries
+            var tempImages: [UIImage] = []
 
             fetchResult.enumerateObjects { asset, _, _ in
                 let imageManager = PHImageManager.default()
                 let requestOptions = PHImageRequestOptions()
                 requestOptions.isSynchronous = true
-                requestOptions.deliveryMode = .highQualityFormat  // Ensure high-quality images
+                requestOptions.deliveryMode = .highQualityFormat
                 
                 imageManager.requestImage(for: asset,
-                                          targetSize: PHImageManagerMaximumSize,  // Request maximum size for higher quality
+                                          targetSize: PHImageManagerMaximumSize,
                                           contentMode: .aspectFill,
                                           options: requestOptions) { image, _ in
                     if let image = image {
                         // Check for duplicates
                         if !tempImages.contains(image) {
-                            tempImages.append(image)  // Append to temporary array
+                            tempImages.append(image)
                         }
                     }
                 }
@@ -71,7 +70,7 @@ class ImagePickerViewModel: ObservableObject {
             
             // Ensure that UI updates happen on the main thread
             DispatchQueue.main.async {
-                self.images = tempImages  // Assign the filtered array to the published variable
+                self.images = tempImages 
             }
         }
     }

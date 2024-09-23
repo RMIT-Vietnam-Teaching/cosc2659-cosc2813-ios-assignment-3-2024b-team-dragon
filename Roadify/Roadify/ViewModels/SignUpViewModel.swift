@@ -6,15 +6,8 @@
  Author: Team Dragon
  Created date: 19/9/24
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
-
-//
-//  SignUpViewModel.swift
-//  Roadify
-//
-//  Created by Nguyễn Tuấn Dũng on 19/9/24.
-//
 
 import FirebaseAuth
 import SwiftUI
@@ -51,7 +44,7 @@ class SignUpViewModel: ObservableObject {
     @Published var isRegistered = false
     @Published var errorMessage: String? = nil
 
-    private let firebaseService = FirebaseService()  // Use the FirebaseService instance
+    private let firebaseService = FirebaseService()
 
     private func validateUsername() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -148,7 +141,7 @@ class SignUpViewModel: ObservableObject {
 
             if Auth.auth().currentUser?.isEmailVerified == true {
                 self?.isOTPVerified = true
-                self?.errorMessage = nil  // Clear error message if email is verified
+                self?.errorMessage = nil 
             } else {
                 self?.errorMessage = "Email is not verified yet. Please check your inbox."
             }

@@ -6,7 +6,7 @@
  Author: Team Dragon
  Created date:
  Last modified: 22/9/24
- Acknowledgement:
+ Acknowledgement: Stack overflow, Swift.org, RMIT canvas
  */
 
 import SwiftUI
@@ -20,10 +20,8 @@ struct WelcomeView: View {
     @Binding var isFromMapView: Bool
 
     let totalPage = 3
-//    @State private var selectedTab: Int = 0
 
     var body: some View {
-        //        NavigationView { *FixYellowWarning*
         NavigationStack {
             VStack {
                 HStack {
@@ -55,13 +53,11 @@ struct WelcomeView: View {
                 HStack(spacing: 10) {
                     ForEach(0..<totalPage, id: \.self) { index in
                         Button(action: {
-                            // show current step
                             currentPage = index
                         }) {
                             Circle()
                                 .frame(width: 10, height: 10)
                                 .foregroundColor(currentPage == index ? Color("SubColor") : .gray)
-                                //                                .animation(.easeInOut) *FixYellowWarning*
                                 .animation(.easeInOut, value: 1)
 
                         }
@@ -72,20 +68,11 @@ struct WelcomeView: View {
 
                 Spacer()
 
-                    // Navigation Link to TabView
-                    //                NavigationLink(
-                    //                    destination: TabView().navigationBarBackButtonHidden(true), // Replace with your TabView
-                    //                    isActive: $navigateToTabView,
-                    //                    label: {
-                    //                        EmptyView()
-                    //                    }
-                    //                ) *FixYellowWarning*
                     .navigationDestination(isPresented: $navigateToTabView) {
                         TabView(
                             selectedPin: $selectedPin, selectedTab: $selectedTab,
                             isFromMapView: $isFromMapView
                         ).navigationBarBackButtonHidden(true)
-                        //						EmptyView()
                     }
 
             }
@@ -133,7 +120,7 @@ struct WelcomeView: View {
         if currentPage < totalPage - 1 {
             currentPage += 1
         } else {
-            navigateToTabView = true  // Trigger navigation
+            navigateToTabView = true
         }
     }
 }
